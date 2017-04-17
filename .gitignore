@@ -1,2 +1,4 @@
 *.~PrjPCB
 *.~SCHDOC
+*.~PcbDoc
+*.LOG
