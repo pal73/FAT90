@@ -1,15 +1,12 @@
 Protel Design System Design Rule Check
 PCB File : \Users\Pal\DEVICES\FAT90\HARD\KONTROLLER\main.PcbDoc
-Date     : 21.04.2017
-Time     : 11:55:44
+Date     : 24.04.2017
+Time     : 19:32:28
 
 Processing Rule : Short-Circuit Constraint (Allowed=No) (All),(All)
 Rule Violations :0
 
 Processing Rule : Broken-Net Constraint ( (All) )
-   Violation         Net SGND   is broken into 2 sub-nets. Routed To 0.00%
-     Subnet : JP8-3
-     Subnet : JP7-3
    Violation         Net PD7   is broken into 3 sub-nets. Routed To 0.00%
      Subnet : R32-1
      Subnet : U1-48
@@ -19,61 +16,62 @@ Processing Rule : Broken-Net Constraint ( (All) )
      Subnet : U1-47
      Subnet : Q6-3
    Violation         Net NetR24_1   is broken into 2 sub-nets. Routed To 0.00%
-     Subnet : U3-2
      Subnet : R24-1
+     Subnet : U3-2
    Violation         Net NetR23_2   is broken into 3 sub-nets. Routed To 0.00%
-     Subnet : U4-2
      Subnet : R23-2
      Subnet : U3-17
+     Subnet : U4-2
    Violation         Net NetQ5_1   is broken into 2 sub-nets. Routed To 0.00%
-     Subnet : Q5-1
      Subnet : R24-2
+     Subnet : Q5-1
    Violation         Net NetJP2_4   is broken into 2 sub-nets. Routed To 0.00%
-     Subnet : U3-4
      Subnet : JP2-4
+     Subnet : U3-4
    Violation         Net NetJP2_3   is broken into 2 sub-nets. Routed To 0.00%
-     Subnet : U3-18
      Subnet : JP2-3
+     Subnet : U3-18
    Violation         Net NetJP1_2   is broken into 2 sub-nets. Routed To 0.00%
      Subnet : JP1-2
      Subnet : Q5-3
    Violation         Net NetC3_2   is broken into 5 sub-nets. Routed To 0.00%
-     Subnet : JP1-3
+     Subnet : JP2-5
      Subnet : U4-3
+     Subnet : JP1-3
      Subnet : C3-2
      Subnet : U3-7
-     Subnet : JP2-5
    Violation         Net NetC3_1   is broken into 7 sub-nets. Routed To 0.00%
-     Subnet : JP1-1
-     Subnet : U3-9
-     Subnet : U4-1
      Subnet : JP2-1
      Subnet : R23-1
+     Subnet : U4-1
+     Subnet : JP1-1
      Subnet : Q5-2
      Subnet : C3-1
-   Violation         Net +12V   is broken into 2 sub-nets. Routed To 83.33%
-     Subnet : D1-2     C4-1     U8-1     C7-2     JP500-1  JP500-2
+     Subnet : U3-9
+   Violation         Net +12V   is broken into 2 sub-nets. Routed To 80.00%
+     Subnet : D1-2     C4-1     U8-1     C7-2     JP500-1
      Subnet : C5-1
-   Violation         Net +5V   is broken into 9 sub-nets. Routed To 63.64%
-     Subnet : U8-3     C6-1     Q4-2     Q1-2     U6-1     R16-1    R15-1    U2-8     U5-1     C9-2
-              U7-1     U1-8     U1-13    U1-7     U1-32
+   Violation         Net +5V   is broken into 9 sub-nets. Routed To 65.22%
+     Subnet : U8-3     C6-1     Q4-2     Q1-2     U7-1     U6-1     R15-1    R16-1    U2-8     C9-2
+              U5-1     JP3-1    D3-2
+     Subnet : U1-13    U1-7     U1-8     U1-32
      Subnet : R31-2
-     Subnet : C8-2
      Subnet : R30-1
      Subnet : R29-1
      Subnet : R28-2
+     Subnet : C8-2
      Subnet : Q3-2
      Subnet : Q2-2
-     Subnet : JP3-1
-   Violation         Net GND   is broken into 35 sub-nets. Routed To 0.00%
+   Violation         Net GND   is broken into 37 sub-nets. Routed To 0.00%
      Subnet : JP4-2
-     Subnet : C4-2
+     Subnet : JP8-3
      Subnet : U8-4
-     Subnet : R34-2
+     Subnet : C4-2
+     Subnet : JP7-3
      Subnet : C12-1
-     Subnet : JP3-5
-     Subnet : Q6-2
+     Subnet : R34-2
      Subnet : C14-1
+     Subnet : Q6-2
      Subnet : C6-2
      Subnet : S2-2
      Subnet : S2-2
@@ -83,25 +81,26 @@ Processing Rule : Broken-Net Constraint ( (All) )
      Subnet : S1-2
      Subnet : C11-2
      Subnet : D2-1
+     Subnet : JP3-5
      Subnet : C13-1
-     Subnet : U1-4
      Subnet : U1-14
      Subnet : U1-5
-     Subnet : JP500-10
-     Subnet : C5-2
-     Subnet : C8-1
      Subnet : JP500-9
-     Subnet : U1-31
+     Subnet : C5-2
+     Subnet : U1-4
+     Subnet : JP500-10
+     Subnet : C8-1
      Subnet : S4-2
+     Subnet : U1-31
      Subnet : S4-2
      Subnet : S3-2
      Subnet : S3-2
      Subnet : U2-4
+     Subnet : C9-1
+     Subnet : C1-1
      Subnet : C2-1
      Subnet : BT1-2
-     Subnet : C1-1
-     Subnet : C9-1
-Rule Violations :14
+Rule Violations :13
 
 Processing Rule : Clearance Constraint (Gap=0.2mm) (All),(All)
 Rule Violations :0
@@ -116,5 +115,5 @@ Processing Rule : Hole Size Constraint (Min=0.0254mm) (Max=5mm) (All)
 Rule Violations :0
 
 
-Violations Detected : 14
-Time Elapsed        : 00:00:01
+Violations Detected : 13
+Time Elapsed        : 00:00:00
