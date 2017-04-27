@@ -14,7 +14,7 @@ AllowSheetEntryNetNames=1
 AppendSheetNumberToLocalNets=0
 [Document1]
 DocumentPath=main.SCHDOC
-AnnotationEnabled=1
+AnnotationEnabled=0
 AnnotateStartValue=1
 AnnotateSuffix=
 DoLibraryUpdate=1
@@ -28,8 +28,15 @@ DoLibraryUpdate=1
 DoDatabaseUpdate=1
 [Document3]
 DocumentPath=dat.SchDoc
-AnnotationEnabled=1
+AnnotationEnabled=0
 AnnotateStartValue=1
+AnnotateSuffix=
+DoLibraryUpdate=1
+DoDatabaseUpdate=1
+[Document4]
+DocumentPath=am.SCHDOC
+AnnotationEnabled=1
+AnnotateStartValue=200
 AnnotateSuffix=
 DoLibraryUpdate=1
 DoDatabaseUpdate=1
