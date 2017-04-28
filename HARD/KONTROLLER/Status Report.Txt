@@ -1,0 +1,13 @@
+Output: NC Drill Files
+Type  : NC Drill
+From  : Project [Free Documents]
+   Generated File[sten_for_works.TXT]
+   Generated File[sten_for_works.DRL]
+   Generated File[sten_for_works.LDP]
+   Generated File[sten_for_works.DRR]
+
+
+Files Generated   : 4
+Documents Printed : 0
+
+Finished Output Generation At 18:23:24 On 28.04.2017

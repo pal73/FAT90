@@ -1,7 +1,10 @@
 Protel Design System Design Rule Check
 PCB File : \Users\Pal\DEVICES\FAT90\HARD\KONTROLLER\main.PcbDoc
-Date     : 25.04.2017
-Time     : 13:56:25
+Date     : 28.04.2017
+Time     : 17:35:26
+
+Processing Rule : Clearance Constraint (Gap=2mm) (HasPad('Free-0')),(InPoly)
+Rule Violations :0
 
 Processing Rule : Hole Size Constraint (Min=0.0254mm) (Max=5mm) (All)
 Rule Violations :0
@@ -23,4 +26,4 @@ Rule Violations :0
 
 
 Violations Detected : 0
-Time Elapsed        : 00:00:06
+Time Elapsed        : 00:00:11
