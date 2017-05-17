@@ -1,0 +1,20 @@
+;	STMicroelectronics Workspace file
+
+[Version]
+Keyword=ST7Workspace-V0.7
+
+[Project0]
+Filename=dat\fat90_dat.stp
+Dependencies=
+
+[Project1]
+Filename=..\..\fat32\soft\fat32_6\fat32_6.stp
+Dependencies=
+
+[Project2]
+Filename=..\..\fat35\soft\fat35o\fat35o.stp
+Dependencies=
+[Options]
+ActiveProject=fat35o
+ActiveConfig=Debug
+AddSortedElements=1
