@@ -8,13 +8,17 @@ Filename=dat\fat90_dat.stp
 Dependencies=
 
 [Project1]
-Filename=..\..\fat32\soft\fat32_6\fat32_6.stp
+Filename=..\..\fat35\soft\fat35o\fat35o.stp
 Dependencies=
 
 [Project2]
-Filename=..\..\fat35\soft\fat35o\fat35o.stp
+Filename=..\..\fat42_dev\soft_v2\fat42_v2.stp
+Dependencies=
+
+[Project3]
+Filename=..\..\fat35\soft\fat35\fat35.stp
 Dependencies=
 [Options]
-ActiveProject=fat35o
+ActiveProject=fat90_dat
 ActiveConfig=Debug
 AddSortedElements=1

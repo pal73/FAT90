@@ -3,3 +3,15 @@
 *.~PcbDoc
 *.LOG
 *.~DRC
+*.elf
+*.lkf
+*.map
+*.tmp
+*.o
+*.spy
+*.ls
+*.dep
+*.mak
+*.pdb
+*.wdb
+fat90_dat_plot_ws.xml
