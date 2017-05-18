@@ -1,13 +1,22 @@
 #include "stm8s.h"
 #include <iostm8s103.h>
 #include "main.h"
+#include <stdio.h>
+#include <string.h>
+#include <stdio.h>
 
 
 @near bool b100Hz=0,b10Hz=0,b5Hz=0,b1Hz=0;
 @near static char t0_cnt0=0,t0_cnt1=0,t0_cnt2=0,t0_cnt3=0;
 
 @near bool bCONV;
+@near ibatton_in[9];
+char buf[100];
+char* out_string;
+char* out_string1;
+char* out_string2;
 
+//char* buf;
 //-----------------------------------------------
 void t4_init(void)
 {
@@ -243,11 +252,11 @@ t4_init();
 
 enableInterrupts();
 
-			if(ibatton_polling())
+/*			if(ibatton_polling())
 				{
 				ibatton_send_byte(0xCC);
 				ibatton_send_byte(0x44);
-				}	
+				}*/
 while (1)
 	{
 	if(b100Hz)
@@ -276,11 +285,11 @@ while (1)
 		if(!bCONV)
 			{
 			bCONV=1;
-		/*	if(ibatton_polling())
+			if(ibatton_polling())
 				{
 				ibatton_send_byte(0xCC);
 				ibatton_send_byte(0x44);
-				}	*/		
+				}			
 			}
 		else 
 			{
@@ -289,15 +298,15 @@ while (1)
 				{
 				ibatton_send_byte(0xCC);
 				ibatton_send_byte(0xBE);
-				ibatton_read_byte();
-				ibatton_read_byte();
-				ibatton_read_byte();
-				ibatton_read_byte();
-				ibatton_read_byte();
-				ibatton_read_byte();
-				ibatton_read_byte();
-				ibatton_read_byte();
-				ibatton_read_byte();
+				ibatton_in[0]=ibatton_read_byte();
+				ibatton_in[1]=ibatton_read_byte();
+				ibatton_in[2]=ibatton_read_byte();
+				ibatton_in[3]=ibatton_read_byte();
+				ibatton_in[4]=ibatton_read_byte();
+				ibatton_in[5]=ibatton_read_byte();
+				ibatton_in[6]=ibatton_read_byte();
+				ibatton_in[7]=ibatton_read_byte();
+				ibatton_in[8]=ibatton_read_byte();
 				}			
 			}
 			
@@ -306,7 +315,18 @@ while (1)
 	if(b1Hz)
 		{
 		b1Hz=0;
-
+		
+		out_string="temper=";
+		buf[0] = '0';
+		buf[1] = '\r';
+		buf[2] = '\n';
+		strcpy(buf, "first string");
+		//strcpy(buf, "string");
+		strcpy(out_string1, "abcdef");
+		strcpy(buf, out_string);
+		printf(buf);
+		//strcat(buf, “, second string”);
+		//sprintf(out_string1,out_string);
 		}      	     	      
 	};
 	
