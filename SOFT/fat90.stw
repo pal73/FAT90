@@ -18,7 +18,11 @@ Dependencies=
 [Project3]
 Filename=..\..\fat35\soft\fat35\fat35.stp
 Dependencies=
+
+[Project4]
+Filename=kontr\fat90_kontr.stp
+Dependencies=
 [Options]
-ActiveProject=fat90_dat
+ActiveProject=fat90_kontr
 ActiveConfig=Debug
 AddSortedElements=1
