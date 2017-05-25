@@ -98,6 +98,8 @@ BRR2	include\stm8s.h	1854;"	member	struct:UART2_struct
 BRR2	include\stm8s.h	1962;"	member	struct:UART3_struct
 BTR1	include\stm8s.h	2179;"	member	struct:__anon5::__anon6::__anon12
 BTR2	include\stm8s.h	2180;"	member	struct:__anon5::__anon6::__anon12
+BUT_ON	main.c	44;"	macro	file:
+BUT_ONL	main.c	45;"	macro	file:
 BYTE_0	include\stm8s.h	2685;"	macro
 BYTE_1	include\stm8s.h	2686;"	macro
 BYTE_2	include\stm8s.h	2687;"	macro
@@ -441,7 +443,7 @@ DB9RH	include\stm8s.h	302;"	member	struct:ADC1_struct
 DB9RL	include\stm8s.h	303;"	member	struct:ADC1_struct
 DDR	include\stm8s.h	257;"	member	struct:GPIO_struct
 DGR	include\stm8s.h	2058;"	member	struct:__anon5
-DIGISYM	main.c	15;"	variable
+DIGISYM	main.c	26;"	variable
 DISABLE	include\stm8s.h	223;"	enumerator	enum:__anon3
 DM	include\stm8s.h	2589;"	macro
 DM_BaseAddress	include\stm8s.h	2480;"	macro
@@ -454,6 +456,8 @@ DRH	include\stm8s.h	309;"	member	struct:ADC1_struct
 DRH	include\stm8s.h	380;"	member	struct:ADC2_struct
 DRL	include\stm8s.h	310;"	member	struct:ADC1_struct
 DRL	include\stm8s.h	381;"	member	struct:ADC2_struct
+DS18B20PIN	main.h	2;"	macro
+DS18B20PORT	main.h	1;"	macro
 DTR	include\stm8s.h	628;"	member	struct:TIM1_struct
 DUKR	include\stm8s.h	1510;"	member	struct:FLASH_struct
 ECKR	include\stm8s.h	495;"	member	struct:CLK_struct
@@ -1202,7 +1206,7 @@ TIM4_PSCR_RESET_VALUE	include\stm8s.h	1067;"	macro
 TIM4_SR1_RESET_VALUE	include\stm8s.h	1064;"	macro
 TIM4_SR1_UIF	include\stm8s.h	1086;"	macro
 TIM4_TypeDef	include\stm8s.h	1056;"	typedef	typeref:struct:TIM4_struct
-TIM4_UPD_Interrupt	main.c	124;"	function	signature:(void)
+TIM4_UPD_Interrupt	main.c	213;"	function	signature:(void)
 TIM4_UPD_Interrupt	stm8_interrupt_vector.c	21;"	prototype	file:	signature:(void)
 TIM4_struct	include\stm8s.h	1042;"	struct
 TIM5	include\stm8s.h	2581;"	macro
@@ -1529,44 +1533,76 @@ _vectab	stm8_interrupt_vector.c	24;"	variable
 assert_failed	include\stm8s_conf.h	99;"	prototype	signature:(uint8_t* file, uint32_t line)
 assert_param	include\stm8s_conf.h	101;"	macro
 assert_param	include\stm8s_conf.h	97;"	macro
-b100Hz	main.c	3;"	variable
-b10Hz	main.c	3;"	variable
-b1Hz	main.c	3;"	variable
-b5Hz	main.c	3;"	variable
-bcd2ind	main.c	35;"	function	signature:(void)
-bcd2ind_zero	main.c	20;"	prototype	file:	signature:(void)
-bcd2ind_zero	main.c	46;"	function
-bin2bcd_int	main.c	23;"	function	signature:(unsigned short in)
+b100Hz	main.c	14;"	variable
+b10Hz	main.c	14;"	variable
+b1Hz	main.c	14;"	variable
+b2Hz	main.c	14;"	variable
+b5Hz	main.c	14;"	variable
+bFL1	main.c	30;"	variable
+bFL2	main.c	30;"	variable
+bFL5	main.c	30;"	variable
+bFL_	main.c	30;"	variable
+bcd2ind	main.c	69;"	function	signature:(void)
+bcd2ind	main.h	47;"	prototype	signature:(void)
+bcd2ind_zero	main.c	80;"	function	signature:(void)
+bcd2ind_zero	main.h	49;"	prototype	signature:()
+bin2bcd_int	main.c	57;"	function	signature:(unsigned short in)
+bin2bcd_int	main.h	45;"	prototype	signature:(unsigned short in)
 bool	include\stm8s.h	219;"	typedef	typeref:enum:__anon1
-dig	main.c	13;"	variable
+but	main.c	39;"	variable
+but0_cnt	main.c	41;"	variable
+but1_cnt	main.c	41;"	variable
+but_drv	main.c	148;"	function	signature:(void)
+but_n	main.c	39;"	variable
+but_new	main.c	38;"	variable
+but_onL_temp	main.c	43;"	variable
+but_s	main.c	39;"	variable
+dig	main.c	24;"	variable
 disableInterrupts	include\stm8s.h	2602;"	macro
 disableInterrupts	include\stm8s.h	2611;"	macro
 disableInterrupts	include\stm8s.h	2621;"	macro
+ds18b20_temper_drv	ds18b20.c	11;"	function	signature:(void)
+ds18b20_temper_drv	ds18b20.h	5;"	prototype	signature:(void)
 enableInterrupts	include\stm8s.h	2601;"	macro
 enableInterrupts	include\stm8s.h	2610;"	macro
 enableInterrupts	include\stm8s.h	2620;"	macro
+enum_power_stat	lowlev.h	4;"	typedef	typeref:enum:__anon14
 halt	include\stm8s.h	2608;"	macro
 halt	include\stm8s.h	2617;"	macro
 halt	include\stm8s.h	2627;"	macro
-ind_cnt	main.c	8;"	variable
-ind_outB	main.c	9;"	variable
-ind_outC	main.c	10;"	variable
-ind_outG	main.c	11;"	variable
-ind_out_	main.c	14;"	variable
-ind_strob	main.c	12;"	variable
+ind_cnt	main.c	19;"	variable
+ind_outB	main.c	20;"	variable
+ind_outC	main.c	21;"	variable
+ind_outG	main.c	22;"	variable
+ind_out_	main.c	25;"	variable
+ind_strob	main.c	23;"	variable
 int16_t	include\stm8s.h	200;"	typedef
-int2indII_slkuf	main.c	88;"	function	signature:(unsigned short in, char start, char len, char komma, char unzero, char fl)
-int2indI_slkuf	main.c	65;"	function	signature:(unsigned short in, char start, char len, char komma, char unzero, char fl)
+int2indII_slkuf	main.c	122;"	function	signature:(unsigned short in, char start, char len, char komma, char unzero, char fl)
+int2indII_slkuf	main.h	53;"	prototype	signature:(unsigned short in, char start, char len, char komma, char unzero, char fl)
+int2indI_slkuf	main.c	99;"	function	signature:(unsigned short in, char start, char len, char komma, char unzero, char fl)
+int2indI_slkuf	main.h	51;"	prototype	signature:(unsigned short in, char start, char len, char komma, char unzero, char fl)
 int32_t	include\stm8s.h	201;"	typedef
 int8_t	include\stm8s.h	199;"	typedef
 interrupt_handler	stm8_interrupt_vector.c	9;"	member	struct:interrupt_vector	file:
 interrupt_handler_t	stm8_interrupt_vector.c	5;"	typedef	file:
 interrupt_instruction	stm8_interrupt_vector.c	8;"	member	struct:interrupt_vector	file:
 interrupt_vector	stm8_interrupt_vector.c	7;"	struct	file:
-main	main.c	172;"	function
+l_but	main.c	40;"	variable
+main	main.c	270;"	function
+n_but	main.c	40;"	variable
 nop	include\stm8s.h	2605;"	macro
 nop	include\stm8s.h	2614;"	macro
 nop	include\stm8s.h	2624;"	macro
+out_drv	lowlev.c	12;"	function	signature:(void)
+out_drv	lowlev.h	13;"	prototype	signature:(void)
+out_stat	main.c	34;"	variable
+power_stat	lowlev.c	7;"	variable
+power_stat_cnt	lowlev.c	8;"	variable
+power_stat_drv	lowlev.c	27;"	function	signature:(void)
+power_stat_drv	lowlev.h	15;"	prototype	signature:(void)
+power_stat_old	lowlev.c	7;"	variable
+psOFF	lowlev.h	4;"	enumerator	enum:__anon14
+psON	lowlev.h	4;"	enumerator	enum:__anon14
 rim	include\stm8s.h	2603;"	macro
 rim	include\stm8s.h	2612;"	macro
 rim	include\stm8s.h	2622;"	macro
@@ -1576,11 +1612,14 @@ s8	include\stm8s.h	212;"	typedef
 sim	include\stm8s.h	2604;"	macro
 sim	include\stm8s.h	2613;"	macro
 sim	include\stm8s.h	2623;"	macro
-t0_cnt0	main.c	4;"	variable	file:
-t0_cnt1	main.c	4;"	variable	file:
-t0_cnt2	main.c	4;"	variable	file:
-t0_cnt3	main.c	4;"	variable	file:
-t4_init	main.c	110;"	function	signature:(void)
+speed	main.c	42;"	variable
+t0_cnt0	main.c	15;"	variable
+t0_cnt1	main.c	15;"	variable
+t0_cnt2	main.c	15;"	variable
+t0_cnt3	main.c	15;"	variable
+t0_cnt4	main.c	15;"	variable
+t4_init	main.c	199;"	function	signature:(void)
+t4_init	main.h	55;"	prototype	signature:(void)
 trap	include\stm8s.h	2606;"	macro
 trap	include\stm8s.h	2615;"	macro
 trap	include\stm8s.h	2625;"	macro
@@ -1593,4 +1632,20 @@ uint8_t	include\stm8s.h	204;"	typedef
 wfi	include\stm8s.h	2607;"	macro
 wfi	include\stm8s.h	2616;"	macro
 wfi	include\stm8s.h	2626;"	macro
-zero_on	main.c	18;"	variable
+wire1_in	ds18b20.c	6;"	variable
+wire1_polling	ds18b20.c	146;"	function	signature:(void)
+wire1_polling	ds18b20.h	17;"	prototype	signature:(void)
+wire1_read_byte	ds18b20.c	101;"	function	signature:(void)
+wire1_read_byte	ds18b20.h	13;"	prototype	signature:(void)
+wire1_rts	ds18b20.c	116;"	function	signature:(void)
+wire1_rts	ds18b20.h	15;"	prototype	signature:(void)
+wire1_send_byte	ds18b20.c	87;"	function	signature:(char in)
+wire1_send_byte	ds18b20.h	11;"	prototype	signature:(char in)
+wire1_w0ts	ds18b20.c	66;"	function	signature:(void)
+wire1_w0ts	ds18b20.h	9;"	prototype	signature:(void)
+wire1_w1ts	ds18b20.c	45;"	function	signature:(void)
+wire1_w1ts	ds18b20.h	7;"	prototype	signature:(void)
+x4010	main.c	8;"	variable
+x4012	main.c	9;"	variable
+x4014	main.c	10;"	variable
+zero_on	main.c	29;"	variable

@@ -5,8 +5,9 @@
 
 //-----------------------------------------------
 //Переменные в EEPROM
-@eeprom short NECC_TEMPER_AIR_EE 				@0x4010;
-@eeprom short NECC_TEMPER_WATER_EE 			@0x4012;
+@eeprom short NECC_TEMPER_AIR_EE 				@0x4010;	//температура поддержания воздуха
+@eeprom short NECC_TEMPER_WATER_EE 			@0x4012;	//температура поддержания воды
+@eeprom short MODE_EE										@0x4014;	//режим работы устройства (1 - по воде, 2 - по воздуху, 3 - по графику) 
 
 //-----------------------------------------------
 //Временная сетка
@@ -197,7 +198,7 @@ but_s=but_n;
 //-----------------------------------------------
 void t4_init(void)
 {
-TIM4->PSCR = 3;
+TIM4->PSCR = 8;
 TIM4->ARR= 158;
 TIM4->IER|= TIM4_IER_UIE;					// enable break interrupt
 
@@ -297,7 +298,6 @@ while (1)
 		{
 		b10Hz=0;
 		
-		ind_cnt=NECC_TEMPER_AIR_EE;
 		}
 	if(b5Hz)
 		{
