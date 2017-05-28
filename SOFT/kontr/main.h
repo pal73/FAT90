@@ -1,5 +1,5 @@
 #define DS18B20PORT	GPIOD
-#define DS18B20PIN	4
+#define DS18B20PIN	7
 
 //-----------------------------------------------
 //Временная сетка
@@ -9,10 +9,10 @@ extern char t0_cnt0,t0_cnt1,t0_cnt2,t0_cnt3,t0_cnt4;
 //-----------------------------------------------
 //Индикация
 extern char ind_cnt;
-extern char ind_outB[5];
-extern char ind_outC[5];
-extern char ind_outG[5];
-extern const char ind_strob[5];
+extern char ind_outB[12];
+extern char ind_outC[12];
+extern char ind_outG[12];
+extern const char ind_strob[12];
 extern char dig[10];
 extern char ind_out_[5];
 extern const char DIGISYM[30];

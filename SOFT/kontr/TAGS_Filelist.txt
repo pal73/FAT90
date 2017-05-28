@@ -2,9 +2,9 @@ ds18b20.c
 lowlev.c
 main.c
 stm8_interrupt_vector.c
-ds18b20.h
 include\stm8s.h
 include\stm8s_conf.h
-lowlev.h
 c:\program files\cosmic\cxstm8_32k\hstm8\mods0.h
+ds18b20.h
+lowlev.h
 main.h

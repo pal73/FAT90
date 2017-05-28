@@ -17,10 +17,10 @@ char t0_cnt0=0,t0_cnt1=0,t0_cnt2=0,t0_cnt3=0,t0_cnt4=0;
 //-----------------------------------------------
 //Индикация
 char ind_cnt;
-char ind_outB[5];
-char ind_outC[5];
-char ind_outG[5];
-const char ind_strob[5]={0b00011100,0b00101100,0b00110100,0b00111000,0b00111100};
+char ind_outB[12];
+char ind_outC[12]={0x00,0x00,0x00,0x00,0xff,0xff,0xff,0xff,0xff,0xff,0xff,0xff};
+char ind_outG[12]={0x00,0x00,0x00,0x00,0xff,0xff,0xff,0xff,0xff,0xff,0xff,0xff};
+const char ind_strob[12]={0b11011111,0b11101111,0b11110111,0b11111011,0b11011111,0b11011111,0b11011111,0b11011111,0b11011111,0b11111111,0b11011111,0b11111111};
 char dig[10];
 char ind_out_[5];
 const char DIGISYM[30]={	0b11000000,0b11111001,0b10100100,0b10110000,0b10011001,0b10010010,0b10000010,0b11111000,0b10000000,0b10010000,
@@ -43,6 +43,10 @@ char speed;
 short but_onL_temp;
 #define BUT_ON	5
 #define BUT_ONL	20
+
+//-----------------------------------------------
+//Температура
+signed short temperWater;
 
 //^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 //отладка
@@ -104,7 +108,7 @@ bin2bcd_int(in);
 if(unzero)bcd2ind_zero();
 else bcd2ind();
 if(komma)ind_out_[komma]&=0b01111111; 
-if(((fl==1)&&(bFL1)) ||	((fl==2)&&(bFL2)) || ((fl==5)&&(bFL5))) 
+if(((fl==1)&&(bFL2)) ||	((fl==2)&&(bFL2)) || ((fl==5)&&(bFL5))) 
 	{
 	for(i=0;i<len;i++) 
 		{
@@ -127,7 +131,7 @@ bin2bcd_int(in);
 if(unzero)bcd2ind_zero();
 else bcd2ind();
 if(komma)ind_out_[komma]&=0b01111111; 
-if(((fl==1)&&(bFL1)) || ((fl==2)&&(bFL2)) || ((fl==5)&&(bFL5))) 
+if(((fl==1)&&(bFL2)) || ((fl==2)&&(bFL2)) || ((fl==5)&&(bFL5))) 
 	{
 	for(i=0;i<len;i++) 
 		{
@@ -143,6 +147,16 @@ for(i=0;i<len;i++)
 	}
 }
 
+//-----------------------------------------------
+void matemath(void)
+{
+char temperWaterTemp; 
+if((wire1_in[1]&0xf0)==0)
+	{
+	temperWaterTemp=((wire1_in[0]&0xf0)>>4)+((wire1_in[1]&0x0f)<<4);
+	temperWater=(signed short)temperWaterTemp;
+	}
+}
 
 //-----------------------------------------------
 void but_drv(void)
@@ -198,7 +212,7 @@ but_s=but_n;
 //-----------------------------------------------
 void t4_init(void)
 {
-TIM4->PSCR = 8;
+TIM4->PSCR = 7;
 TIM4->ARR= 158;
 TIM4->IER|= TIM4_IER_UIE;					// enable break interrupt
 
@@ -215,7 +229,7 @@ TIM4->CR1=(TIM4_CR1_URS | TIM4_CR1_CEN | TIM4_CR1_ARPE);
 //должно быть 300 раз в секунду
 GPIOD->ODR|=0b00111100;
 ind_cnt++;
-if(ind_cnt>=5)
+if(ind_cnt>=10)
 	{
 	ind_cnt=0;
 	but_new=GPIOB->IDR;
@@ -224,11 +238,11 @@ GPIOB->ODR=ind_outB[ind_cnt];
 GPIOC->ODR=ind_outC[ind_cnt];
 GPIOG->ODR|=0x01;
 GPIOG->ODR&=ind_outG[ind_cnt];
-GPIOD->ODR&=ind_strob[ind_cnt];
-if(ind_cnt==4)GPIOB->DDR=0x00;
+if(ind_cnt==9)GPIOB->DDR=0x00;
 else GPIOB->DDR=0xff;
+GPIOD->ODR&=ind_strob[ind_cnt];
 
-if(++t0_cnt0>=3)
+if(++t0_cnt0>=5)
 	{
   t0_cnt0=0;
   b100Hz=1;
@@ -269,6 +283,11 @@ return;
 //===============================================
 main()
 {
+CLK->ECKR|=1;
+while((CLK->ECKR & 2) == 0);
+CLK->SWCR|=2;
+CLK->SWR=0xB4;	
+
 CLK->CKDIVR=0;
 
 //Инициализация индикации
@@ -292,12 +311,19 @@ while (1)
 	if(b100Hz)
 		{
 		b100Hz=0;
-
+		
+		but_drv();
+		GPIOD->DDR|=0b00000001;		
+		GPIOD->CR1|=0b00000001;		
+		GPIOD->CR2&=0b11111110;
+		GPIOD->ODR^=0b00000001;
 		}
 	if(b10Hz)
 		{
 		b10Hz=0;
-		
+		//ind_outB[2]=DIGISYM[3];
+		int2indI_slkuf(temperWater,1, 3, 0, 1, 0);
+		int2indII_slkuf(waterSensorErrorStat,0, 3, 2, 0, 0);
 		}
 	if(b5Hz)
 		{
@@ -313,7 +339,9 @@ while (1)
 		{
 		b1Hz=0;
 		
+		matemath();
 		ds18b20_temper_drv();
+		//wire1_polling();
 		}		
 	};
 }

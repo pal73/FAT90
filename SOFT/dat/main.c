@@ -32,15 +32,15 @@ TIM4->CR1=(TIM4_CR1_URS | TIM4_CR1_CEN | TIM4_CR1_ARPE);
 char ibatton_w1ts(void)
 {
 short i,ii,num_out;
-GPIOD->DDR|=(1<<4);
-GPIOD->ODR&=~(1<<4);
+GPIOC->DDR|=(1<<7);
+GPIOC->ODR&=~(1<<7);
 
 //импульс 10мкс
 for(i=0;i<10;i++)
 	{
 	__nop();
 	}
-GPIOD->ODR|=(1<<4);
+GPIOC->ODR|=(1<<7);
 
 //выдержка 90мкс
 for(i=0;i<90;i++)
@@ -53,15 +53,15 @@ for(i=0;i<90;i++)
 char ibatton_w0ts(void)
 {
 short i,ii,num_out;
-GPIOD->DDR|=(1<<4);
-GPIOD->ODR&=~(1<<4);
+GPIOC->DDR|=(1<<7);
+GPIOC->ODR&=~(1<<7);
 
 //импульс 90мкс
 for(i=0;i<90;i++)
 	{
 	__nop();
 	}
-GPIOD->ODR|=(1<<4);
+GPIOC->ODR|=(1<<7);
 
 //выдержка 10мкс
 for(i=0;i<10;i++)
@@ -104,8 +104,8 @@ char ibatton_rts(void)
 {
 short i,ii,num_out;
 
-GPIOD->DDR|=(1<<4);
-GPIOD->ODR&=~(1<<4);
+GPIOC->DDR|=(1<<7);
+GPIOC->ODR&=~(1<<7);
 
 //импульс 10мкс
 for(i=0;i<2;i++)
@@ -113,13 +113,13 @@ for(i=0;i<2;i++)
 	__nop();
 	}
 
-GPIOD->ODR|=(1<<4);
+GPIOC->ODR|=(1<<7);
 //импульс 20мкс
 for(i=0;i<10;i++)
 	{
 	__nop();
 	}
-if(GPIOD->IDR&(1<<4))	ii=1;
+if(GPIOC->IDR&(1<<7))	ii=1;
 else ii=0;
 
 //выдержка 30мкс
@@ -133,19 +133,19 @@ return ii;
 char ibatton_polling(void)
 {
 short i,ii,num_out;
-GPIOD->CR1&=~(1<<4);
-GPIOD->CR2&=~(1<<4);
-GPIOD->DDR|=(1<<4);
+GPIOC->CR1&=~(1<<7);
+GPIOC->CR2&=~(1<<7);
+GPIOC->DDR|=(1<<7);
 
 
-GPIOD->ODR&=~(1<<4);
+GPIOC->ODR&=~(1<<7);
 
 //импульс сброса 600мкс
 for(i=0;i<600;i++)
 	{
 	__nop();
 	}
-GPIOD->ODR|=(1<<4);
+GPIOC->ODR|=(1<<7);
 
 //выдержка 15мкс
 for(i=0;i<15;i++)
@@ -159,7 +159,7 @@ for(i=0;i<20;i++)
 	__nop();
 	__nop();
 	__nop();
-	if(!(GPIOD->IDR&(1<<4)))goto ibatton_polling_lbl_000;
+	if(!(GPIOC->IDR&(1<<7)))goto ibatton_polling_lbl_000;
 	}
 goto ibatton_polling_lbl_zero_exit;
 
@@ -168,7 +168,7 @@ ibatton_polling_lbl_000:
 //измер€ем длительность ответного импульса не дольше 300мкс
 for(i=0;i<220;i++)
 	{
-	if(GPIOD->IDR&(1<<4))
+	if(GPIOC->IDR&(1<<7))
 		{
 		__nop();
 		__nop();
@@ -189,6 +189,32 @@ ibatton_polling_lbl_success_exit:
 return 1;
 ibatton_polling_lbl_zero_exit:
 return 0;
+}
+
+//-----------------------------------------------
+void uart_init (void){
+	UART1->CR1&=~UART1_CR1_M;					
+	UART1->CR3|= (0<<4) & UART1_CR3_STOP;	
+	UART1->BRR2= 0x01;//0x03;
+	UART1->BRR1= 0x1a;//0x68;
+	UART1->CR2|= UART1_CR2_TEN /*| UART3_CR2_REN | UART3_CR2_RIEN*/;	
+}
+
+//-----------------------------------------------
+void putchar(char c)
+{
+while (tx_counter == TX_BUFFER_SIZE);
+///#asm("cli")
+if (tx_counter || ((UART1->SR & UART1_SR_TXE)==0))
+   {
+   tx_buffer[tx_wr_index]=c;
+   if (++tx_wr_index == TX_BUFFER_SIZE) tx_wr_index=0;
+   ++tx_counter;
+   }
+else UART1->DR=c;
+
+UART1->CR2|= UART1_CR2_TIEN;
+///#asm("sei")
 }
 
 //***********************************************
@@ -227,7 +253,19 @@ return;
 //***********************************************
 @far @interrupt void UARTTxInterrupt (void) 
 {
-
+if (tx_counter)
+	{
+	--tx_counter;
+	UART1->DR=tx_buffer[tx_rd_index];
+	if (++tx_rd_index == TX_BUFFER_SIZE) tx_rd_index=0;
+	}
+else 
+	{
+	//bOUT_FREE=1;
+	UART1->CR2&= ~UART1_CR2_TIEN;
+	}
+#endif	
+}
 }
 
 //***********************************************
@@ -263,10 +301,10 @@ while (1)
 		{
 		b100Hz=0;
 		
-		GPIOC->DDR|=(1<<6);
-		GPIOC->CR1|=(1<<6);
-		GPIOC->CR2|=(1<<6);	
-		GPIOC->ODR^=(1<<6);
+		//GPIOC->DDR|=(1<<7);
+		//GPIOC->CR1|=(1<<7);
+		//GPIOC->CR2|=(1<<7);	
+		//GPIOC->ODR^=(1<<7);
 		}  
       	
 	if(b10Hz)
@@ -282,6 +320,13 @@ while (1)
 		{
 		b5Hz=0;
 		
+
+			
+		}
+      	      	
+	if(b1Hz)
+		{
+		b1Hz=0;
 		if(!bCONV)
 			{
 			bCONV=1;
@@ -309,14 +354,8 @@ while (1)
 				ibatton_in[8]=ibatton_read_byte();
 				}			
 			}
-			
-		}
-      	      	
-	if(b1Hz)
-		{
-		b1Hz=0;
-		
-		out_string="temper=";
+
+/*		out_string="temper=";
 		buf[0] = '0';
 		buf[1] = '\r';
 		buf[2] = '\n';
@@ -326,8 +365,9 @@ while (1)
 		strcpy(buf, out_string);
 		printf(buf);
 		//strcat(buf, У, second stringФ);
-		//sprintf(out_string1,out_string);
-		}      	     	      
+		//sprintf(out_string1,out_string);*/ 
+		printf("mama");
+		}     	     	      
 	};
 	
 }
