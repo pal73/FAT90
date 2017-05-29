@@ -9,12 +9,41 @@
 @near bool b100Hz=0,b10Hz=0,b5Hz=0,b1Hz=0;
 @near static char t0_cnt0=0,t0_cnt1=0,t0_cnt2=0,t0_cnt3=0;
 
-@near bool bCONV;
-@near ibatton_in[9];
+//-----------------------------------------------
+//»змер€ема€ температура
+char temper;
+
+//-----------------------------------------------
+//—троки дл€ отправки в "голову"
+char *out_buff;
+char *out_buff_preffiks;
+char *out_buff_digits;
+
+//-----------------------------------------------
+//DS18B20
+bool bCONV;
+char wire1_in[10];		//—читывание данных, буфер 1wire
+char ds18b20ErrorHiCnt; //—четчик ошибок по замыканию линии в "+" (или отсутствию датчика)
+char ds18b20ErrorLoCnt;	//—четчик ошибок по замыканию линии в "-" 
+char ds18b20ErrorOffCnt;//—четчик нормальных ответов датчика
+enumDsErrorStat waterSensorErrorStat = esNORM;
+
+//-----------------------------------------------
+//UART
+#define TX_BUFFER_SIZE	30
+@near char tx_buffer[TX_BUFFER_SIZE]={0};
+@near signed char tx_counter;
+signed char tx_wr_index,tx_rd_index;
+char bOUT_FREE;
+
+
 char buf[100];
 char* out_string;
 char* out_string1;
 char* out_string2;
+int temperdeb =1234;
+
+
 
 //char* buf;
 //-----------------------------------------------
@@ -29,7 +58,7 @@ TIM4->CR1=(TIM4_CR1_URS | TIM4_CR1_CEN | TIM4_CR1_ARPE);
 }
 
 //-----------------------------------------------
-char ibatton_w1ts(void)
+char wire1_w1ts(void)
 {
 short i,ii,num_out;
 GPIOC->DDR|=(1<<7);
@@ -50,7 +79,7 @@ for(i=0;i<90;i++)
 }
 
 //-----------------------------------------------
-char ibatton_w0ts(void)
+char wire1_w0ts(void)
 {
 short i,ii,num_out;
 GPIOC->DDR|=(1<<7);
@@ -71,21 +100,21 @@ for(i=0;i<10;i++)
 }
 
 //-----------------------------------------------
-void ibatton_send_byte(char in)
+void wire1_send_byte(char in)
 {
 char i,ii;
 ii=in;
 
 for(i=0;i<8;i++)
 	{
-	if(ii&0x01)ibatton_w1ts();
-	else ibatton_w0ts();
+	if(ii&0x01)wire1_w1ts();
+	else wire1_w0ts();
 	ii>>=1;
 	}
 }
 
 //-----------------------------------------------
-char ibatton_read_byte(void)
+char wire1_read_byte(void)
 {
 char i,ii;
 ii=0;
@@ -93,14 +122,14 @@ ii=0;
 for(i=0;i<8;i++)
 	{
 	ii>>=1;
-	if(ibatton_rts())ii|=0x80;
+	if(wire1_rts())ii|=0x80;
 	else ii&=0x7f;
 	}
 return ii;
 }
 
 //-----------------------------------------------
-char ibatton_rts(void)
+char wire1_rts(void)
 {
 short i,ii,num_out;
 
@@ -130,7 +159,7 @@ for(i=0;i<50;i++)
 return ii;
 }
 //-----------------------------------------------
-char ibatton_polling(void)
+char wire1_polling(void)
 {
 short i,ii,num_out;
 GPIOC->CR1&=~(1<<7);
@@ -161,8 +190,8 @@ for(i=0;i<20;i++)
 	__nop();
 	if(!(GPIOC->IDR&(1<<7)))goto ibatton_polling_lbl_000;
 	}
-goto ibatton_polling_lbl_zero_exit;
-
+//goto ibatton_polling_lbl_zero_exit;
+return 0;
 ibatton_polling_lbl_000:
 
 //измер€ем длительность ответного импульса не дольше 300мкс
@@ -176,8 +205,9 @@ for(i=0;i<220;i++)
 		goto ibatton_polling_lbl_001;	//continue;
 		}
 	}
-num_out=5;
-goto ibatton_polling_lbl_zero_exit;
+//num_out=5;
+//goto ibatton_polling_lbl_zero_exit;
+return 5;
 
 ibatton_polling_lbl_001:
 //выдержка 15мкс
@@ -192,12 +222,17 @@ return 0;
 }
 
 //-----------------------------------------------
-void uart_init (void){
-	UART1->CR1&=~UART1_CR1_M;					
-	UART1->CR3|= (0<<4) & UART1_CR3_STOP;	
-	UART1->BRR2= 0x01;//0x03;
-	UART1->BRR1= 0x1a;//0x68;
-	UART1->CR2|= UART1_CR2_TEN /*| UART3_CR2_REN | UART3_CR2_RIEN*/;	
+void uart_init (void)
+{
+GPIOD->DDR&=~(1<<5);	
+GPIOD->CR1|=(1<<5);
+GPIOD->CR2&=~(1<<5);
+
+UART1->CR1&=~UART1_CR1_M;					
+UART1->CR3|= (0<<4) & UART1_CR3_STOP;	
+UART1->BRR2= 0x03;
+UART1->BRR1= 0x68;
+UART1->CR2|= UART1_CR2_TEN /*| UART3_CR2_REN | UART3_CR2_RIEN*/;	
 }
 
 //-----------------------------------------------
@@ -264,8 +299,6 @@ else
 	//bOUT_FREE=1;
 	UART1->CR2&= ~UART1_CR2_TIEN;
 	}
-#endif	
-}
 }
 
 //***********************************************
@@ -287,7 +320,7 @@ GPIOC->CR1|=(1<<6);
 GPIOC->CR2|=(1<<6);
 
 t4_init();
-
+uart_init();
 enableInterrupts();
 
 /*			if(ibatton_polling())
@@ -327,34 +360,120 @@ while (1)
 	if(b1Hz)
 		{
 		b1Hz=0;
+		
 		if(!bCONV)
 			{
+			char temp;
 			bCONV=1;
-			if(ibatton_polling())
+			temp=wire1_polling();
+			if(temp==1)
 				{
-				ibatton_send_byte(0xCC);
-				ibatton_send_byte(0x44);
-				}			
+				wire1_send_byte(0xCC);
+				wire1_send_byte(0x44);
+				
+				ds18b20ErrorHiCnt=0;
+				ds18b20ErrorLoCnt=0;
+				waterSensorErrorStat=esNORM;		
+				}
+			else
+				{
+				if(temp==0)
+					{
+					if(ds18b20ErrorHiCnt<10)
+						{
+						ds18b20ErrorHiCnt++;
+						if(ds18b20ErrorHiCnt>=10)
+							{
+							waterSensorErrorStat=esHI;	
+							}
+						}
+					ds18b20ErrorLoCnt=0;
+					//ds18b20ErrorOffCnt=0;			
+					}
+				if(temp==5)
+					{
+					if(ds18b20ErrorLoCnt<10)
+						{
+						ds18b20ErrorLoCnt++;
+						if(ds18b20ErrorLoCnt>=10)
+							{
+							waterSensorErrorStat=esLO;	
+							}
+						}
+					ds18b20ErrorHiCnt=0;
+					//ds18b20ErrorOffCnt=0;			
+					}			
+				}
 			}
 		else 
 			{
+			char temp;
 			bCONV=0;
-			if(ibatton_polling())
+			temp=wire1_polling();
+			if(temp==1)
 				{
-				ibatton_send_byte(0xCC);
-				ibatton_send_byte(0xBE);
-				ibatton_in[0]=ibatton_read_byte();
-				ibatton_in[1]=ibatton_read_byte();
-				ibatton_in[2]=ibatton_read_byte();
-				ibatton_in[3]=ibatton_read_byte();
-				ibatton_in[4]=ibatton_read_byte();
-				ibatton_in[5]=ibatton_read_byte();
-				ibatton_in[6]=ibatton_read_byte();
-				ibatton_in[7]=ibatton_read_byte();
-				ibatton_in[8]=ibatton_read_byte();
-				}			
+				wire1_send_byte(0xCC);
+				wire1_send_byte(0xBE);
+				wire1_in[0]=wire1_read_byte();
+				wire1_in[1]=wire1_read_byte();
+				wire1_in[2]=wire1_read_byte();
+				wire1_in[3]=wire1_read_byte();
+				wire1_in[4]=wire1_read_byte();
+				wire1_in[5]=wire1_read_byte();
+				wire1_in[6]=wire1_read_byte();
+				wire1_in[7]=wire1_read_byte();
+				wire1_in[8]=wire1_read_byte();
+				
+				ds18b20ErrorHiCnt=0;
+				ds18b20ErrorLoCnt=0;
+				waterSensorErrorStat=esNORM;
+				}
+			else
+				{
+				if(temp==0)
+					{
+					if(ds18b20ErrorHiCnt<10)
+						{
+						ds18b20ErrorHiCnt++;
+						if(ds18b20ErrorHiCnt>=10)
+							{
+							waterSensorErrorStat=esHI;	
+							}
+						}
+					ds18b20ErrorLoCnt=0;
+					//ds18b20ErrorOffCnt=0;			
+					}
+				if(temp==5)
+					{
+					if(ds18b20ErrorLoCnt<10)
+						{
+						ds18b20ErrorLoCnt++;
+						if(ds18b20ErrorLoCnt>=10)
+							{
+							waterSensorErrorStat=esLO;	
+							}
+						}
+					ds18b20ErrorHiCnt=0;
+					//ds18b20ErrorOffCnt=0;			
+					}			
+				}
 			}
-
+			
+		if(wire1_in[1]&0xf0)
+			{
+				//TODO отрицательна€ температура
+			}
+		else
+			{
+			short temper_temp;
+			
+			temper_temp=(((short)wire1_in[1])<<8)+((short)wire1_in[0]);
+			temper_temp>>=4;
+			temper_temp&=0x00ff;
+			
+			temper=(char)temper_temp;
+			}
+		
 /*		out_string="temper=";
 		buf[0] = '0';
 		buf[1] = '\r';
@@ -366,7 +485,13 @@ while (1)
 		printf(buf);
 		//strcat(buf, У, second stringФ);
 		//sprintf(out_string1,out_string);*/ 
-		printf("mama");
+		//printf("mama");
+		puts("mama");
+		out_buff_preffiks="OK";
+		sprintf(out_buff_digits,"AK %d\n",temperdeb);
+		//out_buff=out_buff_preffiks+out_buff_digits;
+		out_buff=strcat(out_buff_preffiks,out_buff_digits);
+		//putchar('m');
 		}     	     	      
 	};
 	

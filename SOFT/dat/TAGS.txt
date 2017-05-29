@@ -99,6 +99,7 @@ BRR2	include\stm8s.h	1745;"	member	struct:UART2_struct
 BRR2	include\stm8s.h	1853;"	member	struct:UART3_struct
 BTR1	include\stm8s.h	2070;"	member	struct:__anon1::__anon2::__anon8
 BTR2	include\stm8s.h	2071;"	member	struct:__anon1::__anon2::__anon8
+BUFSIZ	c:\program files\cosmic\cxstm8_32k\hstm8\stdio.h	26;"	macro
 BYTE_0	include\stm8s.h	2535;"	macro
 BYTE_1	include\stm8s.h	2536;"	macro
 BYTE_2	include\stm8s.h	2537;"	macro
@@ -467,6 +468,7 @@ EGR	include\stm8s.h	923;"	member	struct:TIM4_struct
 EGR	include\stm8s.h	985;"	member	struct:TIM5_struct
 EIER	include\stm8s.h	2067;"	member	struct:__anon1::__anon2::__anon8
 ENABLE	include\stm8s_type.h	75;"	enumerator	enum:__anon12
+EOF	c:\program files\cosmic\cxstm8_32k\hstm8\stdio.h	27;"	macro
 ERROR	include\stm8s_type.h	82;"	enumerator	enum:__anon13
 ESR	include\stm8s.h	2066;"	member	struct:__anon1::__anon2::__anon8
 ETR	include\stm8s.h	471;"	member	struct:TIM1_struct
@@ -762,6 +764,8 @@ NOPT3	include\stm8s.h	1456;"	member	struct:OPT_struct
 NOPT4	include\stm8s.h	1458;"	member	struct:OPT_struct
 NOPT5	include\stm8s.h	1460;"	member	struct:OPT_struct
 NOPT7	include\stm8s.h	1464;"	member	struct:OPT_struct
+NULL	c:\program files\cosmic\cxstm8_32k\hstm8\stdio.h	30;"	macro
+NULL	c:\program files\cosmic\cxstm8_32k\hstm8\string.h	9;"	macro
 NonHandledInterrupt	stm8_interrupt_vector.c	12;"	function	signature:(void)
 OARH	include\stm8s.h	1198;"	member	struct:I2C_struct
 OARL	include\stm8s.h	1197;"	member	struct:I2C_struct
@@ -1184,7 +1188,7 @@ TIM4_PSCR_RESET_VALUE	include\stm8s.h	939;"	macro
 TIM4_SR1_RESET_VALUE	include\stm8s.h	936;"	macro
 TIM4_SR1_UIF	include\stm8s.h	958;"	macro
 TIM4_TypeDef	include\stm8s.h	928;"	typedef	typeref:struct:TIM4_struct
-TIM4_UPD_Interrupt	main.c	131;"	function	signature:(void)
+TIM4_UPD_Interrupt	main.c	240;"	function	signature:(void)
 TIM4_UPD_Interrupt	stm8_interrupt_vector.c	20;"	prototype	file:	signature:(void)
 TIM4_struct	include\stm8s.h	914;"	struct
 TIM5	include\stm8s.h	2469;"	macro
@@ -1303,6 +1307,7 @@ TRISER	include\stm8s.h	1207;"	member	struct:I2C_struct
 TRUE	include\stm8s_type.h	63;"	enumerator	enum:__anon10
 TSR	include\stm8s.h	1945;"	member	struct:__anon1
 TXCRCR	include\stm8s.h	1569;"	member	struct:SPI_struct
+TX_BUFFER_SIZE	main.c	15;"	macro	file:
 TxMailbox	include\stm8s.h	1973;"	member	union:__anon1::__anon2	typeref:struct:__anon1::__anon2::__anon3
 U16_MAX	include\stm8s_type.h	90;"	macro
 U32_MAX	include\stm8s_type.h	93;"	macro
@@ -1477,9 +1482,9 @@ UART3_SR_TC	include\stm8s.h	1885;"	macro
 UART3_SR_TXE	include\stm8s.h	1884;"	macro
 UART3_TypeDef	include\stm8s.h	1861;"	typedef	typeref:struct:UART3_struct
 UART3_struct	include\stm8s.h	1848;"	struct
-UARTRxInterrupt	main.c	167;"	function	signature:(void)
+UARTRxInterrupt	main.c	286;"	function	signature:(void)
 UARTRxInterrupt	stm8_interrupt_vector.c	23;"	prototype	file:	signature:(void)
-UARTTxInterrupt	main.c	161;"	function	signature:(void)
+UARTTxInterrupt	main.c	270;"	function	signature:(void)
 UARTTxInterrupt	stm8_interrupt_vector.c	22;"	prototype	file:	signature:(void)
 ValBit	include\stm8s.h	2533;"	macro
 WR	include\stm8s.h	1500;"	member	struct:WWDG_struct
@@ -1501,30 +1506,57 @@ _RAISONANCE_	include\stm8s.h	35;"	macro
 __CONST	include\stm8s.h	69;"	macro
 __CONST	include\stm8s.h	74;"	macro
 __MODS0__	c:\program files\cosmic\cxstm8_32k\hstm8\mods0.h	11;"	macro
+__SIZE_T__	c:\program files\cosmic\cxstm8_32k\hstm8\stdio.h	9;"	macro
+__STDIO__	c:\program files\cosmic\cxstm8_32k\hstm8\stdio.h	6;"	macro
 __STM8S_H	include\stm8s.h	24;"	macro
 __STM8S_TYPE_H	include\stm8s_type.h	24;"	macro
+__STRING__	c:\program files\cosmic\cxstm8_32k\hstm8\string.h	6;"	macro
 __nop	main.h	1;"	macro
 _stext	stm8_interrupt_vector.c	21;"	prototype	file:
 _vectab	stm8_interrupt_vector.c	25;"	variable
-b100Hz	main.c	6;"	variable
-b10Hz	main.c	6;"	variable
-b1Hz	main.c	6;"	variable
-b5Hz	main.c	6;"	variable
+b100Hz	main.c	9;"	variable
+b10Hz	main.c	9;"	variable
+b1Hz	main.c	9;"	variable
+b5Hz	main.c	9;"	variable
+bCONV	main.c	12;"	variable
+bOUT_FREE	main.c	19;"	variable
 bool	include\stm8s_type.h	65;"	typedef	typeref:enum:__anon10
+buf	main.c	22;"	variable
 disableInterrupts	include\stm8s.h	2492;"	macro
 disableInterrupts	include\stm8s.h	2501;"	macro
+eepera	c:\program files\cosmic\cxstm8_32k\hstm8\string.h	35;"	macro
 enableInterrupts	include\stm8s.h	2491;"	macro
 enableInterrupts	include\stm8s.h	2500;"	macro
+getchar	c:\program files\cosmic\cxstm8_32k\hstm8\stdio.h	15;"	prototype	signature:(void)
+gets	c:\program files\cosmic\cxstm8_32k\hstm8\stdio.h	16;"	prototype	signature:(char *s)
 halt	include\stm8s.h	2498;"	macro
 halt	include\stm8s.h	2507;"	macro
-ibatton_polling	main.c	21;"	function	signature:(void)
+ibatton_in	main.c	13;"	variable
+ibatton_polling	main.c	144;"	function	signature:(void)
+ibatton_read_byte	main.c	99;"	function	signature:(void)
+ibatton_rts	main.c	114;"	function	signature:(void)
+ibatton_rts	main.h	3;"	prototype	signature:(void)
+ibatton_send_byte	main.c	85;"	function	signature:(char in)
+ibatton_w0ts	main.c	64;"	function	signature:(void)
+ibatton_w1ts	main.c	43;"	function	signature:(void)
 interrupt_handler	stm8_interrupt_vector.c	9;"	member	struct:interrupt_vector	file:
 interrupt_handler_t	stm8_interrupt_vector.c	5;"	typedef	file:
 interrupt_instruction	stm8_interrupt_vector.c	8;"	member	struct:interrupt_vector	file:
 interrupt_vector	stm8_interrupt_vector.c	7;"	struct	file:
-main	main.c	176;"	function
+main	main.c	295;"	function
+memchr	c:\program files\cosmic\cxstm8_32k\hstm8\string.h	28;"	prototype	signature:(void *s, char c, unsigned int n)
+memcmp	c:\program files\cosmic\cxstm8_32k\hstm8\string.h	22;"	prototype	signature:(void *s1, void *s2, unsigned int n)
+memcpy	c:\program files\cosmic\cxstm8_32k\hstm8\string.h	29;"	prototype	signature:(void *s1, void *s2, unsigned int n)
+memmove	c:\program files\cosmic\cxstm8_32k\hstm8\string.h	30;"	prototype	signature:(void *s1, void *s2, unsigned int n)
+memset	c:\program files\cosmic\cxstm8_32k\hstm8\string.h	31;"	prototype	signature:(void *s, char c, unsigned int n)
 nop	include\stm8s.h	2495;"	macro
 nop	include\stm8s.h	2504;"	macro
+out_string	main.c	23;"	variable
+out_string1	main.c	24;"	variable
+out_string2	main.c	25;"	variable
+printf	c:\program files\cosmic\cxstm8_32k\hstm8\stdio.h	17;"	prototype	signature:(char *format, ...)
+putchar	main.c	220;"	function	signature:(char c)
+puts	c:\program files\cosmic\cxstm8_32k\hstm8\stdio.h	19;"	prototype	signature:(char *s)
 rim	include\stm8s.h	2493;"	macro
 rim	include\stm8s.h	2502;"	macro
 s16	include\stm8s_type.h	29;"	typedef
@@ -1533,18 +1565,40 @@ s8	include\stm8s_type.h	30;"	typedef
 sc16	include\stm8s_type.h	33;"	typedef
 sc32	include\stm8s_type.h	32;"	typedef
 sc8	include\stm8s_type.h	34;"	typedef
+scanf	c:\program files\cosmic\cxstm8_32k\hstm8\stdio.h	20;"	prototype	signature:(char *format, ...)
 sim	include\stm8s.h	2494;"	macro
 sim	include\stm8s.h	2503;"	macro
-t0_cnt0	main.c	7;"	variable	file:
-t0_cnt1	main.c	7;"	variable	file:
-t0_cnt2	main.c	7;"	variable	file:
-t0_cnt3	main.c	7;"	variable	file:
-t4_init	main.c	10;"	function	signature:(void)
+size_t	c:\program files\cosmic\cxstm8_32k\hstm8\stdio.h	10;"	typedef
+sprintf	c:\program files\cosmic\cxstm8_32k\hstm8\stdio.h	22;"	prototype	signature:(char *s, char *format, ...)
+sscanf	c:\program files\cosmic\cxstm8_32k\hstm8\stdio.h	21;"	prototype	signature:(char *s, char *format, ...)
+strcat	c:\program files\cosmic\cxstm8_32k\hstm8\string.h	14;"	prototype	signature:(char *s1, char *s2)
+strchr	c:\program files\cosmic\cxstm8_32k\hstm8\string.h	15;"	prototype	signature:(char *s, char c)
+strcmp	c:\program files\cosmic\cxstm8_32k\hstm8\string.h	23;"	prototype	signature:(char *s1, char *s2)
+strcpy	c:\program files\cosmic\cxstm8_32k\hstm8\string.h	16;"	prototype	signature:(char *s1, char *s2)
+strcspn	c:\program files\cosmic\cxstm8_32k\hstm8\string.h	25;"	prototype	signature:(char *s1, char *s2)
+strlen	c:\program files\cosmic\cxstm8_32k\hstm8\string.h	26;"	prototype	signature:(char *s)
+strncat	c:\program files\cosmic\cxstm8_32k\hstm8\string.h	17;"	prototype	signature:(char *s1, char *s2, unsigned int n)
+strncmp	c:\program files\cosmic\cxstm8_32k\hstm8\string.h	24;"	prototype	signature:(char *s1, char *s2, unsigned int n)
+strncpy	c:\program files\cosmic\cxstm8_32k\hstm8\string.h	18;"	prototype	signature:(char *s1, char *s2, unsigned int n)
+strpbrk	c:\program files\cosmic\cxstm8_32k\hstm8\string.h	19;"	prototype	signature:(char *s1, char *s2)
+strrchr	c:\program files\cosmic\cxstm8_32k\hstm8\string.h	20;"	prototype	signature:(char *s, char c)
+strspn	c:\program files\cosmic\cxstm8_32k\hstm8\string.h	27;"	prototype	signature:(char *s1, char *s2)
+strstr	c:\program files\cosmic\cxstm8_32k\hstm8\string.h	21;"	prototype	signature:(char *s1, char *s2)
+t0_cnt0	main.c	10;"	variable	file:
+t0_cnt1	main.c	10;"	variable	file:
+t0_cnt2	main.c	10;"	variable	file:
+t0_cnt3	main.c	10;"	variable	file:
+t4_init	main.c	32;"	function	signature:(void)
 trap	include\stm8s.h	2496;"	macro
 trap	include\stm8s.h	2505;"	macro
+tx_buffer	main.c	16;"	variable
+tx_counter	main.c	17;"	variable
+tx_rd_index	main.c	18;"	variable
+tx_wr_index	main.c	18;"	variable
 u16	include\stm8s_type.h	45;"	typedef
 u32	include\stm8s_type.h	44;"	typedef
 u8	include\stm8s_type.h	46;"	typedef
+uart_init	main.c	206;"	function	signature:(void)
 uc16	include\stm8s_type.h	49;"	typedef
 uc32	include\stm8s_type.h	48;"	typedef
 uc8	include\stm8s_type.h	50;"	typedef
