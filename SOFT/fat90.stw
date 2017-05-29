@@ -12,14 +12,10 @@ Filename=..\..\fat35\soft\fat35o\fat35o.stp
 Dependencies=
 
 [Project2]
-Filename=..\..\fat42_dev\soft_v2\fat42_v2.stp
-Dependencies=
-
-[Project3]
 Filename=..\..\fat35\soft\fat35\fat35.stp
 Dependencies=
 
-[Project4]
+[Project3]
 Filename=kontr\fat90_kontr.stp
 Dependencies=
 [Options]

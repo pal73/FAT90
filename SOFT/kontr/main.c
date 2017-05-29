@@ -2,6 +2,7 @@
 #include "main.h"
 #include "lowlev.h"
 #include "ds18b20.h"
+#include "uart3.h"
 
 //-----------------------------------------------
 //Переменные в EEPROM
@@ -212,7 +213,7 @@ but_s=but_n;
 //-----------------------------------------------
 void t4_init(void)
 {
-TIM4->PSCR = 7;
+TIM4->PSCR = 6;
 TIM4->ARR= 158;
 TIM4->IER|= TIM4_IER_UIE;					// enable break interrupt
 
@@ -242,7 +243,7 @@ if(ind_cnt==9)GPIOB->DDR=0x00;
 else GPIOB->DDR=0xff;
 GPIOD->ODR&=ind_strob[ind_cnt];
 
-if(++t0_cnt0>=5)
+if(++t0_cnt0>=10)
 	{
   t0_cnt0=0;
   b100Hz=1;
@@ -304,6 +305,7 @@ GPIOG->DDR|=0b00000001;		//PG0 выход открытый коллектор
 GPIOG->CR1&=0b11111110;		//....
 GPIOG->CR2&=0b11111110;		//....
 t4_init();
+uart3_init();
 
 enableInterrupts();	
 while (1)
@@ -323,7 +325,9 @@ while (1)
 		b10Hz=0;
 		//ind_outB[2]=DIGISYM[3];
 		int2indI_slkuf(temperWater,1, 3, 0, 1, 0);
-		int2indII_slkuf(waterSensorErrorStat,0, 3, 2, 0, 0);
+		int2indII_slkuf(uart3_plazma,0, 3, 2, 0, 0);
+		
+		uart3_in_an();
 		}
 	if(b5Hz)
 		{

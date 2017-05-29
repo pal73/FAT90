@@ -11,7 +11,11 @@
 
 //-----------------------------------------------
 //Измеряемая температура
-char temper;
+short temper;
+
+//-----------------------------------------------
+//Контрольная сумма, вычисляется сложением всех десятичных разрядов температуры
+short temperCRC;
 
 //-----------------------------------------------
 //Строки для отправки в "голову"
@@ -26,7 +30,7 @@ char wire1_in[10];		//Считывание данных, буфер 1wire
 char ds18b20ErrorHiCnt; //Счетчик ошибок по замыканию линии в "+" (или отсутствию датчика)
 char ds18b20ErrorLoCnt;	//Счетчик ошибок по замыканию линии в "-" 
 char ds18b20ErrorOffCnt;//Счетчик нормальных ответов датчика
-enumDsErrorStat waterSensorErrorStat = esNORM;
+enumDsErrorStat airSensorErrorStat = esNORM;
 
 //-----------------------------------------------
 //UART
@@ -373,7 +377,7 @@ while (1)
 				
 				ds18b20ErrorHiCnt=0;
 				ds18b20ErrorLoCnt=0;
-				waterSensorErrorStat=esNORM;		
+				airSensorErrorStat=esNORM;		
 				}
 			else
 				{
@@ -384,7 +388,7 @@ while (1)
 						ds18b20ErrorHiCnt++;
 						if(ds18b20ErrorHiCnt>=10)
 							{
-							waterSensorErrorStat=esHI;	
+							airSensorErrorStat=esHI;	
 							}
 						}
 					ds18b20ErrorLoCnt=0;
@@ -397,7 +401,7 @@ while (1)
 						ds18b20ErrorLoCnt++;
 						if(ds18b20ErrorLoCnt>=10)
 							{
-							waterSensorErrorStat=esLO;	
+							airSensorErrorStat=esLO;	
 							}
 						}
 					ds18b20ErrorHiCnt=0;
@@ -426,7 +430,7 @@ while (1)
 				
 				ds18b20ErrorHiCnt=0;
 				ds18b20ErrorLoCnt=0;
-				waterSensorErrorStat=esNORM;
+				airSensorErrorStat=esNORM;
 				}
 			else
 				{
@@ -437,7 +441,7 @@ while (1)
 						ds18b20ErrorHiCnt++;
 						if(ds18b20ErrorHiCnt>=10)
 							{
-							waterSensorErrorStat=esHI;	
+							airSensorErrorStat=esHI;	
 							}
 						}
 					ds18b20ErrorLoCnt=0;
@@ -450,7 +454,7 @@ while (1)
 						ds18b20ErrorLoCnt++;
 						if(ds18b20ErrorLoCnt>=10)
 							{
-							waterSensorErrorStat=esLO;	
+							airSensorErrorStat=esLO;	
 							}
 						}
 					ds18b20ErrorHiCnt=0;
@@ -471,9 +475,11 @@ while (1)
 			temper_temp>>=4;
 			temper_temp&=0x00ff;
 			
-			temper=(char)temper_temp;
+			temper=(short)temper_temp;
+			//temper=23;
 			}
-		
+		temperCRC = (temper%10)+((temper/10)%10)+((temper/100)%10);
+		temperCRC*=-1;
 /*		out_string="temper=";
 		buf[0] = '0';
 		buf[1] = '\r';
@@ -486,12 +492,18 @@ while (1)
 		//strcat(buf, “, second string”);
 		//sprintf(out_string1,out_string);*/ 
 		//printf("mama");
-		puts("mama");
-		out_buff_preffiks="OK";
-		sprintf(out_buff_digits,"AK %d\n",temperdeb);
+		//puts("mama");
+		//temperdeb=29;
+		//out_buff_preffiks="OK";
+		//sprintf(out_buff_digits,"%d\n",temper);
 		//out_buff=out_buff_preffiks+out_buff_digits;
-		out_buff=strcat(out_buff_preffiks,out_buff_digits);
+		//out_buff=strcat(out_buff_preffiks,out_buff_digits);
+		//out_buff="OK35";
+		//puts(out_buff_digits);
 		//putchar('m');
+		if(airSensorErrorStat==esHI) printf("ERRORHI\n");
+		else if(airSensorErrorStat==esLO) printf("ERRORLO\n");
+		else if(airSensorErrorStat==esNORM) printf("OK%dCRC%d\n",temper,temperCRC);
 		}     	     	      
 	};
 	
