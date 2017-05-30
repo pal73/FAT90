@@ -13,4 +13,6 @@ extern char power_stat_cnt;
 void out_drv(void);
 //-----------------------------------------------
 void power_stat_drv(void);
+//-----------------------------------------------
+void delay_us(short num_of_delay);
 

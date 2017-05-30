@@ -3,6 +3,7 @@
 #include "lowlev.h"
 #include "ds18b20.h"
 #include "uart3.h"
+#include "ds1307.h"
 
 //-----------------------------------------------
 //Переменные в EEPROM
@@ -48,6 +49,16 @@ short but_onL_temp;
 //-----------------------------------------------
 //Температура
 signed short temperWater;
+
+//-----------------------------------------------
+//Время
+char buff_for_time[10];
+char time_sec;
+char time_min;
+char time_hour;
+char time_day_of_week;
+char time_month;
+char time_year;
 
 //^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 //отладка
@@ -149,6 +160,16 @@ for(i=0;i<len;i++)
 }
 
 //-----------------------------------------------
+void time_drv(void)
+{
+_ds1307_read_time(buff_for_time);
+
+time_sec=(((buff_for_time[0]&0x70)>>4)*10)+(buff_for_time[0]&0x0f);
+time_min=(((buff_for_time[1]&0x70)>>4)*10)+(buff_for_time[1]&0x0f);
+time_hour=(((buff_for_time[2]&0x30)>>4)*10)+(buff_for_time[2]&0x0f);
+}
+
+//-----------------------------------------------
 void matemath(void)
 {
 char temperWaterTemp; 
@@ -157,6 +178,16 @@ if((wire1_in[1]&0xf0)==0)
 	temperWaterTemp=((wire1_in[0]&0xf0)>>4)+((wire1_in[1]&0x0f)<<4);
 	temperWater=(signed short)temperWaterTemp;
 	}
+}
+
+//-----------------------------------------------
+void ind_hndl(void)
+{
+if(ind=iMn)
+	{
+	
+	}
+else if(ind==iSetT)	
 }
 
 //-----------------------------------------------
@@ -210,6 +241,17 @@ but_s=but_n;
 
 }
 
+//-----------------------------------------------
+void but_an(void)
+{
+if(!n_but) return;
+n_but=0;
+if(but==254)
+	{
+	//_ds1307_write_byte(0,0);
+	//_ds1307_write_byte(2,0);	
+	}
+}
 //-----------------------------------------------
 void t4_init(void)
 {
@@ -315,6 +357,7 @@ while (1)
 		b100Hz=0;
 		
 		but_drv();
+		but_an();
 		GPIOD->DDR|=0b00000001;		
 		GPIOD->CR1|=0b00000001;		
 		GPIOD->CR2&=0b11111110;
@@ -324,8 +367,11 @@ while (1)
 		{
 		b10Hz=0;
 		//ind_outB[2]=DIGISYM[3];
-		int2indI_slkuf(temperWater,1, 3, 0, 1, 0);
-		int2indII_slkuf(uart3_plazma,0, 3, 2, 0, 0);
+		//int2indI_slkuf(time_sec,1, 3, 0, 1, 0);
+		ind_hndl();
+		//int2indI_slkuf(but,1, 3, 0, 1, 0);
+		//int2indII_slkuf(time_min,2, 2, 0, 0, 0);
+		//int2indII_slkuf(time_sec,0, 2, 0, 0, 0);
 		
 		uart3_in_an();
 		}
@@ -337,7 +383,8 @@ while (1)
 	if(b2Hz)
 		{
 		b2Hz=0;
-
+		
+		time_drv();
 		}
 	if(b1Hz)
 		{

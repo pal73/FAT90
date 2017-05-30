@@ -59,3 +59,13 @@ if(power_stat!=power_stat_old)
 	
 power_stat_old=power_stat;
 }
+
+//-----------------------------------------------
+void delay_us(short num_of_delay)
+{
+short i;
+for(i==0;i<num_of_delay;i++)
+	{
+	nop();
+	}
+}
