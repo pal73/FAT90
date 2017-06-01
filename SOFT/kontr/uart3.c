@@ -65,7 +65,7 @@ if(bRXIN3)
 		char *digi;
 		memcpy(digi,ptr1+2,ptr2-ptr1-2);
 		
-		uart3_plazma=(char)atoi(digi);
+		temperOfAir=(signed char)atoi(digi);
 		}
 	}
 }

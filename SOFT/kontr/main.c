@@ -36,6 +36,7 @@ struct_ind a_ind,b_ind[10],c_ind;
 signed char ind_pointer=0;
 bool zero_on;
 bool bFL5,bFL2,bFL1,bFL_;
+char led_ind_out1,led_ind_out2;
 
 //-----------------------------------------------
 //Управление выходом
@@ -43,7 +44,9 @@ char out_stat[3];
 
 //-----------------------------------------------
 //Температура
-signed short temperWater;
+signed char temperOfWater;
+signed char	temperOfAir;
+signed char temperToReg;
 
 //-----------------------------------------------
 //Время
@@ -73,33 +76,67 @@ _ds1307_read_time(buff_for_time);
 time_sec=(((buff_for_time[0]&0x70)>>4)*10)+(buff_for_time[0]&0x0f);
 time_min=(((buff_for_time[1]&0x70)>>4)*10)+(buff_for_time[1]&0x0f);
 time_hour=(((buff_for_time[2]&0x30)>>4)*10)+(buff_for_time[2]&0x0f);
+time_date=(((buff_for_time[4]&0x30)>>4)*10)+(buff_for_time[4]&0x0f);
 time_month=(((buff_for_time[5]&0x10)>>4)*10)+(buff_for_time[5]&0x0f);
 time_year=(((buff_for_time[6]&0xf0)>>4)*10)+(buff_for_time[6]&0x0f);
+time_day_of_week=(buff_for_time[3]&0x07);
 }
 
 //-----------------------------------------------
 void matemath(void)
 {
-char temperWaterTemp; 
+char temperOfWaterTemp; 
 if((wire1_in[1]&0xf0)==0)
 	{
-	temperWaterTemp=((wire1_in[0]&0xf0)>>4)+((wire1_in[1]&0x0f)<<4);
-	temperWater=(signed short)temperWaterTemp;
+	temperOfWaterTemp=((wire1_in[0]&0xf0)>>4)+((wire1_in[1]&0x0f)<<4);
+	temperOfWater=(signed short)temperOfWaterTemp;
+	}
+if(MODE_EE==1)
+	{
+	temperToReg=temperOfWater;	
+	}
+else 
+	{
+	temperToReg=temperOfAir;
 	}
 }
 
 //-----------------------------------------------
 void ind_hndl(void)
 {
+char i;
+
 if(ind==iMn)
 	{
-	int2indII_slkuf(time_min,2, 2, 0, 0, 0);
-	if(bFL2)	int2indII_slkuf(time_sec,0, 2, 0, 0, 0);
-	else 		int2indII_slkuf(time_sec,0, 2, 1, 0, 0);
+	int2indII_slkuf(time_hour,2, 2, 0, 0, 0);
+	int2indII_slkuf(time_min,0, 2, 0, 0, 0);
+	if(bFL2)	ind_outG[2]&=0b11111110;
+	//int2indII_slkuf(time_sec,0, 2, 0, 0, 0);
+	//else 		int2indII_slkuf(time_sec,0, 2, 1, 0, 0);
 	
-		
+	int2indI_slkuf(temperOfAir/*temperToReg*/,1, 2, 0, 1, 0);
 	
-	int2indI_slkuf(time_month,1, 2, 0, 1, 0);
+	led_mask_off(0x00);
+	led_on(MODE_EE);
+	//led_set(1,1);
+	//led_set(2,0);
+	//led_set(3,2);
+	}
+else if(ind==iDate_W)
+	{
+	if(sub_ind==0)
+		{
+		int2indI_slkuf(12,1, 2, 0, 1, 0);
+		int2indII_slkuf(time_date,2, 2, 0, 1, 0);
+		int2indII_slkuf(time_month,0, 2, 0, 1, 0);
+		ind_outG[2]&=0b11111110;		
+		}
+	else if(sub_ind==1)
+		{
+		int2indI_slkuf(13,1, 2, 0, 1, 0);
+		int2indII_slkuf(time_year,2, 2, 0, 1, 0);
+		int2indII_slkuf(time_day_of_week,0, 2, 0, 1, 0);		
+		}		
 	}
 else if(ind==iSet)
 	{
@@ -129,6 +166,24 @@ else if(ind==iSet)
 	else if(sub_ind==5)
 		{
 		int2indII_slkuf(time_month,0, 2, 0, 1, 0);
+		}
+	else if(sub_ind==6)
+		{
+		int2indII_slkuf(time_date,0, 2, 0, 1, 0);
+		int2indII_slkuf(time_day_of_week,2, 2, 0, 1, 0);
+		}	
+	else if(sub_ind==7)
+		{
+		int2indII_slkuf(time_hour,0, 2, 0, 1, 0);
+		}	
+	else if(sub_ind==8)
+		{
+		int2indII_slkuf(time_min,0, 2, 0, 1, 0);
+		}
+	else if(sub_ind==9)
+		{
+		int2indII_slkuf(time_day_of_week,0, 2, 0, 1, 0);
+		//int2indII_slkuf(time_day_of_week,2, 2, 0, 1, 0);
 		}			
 	}
 else if(ind==iSet_)
@@ -160,6 +215,44 @@ else if(ind==iSet_)
 		{
 		int2indII_slkuf(time_month,0, 2, 0, 1, 1);
 		}
+	else if(sub_ind==6)
+		{
+		int2indII_slkuf(time_date,0, 2, 0, 1, 1);
+		int2indII_slkuf(time_day_of_week,2, 2, 0, 1, 0);
+		}	
+	else if(sub_ind==7)
+		{
+		int2indII_slkuf(time_hour,0, 2, 0, 1, 1);
+		}	
+	else if(sub_ind==8)
+		{
+		int2indII_slkuf(time_min,0, 2, 0, 1, 1);
+		}
+	else if(sub_ind==9)
+		{
+		int2indII_slkuf(time_day_of_week,0, 2, 0, 1, 1);
+		//int2indII_slkuf(time_day_of_week,2, 2, 0, 1, 0);
+		}
+	}	
+if(bFL5)
+	{
+	ind_outB[0]=led_ind_out1;
+	ind_outB[4]=led_ind_out1;
+	ind_outB[5]=led_ind_out1;
+	ind_outB[6]=led_ind_out1;
+	ind_outB[7]=led_ind_out1;
+	ind_outB[8]=led_ind_out1;
+	ind_outB[9]=led_ind_out1;
+	}
+else 
+	{
+	ind_outB[0]=led_ind_out2;
+	ind_outB[4]=led_ind_out2;
+	ind_outB[5]=led_ind_out2;
+	ind_outB[6]=led_ind_out2;
+	ind_outB[7]=led_ind_out2;
+	ind_outB[8]=led_ind_out2;
+	ind_outB[9]=led_ind_out2;
 	}	
 }
 
@@ -176,6 +269,28 @@ if(ind==iMn)
 		{
 		tree_up(iSet,0,0,0);
 		}
+	else if(but==butU)
+		{
+		tree_up(iDate_W,0,0,0);
+		ret_ind(4,0);
+		}
+	}
+else if(ind==iDate_W)
+	{
+	if(but==butU)
+		{
+		if(sub_ind==0)
+			{
+			sub_ind=1;
+			ret_ind(4,0);
+			clear_ind();
+			ind_hndl();			
+			}
+		else if(sub_ind==1)
+			{
+			tree_down(0,0);	
+			}
+		}		
 	}
 else if(ind==iSet)
 	{
@@ -308,7 +423,83 @@ else if(ind==iSet_)
 				gran_ring_char(&temp,1,12);
 				_ds1307_write_byte(5,((temp/10)<<4)+(temp%10));
 				}				
+			}	
+		else if(sub_ind==6)
+			{
+			signed char temp;
+			temp=time_date;
+			
+			if((but==butU)||(but==butU_))
+				{
+				temp++;
+				gran_ring_char(&temp,1,31);
+				_ds1307_write_byte(4,((temp/10)<<4)+(temp%10));
+				
+				}
+			if((but==butD)||(but==butD_))
+				{
+				temp--;
+				gran_ring_char(&temp,1,31);
+				_ds1307_write_byte(4,((temp/10)<<4)+(temp%10));
+				}				
 			}				
+		else if(sub_ind==7)
+			{
+			signed char temp;
+			temp=time_hour;
+			
+			if((but==butU)||(but==butU_))
+				{
+				temp++;
+				gran_ring_char(&temp,0,23);
+				_ds1307_write_byte(2,(((temp/10)<<4)+(temp%10))&0b10111111);
+				
+				}
+			if((but==butD)||(but==butD_))
+				{
+				temp--;
+				gran_ring_char(&temp,0,23);
+				_ds1307_write_byte(2,(((temp/10)<<4)+(temp%10))&0b10111111);
+				}				
+			}			
+		else if(sub_ind==8)
+			{
+			signed char temp;
+			temp=time_min;
+			
+			if((but==butU)||(but==butU_))
+				{
+				temp++;
+				gran_ring_char(&temp,0,59);
+				_ds1307_write_byte(1,((temp/10)<<4)+(temp%10));
+				_ds1307_write_byte(0,0);
+				}
+			if((but==butD)||(but==butD_))
+				{
+				temp--;
+				gran_ring_char(&temp,0,59);
+				_ds1307_write_byte(1,((temp/10)<<4)+(temp%10));
+				_ds1307_write_byte(0,0);
+				}				
+			}		
+		else if(sub_ind==9)
+			{
+			signed char temp;
+			temp=time_day_of_week;
+			
+			if((but==butU)||(but==butU_))
+				{
+				temp++;
+				gran_ring_char(&temp,1,7);
+				_ds1307_write_byte(3,temp&0x07);
+				}
+			if((but==butD)||(but==butD_))
+				{
+				temp--;
+				gran_ring_char(&temp,1,7);
+				_ds1307_write_byte(3,temp&0x07);
+				}				
+			}		
 		}
 	}	
 //if(but==254)
@@ -463,7 +654,7 @@ while (1)
 		
 		matemath();
 		ds18b20_temper_drv();
-		//wire1_polling();
+		ret_ind_hndl();
 		}		
 	};
 }

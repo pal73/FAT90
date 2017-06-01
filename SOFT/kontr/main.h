@@ -32,7 +32,7 @@ typedef enum
 	{
 	iMn,
 	iSet,iSet_,
-	iSetT
+	iSetT,iDate_W
 	} ind_enum;
 	
 typedef struct  
@@ -46,13 +46,14 @@ signed char i_s;
 extern struct_ind a_ind,b_ind[10],c_ind;
 extern signed char ind_pointer;
 
-#define ind     a_ind.i
-#define sub_ind     a_ind.s_i
-#define sub_ind1     a_ind.s_i1
-#define sub_ind2     a_ind.s_i2
-#define index_set     a_ind.i_s
+#define ind     		a_ind.i
+#define sub_ind     	a_ind.s_i
+#define sub_ind1     	a_ind.s_i1
+#define sub_ind2     	a_ind.s_i2
+#define index_set     	a_ind.i_s
 extern bool zero_on;
 extern bool bFL5,bFL2,bFL1,bFL_;
+extern char led_ind_out1,led_ind_out2;
 
 
 //-----------------------------------------------
@@ -70,7 +71,9 @@ extern char out_stat[3];
 
 //-----------------------------------------------
 //Температура
-extern signed short temperWater;
+extern signed char 	temperOfWater;
+extern signed char	temperOfAir;
+extern signed char 	temperToReg;
 
 //-----------------------------------------------
 //Время

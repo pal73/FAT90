@@ -17,6 +17,10 @@ short but_onL_temp;
 enum_power_stat power_stat=psOFF,power_stat_old=psOFF;
 char power_stat_cnt;
 
+//-----------------------------------------------
+//Самовозврат меню
+char retCnt;
+char retStep;
 
 //-----------------------------------------------
 void out_drv(void)
@@ -268,4 +272,79 @@ for(i=0;i<len;i++)
 	ind_outG[start+i]=0xff;
 	if(!(ind_out_[i]&0x80)) ind_outG[start+i]&=0xfe;
 	}
+}
+
+//-----------------------------------------------
+void ret_ind(char r_c, char r_s)
+{
+retCnt=r_c;
+retStep=r_s;
+} 
+
+//-----------------------------------------------
+void ret_ind_hndl(void)
+{
+if(retCnt)
+ 	{
+	if((--retCnt)==0)
+	 	{
+		tree_down(retStep,0);
+		}
+   	}		
+}
+
+//-----------------------------------------------
+void led_set(signed char led_num, signed char led_stat)
+{
+gran_char(&led_num,1,8);
+gran_char(&led_stat,0,2);
+
+if(led_stat==0)
+	{
+	led_ind_out1|=(1<<(led_num-1));	
+	led_ind_out2|=(1<<(led_num-1));		
+	}
+else if(led_stat==1)
+	{
+	led_ind_out1&=~(1<<(led_num-1));	
+	led_ind_out2&=~(1<<(led_num-1));
+	}
+else if(led_stat==2)
+	{
+	led_ind_out1&=~(1<<(led_num-1));	
+	led_ind_out2|=(1<<(led_num-1));	
+	}
+}
+
+//-----------------------------------------------
+void led_mask_off(signed char led_mask)
+{
+led_ind_out1|=~led_mask;	
+led_ind_out2|=~led_mask;
+}
+
+//-----------------------------------------------
+void led_mask_on(signed char led_mask)
+{
+led_ind_out1&=~led_mask;	
+led_ind_out2&=~led_mask;
+}
+
+//-----------------------------------------------
+void led_off(signed char led_num)
+{
+led_ind_out1|=(1<<(led_num-1));	
+led_ind_out2|=(1<<(led_num-1));
+}
+
+void led_on(signed char led_num)
+{
+led_ind_out1&=~(1<<(led_num-1));	
+led_ind_out2&=~(1<<(led_num-1));
+}
+
+void led_flash(signed char led_num)
+{
+led_ind_out1&=~(1<<(led_num-1));	
+led_ind_out2|=(1<<(led_num-1));
 }

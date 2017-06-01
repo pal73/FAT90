@@ -17,9 +17,10 @@ typedef enum {psOFF=0xAA,psON=0x55} enum_power_stat;
 extern enum_power_stat power_stat,power_stat_old;
 extern char power_stat_cnt;
 
-
-
-
+//-----------------------------------------------
+//Самовозврат меню
+extern char retCnt;
+extern char retStep;
 
 //-----------------------------------------------
 //-----------------------------------------------
@@ -53,4 +54,21 @@ void bcd2ind_zero();
 void int2indI_slkuf(unsigned short in, char start, char len, char komma, char unzero, char fl) ;
 //-----------------------------------------------
 void int2indII_slkuf(unsigned short in, char start, char len, char komma, char unzero, char fl);
+//-----------------------------------------------
+void ret_ind(char r_c, char r_s);
+//-----------------------------------------------
+void ret_ind_hndl(void);
+//-----------------------------------------------
+void led_set(signed char led_num, signed char led_stat);
+//-----------------------------------------------
+void led_mask_off(signed char led_mask);
+//-----------------------------------------------
+void led_mask_on(signed char led_mask);
+//-----------------------------------------------
+void led_off(signed char led_num);
+//-----------------------------------------------
+void led_on(signed char led_num);
+//-----------------------------------------------
+void led_flash(signed char led_num);
+
 
