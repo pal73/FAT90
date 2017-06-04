@@ -1,7 +1,7 @@
 #include "stm8s.h"
 #include "main.h"
 #include "lowlev.h"
-//#include "main.h"
+#include <stdlib.h>
 
 //-----------------------------------------------
 //Обработка кнопок
@@ -337,14 +337,22 @@ led_ind_out1|=(1<<(led_num-1));
 led_ind_out2|=(1<<(led_num-1));
 }
 
+//-----------------------------------------------
 void led_on(signed char led_num)
 {
 led_ind_out1&=~(1<<(led_num-1));	
 led_ind_out2&=~(1<<(led_num-1));
 }
 
+//-----------------------------------------------
 void led_flash(signed char led_num)
 {
 led_ind_out1&=~(1<<(led_num-1));	
 led_ind_out2|=(1<<(led_num-1));
+}
+
+//-----------------------------------------------
+void random_gen(void)
+{
+random_plazma=rand()%6;		
 }

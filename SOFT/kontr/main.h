@@ -30,9 +30,7 @@ extern const char DIGISYM[30];
 //Eiaeeaoey
 typedef enum 
 	{
-	iMn,
-	iSet,iSet_,
-	iSetT,iDate_W
+	iMn,iSet,iSet_,iSetT,iDate_W,iSetTable,iSetTable_
 	} ind_enum;
 	
 typedef struct  
@@ -64,10 +62,13 @@ extern char out_stat[3];
 #define butM	253
 #define butU	251
 #define butD	247
+#define butUD	243
 #define butON_	126
 #define butM_	125
 #define butU_	123
 #define butD_	119
+#define butUD_	115
+
 
 //-----------------------------------------------
 //Температура
@@ -85,16 +86,10 @@ extern char time_day_of_week;
 extern char time_month;
 extern char time_year;
 
-
-
 //^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 //отладка
-
+extern char random_plazma;
 //^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-
-//-----------------------------------------------
-//-----------------------------------------------
-//-----------------------------------------------
 
 //-----------------------------------------------
 void but_an(void);

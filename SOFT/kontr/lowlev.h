@@ -70,5 +70,7 @@ void led_off(signed char led_num);
 void led_on(signed char led_num);
 //-----------------------------------------------
 void led_flash(signed char led_num);
+//-----------------------------------------------
+void random_gen(void);
 
 

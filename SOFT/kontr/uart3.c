@@ -13,6 +13,9 @@
 //-----------------------------------------------
 //Отладка
 char uart3_plazma;
+char *ptr1;
+char *ptr2;
+char *digi;
 
 //-----------------------------------------------
 void uart3_init (void)
@@ -54,19 +57,21 @@ if (rx_status3 & (UART3_SR_RXNE))
 //-----------------------------------------------
 void uart3_in_an (void)
 {
+	disableInterrupts();
 if(bRXIN3)
 	{
 	bRXIN3=0;
 	
 	if(strstr(uart3_an_buffer,"OK"))
 		{
-		char *ptr1=strstr(uart3_an_buffer,"OK");	
-		char *ptr2=strstr(uart3_an_buffer,"CRC");
-		char *digi;
+		ptr1=strstr(uart3_an_buffer,"OK");	
+		ptr2=strstr(uart3_an_buffer,"CRC");
+		//char *digi;
 		memcpy(digi,ptr1+2,ptr2-ptr1-2);
 		
 		temperOfAir=(signed char)atoi(digi);
 		}
 	}
+	enableInterrupts();
 }
 

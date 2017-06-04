@@ -13,6 +13,11 @@
 @eeprom signed char		NECC_TEMPER_WATER_EE 			@0x4011;	//температура поддержания воды
 @eeprom signed char 	MODE_EE							@0x4012;	//режим работы устройства (1 - по воде, 2 - по воздуху, 3 - по графику) 
 @eeprom signed char 	MAX_POWER_EE					@0x4013;	//максимальная мощность нагревания 
+@eeprom unsigned char 	TABLE_TIME_EE[7][5]				@0x4020;	//таблица временных меток для семи дней недели, временная метка 
+																	//выражается в десятках минут
+@eeprom signed char 	TABLE_TEMPER_EE[7][5]			@0x4048;	//таблица температурных меток для семи дней недели, температурная метка  
+																	//выражается в градусах со знаком
+																	
 
 //-----------------------------------------------
 //Временная сетка
@@ -59,14 +64,16 @@ char time_date;
 char time_month;
 char time_year;
 
+//-----------------------------------------------
+//Константы для определения границ установки времени в таблице
+const signed char TABLE_TIME_EE_MIN[5]={0,30,60,90,120};
+const signed char TABLE_TIME_EE_MAX[5]={29,59,89,119,143};
+
 //^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 //отладка
-
+char random_plazma;
 //^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-//-----------------------------------------------
-//-----------------------------------------------
-//-----------------------------------------------
 
 //-----------------------------------------------
 void time_drv(void)
@@ -114,7 +121,9 @@ if(ind==iMn)
 	//int2indII_slkuf(time_sec,0, 2, 0, 0, 0);
 	//else 		int2indII_slkuf(time_sec,0, 2, 1, 0, 0);
 	
-	int2indI_slkuf(temperOfAir/*temperToReg*/,1, 2, 0, 1, 0);
+	int2indI_slkuf(temperToReg,1, 2, 0, 1, 0);
+	
+	int2indI_slkuf(random_plazma,3, 1, 0, 1, 0);
 	
 	led_mask_off(0x00);
 	led_on(MODE_EE);
@@ -233,7 +242,46 @@ else if(ind==iSet_)
 		int2indII_slkuf(time_day_of_week,0, 2, 0, 1, 1);
 		//int2indII_slkuf(time_day_of_week,2, 2, 0, 1, 0);
 		}
-	}	
+	}
+else if(ind==iSetTable)
+	{
+	ind_outB[3]=0b11001110;
+	int2indI_slkuf(((sub_ind/5)+1)*10 + ((sub_ind)%5)+1,1, 2, 1, 0, 1);
+
+	if(sub_ind1==0) 
+		{
+		int2indII_slkuf((TABLE_TIME_EE[sub_ind/5][sub_ind%5]*10)/60,2, 2, 0, 1, 0);
+		int2indII_slkuf((TABLE_TIME_EE[sub_ind/5][sub_ind%5]*10)%60,0, 2, 0, 0, 0);
+		ind_outG[2]&=0b11111110;
+		}
+	else 
+		{
+		int2indII_slkuf(TABLE_TEMPER_EE[sub_ind/5][sub_ind%5],1, 2, 0, 1, 0);
+		ind_outC[0]=0b00111000;
+		}
+	
+	}
+
+else if(ind==iSetTable_)
+	{
+	ind_outB[3]=0b11001110;
+	int2indI_slkuf(((sub_ind/5)+1)*10 + ((sub_ind)%5)+1,1, 2, 1, 0, 0);
+
+	if(sub_ind1==0) 
+		{
+		int2indII_slkuf((TABLE_TIME_EE[sub_ind/5][sub_ind%5]*10)/60,2, 2, 0, 1, 1);
+		int2indII_slkuf((TABLE_TIME_EE[sub_ind/5][sub_ind%5]*10)%60,0, 2, 0, 0, 1);
+		if(!bFL2)	ind_outG[2]&=0b11111110;
+		else 		ind_outG[2]|=0b00000001;
+		}
+	else 
+		{
+		int2indII_slkuf(TABLE_TEMPER_EE[sub_ind/5][sub_ind%5],1, 2, 0, 1, 1);
+		ind_outC[0]=0b00111000;
+		}
+	
+	}
+	
 if(bFL5)
 	{
 	ind_outB[0]=led_ind_out1;
@@ -296,24 +344,28 @@ else if(ind==iSet)
 	{
 	if((but==butU)||(but==butU_))
 		{
-		sub_ind--;
-		gran_char(&sub_ind,0,10);
+		sub_ind++;
+		gran_char(&sub_ind,0,11);
 		clear_ind();
 		ind_hndl();
 		}
 	else if((but==butD)||(but==butD_))
 		{
-		sub_ind++;
-		gran_char(&sub_ind,0,10);
+		sub_ind--;
+		gran_char(&sub_ind,0,11);
 		clear_ind();
 		ind_hndl();
 		}
 	else if(but==butM_)
 		{
-		if(sub_ind==10) //Выход 
+		if(sub_ind==11) //Выход 
 			{
 			tree_down(0,0);
 			}
+		else if(sub_ind==10) //Вход в установку графика
+			{
+			tree_up(iSetTable,0,0,0);
+			}			
 		else
 			{
 			tree_up(iSet_,sub_ind,0,0);
@@ -502,6 +554,146 @@ else if(ind==iSet_)
 			}		
 		}
 	}	
+else if(ind==iSetTable)
+	{
+	if((but==butU)||(but==butU_))
+		{
+		sub_ind++;
+		gran_char(&sub_ind,0,34);
+		clear_ind();
+		ind_hndl();
+		}
+	else if((but==butD)||(but==butD_))
+		{
+		sub_ind--;
+		gran_char(&sub_ind,0,34);
+		clear_ind();
+		ind_hndl();
+		}
+	else if(but==butM)
+		{
+		if(sub_ind1==0)sub_ind1=1;
+		else sub_ind1=0;
+		clear_ind();
+		ind_hndl();
+		}		
+	else if(but==butUD_)
+		{
+		TABLE_TIME_EE[0][0]=0;
+		TABLE_TEMPER_EE[0][0]=23;	
+		TABLE_TIME_EE[0][1]=36;
+		TABLE_TEMPER_EE[0][1]=23;	
+		TABLE_TIME_EE[0][2]=66;
+		TABLE_TEMPER_EE[0][2]=23;	
+		TABLE_TIME_EE[0][3]=96;
+		TABLE_TEMPER_EE[0][3]=23;	
+		TABLE_TIME_EE[0][4]=126;
+		TABLE_TEMPER_EE[0][4]=23;
+		
+		TABLE_TIME_EE[1][0]=0;
+		TABLE_TEMPER_EE[1][0]=23;	
+		TABLE_TIME_EE[1][1]=36;
+		TABLE_TEMPER_EE[1][1]=23;	
+		TABLE_TIME_EE[1][2]=66;
+		TABLE_TEMPER_EE[1][2]=23;	
+		TABLE_TIME_EE[1][3]=96;
+		TABLE_TEMPER_EE[1][3]=23;	
+		TABLE_TIME_EE[1][4]=126;
+		TABLE_TEMPER_EE[1][4]=23;	
+				
+		TABLE_TIME_EE[2][0]=0;
+		TABLE_TEMPER_EE[2][0]=23;	
+		TABLE_TIME_EE[2][1]=36;
+		TABLE_TEMPER_EE[2][1]=23;	
+		TABLE_TIME_EE[2][2]=66;
+		TABLE_TEMPER_EE[2][2]=23;	
+		TABLE_TIME_EE[2][3]=96;
+		TABLE_TEMPER_EE[2][3]=23;	
+		TABLE_TIME_EE[2][4]=126;
+		TABLE_TEMPER_EE[2][4]=23;
+		
+		TABLE_TIME_EE[3][0]=0;
+		TABLE_TEMPER_EE[3][0]=23;	
+		TABLE_TIME_EE[3][1]=36;
+		TABLE_TEMPER_EE[3][1]=23;	
+		TABLE_TIME_EE[3][2]=66;
+		TABLE_TEMPER_EE[3][2]=23;	
+		TABLE_TIME_EE[3][3]=96;
+		TABLE_TEMPER_EE[3][3]=23;	
+		TABLE_TIME_EE[3][4]=126;
+		TABLE_TEMPER_EE[3][4]=23;
+		
+		TABLE_TIME_EE[4][0]=0;
+		TABLE_TEMPER_EE[4][0]=23;	
+		TABLE_TIME_EE[4][1]=36;
+		TABLE_TEMPER_EE[4][1]=23;	
+		TABLE_TIME_EE[4][2]=66;
+		TABLE_TEMPER_EE[4][2]=23;	
+		TABLE_TIME_EE[4][3]=96;
+		TABLE_TEMPER_EE[4][3]=23;	
+		TABLE_TIME_EE[4][4]=126;
+		TABLE_TEMPER_EE[4][4]=23;
+				
+		TABLE_TIME_EE[5][0]=0;
+		TABLE_TEMPER_EE[5][0]=23;	
+		TABLE_TIME_EE[5][1]=36;
+		TABLE_TEMPER_EE[5][1]=23;	
+		TABLE_TIME_EE[5][2]=66;
+		TABLE_TEMPER_EE[5][2]=23;	
+		TABLE_TIME_EE[5][3]=96;
+		TABLE_TEMPER_EE[5][3]=23;	
+		TABLE_TIME_EE[5][4]=126;
+		TABLE_TEMPER_EE[5][4]=23;
+				
+		TABLE_TIME_EE[6][0]=0;
+		TABLE_TEMPER_EE[6][0]=23;	
+		TABLE_TIME_EE[6][1]=36;
+		TABLE_TEMPER_EE[6][1]=23;	
+		TABLE_TIME_EE[6][2]=66;
+		TABLE_TEMPER_EE[6][2]=23;	
+		TABLE_TIME_EE[6][3]=96;
+		TABLE_TEMPER_EE[6][3]=23;	
+		TABLE_TIME_EE[6][4]=126;
+		TABLE_TEMPER_EE[6][4]=23;
+		
+		}
+	else if(but==butM_)
+		{
+		tree_up(iSetTable_,sub_ind,0,sub_ind1);
+		}
+	}
+else if(ind==iSetTable_)
+	{
+	if(sub_ind1==0)
+		{
+		char num_of_day;
+		char num_of_set;
+		char i;
+		num_of_day=sub_ind/5;
+		num_of_set=sub_ind%5;
+		
+		if((but==butU)||(but==butU_))
+			{
+			TABLE_TEMPER_EE[num_of_day][num_of_set]++;
+			gran_char(&TABLE_TIME_EE[0][5],TABLE_TIME_EE_MIN[num_of_set],TABLE_TIME_EE_MAX[num_of_set]);
+			//for(i=num_of_set-1;i>=0;i--)
+				//{
+				//gran_char(&TABLE_TEMPER_EE[num_of_day][i],i,TABLE_TEMPER_EE[num_of_day][num_of_set]-1);
+				//}
+			speed=1;
+			}
+		if((but==butD)||(but==butD_))
+			{
+			MAX_POWER_EE--;
+			gran_char(&MAX_POWER_EE,1,3);
+			speed=1;
+			}				
+		}
+	else if(sub_ind1==1)
+		{
+			
+		}
+	}
 //if(but==254)
 	//{
 	//_ds1307_write_byte(0,0);
@@ -612,6 +804,9 @@ enableInterrupts();
 
 clear_ind();
 ind=iMn;
+
+TABLE_TIME_EE[0][0]=2;
+TABLE_TEMPER_EE[0][0]=23;
 while (1)
 	{
 	if(b100Hz)
@@ -655,6 +850,7 @@ while (1)
 		matemath();
 		ds18b20_temper_drv();
 		ret_ind_hndl();
+		random_gen();
 		}		
 	};
 }
