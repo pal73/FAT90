@@ -20,6 +20,7 @@ extern char currRandom,fiksRandom;
 //Временная сетка
 //extern bool b100Hz,b10Hz,b5Hz,b2Hz,b1Hz;
 extern char t0_cnt0,t0_cnt1,t0_cnt2,t0_cnt3,t0_cnt4;
+extern signed char mainCnt;
 
 //-----------------------------------------------
 //Индикация
@@ -35,7 +36,7 @@ extern const char DIGISYM[30];
 //Eiaeeaoey
 typedef enum 
 	{
-	iMn,iSet,iSet_,iSetT,iDate_W,iSetTable,iSetTable_
+	iMn,iSet,iSet_,iSetT,iDate_W,iSetTable,iSetTable_,iDeb,iReg
 	} ind_enum;
 	
 typedef struct  
@@ -74,7 +75,7 @@ extern enum_out_stat out_stat[3],out_mode;
 #define butU_	123
 #define butD_	119
 #define butUD_	115
-
+#define butMD_	117
 
 //-----------------------------------------------
 //Температура

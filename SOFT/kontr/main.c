@@ -9,31 +9,32 @@
 //-----------------------------------------------
 //Переменные в EEPROM
 @eeprom signed short	HUMAN_SET_EE 					@0x4004;	//подпись человека (0x1234)
-@eeprom signed char	  NECC_TEMPER_AIR_EE 				@0x4010;	//температура поддержания воздуха
+@eeprom signed char	  	NECC_TEMPER_AIR_EE 				@0x4010;	//температура поддержания воздуха
 @eeprom signed char		NECC_TEMPER_WATER_EE 			@0x4011;	//температура поддержания воды
 @eeprom signed char 	MODE_EE							@0x4012;	//режим работы устройства (1 - по воде, 2 - по воздуху, 3 - по графику) 
 @eeprom signed char 	MAX_POWER_EE					@0x4013;	//максимальная мощность нагревания 
-@eeprom unsigned char TABLE_TIME_EE[7][5]				/*@0x4020*/;	//таблица временных меток для семи дней недели, временная метка 
+@eeprom unsigned char 	TABLE_TIME_EE[7][5]				@0x4020;	//таблица временных меток для семи дней недели, временная метка 
 																	//выражается в десятках минут
-@eeprom signed char 	TABLE_TEMPER_EE[7][5]			/*@0x4048*/;	//таблица температурных меток для семи дней недели, температурная метка  
+@eeprom signed char 	TABLE_TEMPER_EE[7][5]			@0x4048;	//таблица температурных меток для семи дней недели, температурная метка  
 																	//выражается в градусах со знаком
 
 
 //-----------------------------------------------
 //Порядок включения ТЭНов в зависимости от случайного числа
-const char warmOrder[6][3]={ 	{1,2,3},
-															{1,3,2},
-															{2,1,3},
-															{2,3,1},
-															{3,1,2},
-															{3,2,1}
+const char warmOrder[6][3]={ 								{0,1,2},
+															{0,2,1},
+															{1,0,2},
+															{1,2,0},
+															{2,0,1},
+															{2,1,0}
 														};
 char currRandom,fiksRandom;
+
 //-----------------------------------------------
 //Временная сетка
 bool b100Hz=0,b10Hz=0,b5Hz=0,b2Hz=0,b1Hz=0;
 char t0_cnt0=0,t0_cnt1=0,t0_cnt2=0,t0_cnt3=0,t0_cnt4=0;
-
+signed char mainCnt;
 //-----------------------------------------------
 //Индикация
 char ind_cnt;
@@ -55,7 +56,7 @@ char led_ind_out1,led_ind_out2;
 
 //-----------------------------------------------
 //Управление выходом
-enum_out_stat out_stat[3],out_mode;
+enum_out_stat out_stat[3],out_mode=osOFF;
 
 //-----------------------------------------------
 //Температура
@@ -77,8 +78,8 @@ char time_year;
 
 //-----------------------------------------------
 //Константы для определения границ установки времени в таблице
-const signed char TABLE_TIME_EE_MIN[5]={0,30,60,90,120};
-const signed char TABLE_TIME_EE_MAX[5]={29,59,89,119,143};
+const unsigned char TABLE_TIME_EE_MIN[5]={0,36,72,108,126};
+const unsigned char TABLE_TIME_EE_MAX[5]={35,71,107,125,143};
 
 //-----------------------------------------------
 //Регулирование мощности
@@ -89,6 +90,7 @@ signed char powerNeccDelta;
 //отладка
 //char random_plazma;
 unsigned char tempUC;
+//@near signed char 	TABLE_TEMPER_EE[7][5];
 //^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 
@@ -109,6 +111,7 @@ time_day_of_week=(buff_for_time[3]&0x07);
 //-----------------------------------------------
 void power_hndl(void)
 {
+disableInterrupts();	
 if((powerNecc)&&(powerNeccOld==0))
 	{
 	fiksRandom=currRandom;
@@ -117,26 +120,28 @@ if((powerNecc)&&(powerNeccOld==0))
 if(!powerNecc)
 	{
 	out_stat[0]=osOFF;
-	out_stat[0]=osOFF;
-	out_stat[0]=osOFF;
+	out_stat[1]=osOFF;
+	out_stat[2]=osOFF;
 	}
 else 
 	{
 	char i;
-	for(i=0;(i<powerNecc)&&(i<MAX_POWER_EE)&&(i<3);i++)
+	for(i=0;i<3;i++)
 		{
-		out_stat[warmOrder[fiksRandom][i]]=osON;
+		if((i<powerNecc)&&(i<MAX_POWER_EE))		out_stat[warmOrder[fiksRandom][i]]=osON;
+		else									out_stat[warmOrder[fiksRandom][i]]=osOFF;
 		}
 	}
 	
 powerNeccOld=powerNecc;
+enableInterrupts();
 }
 
 //-----------------------------------------------
 void power_necc_hndl(void)
 {
 
-if(temperToReg>temperRegTo)
+if(temperToReg>=temperRegTo)
 	{
 	powerNecc=0;	
 	}
@@ -194,7 +199,7 @@ if(ind==iMn)
 //	int2indI_slkuf(random_plazma,3, 1, 0, 1, 0);
 	
 	led_mask_off(0x00);
-	led_on(MODE_EE);
+	if(out_mode==osON)led_on(MODE_EE);
 	if((out_mode==osON)&&(out_stat[0]==osON))led_on(4);
 	if((out_mode==osON)&&(out_stat[1]==osON))led_on(5);
 	if((out_mode==osON)&&(out_stat[2]==osON))led_on(6);
@@ -351,7 +356,46 @@ else if(ind==iSetTable_)
 		}
 	
 	}
+
+else if(ind==iDeb)
+	{
+	led_mask_off(0x00);
+	led_on(sub_ind+1);
 	
+	if(sub_ind==0)
+		{
+		int2indI_slkuf(temperRegTo,1, 2, 0, 0, 0);
+		int2indII_slkuf(temperToReg,0, 2, 0, 0, 0);
+		}
+	else if(sub_ind==1)
+		{
+		int2indI_slkuf(MAX_POWER_EE,1, 2, 0, 0, 0);
+		int2indII_slkuf(powerNecc,0, 2, 0, 0, 0);
+		}
+	else if(sub_ind==2)
+		{
+		int2indI_slkuf(temperToReg,2, 2, 0, 0, 0);	
+		int2indI_slkuf(powerNecc,1, 1, 0, 0, 0);
+		int2indII_slkuf(out_stat[0],3, 1, 0, 0, 0);
+		int2indII_slkuf(out_stat[1],2, 1, 0, 0, 0);
+		int2indII_slkuf(out_stat[2],1, 1, 0, 0, 0);
+		int2indII_slkuf(fiksRandom,0, 1, 0, 0, 0);
+		}		
+	}
+	
+else if(ind==iReg)
+	{
+	led_mask_off(0x00);
+	if(out_mode==osON)led_on(MODE_EE);
+	if((out_mode==osON)&&(out_stat[0]==osON))led_on(4);
+	if((out_mode==osON)&&(out_stat[1]==osON))led_on(5);
+	if((out_mode==osON)&&(out_stat[2]==osON))led_on(6);
+
+	int2indII_slkuf(temperRegTo,1, 2, 0, 1, 1);
+	ind_outC[0]=0b00111000;
+
+	}	
+
 if(bFL5)
 	{
 	ind_outB[0]=led_ind_out1;
@@ -381,16 +425,34 @@ void but_an(void)
 {
 if(!n_but) return;
 n_but=0;
+
+if(but==butON)
+	{
+	if(out_mode==osON)	out_mode=osOFF;
+	else 				out_mode=osON;
+	}
+
+
+
 if(ind==iMn)
 	{
 	if(but==butM_)
 		{
 		tree_up(iSet,0,0,0);
 		}
+	else if(but==butM)
+		{
+		tree_up(iReg,0,0,0);
+		ret_ind(5,0);
+		}		
 	else if(but==butU)
 		{
 		tree_up(iDate_W,0,0,0);
 		ret_ind(4,0);
+		}
+	else if(but==butD_)
+		{
+		tree_up(iDeb,0,0,0);
 		}
 	}
 else if(ind==iDate_W)
@@ -731,10 +793,52 @@ else if(ind==iSetTable)
 		{
 		tree_up(iSetTable_,sub_ind,0,sub_ind1);
 		}
+	else if(but==butMD_)
+		{
+		tree_down(0,0);
+		}		
 	}
 else if(ind==iSetTable_)
 	{
-	if(sub_ind1==0)
+	if(but==butM_)
+		{
+		tree_down(0,0);
+		}
+	else if(but==butM)
+		{
+		if(sub_ind1==1)sub_ind1=0;
+		else sub_ind1=1;
+		clear_ind();
+		ind_hndl();
+		}	
+	else if(sub_ind1==0)
+		{
+		char num_of_day;
+		char num_of_set;
+		char i;
+		num_of_day=sub_ind/5;
+		num_of_set=sub_ind%5;
+		
+		if((but==butU)||(but==butU_))
+			{
+			tempUC=TABLE_TIME_EE[num_of_day][num_of_set];
+			tempUC++;
+			if(tempUC>TABLE_TIME_EE_MAX[num_of_set])tempUC=TABLE_TIME_EE_MAX[num_of_set];
+			if(tempUC<TABLE_TIME_EE_MIN[num_of_set])tempUC=TABLE_TIME_EE_MIN[num_of_set];
+			if(TABLE_TIME_EE[num_of_day][num_of_set]!=tempUC)TABLE_TIME_EE[num_of_day][num_of_set]=tempUC;
+			speed=1;
+			}
+		if((but==butD)||(but==butD_))
+			{
+			tempUC=TABLE_TIME_EE[num_of_day][num_of_set];
+			if(tempUC)tempUC--;
+			if(tempUC>TABLE_TIME_EE_MAX[num_of_set])tempUC=TABLE_TIME_EE_MAX[num_of_set];
+			if(tempUC<TABLE_TIME_EE_MIN[num_of_set])tempUC=TABLE_TIME_EE_MIN[num_of_set];
+			if(TABLE_TIME_EE[num_of_day][num_of_set]!=tempUC)TABLE_TIME_EE[num_of_day][num_of_set]=tempUC;
+			speed=1;
+			}				
+		}
+	else if(sub_ind1==1)
 		{
 		char num_of_day;
 		char num_of_set;
@@ -745,36 +849,44 @@ else if(ind==iSetTable_)
 		if((but==butU)||(but==butU_))
 			{
 			tempUC=TABLE_TEMPER_EE[num_of_day][num_of_set];
-			tempUC++;
-			if(tempUC>TABLE_TIME_EE_MAX[num_of_set])tempUC=TABLE_TIME_EE_MAX[num_of_set];
+			if(tempUC)tempUC++;
+			if(tempUC>35)tempUC=35;
+			if(tempUC<5)tempUC=5;
 			if(TABLE_TEMPER_EE[num_of_day][num_of_set]!=tempUC)TABLE_TEMPER_EE[num_of_day][num_of_set]=tempUC;
-			
-			//gran_char(&tempUC,1/*TABLE_TIME_EE_MIN[num_of_set]*/,5/*TABLE_TIME_EE_MAX[num_of_set]*/);
-			//for(i=num_of_set-1;i>=0;i--)
-				//{
-				//gran_char(&TABLE_TEMPER_EE[num_of_day][i],i,TABLE_TEMPER_EE[num_of_day][num_of_set]-1);
-				//}
 			speed=1;
 			}
 		if((but==butD)||(but==butD_))
 			{
 			tempUC=TABLE_TEMPER_EE[num_of_day][num_of_set];
-			tempUC--;
-			if(tempUC>TABLE_TIME_EE_MAX[num_of_set])tempUC=TABLE_TIME_EE_MAX[num_of_set];
+			if(tempUC)tempUC--;
+			if(tempUC>35)tempUC=35;
+			if(tempUC<5)tempUC=5;
 			if(TABLE_TEMPER_EE[num_of_day][num_of_set]!=tempUC)TABLE_TEMPER_EE[num_of_day][num_of_set]=tempUC;
 			speed=1;
-			}				
-		}
-	else if(sub_ind1==1)
-		{
-			
+			}					
 		}
 	}
-//if(but==254)
-	//{
-	//_ds1307_write_byte(0,0);
-	//_ds1307_write_byte(2,0);	
-	//}
+else if(ind==iDeb)
+	{
+	if(but==butU)
+		{
+		sub_ind++;
+		gran_char(&sub_ind,0,11);
+		clear_ind();
+		ind_hndl();
+		}
+	else if(but==butD)
+		{
+		sub_ind--;
+		gran_char(&sub_ind,0,11);
+		clear_ind();
+		ind_hndl();
+		}
+	else if(but==butD_)
+		{
+		tree_down(0,0);
+		}
+	}
 }
 //-----------------------------------------------
 void t4_init(void)
@@ -881,8 +993,8 @@ enableInterrupts();
 clear_ind();
 ind=iMn;
 
-TABLE_TIME_EE[0][0]=2;
-TABLE_TEMPER_EE[0][0]=23;
+out_mode=osOFF;
+
 while (1)
 	{
 	if(b100Hz)
@@ -923,6 +1035,11 @@ while (1)
 		{
 		b1Hz=0;
 		
+		if(mainCnt<10)
+			{
+			mainCnt++;
+			if(mainCnt==3)out_mode=osON;
+			}
 		matemath();
 		ds18b20_temper_drv();
 		ret_ind_hndl();
