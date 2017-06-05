@@ -9,16 +9,26 @@
 //-----------------------------------------------
 //Переменные в EEPROM
 @eeprom signed short	HUMAN_SET_EE 					@0x4004;	//подпись человека (0x1234)
-@eeprom signed char	  	NECC_TEMPER_AIR_EE 				@0x4010;	//температура поддержания воздуха
+@eeprom signed char	  NECC_TEMPER_AIR_EE 				@0x4010;	//температура поддержания воздуха
 @eeprom signed char		NECC_TEMPER_WATER_EE 			@0x4011;	//температура поддержания воды
 @eeprom signed char 	MODE_EE							@0x4012;	//режим работы устройства (1 - по воде, 2 - по воздуху, 3 - по графику) 
 @eeprom signed char 	MAX_POWER_EE					@0x4013;	//максимальная мощность нагревания 
-@eeprom unsigned char 	TABLE_TIME_EE[7][5]				@0x4020;	//таблица временных меток для семи дней недели, временная метка 
+@eeprom unsigned char TABLE_TIME_EE[7][5]				/*@0x4020*/;	//таблица временных меток для семи дней недели, временная метка 
 																	//выражается в десятках минут
-@eeprom signed char 	TABLE_TEMPER_EE[7][5]			@0x4048;	//таблица температурных меток для семи дней недели, температурная метка  
+@eeprom signed char 	TABLE_TEMPER_EE[7][5]			/*@0x4048*/;	//таблица температурных меток для семи дней недели, температурная метка  
 																	//выражается в градусах со знаком
-																	
 
+
+//-----------------------------------------------
+//Порядок включения ТЭНов в зависимости от случайного числа
+const char warmOrder[6][3]={ 	{1,2,3},
+															{1,3,2},
+															{2,1,3},
+															{2,3,1},
+															{3,1,2},
+															{3,2,1}
+														};
+char currRandom,fiksRandom;
 //-----------------------------------------------
 //Временная сетка
 bool b100Hz=0,b10Hz=0,b5Hz=0,b2Hz=0,b1Hz=0;
@@ -45,13 +55,14 @@ char led_ind_out1,led_ind_out2;
 
 //-----------------------------------------------
 //Управление выходом
-char out_stat[3];
+enum_out_stat out_stat[3],out_mode;
 
 //-----------------------------------------------
 //Температура
 signed char temperOfWater;
 signed char	temperOfAir;
 signed char temperToReg;
+signed char temperRegTo;
 
 //-----------------------------------------------
 //Время
@@ -69,9 +80,15 @@ char time_year;
 const signed char TABLE_TIME_EE_MIN[5]={0,30,60,90,120};
 const signed char TABLE_TIME_EE_MAX[5]={29,59,89,119,143};
 
+//-----------------------------------------------
+//Регулирование мощности
+signed char powerNecc,powerNeccOld;
+signed char powerNeccDelta;
+
 //^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 //отладка
-char random_plazma;
+//char random_plazma;
+unsigned char tempUC;
 //^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 
@@ -90,6 +107,50 @@ time_day_of_week=(buff_for_time[3]&0x07);
 }
 
 //-----------------------------------------------
+void power_hndl(void)
+{
+if((powerNecc)&&(powerNeccOld==0))
+	{
+	fiksRandom=currRandom;
+	}
+	
+if(!powerNecc)
+	{
+	out_stat[0]=osOFF;
+	out_stat[0]=osOFF;
+	out_stat[0]=osOFF;
+	}
+else 
+	{
+	char i;
+	for(i=0;(i<powerNecc)&&(i<MAX_POWER_EE)&&(i<3);i++)
+		{
+		out_stat[warmOrder[fiksRandom][i]]=osON;
+		}
+	}
+	
+powerNeccOld=powerNecc;
+}
+
+//-----------------------------------------------
+void power_necc_hndl(void)
+{
+
+if(temperToReg>temperRegTo)
+	{
+	powerNecc=0;	
+	}
+else if(temperToReg<temperRegTo)
+	{
+	powerNeccDelta=temperRegTo-temperToReg;
+	if(powerNeccDelta>=2) powerNecc=1;
+	if(powerNeccDelta>=3) powerNecc=2;
+	if(powerNeccDelta>=4) powerNecc=3;
+	}
+
+}
+
+//-----------------------------------------------
 void matemath(void)
 {
 char temperOfWaterTemp; 
@@ -100,11 +161,18 @@ if((wire1_in[1]&0xf0)==0)
 	}
 if(MODE_EE==1)
 	{
-	temperToReg=temperOfWater;	
+	temperToReg=temperOfWater;
+	temperRegTo=NECC_TEMPER_WATER_EE;
 	}
-else 
+else if(MODE_EE==2)
 	{
 	temperToReg=temperOfAir;
+	temperRegTo=NECC_TEMPER_AIR_EE;
+	}
+else if(MODE_EE==3)
+	{
+	temperToReg=temperOfAir;
+	temperRegTo=NECC_TEMPER_AIR_EE;
 	}
 }
 
@@ -123,11 +191,13 @@ if(ind==iMn)
 	
 	int2indI_slkuf(temperToReg,1, 2, 0, 1, 0);
 	
-	int2indI_slkuf(random_plazma,3, 1, 0, 1, 0);
+//	int2indI_slkuf(random_plazma,3, 1, 0, 1, 0);
 	
 	led_mask_off(0x00);
 	led_on(MODE_EE);
-	//led_set(1,1);
+	if((out_mode==osON)&&(out_stat[0]==osON))led_on(4);
+	if((out_mode==osON)&&(out_stat[1]==osON))led_on(5);
+	if((out_mode==osON)&&(out_stat[2]==osON))led_on(6);
 	//led_set(2,0);
 	//led_set(3,2);
 	}
@@ -674,8 +744,12 @@ else if(ind==iSetTable_)
 		
 		if((but==butU)||(but==butU_))
 			{
-			TABLE_TEMPER_EE[num_of_day][num_of_set]++;
-			gran_char(&TABLE_TIME_EE[0][5],TABLE_TIME_EE_MIN[num_of_set],TABLE_TIME_EE_MAX[num_of_set]);
+			tempUC=TABLE_TEMPER_EE[num_of_day][num_of_set];
+			tempUC++;
+			if(tempUC>TABLE_TIME_EE_MAX[num_of_set])tempUC=TABLE_TIME_EE_MAX[num_of_set];
+			if(TABLE_TEMPER_EE[num_of_day][num_of_set]!=tempUC)TABLE_TEMPER_EE[num_of_day][num_of_set]=tempUC;
+			
+			//gran_char(&tempUC,1/*TABLE_TIME_EE_MIN[num_of_set]*/,5/*TABLE_TIME_EE_MAX[num_of_set]*/);
 			//for(i=num_of_set-1;i>=0;i--)
 				//{
 				//gran_char(&TABLE_TEMPER_EE[num_of_day][i],i,TABLE_TEMPER_EE[num_of_day][num_of_set]-1);
@@ -684,8 +758,10 @@ else if(ind==iSetTable_)
 			}
 		if((but==butD)||(but==butD_))
 			{
-			MAX_POWER_EE--;
-			gran_char(&MAX_POWER_EE,1,3);
+			tempUC=TABLE_TEMPER_EE[num_of_day][num_of_set];
+			tempUC--;
+			if(tempUC>TABLE_TIME_EE_MAX[num_of_set])tempUC=TABLE_TIME_EE_MAX[num_of_set];
+			if(TABLE_TEMPER_EE[num_of_day][num_of_set]!=tempUC)TABLE_TEMPER_EE[num_of_day][num_of_set]=tempUC;
 			speed=1;
 			}				
 		}
@@ -851,6 +927,8 @@ while (1)
 		ds18b20_temper_drv();
 		ret_ind_hndl();
 		random_gen();
+		power_necc_hndl();
+		power_hndl();
 		}		
 	};
 }

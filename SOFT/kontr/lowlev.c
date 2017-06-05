@@ -29,12 +29,19 @@ GPIOE->DDR|=0b00101001;
 GPIOE->CR1&=0b11010110;
 GPIOE->CR2&=0b11010110;
 
-if(out_stat[0])	GPIOE->ODR|=0b00000001;
-else 						GPIOE->ODR&=0b11111110;
-if(out_stat[1])	GPIOE->ODR|=0b00001000;
-else 						GPIOE->ODR&=0b11110111;
-if(out_stat[2])	GPIOE->ODR|=0b00100000;
-else 						GPIOE->ODR&=0b11011111;
+if(out_mode==osOFF)
+	{
+	GPIOE->ODR&=0b11010110;
+	}
+else
+	{
+	if(out_stat[0]==osON)		GPIOE->ODR|=0b00000001;
+	else 										GPIOE->ODR&=0b11111110;
+	if(out_stat[1]==osON)		GPIOE->ODR|=0b00001000;
+	else 										GPIOE->ODR&=0b11110111;
+	if(out_stat[2]==osON)		GPIOE->ODR|=0b00100000;
+	else 										GPIOE->ODR&=0b11011111;
+	}
 }
 
 //-----------------------------------------------
@@ -172,6 +179,13 @@ ind_hndl();
 
 //-----------------------------------------------
 void gran_char(signed char *adr, signed char min, signed char max)
+{
+if (*adr<min) *adr=min;
+if (*adr>max) *adr=max; 
+} 
+
+//-----------------------------------------------
+void gran_uchar(unsigned char *adr, unsigned char min, unsigned char max)
 {
 if (*adr<min) *adr=min;
 if (*adr>max) *adr=max; 
@@ -354,5 +368,5 @@ led_ind_out2|=(1<<(led_num-1));
 //-----------------------------------------------
 void random_gen(void)
 {
-random_plazma=rand()%6;		
+currRandom=rand()%6;		
 }

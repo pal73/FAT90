@@ -12,6 +12,11 @@
 
 
 //-----------------------------------------------
+//Порядок включения ТЭНов в зависимости от случайного числа
+extern const char warmOrder[6][3];
+extern char currRandom,fiksRandom;
+
+//-----------------------------------------------
 //Временная сетка
 //extern bool b100Hz,b10Hz,b5Hz,b2Hz,b1Hz;
 extern char t0_cnt0,t0_cnt1,t0_cnt2,t0_cnt3,t0_cnt4;
@@ -56,7 +61,8 @@ extern char led_ind_out1,led_ind_out2;
 
 //-----------------------------------------------
 //Управление выходом
-extern char out_stat[3];
+typedef enum {osOFF,osON}enum_out_stat;
+extern enum_out_stat out_stat[3],out_mode;
 
 #define butON	254
 #define butM	253
@@ -86,9 +92,13 @@ extern char time_day_of_week;
 extern char time_month;
 extern char time_year;
 
+//-----------------------------------------------
+//Регулирование мощности
+extern signed char powerNecc,powerNeccOld;
+extern signed char powerNeccDelta;
 //^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 //отладка
-extern char random_plazma;
+//extern char random_plazma;
 //^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 //-----------------------------------------------

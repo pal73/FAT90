@@ -43,6 +43,8 @@ void tree_up(char tind, char tsub_ind, char tindex_set, char tsub_ind1);
 //-----------------------------------------------
 void gran_char(signed char *adr, signed char min, signed char max);
 //-----------------------------------------------
+void gran_uchar(unsigned char *adr, unsigned char min, unsigned char max);
+//-----------------------------------------------
 void gran_ring_char(signed char *adr, signed char min, signed char max);
 //-----------------------------------------------
 void bin2bcd_int(unsigned short in);
