@@ -383,7 +383,7 @@ else if(ind==iDeb)
 		}		
 	}
 	
-else if(ind==iReg)
+else if(ind==iTemperSet)
 	{
 	led_mask_off(0x00);
 	if(out_mode==osON)led_on(MODE_EE);
@@ -391,7 +391,7 @@ else if(ind==iReg)
 	if((out_mode==osON)&&(out_stat[1]==osON))led_on(5);
 	if((out_mode==osON)&&(out_stat[2]==osON))led_on(6);
 
-	int2indII_slkuf(temperRegTo,1, 2, 0, 1, 1);
+	int2indII_slkuf(temperRegTo,1, 2, 0, 1, MODE_EE==3?0:1);
 	ind_outC[0]=0b00111000;
 
 	}	
@@ -442,7 +442,7 @@ if(ind==iMn)
 		}
 	else if(but==butM)
 		{
-		tree_up(iReg,0,0,0);
+		tree_up(iTemperSet,0,0,0);
 		ret_ind(5,0);
 		}		
 	else if(but==butU)
