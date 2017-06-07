@@ -83,7 +83,7 @@ const unsigned char TABLE_TIME_EE_MAX[5]={35,71,107,125,143};
 
 //-----------------------------------------------
 //Регулирование мощности
-signed char powerNecc,powerNeccOld;
+signed char powerNecc=0,powerNeccOld=0;
 signed char powerNeccDelta;
 
 //^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
@@ -148,6 +148,7 @@ if(temperToReg>=temperRegTo)
 else if(temperToReg<temperRegTo)
 	{
 	powerNeccDelta=temperRegTo-temperToReg;
+	powerNecc=0;
 	if(powerNeccDelta>=2) powerNecc=1;
 	if(powerNeccDelta>=3) powerNecc=2;
 	if(powerNeccDelta>=4) powerNecc=3;
@@ -194,7 +195,25 @@ if(ind==iMn)
 	//int2indII_slkuf(time_sec,0, 2, 0, 0, 0);
 	//else 		int2indII_slkuf(time_sec,0, 2, 1, 0, 0);
 	
-	int2indI_slkuf(temperToReg,1, 2, 0, 1, 0);
+	if(temperToReg>=0)
+		{
+		int2indI_slkuf(temperToReg,2, 2, 0, 1, 0);
+		ind_outB[1]=0b10011100;
+		}
+	else 
+		{
+		if(-temperToReg<10)
+			{
+			ind_outB[3]=0b10111111;
+			int2indI_slkuf(-temperToReg,2, 1, 0, 1, 0);
+			ind_outB[1]=0b10011100;
+			}
+		else
+			{
+			ind_outB[3]=0b10111111;
+			int2indI_slkuf(-temperToReg,1, 2, 0, 1, 0);
+			}
+		}
 	
 //	int2indI_slkuf(random_plazma,3, 1, 0, 1, 0);
 	
@@ -285,7 +304,7 @@ else if(ind==iSet_)
 		}	
 	else if(sub_ind==2)
 		{
-		int2indII_slkuf(NECC_TEMPER_WATER_EE,0, 2, 0, 1, 1);
+		int2indII_slkuf(NECC_TEMPER_WATER_EE,0, 2, 0, 1, 0);
 		}
 	else if(sub_ind==3)
 		{
@@ -370,6 +389,7 @@ else if(ind==iDeb)
 	else if(sub_ind==1)
 		{
 		int2indI_slkuf(MAX_POWER_EE,1, 2, 0, 0, 0);
+		int2indII_slkuf(powerNeccDelta,2, 2, 0, 0, 0);
 		int2indII_slkuf(powerNecc,0, 2, 0, 0, 0);
 		}
 	else if(sub_ind==2)
@@ -391,8 +411,29 @@ else if(ind==iTemperSet)
 	if((out_mode==osON)&&(out_stat[1]==osON))led_on(5);
 	if((out_mode==osON)&&(out_stat[2]==osON))led_on(6);
 
-	int2indII_slkuf(temperRegTo,1, 2, 0, 1, MODE_EE==3?0:1);
-	ind_outC[0]=0b00111000;
+	if(temperToReg>=0)
+		{
+		int2indI_slkuf(temperToReg,2, 2, 0, 1, 0);
+		ind_outB[1]=0b10011100;
+		}
+	else 
+		{
+		if(-temperToReg<10)
+			{
+			ind_outB[3]=0b10111111;
+			int2indI_slkuf(-temperToReg,2, 1, 0, 1, 0);
+			ind_outB[1]=0b10011100;
+			}
+		else
+			{
+			ind_outB[3]=0b10111111;
+			int2indI_slkuf(-temperToReg,1, 2, 0, 1, 0);
+			}
+		}
+
+	int2indII_slkuf(temperRegTo,1, 2, 0, 1, MODE_EE==3?0:0);
+	if((bFL2)&&(MODE_EE!=3))	ind_outC[0]=0b11111111;
+	else 						ind_outC[0]=0b00111000;
 
 	}	
 
@@ -454,6 +495,47 @@ if(ind==iMn)
 		{
 		tree_up(iDeb,0,0,0);
 		}
+	}
+
+else if(ind==iTemperSet)
+	{
+	if(but==butM)
+		{
+		tree_down(0,0);
+		ret_ind(0,0);
+		}
+	else if(MODE_EE==1)
+		{
+		ret_ind(4,0);
+		if((but==butU)||(but==butU_))
+			{
+			NECC_TEMPER_WATER_EE++;
+			gran_char(&NECC_TEMPER_WATER_EE,5,85);
+			speed=1;
+			}
+		if((but==butD)||(but==butD_))
+			{
+			NECC_TEMPER_WATER_EE--;
+			gran_char(&NECC_TEMPER_WATER_EE,5,85);
+			speed=1;
+			}				
+		}
+	else if(MODE_EE==2)
+		{
+		ret_ind(4,0);
+		if((but==butU)||(but==butU_))
+			{
+			NECC_TEMPER_AIR_EE++;
+			gran_char(&NECC_TEMPER_AIR_EE,5,35);
+			speed=1;
+			}
+		if((but==butD)||(but==butD_))
+			{
+			NECC_TEMPER_AIR_EE--;
+			gran_char(&NECC_TEMPER_AIR_EE,5,35);
+			speed=1;
+			}				
+		}		
 	}
 else if(ind==iDate_W)
 	{
@@ -1019,6 +1101,7 @@ while (1)
 		//int2indII_slkuf(time_sec,0, 2, 0, 0, 0);
 		
 		uart3_in_an();
+		out_drv();
 		}
 	if(b5Hz)
 		{

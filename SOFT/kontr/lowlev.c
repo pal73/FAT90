@@ -31,16 +31,16 @@ GPIOE->CR2&=0b11010110;
 
 if(out_mode==osOFF)
 	{
-	GPIOE->ODR&=0b11010110;
+	GPIOE->ODR|=0b00101001;
 	}
 else
 	{
-	if(out_stat[0]==osON)		GPIOE->ODR|=0b00000001;
-	else 										GPIOE->ODR&=0b11111110;
-	if(out_stat[1]==osON)		GPIOE->ODR|=0b00001000;
-	else 										GPIOE->ODR&=0b11110111;
-	if(out_stat[2]==osON)		GPIOE->ODR|=0b00100000;
-	else 										GPIOE->ODR&=0b11011111;
+	if(out_stat[0]==osON)		GPIOE->ODR&=0b11111110;
+	else 						GPIOE->ODR|=0b00000001;
+	if(out_stat[1]==osON)		GPIOE->ODR&=0b11110111;
+	else 						GPIOE->ODR|=0b00001000;
+	if(out_stat[2]==osON)		GPIOE->ODR&=0b11011111;
+	else 						GPIOE->ODR|=0b00100000;
 	}
 }
 
