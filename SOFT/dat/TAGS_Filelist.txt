@@ -1,9 +1,21 @@
 main.c
 stm8_interrupt_vector.c
 include\stm8s.h
+c:\program files\cosmic\cxstm8_32k\hstm8\iostm8s.h
 c:\program files\cosmic\cxstm8_32k\hstm8\iostm8s103.h
 c:\program files\cosmic\cxstm8_32k\hstm8\mods0.h
 c:\program files\cosmic\cxstm8_32k\hstm8\stdio.h
+c:\program files\cosmic\cxstm8_32k\hstm8\stdlib.h
 c:\program files\cosmic\cxstm8_32k\hstm8\string.h
+ds1307.c
+ds1307.h
+ds18b20.c
+ds18b20.h
+i2c.c
+i2c.h
 include\stm8s_type.h
+lowlev.c
+lowlev.h
 main.h
+uart3.c
+uart3.h

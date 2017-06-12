@@ -64,6 +64,7 @@ signed char temperOfWater;
 signed char	temperOfAir;
 signed char temperToReg;
 signed char temperRegTo;
+signed char temperRegToSheduler;
 
 //-----------------------------------------------
 //Время
@@ -75,6 +76,11 @@ char time_day_of_week;
 char time_date;
 char time_month;
 char time_year;
+
+//-----------------------------------------------
+//Работа по расписанию
+unsigned char day_sheduler_time;
+
 
 //-----------------------------------------------
 //Константы для определения границ установки времени в таблице
@@ -106,6 +112,41 @@ time_date=(((buff_for_time[4]&0x30)>>4)*10)+(buff_for_time[4]&0x0f);
 time_month=(((buff_for_time[5]&0x10)>>4)*10)+(buff_for_time[5]&0x0f);
 time_year=(((buff_for_time[6]&0xf0)>>4)*10)+(buff_for_time[6]&0x0f);
 time_day_of_week=(buff_for_time[3]&0x07);
+}
+
+
+//-----------------------------------------------
+void sheduler_hndl(void)
+{
+char i;
+
+day_sheduler_time=(unsigned char)(((((unsigned)time_hour)*60)+((unsigned)time_min))/10);
+
+if((day_sheduler_time>=0)&&(day_sheduler_time<TABLE_TIME_EE[time_day_of_week][0]))
+	{
+	if(time_day_of_week==1)	temperRegToSheduler=TABLE_TEMPER_EE[7][4];
+	else 					temperRegToSheduler=TABLE_TEMPER_EE[time_day_of_week-1][4];
+	}
+else if((day_sheduler_time>=TABLE_TIME_EE[time_day_of_week][0])&&(day_sheduler_time<TABLE_TIME_EE[time_day_of_week][1]))
+	{
+	temperRegToSheduler=TABLE_TEMPER_EE[time_day_of_week][0];
+	}
+else if((day_sheduler_time>=TABLE_TIME_EE[time_day_of_week][1])&&(day_sheduler_time<TABLE_TIME_EE[time_day_of_week][2]))
+	{
+	temperRegToSheduler=TABLE_TEMPER_EE[time_day_of_week][1];
+	}
+else if((day_sheduler_time>=TABLE_TIME_EE[time_day_of_week][2])&&(day_sheduler_time<TABLE_TIME_EE[time_day_of_week][3]))
+	{
+	temperRegToSheduler=TABLE_TEMPER_EE[time_day_of_week][2];
+	}
+else if((day_sheduler_time>=TABLE_TIME_EE[time_day_of_week][3])&&(day_sheduler_time<TABLE_TIME_EE[time_day_of_week][4]))
+	{
+	temperRegToSheduler=TABLE_TEMPER_EE[time_day_of_week][3];
+	}
+else if((day_sheduler_time>=TABLE_TIME_EE[time_day_of_week][4])&&(day_sheduler_time<144))
+	{
+	temperRegToSheduler=TABLE_TEMPER_EE[time_day_of_week][4];
+	}	
 }
 
 //-----------------------------------------------
@@ -178,7 +219,7 @@ else if(MODE_EE==2)
 else if(MODE_EE==3)
 	{
 	temperToReg=temperOfAir;
-	temperRegTo=NECC_TEMPER_AIR_EE;
+	temperRegTo=temperRegToSheduler;
 	}
 }
 
@@ -273,7 +314,7 @@ else if(ind==iSet)
 	else if(sub_ind==6)
 		{
 		int2indII_slkuf(time_date,0, 2, 0, 1, 0);
-		int2indII_slkuf(time_day_of_week,2, 2, 0, 1, 0);
+		//int2indII_slkuf(time_day_of_week,2, 2, 0, 1, 0);
 		}	
 	else if(sub_ind==7)
 		{
@@ -400,7 +441,16 @@ else if(ind==iDeb)
 		int2indII_slkuf(out_stat[1],2, 1, 0, 0, 0);
 		int2indII_slkuf(out_stat[2],1, 1, 0, 0, 0);
 		int2indII_slkuf(fiksRandom,0, 1, 0, 0, 0);
-		}		
+		}	
+	else if(sub_ind==3)
+		{
+		int2indI_slkuf(temperRegToSheduler,1, 2, 0, 0, 0);	
+		//int2indI_slkuf(powerNecc,1, 1, 0, 0, 0);
+		int2indII_slkuf(time_day_of_week,3, 1, 0, 0, 0);
+		//int2indII_slkuf(out_stat[1],2, 1, 0, 0, 0);
+		//int2indII_slkuf(out_stat[2],1, 1, 0, 0, 0);
+		int2indII_slkuf(day_sheduler_time,0, 1, 0, 0, 0);
+		}			
 	}
 	
 else if(ind==iTemperSet)
@@ -1102,6 +1152,7 @@ while (1)
 		
 		uart3_in_an();
 		out_drv();
+		matemath();
 		}
 	if(b5Hz)
 		{
@@ -1123,12 +1174,13 @@ while (1)
 			mainCnt++;
 			if(mainCnt==3)out_mode=osON;
 			}
-		matemath();
+		
 		ds18b20_temper_drv();
 		ret_ind_hndl();
 		random_gen();
 		power_necc_hndl();
 		power_hndl();
+		sheduler_hndl();
 		}		
 	};
 }

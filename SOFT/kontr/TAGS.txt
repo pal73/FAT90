@@ -940,8 +940,8 @@ SWCR	include\stm8s.h	499;"	member	struct:CLK_struct
 SWIMCCR	include\stm8s.h	507;"	member	struct:CLK_struct
 SWR	include\stm8s.h	498;"	member	struct:CLK_struct
 SetBit	include\stm8s.h	2674;"	macro
-TABLE_TIME_EE_MAX	main.c	82;"	variable
-TABLE_TIME_EE_MIN	main.c	81;"	variable
+TABLE_TIME_EE_MAX	main.c	88;"	variable
+TABLE_TIME_EE_MIN	main.c	87;"	variable
 TBR	include\stm8s.h	428;"	member	struct:AWU_struct
 TDRH	include\stm8s.h	311;"	member	struct:ADC1_struct
 TDRH	include\stm8s.h	382;"	member	struct:ADC2_struct
@@ -1223,7 +1223,7 @@ TIM4_PSCR_RESET_VALUE	include\stm8s.h	1067;"	macro
 TIM4_SR1_RESET_VALUE	include\stm8s.h	1064;"	macro
 TIM4_SR1_UIF	include\stm8s.h	1086;"	macro
 TIM4_TypeDef	include\stm8s.h	1056;"	typedef	typeref:struct:TIM4_struct
-TIM4_UPD_Interrupt	main.c	988;"	function	signature:(void)
+TIM4_UPD_Interrupt	main.c	1038;"	function	signature:(void)
 TIM4_UPD_Interrupt	stm8_interrupt_vector.c	22;"	prototype	file:	signature:(void)
 TIM4_struct	include\stm8s.h	1042;"	struct
 TIM5	include\stm8s.h	2581;"	macro
@@ -1587,7 +1587,7 @@ bcd2ind_zero	lowlev.h	54;"	prototype	signature:()
 bin2bcd_int	lowlev.c	202;"	function	signature:(unsigned short in)
 bin2bcd_int	lowlev.h	50;"	prototype	signature:(unsigned short in)
 bool	include\stm8s.h	219;"	typedef	typeref:enum:__anon1
-buff_for_time	main.c	70;"	variable
+buff_for_time	main.c	71;"	variable
 but	lowlev.c	9;"	variable
 but0_cnt	lowlev.c	11;"	variable
 but1_cnt	lowlev.c	11;"	variable
@@ -1602,7 +1602,7 @@ butU	main.h	70;"	macro
 butUD	main.h	72;"	macro
 butUD_	main.h	77;"	macro
 butU_	main.h	75;"	macro
-but_an	main.c	465;"	function	signature:(void)
+but_an	main.c	515;"	function	signature:(void)
 but_an	main.h	106;"	prototype	signature:(void)
 but_drv	lowlev.c	95;"	function	signature:(void)
 but_drv	lowlev.h	36;"	prototype	signature:(void)
@@ -1615,6 +1615,7 @@ calloc	c:\program files\cosmic\cxstm8_32k\hstm8\stdlib.h	40;"	prototype	signatur
 clear_ind	lowlev.c	145;"	function	signature:(void)
 clear_ind	lowlev.h	38;"	prototype	signature:(void)
 currRandom	main.c	31;"	variable
+day_sheduler_time	main.c	82;"	variable
 delay_us	lowlev.c	85;"	function	signature:(short num_of_delay)
 delay_us	lowlev.h	34;"	prototype	signature:(short num_of_delay)
 dig	main.c	45;"	variable
@@ -1680,7 +1681,7 @@ i_s	main.h	48;"	member	struct:__anon19
 ind	main.h	53;"	macro
 ind_cnt	main.c	40;"	variable
 ind_enum	main.h	40;"	typedef	typeref:enum:__anon18
-ind_hndl	main.c	186;"	function	signature:(void)
+ind_hndl	main.c	227;"	function	signature:(void)
 ind_hndl	main.h	108;"	prototype	signature:(void)
 ind_outB	main.c	41;"	variable
 ind_outC	main.c	42;"	variable
@@ -1720,10 +1721,10 @@ led_on	lowlev.h	72;"	prototype	signature:(signed char led_num)
 led_set	lowlev.c	311;"	function	signature:(signed char led_num, signed char led_stat)
 led_set	lowlev.h	64;"	prototype	signature:(signed char led_num, signed char led_stat)
 lsqrt	c:\program files\cosmic\cxstm8_32k\hstm8\stdlib.h	54;"	prototype	signature:(unsigned long)
-main	main.c	1045;"	function
+main	main.c	1095;"	function
 mainCnt	main.c	37;"	variable
 malloc	c:\program files\cosmic\cxstm8_32k\hstm8\stdlib.h	46;"	prototype	signature:(unsigned int size)
-matemath	main.c	160;"	function	signature:(void)
+matemath	main.c	201;"	function	signature:(void)
 memchr	c:\program files\cosmic\cxstm8_32k\hstm8\string.h	28;"	prototype	signature:(void *s, char c, unsigned int n)
 memcmp	c:\program files\cosmic\cxstm8_32k\hstm8\string.h	22;"	prototype	signature:(void *s1, void *s2, unsigned int n)
 memcpy	c:\program files\cosmic\cxstm8_32k\hstm8\string.h	29;"	prototype	signature:(void *s1, void *s2, unsigned int n)
@@ -1739,11 +1740,11 @@ out_drv	lowlev.c	26;"	function	signature:(void)
 out_drv	lowlev.h	30;"	prototype	signature:(void)
 out_mode	main.c	59;"	variable
 out_stat	main.c	59;"	variable
-powerNecc	main.c	86;"	variable
-powerNeccDelta	main.c	87;"	variable
-powerNeccOld	main.c	86;"	variable
-power_hndl	main.c	112;"	function	signature:(void)
-power_necc_hndl	main.c	141;"	function	signature:(void)
+powerNecc	main.c	92;"	variable
+powerNeccDelta	main.c	93;"	variable
+powerNeccOld	main.c	92;"	variable
+power_hndl	main.c	153;"	function	signature:(void)
+power_necc_hndl	main.c	182;"	function	signature:(void)
 power_stat	lowlev.c	17;"	variable
 power_stat_cnt	lowlev.c	18;"	variable
 power_stat_drv	lowlev.c	48;"	function	signature:(void)
@@ -1778,6 +1779,7 @@ s8	include\stm8s.h	212;"	typedef
 s_i	main.h	45;"	member	struct:__anon19
 s_i1	main.h	46;"	member	struct:__anon19
 s_i2	main.h	47;"	member	struct:__anon19
+sheduler_hndl	main.c	119;"	function	signature:(void)
 sim	include\stm8s.h	2604;"	macro
 sim	include\stm8s.h	2613;"	macro
 sim	include\stm8s.h	2623;"	macro
@@ -1809,21 +1811,22 @@ t0_cnt1	main.c	36;"	variable
 t0_cnt2	main.c	36;"	variable
 t0_cnt3	main.c	36;"	variable
 t0_cnt4	main.c	36;"	variable
-t4_init	main.c	974;"	function	signature:(void)
+t4_init	main.c	1024;"	function	signature:(void)
 t4_init	main.h	110;"	prototype	signature:(void)
-tempUC	main.c	92;"	variable
+tempUC	main.c	98;"	variable
 temperOfAir	main.c	64;"	variable
 temperOfWater	main.c	63;"	variable
 temperRegTo	main.c	66;"	variable
+temperRegToSheduler	main.c	67;"	variable
 temperToReg	main.c	65;"	variable
-time_date	main.c	75;"	variable
-time_day_of_week	main.c	74;"	variable
-time_drv	main.c	98;"	function	signature:(void)
-time_hour	main.c	73;"	variable
-time_min	main.c	72;"	variable
-time_month	main.c	76;"	variable
-time_sec	main.c	71;"	variable
-time_year	main.c	77;"	variable
+time_date	main.c	76;"	variable
+time_day_of_week	main.c	75;"	variable
+time_drv	main.c	104;"	function	signature:(void)
+time_hour	main.c	74;"	variable
+time_min	main.c	73;"	variable
+time_month	main.c	77;"	variable
+time_sec	main.c	72;"	variable
+time_year	main.c	78;"	variable
 trap	include\stm8s.h	2606;"	macro
 trap	include\stm8s.h	2615;"	macro
 trap	include\stm8s.h	2625;"	macro
