@@ -36,7 +36,7 @@ extern const char DIGISYM[30];
 //Eiaeeaoey
 typedef enum 
 	{
-	iMn,iSet,iSet_,iSetT,iDate_W,iSetTable,iSetTable_,iDeb,iTemperSet
+	iMn,iSet,iSet_,iSetT,iDate_W,iSetTable,iSetTable_,iDeb,iTemperSet,iDefSet
 	} ind_enum;
 	
 typedef struct  
@@ -76,6 +76,8 @@ extern enum_out_stat out_stat[3],out_mode;
 #define butD_	119
 #define butUD_	115
 #define butMD_	117
+#define butOND_	118
+#define butMU_	121
 
 //-----------------------------------------------
 //Температура

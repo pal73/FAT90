@@ -92,6 +92,15 @@ const unsigned char TABLE_TIME_EE_MAX[5]={35,71,107,125,143};
 signed char powerNecc=0,powerNeccOld=0;
 signed char powerNeccDelta;
 
+//-----------------------------------------------
+//Зуммер
+signed char beep_drv_cnt;
+
+//-----------------------------------------------
+//Ошибки
+bool bERR;	//серьезная ошибка
+bool bWARN; //предупреждение
+
 //^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 //отладка
 //char random_plazma;
@@ -99,6 +108,54 @@ unsigned char tempUC;
 //@near signed char 	TABLE_TEMPER_EE[7][5];
 //^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
+//-----------------------------------------------
+void error_warn_hndl(void)
+{
+if(mainCnt<3)return;	
+if(MODE_EE==1)
+	{
+	if(waterSensorErrorStat!=esNORM)bWARN=1;
+	else bWARN=0;
+	}
+else if(MODE_EE==2)
+	{
+	if(/*(airSensorErrorStat!=esNORM)||*/(waterSensorErrorStat!=esNORM))bWARN=1;
+	else bWARN=0;
+	}
+	
+if((waterSensorErrorStat==esNORM)&&((temperOfWater<=3)||(temperOfWater>=90)))bERR=1;	
+else bERR=0;
+}
+
+//-----------------------------------------------
+void beep_drv(void)
+{
+GPIOG->DDR|=0b00000010;
+GPIOG->CR1&=0b11111101;
+GPIOG->CR2&=0b11111101;
+
+
+
+if(bERR)
+	{
+	if(++beep_drv_cnt>=15)beep_drv_cnt=0;
+	if(beep_drv_cnt<5)
+		{
+		GPIOG->ODR&=0b11111101;
+		}
+	else GPIOG->ODR|=0b00000010;
+	}
+else if(bWARN)
+	{
+	if(++beep_drv_cnt>=100)beep_drv_cnt=0;
+	if((beep_drv_cnt<5)||((beep_drv_cnt>=15)&&(beep_drv_cnt<20))||((beep_drv_cnt>=30)&&(beep_drv_cnt<35)))
+		{
+		GPIOG->ODR&=0b11111101;
+		}
+	else GPIOG->ODR|=0b00000010;
+	}
+else GPIOG->ODR|=0b00000010;
+}
 
 //-----------------------------------------------
 void time_drv(void)
@@ -205,6 +262,7 @@ if((wire1_in[1]&0xf0)==0)
 	{
 	temperOfWaterTemp=((wire1_in[0]&0xf0)>>4)+((wire1_in[1]&0x0f)<<4);
 	temperOfWater=(signed short)temperOfWaterTemp;
+	//temperOfWater=92;
 	}
 if(MODE_EE==1)
 	{
@@ -259,10 +317,22 @@ if(ind==iMn)
 //	int2indI_slkuf(random_plazma,3, 1, 0, 1, 0);
 	
 	led_mask_off(0x00);
-	if(out_mode==osON)led_on(MODE_EE);
+	if(out_mode==osON)
+		{
+		if(MODE_EE==1)led_on(1);
+		else if(MODE_EE==2) led_on(2);
+		else if(MODE_EE==3)
+			{
+			led_on(2);
+			led_on(3);
+			}
+		}
 	if((out_mode==osON)&&(out_stat[0]==osON))led_on(4);
 	if((out_mode==osON)&&(out_stat[1]==osON))led_on(5);
 	if((out_mode==osON)&&(out_stat[2]==osON))led_on(6);
+	
+	if(bERR)led_on(7);
+	else if(bWARN)led_flash(7);
 	//led_set(2,0);
 	//led_set(3,2);
 	}
@@ -449,7 +519,7 @@ else if(ind==iDeb)
 		int2indII_slkuf(time_day_of_week,3, 1, 0, 0, 0);
 		//int2indII_slkuf(out_stat[1],2, 1, 0, 0, 0);
 		//int2indII_slkuf(out_stat[2],1, 1, 0, 0, 0);
-		int2indII_slkuf(day_sheduler_time,0, 1, 0, 0, 0);
+		int2indII_slkuf(day_sheduler_time,0, 3, 0, 0, 0);
 		}			
 	}
 	
@@ -486,6 +556,14 @@ else if(ind==iTemperSet)
 	else 						ind_outC[0]=0b00111000;
 
 	}	
+
+else if(ind==iDefSet)
+	{
+	led_mask_off(0x00);
+
+	int2indI_slkuf(123,1, 3, 0, 0, 0);
+	int2indII_slkuf(4567,0, 4, 0, 0, 0);
+	}
 
 if(bFL5)
 	{
@@ -635,6 +713,11 @@ else if(ind==iSet)
 			tree_up(iSet_,sub_ind,0,0);
 			}
 		}
+	else if(but==butOND_)
+		{
+		tree_up(iDefSet,0,0,0);
+		ret_ind(5,0);
+		}
 	}
 else if(ind==iSet_)
 	{
@@ -661,21 +744,6 @@ else if(ind==iSet_)
 			{
 			if((but==butU)||(but==butU_))
 				{
-				NECC_TEMPER_AIR_EE++;
-				gran_char(&NECC_TEMPER_AIR_EE,5,35);
-				speed=1;
-				}
-			if((but==butD)||(but==butD_))
-				{
-				NECC_TEMPER_AIR_EE--;
-				gran_char(&NECC_TEMPER_AIR_EE,5,35);
-				speed=1;
-				}				
-			}			
-		else if(sub_ind==2)
-			{
-			if((but==butU)||(but==butU_))
-				{
 				NECC_TEMPER_WATER_EE++;
 				gran_char(&NECC_TEMPER_WATER_EE,5,85);
 				speed=1;
@@ -687,6 +755,22 @@ else if(ind==iSet_)
 				speed=1;
 				}				
 			}			
+		else if(sub_ind==2)
+			{
+			if((but==butU)||(but==butU_))
+				{
+				NECC_TEMPER_AIR_EE++;
+				gran_char(&NECC_TEMPER_AIR_EE,5,35);
+				speed=1;
+				}
+			if((but==butD)||(but==butD_))
+				{
+				NECC_TEMPER_AIR_EE--;
+				gran_char(&NECC_TEMPER_AIR_EE,5,35);
+				speed=1;
+				}				
+			}			
+		
 		else if(sub_ind==3)
 			{
 			if((but==butU)||(but==butU_))
@@ -820,14 +904,14 @@ else if(ind==iSet_)
 	}	
 else if(ind==iSetTable)
 	{
-	if((but==butU)||(but==butU_))
+	if((but==butU)/*||(but==butU_)*/)
 		{
 		sub_ind++;
 		gran_char(&sub_ind,0,34);
 		clear_ind();
 		ind_hndl();
 		}
-	else if((but==butD)||(but==butD_))
+	else if((but==butD)/*||(but==butD_)*/)
 		{
 		sub_ind--;
 		gran_char(&sub_ind,0,34);
@@ -840,7 +924,13 @@ else if(ind==iSetTable)
 		else sub_ind1=0;
 		clear_ind();
 		ind_hndl();
-		}		
+		}	
+	else if((but==butD_)/*||(but==butD_)*/)
+		{
+		tree_down(0,0);
+		clear_ind();
+		ind_hndl();
+		}
 	else if(but==butUD_)
 		{
 		TABLE_TIME_EE[0][0]=0;
@@ -925,10 +1015,7 @@ else if(ind==iSetTable)
 		{
 		tree_up(iSetTable_,sub_ind,0,sub_ind1);
 		}
-	else if(but==butMD_)
-		{
-		tree_down(0,0);
-		}		
+
 	}
 else if(ind==iSetTable_)
 	{
@@ -1019,6 +1106,96 @@ else if(ind==iDeb)
 		tree_down(0,0);
 		}
 	}
+else if(ind==iDefSet)
+	{
+	if(but==butMU_)
+		{
+		TABLE_TIME_EE[0][0]=0;
+		TABLE_TEMPER_EE[0][0]=20;	
+		TABLE_TIME_EE[0][1]=36;
+		TABLE_TEMPER_EE[0][1]=20;	
+		TABLE_TIME_EE[0][2]=66;
+		TABLE_TEMPER_EE[0][2]=20;	
+		TABLE_TIME_EE[0][3]=96;
+		TABLE_TEMPER_EE[0][3]=20;	
+		TABLE_TIME_EE[0][4]=126;
+		TABLE_TEMPER_EE[0][4]=20;
+		
+		TABLE_TIME_EE[1][0]=0;
+		TABLE_TEMPER_EE[1][0]=20;	
+		TABLE_TIME_EE[1][1]=36;
+		TABLE_TEMPER_EE[1][1]=20;	
+		TABLE_TIME_EE[1][2]=66;
+		TABLE_TEMPER_EE[1][2]=20;	
+		TABLE_TIME_EE[1][3]=96;
+		TABLE_TEMPER_EE[1][3]=20;	
+		TABLE_TIME_EE[1][4]=126;
+		TABLE_TEMPER_EE[1][4]=20;	
+				
+		TABLE_TIME_EE[2][0]=0;
+		TABLE_TEMPER_EE[2][0]=20;	
+		TABLE_TIME_EE[2][1]=36;
+		TABLE_TEMPER_EE[2][1]=20;	
+		TABLE_TIME_EE[2][2]=66;
+		TABLE_TEMPER_EE[2][2]=20;	
+		TABLE_TIME_EE[2][3]=96;
+		TABLE_TEMPER_EE[2][3]=20;	
+		TABLE_TIME_EE[2][4]=126;
+		TABLE_TEMPER_EE[2][4]=20;
+		
+		TABLE_TIME_EE[3][0]=0;
+		TABLE_TEMPER_EE[3][0]=20;	
+		TABLE_TIME_EE[3][1]=36;
+		TABLE_TEMPER_EE[3][1]=20;	
+		TABLE_TIME_EE[3][2]=66;
+		TABLE_TEMPER_EE[3][2]=20;	
+		TABLE_TIME_EE[3][3]=96;
+		TABLE_TEMPER_EE[3][3]=20;	
+		TABLE_TIME_EE[3][4]=126;
+		TABLE_TEMPER_EE[3][4]=20;
+		
+		TABLE_TIME_EE[4][0]=0;
+		TABLE_TEMPER_EE[4][0]=20;	
+		TABLE_TIME_EE[4][1]=36;
+		TABLE_TEMPER_EE[4][1]=20;	
+		TABLE_TIME_EE[4][2]=66;
+		TABLE_TEMPER_EE[4][2]=20;	
+		TABLE_TIME_EE[4][3]=96;
+		TABLE_TEMPER_EE[4][3]=20;	
+		TABLE_TIME_EE[4][4]=126;
+		TABLE_TEMPER_EE[4][4]=20;
+				
+		TABLE_TIME_EE[5][0]=0;
+		TABLE_TEMPER_EE[5][0]=20;	
+		TABLE_TIME_EE[5][1]=36;
+		TABLE_TEMPER_EE[5][1]=20;	
+		TABLE_TIME_EE[5][2]=66;
+		TABLE_TEMPER_EE[5][2]=20;	
+		TABLE_TIME_EE[5][3]=96;
+		TABLE_TEMPER_EE[5][3]=20;	
+		TABLE_TIME_EE[5][4]=126;
+		TABLE_TEMPER_EE[5][4]=20;
+				
+		TABLE_TIME_EE[6][0]=0;
+		TABLE_TEMPER_EE[6][0]=20;	
+		TABLE_TIME_EE[6][1]=36;
+		TABLE_TEMPER_EE[6][1]=20;	
+		TABLE_TIME_EE[6][2]=66;
+		TABLE_TEMPER_EE[6][2]=20;	
+		TABLE_TIME_EE[6][3]=96;
+		TABLE_TEMPER_EE[6][3]=20;	
+		TABLE_TIME_EE[6][4]=126;
+		TABLE_TEMPER_EE[6][4]=20;
+		
+		MODE_EE=1;
+		NECC_TEMPER_WATER_EE=50;
+		NECC_TEMPER_AIR_EE=20;
+		MAX_POWER_EE=3;
+		
+		tree_down(0,0);
+		ret_ind(0,0);
+		}
+	}	
 }
 //-----------------------------------------------
 void t4_init(void)
@@ -1127,6 +1304,9 @@ ind=iMn;
 
 out_mode=osOFF;
 
+bERR=0;
+bWARN=0;
+
 while (1)
 	{
 	if(b100Hz)
@@ -1135,6 +1315,7 @@ while (1)
 		
 		but_drv();
 		but_an();
+		beep_drv();
 		GPIOD->DDR|=0b00000001;		
 		GPIOD->CR1|=0b00000001;		
 		GPIOD->CR2&=0b11111110;
@@ -1181,6 +1362,7 @@ while (1)
 		power_necc_hndl();
 		power_hndl();
 		sheduler_hndl();
+		error_warn_hndl();
 		}		
 	};
 }
