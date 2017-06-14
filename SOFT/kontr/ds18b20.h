@@ -3,7 +3,7 @@ extern char wire1_in[10];			//—читывание данных, буфер 1wire
 extern char ds18b20ErrorHiCnt; 		//—четчик ошибок по замыканию линии в "+" (или отсутствию датчика)
 extern char ds18b20ErrorLoCnt;		//—четчик ошибок по замыканию линии в "-" 
 extern char ds18b20ErrorOffCnt;		//—четчик нормальных ответов датчика
-typedef enum {esNORM=0x55,esHI=1,esLO=0} enumDsErrorStat; 
+typedef enum {dsesNORM=0x55,dsesHI=1,dsesLO=0} enumDsErrorStat; 
 extern enumDsErrorStat waterSensorErrorStat;
 
 

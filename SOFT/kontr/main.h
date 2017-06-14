@@ -84,6 +84,8 @@ extern enum_out_stat out_stat[3],out_mode;
 extern signed char 	temperOfWater;
 extern signed char	temperOfAir;
 extern signed char 	temperToReg;
+typedef enum {taesNORM=0x55,taesHI=1,taesLO=0,taesLHI=3,taesLLO=2} enumTemperOfAirErrorStat; 
+extern enumTemperOfAirErrorStat airSensorErrorStat;
 
 //-----------------------------------------------
 //Время
@@ -99,6 +101,20 @@ extern char time_year;
 //Регулирование мощности
 extern signed char powerNecc,powerNeccOld;
 extern signed char powerNeccDelta;
+
+//-----------------------------------------------
+//Зуммер
+extern signed char beep_drv_cnt;
+
+//-----------------------------------------------
+//Ошибки
+extern bool bERR;	//серьезная ошибка
+extern bool bWARN; //предупреждение
+
+//-----------------------------------------------
+//Исправность линии воздушного датчика
+extern char cntAirSensorLineErrorLo;
+extern char cntAirSensorLineErrorHi;
 //^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 //отладка
 //extern char random_plazma;

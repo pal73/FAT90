@@ -7,7 +7,7 @@ char wire1_in[10];		//—читывание данных, буфер 1wire
 char ds18b20ErrorHiCnt; //—четчик ошибок по замыканию линии в "+" (или отсутствию датчика)
 char ds18b20ErrorLoCnt;	//—четчик ошибок по замыканию линии в "-" 
 char ds18b20ErrorOffCnt;//—четчик нормальных ответов датчика
-enumDsErrorStat waterSensorErrorStat = esNORM;
+enumDsErrorStat waterSensorErrorStat = dsesNORM;
 
 //-----------------------------------------------
 //-----------------------------------------------
@@ -28,7 +28,7 @@ if(!bCONV)
 		
 		ds18b20ErrorHiCnt=0;
 		ds18b20ErrorLoCnt=0;
-		waterSensorErrorStat=esNORM;		
+		waterSensorErrorStat=dsesNORM;		
 		}
 	else
 		{
@@ -39,7 +39,7 @@ if(!bCONV)
 				ds18b20ErrorHiCnt++;
 				if(ds18b20ErrorHiCnt>=10)
 					{
-					waterSensorErrorStat=esHI;	
+					waterSensorErrorStat=dsesHI;	
 					}
 				}
 			ds18b20ErrorLoCnt=0;
@@ -52,7 +52,7 @@ if(!bCONV)
 				ds18b20ErrorLoCnt++;
 				if(ds18b20ErrorLoCnt>=10)
 					{
-					waterSensorErrorStat=esLO;	
+					waterSensorErrorStat=dsesLO;	
 					}
 				}
 			ds18b20ErrorHiCnt=0;
@@ -81,7 +81,7 @@ else
 		
 		ds18b20ErrorHiCnt=0;
 		ds18b20ErrorLoCnt=0;
-		waterSensorErrorStat=esNORM;
+		waterSensorErrorStat=dsesNORM;
 		}
 	else
 		{
@@ -92,7 +92,7 @@ else
 				ds18b20ErrorHiCnt++;
 				if(ds18b20ErrorHiCnt>=10)
 					{
-					waterSensorErrorStat=esHI;	
+					waterSensorErrorStat=dsesHI;	
 					}
 				}
 			ds18b20ErrorLoCnt=0;
@@ -105,7 +105,7 @@ else
 				ds18b20ErrorLoCnt++;
 				if(ds18b20ErrorLoCnt>=10)
 					{
-					waterSensorErrorStat=esLO;	
+					waterSensorErrorStat=dsesLO;	
 					}
 				}
 			ds18b20ErrorHiCnt=0;

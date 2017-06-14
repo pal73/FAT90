@@ -65,6 +65,9 @@ signed char	temperOfAir;
 signed char temperToReg;
 signed char temperRegTo;
 signed char temperRegToSheduler;
+enumTemperOfAirErrorStat airSensorErrorStat=taesNORM;
+
+
 
 //-----------------------------------------------
 //Время
@@ -101,6 +104,11 @@ signed char beep_drv_cnt;
 bool bERR;	//серьезная ошибка
 bool bWARN; //предупреждение
 
+//-----------------------------------------------
+//Исправность линии воздушного датчика
+char cntAirSensorLineErrorLo;
+char cntAirSensorLineErrorHi;
+
 //^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 //отладка
 //char random_plazma;
@@ -114,17 +122,44 @@ void error_warn_hndl(void)
 if(mainCnt<3)return;	
 if(MODE_EE==1)
 	{
-	if(waterSensorErrorStat!=esNORM)bWARN=1;
+	if(waterSensorErrorStat!=dsesNORM)bWARN=1;
 	else bWARN=0;
 	}
-else if(MODE_EE==2)
+else if((MODE_EE==2)||(MODE_EE==3))
 	{
-	if(/*(airSensorErrorStat!=esNORM)||*/(waterSensorErrorStat!=esNORM))bWARN=1;
+	if((airSensorErrorStat!=taesNORM)||(waterSensorErrorStat!=dsesNORM))bWARN=1;
 	else bWARN=0;
 	}
 	
-if((waterSensorErrorStat==esNORM)&&((temperOfWater<=3)||(temperOfWater>=90)))bERR=1;	
+if((waterSensorErrorStat==dsesNORM)&&((temperOfWater<=3)||(temperOfWater>=90)))bERR=1;	
 else bERR=0;
+}
+
+//-----------------------------------------------
+void airSensorLineErrorDrv(void)
+{
+if(GPIOD->IDR&(1<<6)) 
+	{
+	if(cntAirSensorLineErrorLo<10)
+		{
+		cntAirSensorLineErrorLo++;
+		if(cntAirSensorLineErrorLo>=10)
+			{
+			airSensorErrorStat=taesLLO;	
+			}
+		}
+	}
+else 
+	{
+	if(cntAirSensorLineErrorHi<10)
+		{
+		cntAirSensorLineErrorHi++;
+		if(cntAirSensorLineErrorHi>=10)
+			{
+			airSensorErrorStat=taesLHI;	
+			}
+		}
+	}	
 }
 
 //-----------------------------------------------
@@ -179,30 +214,30 @@ char i;
 
 day_sheduler_time=(unsigned char)(((((unsigned)time_hour)*60)+((unsigned)time_min))/10);
 
-if((day_sheduler_time>=0)&&(day_sheduler_time<TABLE_TIME_EE[time_day_of_week][0]))
+if((day_sheduler_time>=0)&&(day_sheduler_time<TABLE_TIME_EE[time_day_of_week-1][0]))
 	{
-	if(time_day_of_week==1)	temperRegToSheduler=TABLE_TEMPER_EE[7][4];
-	else 					temperRegToSheduler=TABLE_TEMPER_EE[time_day_of_week-1][4];
+	if(time_day_of_week==1)	temperRegToSheduler=TABLE_TEMPER_EE[6][4];
+	else 					temperRegToSheduler=TABLE_TEMPER_EE[time_day_of_week-2][4];
 	}
-else if((day_sheduler_time>=TABLE_TIME_EE[time_day_of_week][0])&&(day_sheduler_time<TABLE_TIME_EE[time_day_of_week][1]))
+else if((day_sheduler_time>=TABLE_TIME_EE[time_day_of_week-1][0])&&(day_sheduler_time<TABLE_TIME_EE[time_day_of_week-1][1]))
 	{
-	temperRegToSheduler=TABLE_TEMPER_EE[time_day_of_week][0];
+	temperRegToSheduler=TABLE_TEMPER_EE[time_day_of_week-1][0];
 	}
-else if((day_sheduler_time>=TABLE_TIME_EE[time_day_of_week][1])&&(day_sheduler_time<TABLE_TIME_EE[time_day_of_week][2]))
+else if((day_sheduler_time>=TABLE_TIME_EE[time_day_of_week-1][1])&&(day_sheduler_time<TABLE_TIME_EE[time_day_of_week-1][2]))
 	{
-	temperRegToSheduler=TABLE_TEMPER_EE[time_day_of_week][1];
+	temperRegToSheduler=TABLE_TEMPER_EE[time_day_of_week-1][1];
 	}
-else if((day_sheduler_time>=TABLE_TIME_EE[time_day_of_week][2])&&(day_sheduler_time<TABLE_TIME_EE[time_day_of_week][3]))
+else if((day_sheduler_time>=TABLE_TIME_EE[time_day_of_week-1][2])&&(day_sheduler_time<TABLE_TIME_EE[time_day_of_week-1][3]))
 	{
-	temperRegToSheduler=TABLE_TEMPER_EE[time_day_of_week][2];
+	temperRegToSheduler=TABLE_TEMPER_EE[time_day_of_week-1][2];
 	}
-else if((day_sheduler_time>=TABLE_TIME_EE[time_day_of_week][3])&&(day_sheduler_time<TABLE_TIME_EE[time_day_of_week][4]))
+else if((day_sheduler_time>=TABLE_TIME_EE[time_day_of_week-1][3])&&(day_sheduler_time<TABLE_TIME_EE[time_day_of_week-1][4]))
 	{
-	temperRegToSheduler=TABLE_TEMPER_EE[time_day_of_week][3];
+	temperRegToSheduler=TABLE_TEMPER_EE[time_day_of_week-1][3];
 	}
-else if((day_sheduler_time>=TABLE_TIME_EE[time_day_of_week][4])&&(day_sheduler_time<144))
+else if((day_sheduler_time>=TABLE_TIME_EE[time_day_of_week-1][4])&&(day_sheduler_time<144))
 	{
-	temperRegToSheduler=TABLE_TEMPER_EE[time_day_of_week][4];
+	temperRegToSheduler=TABLE_TEMPER_EE[time_day_of_week-1][4];
 	}	
 }
 
@@ -239,7 +274,7 @@ enableInterrupts();
 void power_necc_hndl(void)
 {
 
-if(temperToReg>=temperRegTo)
+if((temperToReg>=temperRegTo)||(temperOfWater>=90))
 	{
 	powerNecc=0;	
 	}
@@ -343,7 +378,7 @@ else if(ind==iDate_W)
 		//int2indI_slkuf(12,1, 2, 0, 1, 0);
 		int2indI_slkuf(time_date,1, 2, 0, 1, 0);
 		int2indII_slkuf(time_month,0, 2, 0, 1, 0);
-		ind_outG[2]&=0b11111110;		
+		//ind_outG[2]&=0b11111110;		
 		}
 	else if(sub_ind==1)
 		{
@@ -432,7 +467,7 @@ else if(ind==iSet_)
 	else if(sub_ind==6)
 		{
 		int2indII_slkuf(time_date,0, 2, 0, 1, 1);
-		int2indII_slkuf(time_day_of_week,2, 2, 0, 1, 0);
+		//int2indII_slkuf(time_day_of_week,2, 2, 0, 1, 0);
 		}	
 	else if(sub_ind==7)
 		{
@@ -570,7 +605,7 @@ else if(ind==iTemperSet)
 			}
 		}
 
-	int2indII_slkuf(temperRegTo,1, 2, 0, 1, MODE_EE==3?0:0);
+	int2indII_slkuf(temperRegTo,1, 2, 0, 1, MODE_EE==3?0:1);
 	if((bFL2)&&(MODE_EE!=3))	ind_outC[0]=0b11111111;
 	else 						ind_outC[0]=0b00111000;
 
@@ -950,86 +985,86 @@ else if(ind==iSetTable)
 		clear_ind();
 		ind_hndl();
 		}
-	/*else if(but==butUD_)
+	else if(but==butUD_)
 		{
-		TABLE_TIME_EE[0][0]=0;
-		TABLE_TEMPER_EE[0][0]=23;	
-		TABLE_TIME_EE[0][1]=36;
-		TABLE_TEMPER_EE[0][1]=23;	
-		TABLE_TIME_EE[0][2]=66;
-		TABLE_TEMPER_EE[0][2]=23;	
-		TABLE_TIME_EE[0][3]=96;
+		TABLE_TIME_EE[0][0]=3;
+		TABLE_TEMPER_EE[0][0]=20;	
+		TABLE_TIME_EE[0][1]=39;
+		TABLE_TEMPER_EE[0][1]=21;	
+		TABLE_TIME_EE[0][2]=75;
+		TABLE_TEMPER_EE[0][2]=22;	
+		TABLE_TIME_EE[0][3]=111;
 		TABLE_TEMPER_EE[0][3]=23;	
-		TABLE_TIME_EE[0][4]=126;
-		TABLE_TEMPER_EE[0][4]=23;
+		TABLE_TIME_EE[0][4]=129;
+		TABLE_TEMPER_EE[0][4]=24;
 		
-		TABLE_TIME_EE[1][0]=0;
-		TABLE_TEMPER_EE[1][0]=23;	
-		TABLE_TIME_EE[1][1]=36;
-		TABLE_TEMPER_EE[1][1]=23;	
-		TABLE_TIME_EE[1][2]=66;
-		TABLE_TEMPER_EE[1][2]=23;	
-		TABLE_TIME_EE[1][3]=96;
-		TABLE_TEMPER_EE[1][3]=23;	
-		TABLE_TIME_EE[1][4]=126;
-		TABLE_TEMPER_EE[1][4]=23;	
+		TABLE_TIME_EE[1][0]=9;
+		TABLE_TEMPER_EE[1][0]=25;	
+		TABLE_TIME_EE[1][1]=45;
+		TABLE_TEMPER_EE[1][1]=26;	
+		TABLE_TIME_EE[1][2]=81;
+		TABLE_TEMPER_EE[1][2]=27;	
+		TABLE_TIME_EE[1][3]=117;
+		TABLE_TEMPER_EE[1][3]=28;	
+		TABLE_TIME_EE[1][4]=135;
+		TABLE_TEMPER_EE[1][4]=29;	
 				
-		TABLE_TIME_EE[2][0]=0;
-		TABLE_TEMPER_EE[2][0]=23;	
-		TABLE_TIME_EE[2][1]=36;
-		TABLE_TEMPER_EE[2][1]=23;	
-		TABLE_TIME_EE[2][2]=66;
-		TABLE_TEMPER_EE[2][2]=23;	
-		TABLE_TIME_EE[2][3]=96;
-		TABLE_TEMPER_EE[2][3]=23;	
-		TABLE_TIME_EE[2][4]=126;
-		TABLE_TEMPER_EE[2][4]=23;
+		TABLE_TIME_EE[2][0]=15;
+		TABLE_TEMPER_EE[2][0]=30;	
+		TABLE_TIME_EE[2][1]=51;
+		TABLE_TEMPER_EE[2][1]=31;	
+		TABLE_TIME_EE[2][2]=87;
+		TABLE_TEMPER_EE[2][2]=32;	
+		TABLE_TIME_EE[2][3]=123;
+		TABLE_TEMPER_EE[2][3]=33;	
+		TABLE_TIME_EE[2][4]=141;
+		TABLE_TEMPER_EE[2][4]=34;
 		
-		TABLE_TIME_EE[3][0]=0;
-		TABLE_TEMPER_EE[3][0]=23;	
-		TABLE_TIME_EE[3][1]=36;
-		TABLE_TEMPER_EE[3][1]=23;	
-		TABLE_TIME_EE[3][2]=66;
-		TABLE_TEMPER_EE[3][2]=23;	
-		TABLE_TIME_EE[3][3]=96;
-		TABLE_TEMPER_EE[3][3]=23;	
-		TABLE_TIME_EE[3][4]=126;
-		TABLE_TEMPER_EE[3][4]=23;
+		TABLE_TIME_EE[3][0]=21;
+		TABLE_TEMPER_EE[3][0]=35;	
+		TABLE_TIME_EE[3][1]=57;
+		TABLE_TEMPER_EE[3][1]=5;	
+		TABLE_TIME_EE[3][2]=93;
+		TABLE_TEMPER_EE[3][2]=6;	
+		TABLE_TIME_EE[3][3]=112;
+		TABLE_TEMPER_EE[3][3]=7;	
+		TABLE_TIME_EE[3][4]=130;
+		TABLE_TEMPER_EE[3][4]=8;
 		
-		TABLE_TIME_EE[4][0]=0;
-		TABLE_TEMPER_EE[4][0]=23;	
-		TABLE_TIME_EE[4][1]=36;
-		TABLE_TEMPER_EE[4][1]=23;	
-		TABLE_TIME_EE[4][2]=66;
-		TABLE_TEMPER_EE[4][2]=23;	
-		TABLE_TIME_EE[4][3]=96;
-		TABLE_TEMPER_EE[4][3]=23;	
-		TABLE_TIME_EE[4][4]=126;
-		TABLE_TEMPER_EE[4][4]=23;
+		TABLE_TIME_EE[4][0]=27;
+		TABLE_TEMPER_EE[4][0]=9;	
+		TABLE_TIME_EE[4][1]=63;
+		TABLE_TEMPER_EE[4][1]=10;	
+		TABLE_TIME_EE[4][2]=99;
+		TABLE_TEMPER_EE[4][2]=11;	
+		TABLE_TIME_EE[4][3]=118;
+		TABLE_TEMPER_EE[4][3]=12;	
+		TABLE_TIME_EE[4][4]=136;
+		TABLE_TEMPER_EE[4][4]=13;
 				
-		TABLE_TIME_EE[5][0]=0;
-		TABLE_TEMPER_EE[5][0]=23;	
-		TABLE_TIME_EE[5][1]=36;
-		TABLE_TEMPER_EE[5][1]=23;	
-		TABLE_TIME_EE[5][2]=66;
-		TABLE_TEMPER_EE[5][2]=23;	
-		TABLE_TIME_EE[5][3]=96;
-		TABLE_TEMPER_EE[5][3]=23;	
-		TABLE_TIME_EE[5][4]=126;
-		TABLE_TEMPER_EE[5][4]=23;
+		TABLE_TIME_EE[5][0]=33;
+		TABLE_TEMPER_EE[5][0]=14;	
+		TABLE_TIME_EE[5][1]=69;
+		TABLE_TEMPER_EE[5][1]=15;	
+		TABLE_TIME_EE[5][2]=105;
+		TABLE_TEMPER_EE[5][2]=16;	
+		TABLE_TIME_EE[5][3]=124;
+		TABLE_TEMPER_EE[5][3]=17;	
+		TABLE_TIME_EE[5][4]=142;
+		TABLE_TEMPER_EE[5][4]=18;
 				
-		TABLE_TIME_EE[6][0]=0;
-		TABLE_TEMPER_EE[6][0]=23;	
-		TABLE_TIME_EE[6][1]=36;
-		TABLE_TEMPER_EE[6][1]=23;	
-		TABLE_TIME_EE[6][2]=66;
-		TABLE_TEMPER_EE[6][2]=23;	
-		TABLE_TIME_EE[6][3]=96;
-		TABLE_TEMPER_EE[6][3]=23;	
-		TABLE_TIME_EE[6][4]=126;
+		TABLE_TIME_EE[6][0]=4;
+		TABLE_TEMPER_EE[6][0]=19;	
+		TABLE_TIME_EE[6][1]=40;
+		TABLE_TEMPER_EE[6][1]=20;	
+		TABLE_TIME_EE[6][2]=76;
+		TABLE_TEMPER_EE[6][2]=21;	
+		TABLE_TIME_EE[6][3]=113;
+		TABLE_TEMPER_EE[6][3]=22;	
+		TABLE_TIME_EE[6][4]=131;
 		TABLE_TEMPER_EE[6][4]=23;
 		
-		}*/
+		}
 	else if(but==butM_)
 		{
 		tree_up(iSetTable_,sub_ind,0,sub_ind1);
@@ -1133,9 +1168,9 @@ else if(ind==iDefSet)
 		TABLE_TEMPER_EE[0][0]=20;	
 		TABLE_TIME_EE[0][1]=36;
 		TABLE_TEMPER_EE[0][1]=20;	
-		TABLE_TIME_EE[0][2]=66;
+		TABLE_TIME_EE[0][2]=72;
 		TABLE_TEMPER_EE[0][2]=20;	
-		TABLE_TIME_EE[0][3]=96;
+		TABLE_TIME_EE[0][3]=108;
 		TABLE_TEMPER_EE[0][3]=20;	
 		TABLE_TIME_EE[0][4]=126;
 		TABLE_TEMPER_EE[0][4]=20;
@@ -1144,9 +1179,9 @@ else if(ind==iDefSet)
 		TABLE_TEMPER_EE[1][0]=20;	
 		TABLE_TIME_EE[1][1]=36;
 		TABLE_TEMPER_EE[1][1]=20;	
-		TABLE_TIME_EE[1][2]=66;
+		TABLE_TIME_EE[1][2]=72;
 		TABLE_TEMPER_EE[1][2]=20;	
-		TABLE_TIME_EE[1][3]=96;
+		TABLE_TIME_EE[1][3]=108;
 		TABLE_TEMPER_EE[1][3]=20;	
 		TABLE_TIME_EE[1][4]=126;
 		TABLE_TEMPER_EE[1][4]=20;	
@@ -1155,9 +1190,9 @@ else if(ind==iDefSet)
 		TABLE_TEMPER_EE[2][0]=20;	
 		TABLE_TIME_EE[2][1]=36;
 		TABLE_TEMPER_EE[2][1]=20;	
-		TABLE_TIME_EE[2][2]=66;
+		TABLE_TIME_EE[2][2]=72;
 		TABLE_TEMPER_EE[2][2]=20;	
-		TABLE_TIME_EE[2][3]=96;
+		TABLE_TIME_EE[2][3]=108;
 		TABLE_TEMPER_EE[2][3]=20;	
 		TABLE_TIME_EE[2][4]=126;
 		TABLE_TEMPER_EE[2][4]=20;
@@ -1166,9 +1201,9 @@ else if(ind==iDefSet)
 		TABLE_TEMPER_EE[3][0]=20;	
 		TABLE_TIME_EE[3][1]=36;
 		TABLE_TEMPER_EE[3][1]=20;	
-		TABLE_TIME_EE[3][2]=66;
+		TABLE_TIME_EE[3][2]=72;
 		TABLE_TEMPER_EE[3][2]=20;	
-		TABLE_TIME_EE[3][3]=96;
+		TABLE_TIME_EE[3][3]=108;
 		TABLE_TEMPER_EE[3][3]=20;	
 		TABLE_TIME_EE[3][4]=126;
 		TABLE_TEMPER_EE[3][4]=20;
@@ -1177,9 +1212,9 @@ else if(ind==iDefSet)
 		TABLE_TEMPER_EE[4][0]=20;	
 		TABLE_TIME_EE[4][1]=36;
 		TABLE_TEMPER_EE[4][1]=20;	
-		TABLE_TIME_EE[4][2]=66;
+		TABLE_TIME_EE[4][2]=72;
 		TABLE_TEMPER_EE[4][2]=20;	
-		TABLE_TIME_EE[4][3]=96;
+		TABLE_TIME_EE[4][3]=108;
 		TABLE_TEMPER_EE[4][3]=20;	
 		TABLE_TIME_EE[4][4]=126;
 		TABLE_TEMPER_EE[4][4]=20;
@@ -1188,9 +1223,9 @@ else if(ind==iDefSet)
 		TABLE_TEMPER_EE[5][0]=20;	
 		TABLE_TIME_EE[5][1]=36;
 		TABLE_TEMPER_EE[5][1]=20;	
-		TABLE_TIME_EE[5][2]=66;
+		TABLE_TIME_EE[5][2]=72;
 		TABLE_TEMPER_EE[5][2]=20;	
-		TABLE_TIME_EE[5][3]=96;
+		TABLE_TIME_EE[5][3]=108;
 		TABLE_TEMPER_EE[5][3]=20;	
 		TABLE_TIME_EE[5][4]=126;
 		TABLE_TEMPER_EE[5][4]=20;
@@ -1199,9 +1234,9 @@ else if(ind==iDefSet)
 		TABLE_TEMPER_EE[6][0]=20;	
 		TABLE_TIME_EE[6][1]=36;
 		TABLE_TEMPER_EE[6][1]=20;	
-		TABLE_TIME_EE[6][2]=66;
+		TABLE_TIME_EE[6][2]=72;
 		TABLE_TEMPER_EE[6][2]=20;	
-		TABLE_TIME_EE[6][3]=96;
+		TABLE_TIME_EE[6][3]=108;
 		TABLE_TEMPER_EE[6][3]=20;	
 		TABLE_TIME_EE[6][4]=126;
 		TABLE_TEMPER_EE[6][4]=20;
@@ -1382,6 +1417,7 @@ while (1)
 		power_hndl();
 		sheduler_hndl();
 		error_warn_hndl();
+		airSensorLineErrorDrv();
 		}		
 	};
 }

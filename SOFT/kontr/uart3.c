@@ -51,6 +51,10 @@ if (rx_status3 & (UART3_SR_RXNE))
 			rx_wr_index3=0;	
 			}
 		}
+	cntAirSensorLineErrorHi=0;
+	cntAirSensorLineErrorLo=0;
+	if(airSensorErrorStat==taesLHI)airSensorErrorStat=taesNORM;
+	if(airSensorErrorStat==taesLLO)airSensorErrorStat=taesNORM;
 	}
 }
 
@@ -68,9 +72,19 @@ if(bRXIN3)
 		ptr2=strstr(uart3_an_buffer,"CRC");
 		//char *digi;
 		memcpy(digi,ptr1+2,ptr2-ptr1-2);
-		
+		//TODO проверку контрольной суммы
 		temperOfAir=(signed char)atoi(digi);
+		airSensorErrorStat=taesNORM;
+		
 		}
+	else if(strstr(uart3_an_buffer,"ERRORLO"))
+		{
+		airSensorErrorStat=taesLO;
+		}
+	else if(strstr(uart3_an_buffer,"ERRORHI"))
+		{
+		airSensorErrorStat=taesHI;
+		}		
 	}
 	enableInterrupts();
 }
