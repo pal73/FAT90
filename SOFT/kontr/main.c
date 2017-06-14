@@ -340,15 +340,15 @@ else if(ind==iDate_W)
 	{
 	if(sub_ind==0)
 		{
-		int2indI_slkuf(12,1, 2, 0, 1, 0);
-		int2indII_slkuf(time_date,2, 2, 0, 1, 0);
+		//int2indI_slkuf(12,1, 2, 0, 1, 0);
+		int2indI_slkuf(time_date,1, 2, 0, 1, 0);
 		int2indII_slkuf(time_month,0, 2, 0, 1, 0);
 		ind_outG[2]&=0b11111110;		
 		}
 	else if(sub_ind==1)
 		{
-		int2indI_slkuf(13,1, 2, 0, 1, 0);
-		int2indII_slkuf(time_year,2, 2, 0, 1, 0);
+		//int2indI_slkuf(13,1, 2, 0, 1, 0);
+		int2indI_slkuf(time_year,1, 2, 0, 1, 0);
 		int2indII_slkuf(time_day_of_week,0, 2, 0, 1, 0);		
 		}		
 	}
@@ -363,11 +363,11 @@ else if(ind==iSet)
 		}
 	else if(sub_ind==1)
 		{
-		int2indII_slkuf(NECC_TEMPER_AIR_EE,0, 2, 0, 1, 0);
+		int2indII_slkuf(NECC_TEMPER_WATER_EE,0, 2, 0, 1, 0);
 		}	
 	else if(sub_ind==2)
 		{
-		int2indII_slkuf(NECC_TEMPER_WATER_EE,0, 2, 0, 1, 0);
+		int2indII_slkuf(NECC_TEMPER_AIR_EE,0, 2, 0, 1, 0);
 		}
 	else if(sub_ind==3)
 		{
@@ -525,11 +525,30 @@ else if(ind==iDeb)
 	
 else if(ind==iTemperSet)
 	{
-	led_mask_off(0x00);
+/*	led_mask_off(0x00);
 	if(out_mode==osON)led_on(MODE_EE);
 	if((out_mode==osON)&&(out_stat[0]==osON))led_on(4);
 	if((out_mode==osON)&&(out_stat[1]==osON))led_on(5);
 	if((out_mode==osON)&&(out_stat[2]==osON))led_on(6);
+*/
+
+	led_mask_off(0x00);
+	if(out_mode==osON)
+		{
+		if(MODE_EE==1)led_on(1);
+		else if(MODE_EE==2) led_on(2);
+		else if(MODE_EE==3)
+			{
+			led_on(2);
+			led_on(3);
+			}
+		}
+	if((out_mode==osON)&&(out_stat[0]==osON))led_on(4);
+	if((out_mode==osON)&&(out_stat[1]==osON))led_on(5);
+	if((out_mode==osON)&&(out_stat[2]==osON))led_on(6);
+	
+	if(bERR)led_on(7);
+	else if(bWARN)led_flash(7);
 
 	if(temperToReg>=0)
 		{
@@ -931,7 +950,7 @@ else if(ind==iSetTable)
 		clear_ind();
 		ind_hndl();
 		}
-	else if(but==butUD_)
+	/*else if(but==butUD_)
 		{
 		TABLE_TIME_EE[0][0]=0;
 		TABLE_TEMPER_EE[0][0]=23;	
@@ -1010,7 +1029,7 @@ else if(ind==iSetTable)
 		TABLE_TIME_EE[6][4]=126;
 		TABLE_TEMPER_EE[6][4]=23;
 		
-		}
+		}*/
 	else if(but==butM_)
 		{
 		tree_up(iSetTable_,sub_ind,0,sub_ind1);
