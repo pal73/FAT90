@@ -1,3 +1,5 @@
+//Ветка мастер
+
 #include "stm8s.h"
 #include "main.h"
 #include "lowlev.h"
