@@ -1352,6 +1352,7 @@ GPIOG->CR1&=0b11111110;		//....
 GPIOG->CR2&=0b11111110;		//....
 t4_init();
 uart3_init();
+uart3_init();
 
 enableInterrupts();
 
