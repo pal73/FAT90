@@ -3,16 +3,22 @@ ds18b20.c
 i2c.c
 lowlev.c
 main.c
+modem.c
 stm8_interrupt_vector.c
+uart1.c
 uart3.c
 include\stm8s.h
 include\stm8s_conf.h
 c:\program files\cosmic\cxstm8_32k\hstm8\iostm8s.h
 c:\program files\cosmic\cxstm8_32k\hstm8\mods0.h
+c:\program files\cosmic\cxstm8_32k\hstm8\stdio.h
 c:\program files\cosmic\cxstm8_32k\hstm8\stdlib.h
+c:\program files\cosmic\cxstm8_32k\hstm8\string.h
 ds1307.h
 ds18b20.h
 i2c.h
 lowlev.h
 main.h
+modem.h
+uart1.h
 uart3.h

@@ -5,8 +5,11 @@
 #include "lowlev.h"
 #include "ds18b20.h"
 #include "uart3.h"
+#include "uart1.h"
 #include "ds1307.h"
+#include "modem.h"
 #include <iostm8s.h>
+#include <stdio.h>
 
 //-----------------------------------------------
 //Переменные в EEPROM
@@ -117,6 +120,8 @@ char cntAirSensorLineErrorHi;
 unsigned char tempUC;
 //@near signed char 	TABLE_TEMPER_EE[7][5];
 //^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+
 
 //-----------------------------------------------
 void error_warn_hndl(void)
@@ -533,6 +538,45 @@ else if(ind==iDeb)
 		{
 		int2indI_slkuf(temperRegTo,1, 2, 0, 0, 0);
 		int2indII_slkuf(temperToReg,0, 2, 0, 0, 0);
+		}
+	else if(sub_ind==1)
+		{
+		int2indI_slkuf(MAX_POWER_EE,1, 2, 0, 0, 0);
+		int2indII_slkuf(powerNeccDelta,2, 2, 0, 0, 0);
+		int2indII_slkuf(powerNecc,0, 2, 0, 0, 0);
+		}
+	else if(sub_ind==2)
+		{
+		int2indI_slkuf(temperToReg,2, 2, 0, 0, 0);	
+		int2indI_slkuf(powerNecc,1, 1, 0, 0, 0);
+		int2indII_slkuf(out_stat[0],3, 1, 0, 0, 0);
+		int2indII_slkuf(out_stat[1],2, 1, 0, 0, 0);
+		int2indII_slkuf(out_stat[2],1, 1, 0, 0, 0);
+		int2indII_slkuf(fiksRandom,0, 1, 0, 0, 0);
+		}	
+	else if(sub_ind==3)
+		{
+		int2indI_slkuf(temperRegToSheduler,1, 2, 0, 0, 0);	
+		//int2indI_slkuf(powerNecc,1, 1, 0, 0, 0);
+		int2indII_slkuf(time_day_of_week,3, 1, 0, 0, 0);
+		//int2indII_slkuf(out_stat[1],2, 1, 0, 0, 0);
+		//int2indII_slkuf(out_stat[2],1, 1, 0, 0, 0);
+		int2indII_slkuf(day_sheduler_time,0, 3, 0, 0, 0);
+		}			
+	}
+
+else if(ind==iModem_deb)
+	{
+	led_mask_off(0x00);
+	led_on(1);
+	led_on(2);
+	
+	if(sub_ind==0)
+		{
+		int2indI_slkuf(modemState,3, 1, 0, 0, 0);
+		//int2indI_slkuf(modemPowerState,3, 1, 0, 0, 0);
+		//int2indI_slkuf(modemLinkState,1, 1, 0, 0, 0);
+		//int2indII_slkuf(modemState,0, 2, 0, 0, 0);
 		}
 	else if(sub_ind==1)
 		{
@@ -1352,12 +1396,13 @@ GPIOG->CR1&=0b11111110;		//....
 GPIOG->CR2&=0b11111110;		//....
 t4_init();
 uart3_init();
-uart3_init();
+uart1_init();
+modem_gpio_init();
 
 enableInterrupts();
 
 clear_ind();
-ind=iMn;
+ind=iModem_deb;//iMn;
 
 out_mode=osOFF;
 
@@ -1373,10 +1418,7 @@ while (1)
 		but_drv();
 		but_an();
 		beep_drv();
-		GPIOD->DDR|=0b00000001;		
-		GPIOD->CR1|=0b00000001;		
-		GPIOD->CR2&=0b11111110;
-		GPIOD->ODR^=0b00000001;
+		modem_stat_drv();
 		}
 	if(b10Hz)
 		{
@@ -1421,6 +1463,12 @@ while (1)
 		sheduler_hndl();
 		error_warn_hndl();
 		airSensorLineErrorDrv();
+		
+		printf("AT\r\n");
+		//printf("OK%dCRC%d\n",13,14);
+		
+		//GPIOA->ODR^=0b00100000;
+		//UART1->DR=0x55;
 		}		
 	};
 }
