@@ -1,6 +1,7 @@
 //#include "main.h"
 #include "stm8s.h"
 #include "modem.h"
+#include <stdio.h>
 
 char modemStatCnt0;
 
@@ -10,6 +11,9 @@ signed char net_l_cnt_up,net_l_cnt_down;			//Счетчики антидребезга светодиода ли
 short net_l_cnt_one, net_l_cnt_zero, net_l_cnt_one_temp; 	//Счетчики свечения светодиода линка
 enum_modemLinkState modemLinkState=MLS_UNKNOWN;		//Состояние подключения к провайдеру модема
 enum_modemState modemState=MS_UNKNOWN;				//Состояние модема
+
+signed char modemDrvPowerStartCnt=0;					//Счетчик 100мС-интервалов от включения питания 
+signed short modemDrvInitStepCnt=0;						//Счетчик 100мС-шагов инициализации модема
 
 //-----------------------------------------------
 void modem_gpio_init(void)
@@ -125,4 +129,106 @@ else if(modemLinkState==MLS_UNLINKED)									modemState=MS_UNLINKED;
 else if(modemLinkState==MLS_LINKED)										modemState=MS_LINKED;
 else if(modemLinkState==MLS_GPRS)										modemState=MS_GPRS;
 else 																	modemState=MS_UNKNOWN;
+}
+
+//-----------------------------------------------
+void modem_drv(void)
+{
+if(modemDrvPowerStartCnt<70)
+	{
+	modemDrvPowerStartCnt++;	
+	}
+else
+	{
+	if(modemState!=MS_LINKED)
+		{
+		if(modemDrvInitStepCnt==0)modemDrvInitStepCnt=1;	
+		}
+	else 
+		{
+		if(modemDrvInitStepCnt==0)modemDrvInitStepCnt=26;	
+			
+		}
+		
+	if(modemDrvInitStepCnt)
+		{
+		if(modemDrvInitStepCnt==5)
+			{
+			GPIOD->ODR|=(1<<0);			//Сброс
+			modemDrvInitStepCnt++;
+			}
+			
+		else if(modemDrvInitStepCnt==7)
+			{
+			GPIOD->ODR&=~(1<<0);		//Конец сброса
+			modemDrvInitStepCnt++;
+			}	
+
+		else if(modemDrvInitStepCnt==20)
+			{
+			GPIOA->ODR|=(1<<3);			//Воздействие на вход управления питанием модема
+			modemDrvInitStepCnt++;
+			}	
+			
+		else if(modemDrvInitStepCnt==25)
+			{
+			GPIOA->ODR&=~(1<<3);		//Конец воздействия на вход управления питанием модема
+			modemDrvInitStepCnt++;
+			}
+
+		else if(modemDrvInitStepCnt==30)
+			{
+			if(modemState==MS_LINKED)modemDrvInitStepCnt++;
+			}
+			
+		else if(modemDrvInitStepCnt==35)
+			{
+			//printf("AT+COPS?\r\n");
+			printf("ATE0\r\n");
+			modemDrvInitStepCnt++;
+			}
+
+		else if(modemDrvInitStepCnt==45)
+			{
+			printf("AT+CMGF=1\r\n");
+			modemDrvInitStepCnt++;
+			}
+
+		else if(modemDrvInitStepCnt==55)
+			{
+			printf("AT+IFC=0, 0\r");
+			modemDrvInitStepCnt++;
+			}
+			
+		else if(modemDrvInitStepCnt==65)
+			{
+			printf("AT+CPBS=\"SM\"\r");
+			modemDrvInitStepCnt++;
+			}
+
+		else if(modemDrvInitStepCnt==75)
+			{
+			printf("AT+CNMI=1,2,2,1,0\r");
+			modemDrvInitStepCnt++;
+			}
+
+		else if(modemDrvInitStepCnt==80)
+			{
+			modemState=MS_LINKED_INITIALIZED;
+			modemDrvInitStepCnt++;
+			}
+
+
+		else if(modemDrvInitStepCnt==100)
+			{
+			modemState=MS_LINKED_INITIALIZED;
+			modemDrvInitStepCnt++;
+			}
+
+		else
+			{
+			if(modemDrvInitStepCnt<1000)	modemDrvInitStepCnt++;
+			}
+		}
+	}
 }

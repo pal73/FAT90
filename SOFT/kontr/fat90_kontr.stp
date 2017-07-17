@@ -312,11 +312,21 @@ Next=Root.Source Files.main.c
 [Root.Source Files.main.c]
 ElemType=File
 PathName=main.c
+Next=Root.Source Files.modem.c
+
+[Root.Source Files.modem.c]
+ElemType=File
+PathName=modem.c
 Next=Root.Source Files.stm8_interrupt_vector.c
 
 [Root.Source Files.stm8_interrupt_vector.c]
 ElemType=File
 PathName=stm8_interrupt_vector.c
+Next=Root.Source Files.uart1.c
+
+[Root.Source Files.uart1.c]
+ElemType=File
+PathName=uart1.c
 Next=Root.Source Files.uart3.c
 
 [Root.Source Files.uart3.c]

@@ -576,7 +576,7 @@ else if(ind==iModem_deb)
 		int2indI_slkuf(modemState,3, 1, 0, 0, 0);
 		//int2indI_slkuf(modemPowerState,3, 1, 0, 0, 0);
 		//int2indI_slkuf(modemLinkState,1, 1, 0, 0, 0);
-		//int2indII_slkuf(modemState,0, 2, 0, 0, 0);
+		int2indII_slkuf(modemDrvInitStepCnt,0, 3, 0, 0, 0);
 		}
 	else if(sub_ind==1)
 		{
@@ -1433,6 +1433,8 @@ while (1)
 		uart3_in_an();
 		out_drv();
 		matemath();
+		
+		modem_drv();
 		}
 	if(b5Hz)
 		{
@@ -1464,7 +1466,7 @@ while (1)
 		error_warn_hndl();
 		airSensorLineErrorDrv();
 		
-		printf("AT\r\n");
+		//printf("AT\r\n");
 		//printf("OK%dCRC%d\n",13,14);
 		
 		//GPIOA->ODR^=0b00100000;

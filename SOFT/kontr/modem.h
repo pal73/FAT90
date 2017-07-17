@@ -10,11 +10,17 @@ extern signed char net_l_cnt_up,net_l_cnt_down;			//Счетчики антидребезга светод
 extern short net_l_cnt_one, net_l_cnt_zero, net_l_cnt_one_temp; 	//Счетчики свечения светодиода линка
 typedef enum {MLS_UNKNOWN, MLS_UNLINKED, MLS_LINKED, MLS_GPRS}enum_modemLinkState;
 extern enum_modemLinkState modemLinkState;		//Состояние подключения к провайдеру модема
-typedef enum {MS_UNKNOWN, MS_POWEROFF, MS_UNLINKED, MS_LINKED, MS_GPRS}enum_modemState;
+typedef enum {MS_UNKNOWN, MS_POWEROFF, MS_UNLINKED, MS_LINKED, MS_GPRS, MS_LINKED_INITIALIZED}enum_modemState;
 extern enum_modemState modemState;				//Состояние модема
+
+extern signed char modemDrvPowerStartCnt;						//Счетчик 100мС-интервалов от включения питания 
+extern signed short modemDrvInitStepCnt;						//Счетчик 100мС-шагов инициализации модема
+
 
 //-----------------------------------------------
 void modem_gpio_init(void);
 //-----------------------------------------------
 //оценка текущего состояния модема
 void modem_stat_drv(void);
+//-----------------------------------------------
+void modem_drv(void);
