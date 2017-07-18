@@ -17,6 +17,7 @@
 //-----------------------------------------------
 //Отладка
 char uart1_plazma;
+char modem_plazma;
 //char *ptr1;
 //char *ptr2;
 //char *digi;
@@ -48,17 +49,16 @@ char rx_data1=UART1->DR;
 	
 if (rx_status1 & (UART1_SR_RXNE))
 	{
-	rxBuffer1[rx_wr_index1++]=rx_data1;
-	if(rx_data1=='\n')
+	if(rx_data1=='\r')
 		{
-			//TODO Обработка конца посылки
 		memset(uart1_an_buffer,'\0',100);
 		memcpy(uart1_an_buffer,rxBuffer1,rx_wr_index1);
 		bRXIN1=1;
 		rx_wr_index1=0;
 		}
-	else
+	else if(rx_data1!='\n') 
 		{
+		rxBuffer1[rx_wr_index1++]=rx_data1;
 		if(rx_wr_index1>=RX_BUFFER_1_SIZE)
 			{
 			rx_wr_index1=0;	
@@ -106,10 +106,16 @@ UART1->CR2|= UART1_CR2_TIEN;
 //-----------------------------------------------
 void uart1_in_an (void)
 {
-	disableInterrupts();
-if(bRXIN1)
+if(!bRXIN1)return;
+
+disableInterrupts();
+bRXIN1=0;
+
+if(strstr(uart1_an_buffer,"+CMT"))
 	{
-	bRXIN1=0;
+	char *ptr_temp;
+	memcpy(ptr_temp,&uart1_an_buffer[7],12);
+	if(strstr(ptr_temp,"+79139294352"))	modem_plazma++;
 	
 /*	if(strstr(uart1_an_buffer,"OK"))
 		{
@@ -129,8 +135,8 @@ if(bRXIN1)
 	else if(strstr(uart3_an_buffer,"ERRORHI"))
 		{
 		airSensorErrorStat=taesHI;
-		}	*/	
-	}
-	enableInterrupts();
+		}	*/
+	}		
+enableInterrupts();
 }
 

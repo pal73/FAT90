@@ -15,6 +15,7 @@ extern @near char bRXIN1;								//Индикатор принятой строки в uart3_an_buffer
 //-----------------------------------------------
 //Отладка
 extern char uart1_plazma;
+extern char modem_plazma;
 
 //-----------------------------------------------
 void uart1_init (void);

@@ -15,7 +15,9 @@ extern enum_modemState modemState;				//Состояние модема
 
 extern signed char modemDrvPowerStartCnt;						//Счетчик 100мС-интервалов от включения питания 
 extern signed short modemDrvInitStepCnt;						//Счетчик 100мС-шагов инициализации модема
-
+extern signed short modemDrvSMSSendStepCnt;					//Счетчик 100мС-шагов отправки СМС
+extern char *phoneNumberForSMS;											//Указатель на строку с номером телефона аддресата СМС
+extern char *textSMS;																//Указатель не строку с текстом SMS
 
 //-----------------------------------------------
 void modem_gpio_init(void);

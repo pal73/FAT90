@@ -574,9 +574,10 @@ else if(ind==iModem_deb)
 	if(sub_ind==0)
 		{
 		int2indI_slkuf(modemState,3, 1, 0, 0, 0);
-		//int2indI_slkuf(modemPowerState,3, 1, 0, 0, 0);
+		int2indI_slkuf(modem_plazma,1, 2, 0, 0, 0);
 		//int2indI_slkuf(modemLinkState,1, 1, 0, 0, 0);
-		int2indII_slkuf(modemDrvInitStepCnt,0, 3, 0, 0, 0);
+		int2indII_slkuf(modemDrvSMSSendStepCnt,2, 2, 0, 0, 0);
+		int2indII_slkuf(modemDrvInitStepCnt,0, 2, 0, 0, 0);
 		}
 	else if(sub_ind==1)
 		{
@@ -1206,6 +1207,23 @@ else if(ind==iDeb)
 		tree_down(0,0);
 		}
 	}
+	
+else if(ind==iModem_deb)
+	{
+	if(but==butU)
+		{
+		modemDrvSMSSendStepCnt=1;
+		}
+	else if(but==butD)
+		{
+
+		}
+	else if(but==butD_)
+		{
+
+		}
+	}
+	
 else if(ind==iDefSet)
 	{
 	if(but==butMU_)
@@ -1419,6 +1437,7 @@ while (1)
 		but_an();
 		beep_drv();
 		modem_stat_drv();
+		uart1_in_an();
 		}
 	if(b10Hz)
 		{

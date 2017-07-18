@@ -14,6 +14,9 @@ enum_modemState modemState=MS_UNKNOWN;				//Состояние модема
 
 signed char modemDrvPowerStartCnt=0;					//Счетчик 100мС-интервалов от включения питания 
 signed short modemDrvInitStepCnt=0;						//Счетчик 100мС-шагов инициализации модема
+signed short modemDrvSMSSendStepCnt=0;					//Счетчик 100мС-шагов отправки СМС
+char *phoneNumberForSMS;											//Указатель на строку с номером телефона аддресата СМС
+char *textSMS;																//Указатель не строку с текстом SMS
 
 //-----------------------------------------------
 void modem_gpio_init(void)
@@ -229,6 +232,34 @@ else
 			{
 			if(modemDrvInitStepCnt<1000)	modemDrvInitStepCnt++;
 			}
+		}
+		
+	if(modemDrvSMSSendStepCnt)	//отправка СМС
+		{
+		if(modemDrvSMSSendStepCnt==1)
+			{
+			printf("AT+CMGF=1\r");
+			modemDrvSMSSendStepCnt++;
+			}
+		else if(modemDrvSMSSendStepCnt==11)
+			{
+			printf("AT + CMGS = \"+79139294352\"\r");
+			modemDrvSMSSendStepCnt++;
+			}	
+		else if(modemDrvSMSSendStepCnt==21)
+			{
+			printf("PRIVET\r");
+			modemDrvSMSSendStepCnt++;
+			}		
+		else if(modemDrvSMSSendStepCnt==31)
+			{
+			printf("%c",(char)26);
+			modemDrvSMSSendStepCnt=0;
+			}				
+		else
+			{
+			if(modemDrvSMSSendStepCnt<1000)	modemDrvSMSSendStepCnt++;
+			}			
 		}
 	}
 }
