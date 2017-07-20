@@ -1433,7 +1433,10 @@ out_mode=osOFF;
 bERR=0;
 bWARN=0;
 
-//memcpy(MAIN_NUMBER,"9139294352",10);
+memcpy(AUTH_NUMBER_3,"9139294352",10);
+memcpy(AUTH_NUMBER_2,"9139294355",10);
+memcpy(AUTH_NUMBER_1,"9139294354",10);
+memcpy(MAIN_NUMBER,"9139294353",10);
 
 while (1)
 	{

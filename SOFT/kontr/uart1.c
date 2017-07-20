@@ -117,19 +117,21 @@ bRXIN1=0;
 
 if(strstr(uart1_an_buffer,"+CMT"))
 	{
-	char *ptr_temp;
-	char str_main_num[15];
+	char volatile ptr_temp[15];
+	char volatile str_main_num[15];
 	
 	isFromMainNumberMess=0;
 	isFromAutorizedNumberMess=0;
 	isFromNotAutorizedNumberMess=0;
 	
-	memcpy(ptr_temp,&uart1_an_buffer[7],12);
+	memset(ptr_temp,'\0',15);
+	memcpy(ptr_temp,&uart1_an_buffer[6],14);
 	
 	memset(str_main_num,'\0',15);
 	memcpy(str_main_num,/*"9139294352"*/MAIN_NUMBER,10);
 	
-	if(strstr(ptr_temp,str_main_num))
+	//if(strcmp(ptr_temp,str_main_num)==0)
+	if(strstr(ptr_temp,str_main_num)!=NULL)
 		{
 		modem_plazma++;
 		isFromMainNumberMess=1;
@@ -138,7 +140,7 @@ if(strstr(uart1_an_buffer,"+CMT"))
 	memset(str_main_num,'\0',15);
 	memcpy(str_main_num,AUTH_NUMBER_1,10);
 	
-	if(strstr(ptr_temp,str_main_num))
+	if(strstr(ptr_temp,str_main_num)!=NULL)
 		{
 		modem_plazma++;
 		isFromAutorizedNumberMess=1;
@@ -147,7 +149,7 @@ if(strstr(uart1_an_buffer,"+CMT"))
 	memset(str_main_num,'\0',15);
 	memcpy(str_main_num,AUTH_NUMBER_2,10);
 	
-	if(strstr(ptr_temp,str_main_num))
+	if(strstr(ptr_temp,str_main_num)!=NULL)
 		{
 		modem_plazma++;
 		isFromAutorizedNumberMess=1;
@@ -156,7 +158,7 @@ if(strstr(uart1_an_buffer,"+CMT"))
 	memset(str_main_num,'\0',15);
 	memcpy(str_main_num,AUTH_NUMBER_3,10);
 	
-	if(strstr(ptr_temp,str_main_num))
+	if(strstr(ptr_temp,str_main_num)!=NULL)
 		{
 		modem_plazma++;
 		isFromAutorizedNumberMess=1;
