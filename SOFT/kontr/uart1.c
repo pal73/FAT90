@@ -7,12 +7,16 @@
 //-----------------------------------------------
 @near char rxBuffer1[RX_BUFFER_1_SIZE];			//Приемный буфер UART1
 @near char txBuffer1[TX_BUFFER_1_SIZE];			//Передающий буфер UART1
-@near short rx_wr_index1;						//Указатель на следующий принимаемый байт
-@near short tx_wr_index1;						//Указатель на следующую ячейку передающего ФИФО
-@near short tx_rd_index1;						//Указатель на следующий отправляемый из ФИФО байт	
-@near short tx_counter1;						//Счетчик заполненности передающего ФИФО
-@near char uart1_an_buffer[100];				//Буфер для анализа принятых по UART3 строк
-@near char bRXIN1;								//Индикатор принятой строки в uart3_an_buffer
+@near short rx_wr_index1;										//Указатель на следующий принимаемый байт
+@near short tx_wr_index1;										//Указатель на следующую ячейку передающего ФИФО
+@near short tx_rd_index1;										//Указатель на следующий отправляемый из ФИФО байт	
+@near short tx_counter1;										//Счетчик заполненности передающего ФИФО
+@near char uart1_an_buffer[200];						//Буфер для анализа принятых по UART1 строк
+@near char bRXIN1;													//Индикатор принятой строки в uart1_an_buffer
+
+bool isFromMainNumberMess;									//флаг, пришедшее смс от мастерского телефона
+bool isFromAutorizedNumberMess;							//флаг, пришедшее смс от одного из прописанных немастерских телефонов
+bool isFromNotAutorizedNumberMess;					//флаг, пришедшее смс от неавторизованного телефона
 
 //-----------------------------------------------
 //Отладка
@@ -51,7 +55,7 @@ if (rx_status1 & (UART1_SR_RXNE))
 	{
 	if(rx_data1=='\r')
 		{
-		memset(uart1_an_buffer,'\0',100);
+		memset(uart1_an_buffer,'\0',200);
 		memcpy(uart1_an_buffer,rxBuffer1,rx_wr_index1);
 		bRXIN1=1;
 		rx_wr_index1=0;
@@ -114,29 +118,63 @@ bRXIN1=0;
 if(strstr(uart1_an_buffer,"+CMT"))
 	{
 	char *ptr_temp;
-	memcpy(ptr_temp,&uart1_an_buffer[7],12);
-	if(strstr(ptr_temp,"+79139294352"))	modem_plazma++;
+	char str_main_num[15];
 	
-/*	if(strstr(uart1_an_buffer,"OK"))
+	isFromMainNumberMess=0;
+	isFromAutorizedNumberMess=0;
+	isFromNotAutorizedNumberMess=0;
+	
+	memcpy(ptr_temp,&uart1_an_buffer[7],12);
+	
+	memset(str_main_num,'\0',15);
+	memcpy(str_main_num,/*"9139294352"*/MAIN_NUMBER,10);
+	
+	if(strstr(ptr_temp,str_main_num))
 		{
-		ptr1=strstr(uart3_an_buffer,"OK");	
-		ptr2=strstr(uart3_an_buffer,"CRC");
-		//char *digi;
-		memcpy(digi,ptr1+2,ptr2-ptr1-2);
-		//TODO проверку контрольной суммы
-		temperOfAir=(signed char)atoi(digi);
-		airSensorErrorStat=taesNORM;
+		modem_plazma++;
+		isFromMainNumberMess=1;
+		}
 		
-		}
-	else if(strstr(uart3_an_buffer,"ERRORLO"))
+	memset(str_main_num,'\0',15);
+	memcpy(str_main_num,AUTH_NUMBER_1,10);
+	
+	if(strstr(ptr_temp,str_main_num))
 		{
-		airSensorErrorStat=taesLO;
-		}
-	else if(strstr(uart3_an_buffer,"ERRORHI"))
+		modem_plazma++;
+		isFromAutorizedNumberMess=1;
+		}		
+
+	memset(str_main_num,'\0',15);
+	memcpy(str_main_num,AUTH_NUMBER_2,10);
+	
+	if(strstr(ptr_temp,str_main_num))
 		{
-		airSensorErrorStat=taesHI;
-		}	*/
-	}		
+		modem_plazma++;
+		isFromAutorizedNumberMess=1;
+		}		
+
+	memset(str_main_num,'\0',15);
+	memcpy(str_main_num,AUTH_NUMBER_3,10);
+	
+	if(strstr(ptr_temp,str_main_num))
+		{
+		modem_plazma++;
+		isFromAutorizedNumberMess=1;
+		}
+
+	if((isFromMainNumberMess==0)&&(isFromAutorizedNumberMess==0)) isFromNotAutorizedNumberMess=1;
+	}	
+else
+	{
+	if((isFromMainNumberMess)||(isFromAutorizedNumberMess)||(isFromNotAutorizedNumberMess))
+		{
+		char *ptr_temp;
+		strcpy(ptr_temp,uart1_an_buffer);
+		
+		if(strstr(ptr_temp,"0423042104220410041D041E041204180422042C00200413041B04100412041D042B0419"))modem_plazma++;
+			
+		}
+	}
 enableInterrupts();
 }
 

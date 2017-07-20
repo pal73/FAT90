@@ -4,12 +4,15 @@
 #define _FLASH_IAPSR FLASH->IAPSR
 //-----------------------------------------------
 //Переменные в EEPROM
-@eeprom extern signed short		HUMAN_SET_EE; 					//подпись человека (0x1234)
-@eeprom extern signed char	  	NECC_TEMPER_AIR_EE; 			//температура поддержания воздуха
-@eeprom extern signed char		NECC_TEMPER_WATER_EE;			//температура поддержания воды
-@eeprom extern signed char 		MODE_EE;						//режим работы устройства (1 - по воде, 2 - по воздуху, 3 - по графику) 
+@eeprom extern char						MAIN_NUMBER[10];			//Ячейка для хранения номера мастера
+@eeprom extern char						AUTH_NUMBER_1[10];		//Ячейка для хранения номера первого авторизованого телефона
+@eeprom extern signed short		HUMAN_SET_EE; 				//подпись человека (0x1234)
+@eeprom extern signed char	  NECC_TEMPER_AIR_EE; 	//температура поддержания воздуха
+@eeprom extern signed char		NECC_TEMPER_WATER_EE;	//температура поддержания воды
+@eeprom extern signed char 		MODE_EE;							//режим работы устройства (1 - по воде, 2 - по воздуху, 3 - по графику) 
 @eeprom extern signed char 		MAX_POWER_EE;					//максимальная мощность нагревания 
-
+@eeprom extern char						AUTH_NUMBER_2[10];		//Ячейка для хранения номера второго авторизованого телефона
+@eeprom extern char						AUTH_NUMBER_3[10];		//Ячейка для хранения номера третьего авторизованого телефона
 
 //-----------------------------------------------
 //Порядок включения ТЭНов в зависимости от случайного числа

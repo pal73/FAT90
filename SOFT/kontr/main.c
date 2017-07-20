@@ -10,19 +10,25 @@
 #include "modem.h"
 #include <iostm8s.h>
 #include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
 
 //-----------------------------------------------
 //Переменные в EEPROM
-@eeprom signed short	HUMAN_SET_EE 					@0x4004;	//подпись человека (0x1234)
-@eeprom signed char	  	NECC_TEMPER_AIR_EE 				@0x4010;	//температура поддержания воздуха
-@eeprom signed char		NECC_TEMPER_WATER_EE 			@0x4011;	//температура поддержания воды
-@eeprom signed char 	MODE_EE							@0x4012;	//режим работы устройства (1 - по воде, 2 - по воздуху, 3 - по графику) 
-@eeprom signed char 	MAX_POWER_EE					@0x4013;	//максимальная мощность нагревания 
-@eeprom unsigned char 	TABLE_TIME_EE[7][5]				@0x4020;	//таблица временных меток для семи дней недели, временная метка 
-																	//выражается в десятках минут
-@eeprom signed char 	TABLE_TEMPER_EE[7][5]			@0x4048;	//таблица температурных меток для семи дней недели, температурная метка  
-																	//выражается в градусах со знаком
 
+@eeprom char					MAIN_NUMBER[10]						@0x4002;	//Ячейка для хранения номера мастера
+@eeprom char					AUTH_NUMBER_1[10]					@0x400C;	//Ячейка для хранения номера первого авторизованого телефона
+@eeprom signed short	HUMAN_SET_EE 							@0x401E;	//подпись человека (0x1234)
+@eeprom unsigned char TABLE_TIME_EE[7][5]				@0x4020;	//таблица временных меток для семи дней недели, временная метка 
+//выражается в десятках минут
+
+@eeprom signed char	  NECC_TEMPER_AIR_EE 				@0x4044;	//температура поддержания воздуха
+@eeprom signed char		NECC_TEMPER_WATER_EE 			@0x4045;	//температура поддержания воды
+@eeprom signed char 	MODE_EE										@0x4046;	//режим работы устройства (1 - по воде, 2 - по воздуху, 3 - по графику) 
+@eeprom signed char 	MAX_POWER_EE							@0x4047;	//максимальная мощность 							нагревания																	
+@eeprom signed char 	TABLE_TEMPER_EE[7][5]			@0x4048;	//таблица температурных меток для семи дней недели, температурная метка  выражается в градусах со знаком
+@eeprom char					AUTH_NUMBER_2[10]					@0x406B;	//Ячейка для хранения номера второго авторизованого телефона
+@eeprom char					AUTH_NUMBER_3[10]					@0x4078;	//Ячейка для хранения номера третьего авторизованого телефона
 
 //-----------------------------------------------
 //Порядок включения ТЭНов в зависимости от случайного числа
@@ -1427,6 +1433,8 @@ out_mode=osOFF;
 bERR=0;
 bWARN=0;
 
+//memcpy(MAIN_NUMBER,"9139294352",10);
+
 while (1)
 	{
 	if(b100Hz)
@@ -1485,7 +1493,7 @@ while (1)
 		error_warn_hndl();
 		airSensorLineErrorDrv();
 		
-		//printf("AT\r\n");
+		//printf("%s \r", MAIN_NUMBER);
 		//printf("OK%dCRC%d\n",13,14);
 		
 		//GPIOA->ODR^=0b00100000;
