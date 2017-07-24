@@ -9,13 +9,16 @@ extern @near short tx_rd_index1;										//Указатель на следующий отправляемый 
 extern @near short tx_counter1;											//Счетчик заполненности передающего ФИФО
 extern @near char uart1_an_buffer[200];							//Буфер для анализа принятых по UART1 строк
 extern @near char bRXIN1;														//Индикатор принятой строки в uart1_an_buffer
+extern @near char incommingNumber[10];							//Буфер для хранения номера отправителя пришедшей смс
+extern @near char incommingNumberToMain[10];				//Буфер для хранения номера просящегося в главные
 
 
 
 //-----------------------------------------------
 //Отладка
-extern char uart1_plazma;
-extern char modem_plazma;
+extern @near char uart1_plazma;
+extern @near char modem_plazma;
+extern @near char modem_plazma1;
 
 //-----------------------------------------------
 void uart1_init (void);

@@ -2,6 +2,7 @@
 #include "stm8s.h"
 #include "modem.h"
 #include <stdio.h>
+#include <string.h>
 
 char modemStatCnt0;
 
@@ -14,9 +15,13 @@ enum_modemState modemState=MS_UNKNOWN;				//Состояние модема
 
 signed char modemDrvPowerStartCnt=0;					//Счетчик 100мС-интервалов от включения питания 
 signed short modemDrvInitStepCnt=0;						//Счетчик 100мС-шагов инициализации модема
-signed short modemDrvSMSSendStepCnt=0;					//Счетчик 100мС-шагов отправки СМС
+signed short modemDrvSMSSendStepCnt=0;				//Счетчик 100мС-шагов отправки СМС
 char *phoneNumberForSMS;											//Указатель на строку с номером телефона аддресата СМС
 char *textSMS;																//Указатель не строку с текстом SMS
+@near char textToSendSMS[200];								//Указатель не строку с текстом SMS
+@near char numberToSendSMS[20];								//Указатель на строку с номером телефона аддресата СМС
+@near char ptrTemp[30];
+
 
 //-----------------------------------------------
 void modem_gpio_init(void)
@@ -137,6 +142,8 @@ else 																	modemState=MS_UNKNOWN;
 //-----------------------------------------------
 void modem_drv(void)
 {
+disableInterrupts();
+
 if(modemDrvPowerStartCnt<70)
 	{
 	modemDrvPowerStartCnt++;	
@@ -234,24 +241,31 @@ else
 			}
 		}
 		
-	if(modemDrvSMSSendStepCnt)	//отправка СМС
+	if(modemDrvSMSSendStepCnt)	//отправка текстового СМС
 		{
-		if(modemDrvSMSSendStepCnt==1)
+		if(modemDrvSMSSendStepCnt==11)
 			{
 			printf("AT+CMGF=1\r");
 			modemDrvSMSSendStepCnt++;
 			}
-		else if(modemDrvSMSSendStepCnt==11)
-			{
-			printf("AT + CMGS = \"+79139294352\"\r");
-			modemDrvSMSSendStepCnt++;
-			}	
 		else if(modemDrvSMSSendStepCnt==21)
 			{
-			printf("PRIVET\r");
+
+			ptrTemp[0]='\0';
+			strcat(ptrTemp,"AT + CMGS = \"");
+			strcat(ptrTemp,numberToSendSMS);
+			strcat(ptrTemp,"\"\r");
+			printf(ptrTemp);			///*"AT + CMGS = \"" + numberToSendSMS +/*+79139294352*/ "\"\r"*/
+
+			modemDrvSMSSendStepCnt++;
+			}	
+		else if(modemDrvSMSSendStepCnt==31)
+			{
+			//printf("PRIVET\r");
+			printf(textToSendSMS);
 			modemDrvSMSSendStepCnt++;
 			}		
-		else if(modemDrvSMSSendStepCnt==31)
+		else if(modemDrvSMSSendStepCnt==41)
 			{
 			printf("%c",(char)26);
 			modemDrvSMSSendStepCnt=0;
@@ -261,5 +275,27 @@ else
 			if(modemDrvSMSSendStepCnt<1000)	modemDrvSMSSendStepCnt++;
 			}			
 		}
+	}
+enableInterrupts();
+}
+
+//-----------------------------------------------
+void modem_send_sms(char mode, char *number, char *text)
+{
+if(mode=='t')
+	{
+	disableInterrupts();
+	numberToSendSMS[0]='\0';
+	modemDrvSMSSendStepCnt=1;
+	strcat(numberToSendSMS,"+7");
+	strcat(numberToSendSMS,number);
+	
+	textToSendSMS[0]='\0';
+	strcat(textToSendSMS,text);
+	strcat(textToSendSMS,"\r");
+	enableInterrupts();
+	}
+else if(mode=='p')
+	{
 	}
 }

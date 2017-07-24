@@ -580,7 +580,8 @@ else if(ind==iModem_deb)
 	if(sub_ind==0)
 		{
 		int2indI_slkuf(modemState,3, 1, 0, 0, 0);
-		int2indI_slkuf(modem_plazma,1, 2, 0, 0, 0);
+		int2indI_slkuf(modem_plazma,1, 1, 0, 0, 0);
+		int2indI_slkuf(modem_plazma1,2, 1, 0, 0, 0);
 		//int2indI_slkuf(modemLinkState,1, 1, 0, 0, 0);
 		int2indII_slkuf(modemDrvSMSSendStepCnt,2, 2, 0, 0, 0);
 		int2indII_slkuf(modemDrvInitStepCnt,0, 2, 0, 0, 0);
@@ -1218,7 +1219,9 @@ else if(ind==iModem_deb)
 	{
 	if(but==butU)
 		{
-		modemDrvSMSSendStepCnt=1;
+		//modemDrvSMSSendStepCnt=1;
+		
+		modem_send_sms('t', "9139294352", "mama");
 		}
 	else if(but==butD)
 		{
