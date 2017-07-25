@@ -1239,7 +1239,7 @@ TIM4_PSCR_RESET_VALUE	include\stm8s.h	1067;"	macro
 TIM4_SR1_RESET_VALUE	include\stm8s.h	1064;"	macro
 TIM4_SR1_UIF	include\stm8s.h	1086;"	macro
 TIM4_TypeDef	include\stm8s.h	1056;"	typedef	typeref:struct:TIM4_struct
-TIM4_UPD_Interrupt	main.c	1356;"	function	signature:(void)
+TIM4_UPD_Interrupt	main.c	1359;"	function	signature:(void)
 TIM4_UPD_Interrupt	stm8_interrupt_vector.c	24;"	prototype	file:	signature:(void)
 TIM4_struct	include\stm8s.h	1042;"	struct
 TIM5	include\stm8s.h	2581;"	macro
@@ -1774,7 +1774,7 @@ led_set	lowlev.c	311;"	function	signature:(signed char led_num, signed char led_
 led_set	lowlev.h	64;"	prototype	signature:(signed char led_num, signed char led_stat)
 lenPDUSMS	modem.c	28;"	variable
 lsqrt	c:\program files\cosmic\cxstm8_32k\hstm8\stdlib.h	54;"	prototype	signature:(unsigned long)
-main	main.c	1413;"	function
+main	main.c	1416;"	function
 mainCnt	main.c	53;"	variable
 malloc	c:\program files\cosmic\cxstm8_32k\hstm8\stdlib.h	46;"	prototype	signature:(unsigned int size)
 matemath	main.c	311;"	function	signature:(void)
@@ -1901,7 +1901,7 @@ t0_cnt1	main.c	52;"	variable
 t0_cnt2	main.c	52;"	variable
 t0_cnt3	main.c	52;"	variable
 t0_cnt4	main.c	52;"	variable
-t4_init	main.c	1342;"	function	signature:(void)
+t4_init	main.c	1345;"	function	signature:(void)
 t4_init	main.h	138;"	prototype	signature:(void)
 taesHI	main.h	97;"	enumerator	enum:__anon21
 taesLHI	main.h	97;"	enumerator	enum:__anon21

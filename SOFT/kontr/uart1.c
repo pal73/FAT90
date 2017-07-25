@@ -185,7 +185,7 @@ else
 			{
 			modem_plazma1++;
 			memcpy(incommingNumberToMain,incommingNumber,10);
-			modem_send_sms('t',incommingNumber/*"9139294352"*/,"OTPRAVTE 7 CIFR, VIVEDENNIH NA EKRAN USTROISTVA");
+			modem_send_sms('p',incommingNumber,"нропюбэре б нрбермнл яля 7 жхтп бшбедеммшу мю хмдхйюрнп сярпниярбю");
 			
 			}
 		else if(strstr(uart1_an_buffer,"1234576"))

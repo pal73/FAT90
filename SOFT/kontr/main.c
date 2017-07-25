@@ -1231,18 +1231,18 @@ else if(ind==iModem_deb)
 		{
 		//modemDrvSMSSendStepCnt=1;
 		
-		//modem_send_sms('p', "9139294352", "Мама1 \r\nМама2");
+//		modem_send_sms('p', "9139294352", "Мама1 \r\nМама2");
 		
 		sprintf(textToSendPDUSMS,"Мама1 %d \r\nМама2 %d",123,456);
+		//sprintf(textToSendPDUSMS,"Мама мыла раму, у шуры шары. It is OK?");
+		//sprintf(textToSendPDUSMS,);
 		modem_send_sms('p', "9139294352", textToSendPDUSMS);
 		}
 	else if(but==butD)
 		{
 		char puts_bufer[100];
 		
-		sprintf(puts_bufer,"Мама мыла раму  %d",156);
-		//modem_send_sms('p', "9237328354", "mama");
-		printf(puts_bufer);
+		modem_send_sms('p',"9139294352","ОТПРАВЬТЕ В ОТВЕТНОМ СМС ЦИФР В "); //ЫВЕДЕННЫХ НА ИНДИКАТОР УСТРОЙСТВА
 		}
 	else if(but==butD_)
 		{

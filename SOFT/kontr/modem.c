@@ -358,8 +358,9 @@ else if(mode=='p')
 	strcat(buferHeadToSendPDUSMS,numberToSendSMS_);
 	strcat(buferHeadToSendPDUSMS,"0008");
 	//strcat(buferToSendPDUSMS,"000810041F0440043804320435044200210021");
-	text2PDU(/*"Мама"*/text/*ToSendPDUSMS*/,buferBodyToSendPDUSMS);
-	
+	//text2PDU(text,buferBodyToSendPDUSMS);
+	strcpy(buferBodyToSendPDUSMS,"04100410041004100410041004100410041004100410041004100410041004110412041004100410041004100410041304140415041604100410041004100417");//041004100410
+	lenPDUSMS=77;
 	modemDrvPDUSMSSendStepCnt=1;
 	enableInterrupts();
 	}
@@ -378,13 +379,13 @@ while(1)
 	if(c==0)break;
 	else if(c<0x7f)
 		{
-		char* temp;
+		char temp[6];
 		sprintf(temp,"%04X",(short)c);
 		strcat(adr,temp);
 		}
 	else 	
 		{
-		char* temp;
+		char temp[6];
 		sprintf(temp,"%04X",(short)c+0x0350);
 		strcat(adr,temp);
 		}
