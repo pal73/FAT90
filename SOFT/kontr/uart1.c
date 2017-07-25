@@ -188,19 +188,23 @@ else
 			modem_send_sms('t',incommingNumber/*"9139294352"*/,"OTPRAVTE 7 CIFR, VIVEDENNIH NA EKRAN USTROISTVA");
 			
 			}
-		if(strstr(uart1_an_buffer,"1234576"))
+		else if(strstr(uart1_an_buffer,"1234576"))
 			{
-			if(memcmp(incommingNumber,incommingNumberToMain,10))
+			if(memcmp(incommingNumber,incommingNumberToMain,10)==0)
 				{
 				modem_send_sms('t',incommingNumber,"OK");
 				memcpy(MAIN_NUMBER,incommingNumberToMain,10);
+				AUTH_NUMBER_FLAGS|=0x01;
 				}
 			}
-		if(strstr(uart1_an_buffer,"123")) //"”—“¿ÕŒ¬»“‹ √À¿¬Õ€…"
+		else if(strstr(uart1_an_buffer,"123")) //"”—“¿ÕŒ¬»“‹ √À¿¬Õ€…"
 			{
 			//modem_plazma1++;
 			modem_send_sms('t',"9139294352",/*"OTPRAVTE 7 CIFR, VIVEDENNIH NA EKRAN USTROISTVA"*/"mama1");
-			}				
+			}	
+		isFromMainNumberMess=0;
+		isFromAutorizedNumberMess=0;
+		isFromNotAutorizedNumberMess=0;
 		}
 	}
 enableInterrupts();

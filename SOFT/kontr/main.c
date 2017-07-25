@@ -28,7 +28,12 @@
 @eeprom signed char 	MAX_POWER_EE							@0x4047;	//максимальная мощность 							нагревания																	
 @eeprom signed char 	TABLE_TEMPER_EE[7][5]			@0x4048;	//таблица температурных меток для семи дней недели, температурная метка  выражается в градусах со знаком
 @eeprom char					AUTH_NUMBER_2[10]					@0x406B;	//Ячейка для хранения номера второго авторизованого телефона
-@eeprom char					AUTH_NUMBER_3[10]					@0x4078;	//Ячейка для хранения номера третьего авторизованого телефона
+@eeprom char					AUTH_NUMBER_3[10]					@0x4075;	//Ячейка для хранения номера третьего авторизованого телефона
+@eeprom char					AUTH_NUMBER_FLAGS					@0x407F;	//Ячейка флагов обозначающих наличие установленных телефонных номеров
+																													//0b00000001 - установлен главный телефон
+																													//0b00000010 - установлен первый неглавный телефон
+																													//0b00000100 - установлен второй неглавный телефон
+																													//0b00001000 - установлен третий неглавный телефон
 
 //-----------------------------------------------
 //Порядок включения ТЭНов в зависимости от случайного числа
@@ -583,8 +588,13 @@ else if(ind==iModem_deb)
 		int2indI_slkuf(modem_plazma,1, 1, 0, 0, 0);
 		int2indI_slkuf(modem_plazma1,2, 1, 0, 0, 0);
 		//int2indI_slkuf(modemLinkState,1, 1, 0, 0, 0);
-		int2indII_slkuf(modemDrvSMSSendStepCnt,2, 2, 0, 0, 0);
+		int2indII_slkuf(modemDrvPDUSMSSendStepCnt,2, 2, 0, 0, 0);
 		int2indII_slkuf(modemDrvInitStepCnt,0, 2, 0, 0, 0);
+		if(AUTH_NUMBER_FLAGS&0x01)led_on(8);
+		if(AUTH_NUMBER_FLAGS&0x02)led_on(7);
+		if(AUTH_NUMBER_FLAGS&0x04)led_on(6);
+		if(AUTH_NUMBER_FLAGS&0x08)led_on(5);
+		
 		}
 	else if(sub_ind==1)
 		{
@@ -1221,15 +1231,22 @@ else if(ind==iModem_deb)
 		{
 		//modemDrvSMSSendStepCnt=1;
 		
-		modem_send_sms('t', "9139294352", "mama");
+		//modem_send_sms('p', "9139294352", "Мама1 \r\nМама2");
+		
+		sprintf(textToSendPDUSMS,"Мама1 %d \r\nМама2 %d",123,456);
+		modem_send_sms('p', "9139294352", textToSendPDUSMS);
 		}
 	else if(but==butD)
 		{
-
+		char puts_bufer[100];
+		
+		sprintf(puts_bufer,"Мама мыла раму  %d",156);
+		//modem_send_sms('p', "9237328354", "mama");
+		printf(puts_bufer);
 		}
 	else if(but==butD_)
 		{
-
+		AUTH_NUMBER_FLAGS=0;
 		}
 	}
 	

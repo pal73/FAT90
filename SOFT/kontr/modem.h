@@ -15,11 +15,17 @@ extern enum_modemState modemState;				//Состояние модема
 
 extern signed char modemDrvPowerStartCnt;						//Счетчик 100мС-интервалов от включения питания 
 extern signed short modemDrvInitStepCnt;						//Счетчик 100мС-шагов инициализации модема
-extern signed short modemDrvSMSSendStepCnt;					//Счетчик 100мС-шагов отправки СМС
+extern signed short modemDrvTextSMSSendStepCnt;			//Счетчик 100мС-шагов отправки текстового СМС
+extern signed short modemDrvPDUSMSSendStepCnt;			//Счетчик 100мС-шагов отправки PDU СМС
 extern char *phoneNumberForSMS;											//Указатель на строку с номером телефона аддресата СМС
 extern char *textSMS;																//Указатель не строку с текстом SMS
-extern @near char textToSendSMS[200];													//Указатель не строку с текстом SMS
-extern @near char numberToSendSMS[20];												//Указатель на строку с номером телефона аддресата СМС
+extern @near char textToSendSMS[200];								//Строка с текстом SMS
+extern @near char numberToSendSMS[20];							//Строка с номером телефона адресата СМС
+extern @near char numberToSendSMS_[20];							//Вспомогательная строка с номером телефона адресата СМС
+extern @near char textToSendPDUSMS[70];							//Строка с текстом PDU SMS
+extern @near char buferHeadToSendPDUSMS[30];				//Буфер с началом пакета PDU
+extern @near char buferBodyToSendPDUSMS[300];				//Буфер с телом пакета PDU
+extern @near short lenPDUSMS;												//Длина пакета PDU
 
 
 
@@ -38,3 +44,5 @@ void modem_stat_drv(void);
 void modem_drv(void);
 //-----------------------------------------------
 void modem_send_sms(char mode, char *number, char *text);
+//-----------------------------------------------
+void text2PDU(char* text, char* adr);

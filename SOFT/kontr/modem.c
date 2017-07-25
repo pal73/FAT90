@@ -15,11 +15,17 @@ enum_modemState modemState=MS_UNKNOWN;				//Состояние модема
 
 signed char modemDrvPowerStartCnt=0;					//Счетчик 100мС-интервалов от включения питания 
 signed short modemDrvInitStepCnt=0;						//Счетчик 100мС-шагов инициализации модема
-signed short modemDrvSMSSendStepCnt=0;				//Счетчик 100мС-шагов отправки СМС
+signed short modemDrvTextSMSSendStepCnt=0;			//Счетчик 100мС-шагов отправки текстового СМС
+signed short modemDrvPDUSMSSendStepCnt=0;				//Счетчик 100мС-шагов отправки PDU СМС
 char *phoneNumberForSMS;											//Указатель на строку с номером телефона аддресата СМС
 char *textSMS;																//Указатель не строку с текстом SMS
-@near char textToSendSMS[200];								//Указатель не строку с текстом SMS
-@near char numberToSendSMS[20];								//Указатель на строку с номером телефона аддресата СМС
+@near char textToSendSMS[200];								//Строка с текстом SMS
+@near char numberToSendSMS[20];								//Строка с номером телефона адресата СМС
+@near char numberToSendSMS_[20];							//Вспомогательная строка с номером телефона адресата СМС
+@near char textToSendPDUSMS[70];							//Строка с текстом PDU SMS
+@near char buferHeadToSendPDUSMS[30];					//Буфер с началом пакета PDU
+@near char buferBodyToSendPDUSMS[300];				//Буфер с телом пакета PDU
+@near short lenPDUSMS;													//Длина пакета PDU 
 @near char ptrTemp[30];
 
 
@@ -241,14 +247,14 @@ else
 			}
 		}
 		
-	if(modemDrvSMSSendStepCnt)	//отправка текстового СМС
+	if(modemDrvTextSMSSendStepCnt)	//отправка текстового СМС
 		{
-		if(modemDrvSMSSendStepCnt==11)
+		if(modemDrvTextSMSSendStepCnt==11)
 			{
 			printf("AT+CMGF=1\r");
-			modemDrvSMSSendStepCnt++;
+			modemDrvTextSMSSendStepCnt++;
 			}
-		else if(modemDrvSMSSendStepCnt==21)
+		else if(modemDrvTextSMSSendStepCnt==21)
 			{
 
 			ptrTemp[0]='\0';
@@ -257,24 +263,57 @@ else
 			strcat(ptrTemp,"\"\r");
 			printf(ptrTemp);			///*"AT + CMGS = \"" + numberToSendSMS +/*+79139294352*/ "\"\r"*/
 
-			modemDrvSMSSendStepCnt++;
+			modemDrvTextSMSSendStepCnt++;
 			}	
-		else if(modemDrvSMSSendStepCnt==31)
+		else if(modemDrvTextSMSSendStepCnt==31)
 			{
 			//printf("PRIVET\r");
 			printf(textToSendSMS);
-			modemDrvSMSSendStepCnt++;
+			modemDrvTextSMSSendStepCnt++;
 			}		
-		else if(modemDrvSMSSendStepCnt==41)
+		else if(modemDrvTextSMSSendStepCnt==41)
 			{
 			printf("%c",(char)26);
-			modemDrvSMSSendStepCnt=0;
+			modemDrvTextSMSSendStepCnt=0;
 			}				
 		else
 			{
-			if(modemDrvSMSSendStepCnt<1000)	modemDrvSMSSendStepCnt++;
+			if(modemDrvTextSMSSendStepCnt<1000)	modemDrvTextSMSSendStepCnt++;
 			}			
 		}
+		
+	if(modemDrvPDUSMSSendStepCnt)	//отправка PDU СМС
+		{
+		if(modemDrvPDUSMSSendStepCnt==11)
+			{
+			printf("AT+CMGF=0\r");
+			modemDrvPDUSMSSendStepCnt++;
+			}
+		else if(modemDrvPDUSMSSendStepCnt==21)
+			{
+
+			//ptrTemp[0]='\0';
+			//lenPDUSMS=15;
+			//sprintf(ptrTemp,"AT + CMGS = %d \r",lenPDUSMS);
+			printf("AT + CMGS = %d \r",lenPDUSMS);
+			//printf(ptrTemp);			
+
+			modemDrvPDUSMSSendStepCnt++;
+			}	
+		else if(modemDrvPDUSMSSendStepCnt==31)
+			{
+			//printf("PRIVET\r");
+			printf(buferHeadToSendPDUSMS);
+			printf(buferBodyToSendPDUSMS);
+			printf("%c",(char)26);
+			modemDrvPDUSMSSendStepCnt=0;
+			}		
+	
+		else
+			{
+			if(modemDrvPDUSMSSendStepCnt<1000)	modemDrvPDUSMSSendStepCnt++;
+			}			
+		}		
 	}
 enableInterrupts();
 }
@@ -286,16 +325,78 @@ if(mode=='t')
 	{
 	disableInterrupts();
 	numberToSendSMS[0]='\0';
-	modemDrvSMSSendStepCnt=1;
 	strcat(numberToSendSMS,"+7");
 	strcat(numberToSendSMS,number);
 	
 	textToSendSMS[0]='\0';
 	strcat(textToSendSMS,text);
 	strcat(textToSendSMS,"\r");
+	
+	modemDrvTextSMSSendStepCnt=1;
 	enableInterrupts();
 	}
 else if(mode=='p')
 	{
+	disableInterrupts();
+	
+	numberToSendSMS_[0]=number[0];
+	numberToSendSMS_[1]='7';
+	numberToSendSMS_[2]=number[2];
+	numberToSendSMS_[3]=number[1];
+	numberToSendSMS_[4]=number[4];
+	numberToSendSMS_[5]=number[3];
+	numberToSendSMS_[6]=number[6];
+	numberToSendSMS_[7]=number[5];
+	numberToSendSMS_[8]=number[8];
+	numberToSendSMS_[9]=number[7];
+	numberToSendSMS_[10]='F';
+	numberToSendSMS_[11]=number[9];	
+	numberToSendSMS_[12]='\0';
+	
+	buferHeadToSendPDUSMS[0]='\0';
+	strcat(buferHeadToSendPDUSMS,"0001000B91");
+	strcat(buferHeadToSendPDUSMS,numberToSendSMS_);
+	strcat(buferHeadToSendPDUSMS,"0008");
+	//strcat(buferToSendPDUSMS,"000810041F0440043804320435044200210021");
+	text2PDU(/*"Мама"*/text/*ToSendPDUSMS*/,buferBodyToSendPDUSMS);
+	
+	modemDrvPDUSMSSendStepCnt=1;
+	enableInterrupts();
 	}
 }
+
+//-----------------------------------------------
+void text2PDU(char* text, char* adr)
+{
+char temp_buf[2];
+char i=0;
+lenPDUSMS=0;
+strcpy(adr,"00");
+while(1)
+	{
+	char c = text[i];
+	if(c==0)break;
+	else if(c<0x7f)
+		{
+		char* temp;
+		sprintf(temp,"%04X",(short)c);
+		strcat(adr,temp);
+		}
+	else 	
+		{
+		char* temp;
+		sprintf(temp,"%04X",(short)c+0x0350);
+		strcat(adr,temp);
+		}
+	lenPDUSMS+=2;
+	i++;
+	}
+sprintf(temp_buf,"%02X",lenPDUSMS);
+//strcat(adr,"04C1");
+memcpy(adr,temp_buf,2);
+
+lenPDUSMS+=13;
+
+//return ret;
+}
+
