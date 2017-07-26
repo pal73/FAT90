@@ -24,7 +24,7 @@ extern @near char numberToSendSMS[20];							//Строка с номером телефона адресат
 extern @near char numberToSendSMS_[20];							//Вспомогательная строка с номером телефона адресата СМС
 extern @near char textToSendPDUSMS[70];							//Строка с текстом PDU SMS
 extern @near char buferHeadToSendPDUSMS[30];				//Буфер с началом пакета PDU
-extern @near char buferBodyToSendPDUSMS[300];				//Буфер с телом пакета PDU
+extern @near char buferBodyToSendPDUSMS[350];				//Буфер с телом пакета PDU
 extern @near short lenPDUSMS;												//Длина пакета PDU
 
 

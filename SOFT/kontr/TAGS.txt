@@ -1620,6 +1620,7 @@ bin2bcd_int	lowlev.c	202;"	function	signature:(unsigned short in)
 bin2bcd_int	lowlev.h	50;"	prototype	signature:(unsigned short in)
 bool	include\stm8s.h	219;"	typedef	typeref:enum:__anon1
 buferBodyToSendPDUSMS	modem.c	27;"	variable
+buferBodyToSendPDUSMS__	modem.c	28;"	variable
 buferHeadToSendPDUSMS	modem.c	26;"	variable
 buff_for_time	main.c	90;"	variable
 but	lowlev.c	9;"	variable
@@ -1772,7 +1773,7 @@ led_on	lowlev.c	355;"	function	signature:(signed char led_num)
 led_on	lowlev.h	72;"	prototype	signature:(signed char led_num)
 led_set	lowlev.c	311;"	function	signature:(signed char led_num, signed char led_stat)
 led_set	lowlev.h	64;"	prototype	signature:(signed char led_num, signed char led_stat)
-lenPDUSMS	modem.c	28;"	variable
+lenPDUSMS	modem.c	29;"	variable
 lsqrt	c:\program files\cosmic\cxstm8_32k\hstm8\stdlib.h	54;"	prototype	signature:(unsigned long)
 main	main.c	1416;"	function
 mainCnt	main.c	53;"	variable
@@ -1798,7 +1799,7 @@ modem_gpio_init	modem.c	33;"	function	signature:(void)
 modem_gpio_init	modem.h	39;"	prototype	signature:(void)
 modem_plazma	uart1.c	27;"	variable
 modem_plazma1	uart1.c	28;"	variable
-modem_send_sms	modem.c	322;"	function	signature:(char mode, char *number, char *text)
+modem_send_sms	modem.c	342;"	function	signature:(char mode, char *number, char *text)
 modem_send_sms	modem.h	46;"	prototype	signature:(char mode, char *number, char *text)
 modem_stat_drv	modem.c	62;"	function	signature:(void)
 modem_stat_drv	modem.h	42;"	prototype	signature:(void)
@@ -1835,7 +1836,7 @@ psOFF	lowlev.h	16;"	enumerator	enum:__anon17
 psON	lowlev.h	16;"	enumerator	enum:__anon17
 ptr1	uart3.c	16;"	variable
 ptr2	uart3.c	17;"	variable
-ptrTemp	modem.c	29;"	variable
+ptrTemp	modem.c	30;"	variable
 putchar	uart1.c	99;"	function	signature:(char c)
 puts	c:\program files\cosmic\cxstm8_32k\hstm8\stdio.h	19;"	prototype	signature:(char *s)
 quot	c:\program files\cosmic\cxstm8_32k\hstm8\stdlib.h	27;"	member	struct:__anon14
@@ -1914,7 +1915,7 @@ temperOfWater	main.c	79;"	variable
 temperRegTo	main.c	82;"	variable
 temperRegToSheduler	main.c	83;"	variable
 temperToReg	main.c	81;"	variable
-text2PDU	modem.c	369;"	function	signature:(char* text, char* adr)
+text2PDU	modem.c	394;"	function	signature:(char* text, char* adr)
 text2PDU	modem.h	48;"	prototype	signature:(char* text, char* adr)
 textSMS	modem.c	21;"	variable
 textToSendPDUSMS	modem.c	25;"	variable

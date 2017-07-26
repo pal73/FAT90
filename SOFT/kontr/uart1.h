@@ -1,6 +1,6 @@
 //-----------------------------------------------
-#define RX_BUFFER_1_SIZE	128
-#define TX_BUFFER_1_SIZE	256
+#define RX_BUFFER_1_SIZE	256
+#define TX_BUFFER_1_SIZE	350
 extern @near char rxBuffer1[RX_BUFFER_1_SIZE];			//Приемный буфер UART1
 extern @near char txBuffer1[TX_BUFFER_1_SIZE];			//Передающий буфер UART1
 extern @near short rx_wr_index1;										//Указатель на следующий принимаемый байт

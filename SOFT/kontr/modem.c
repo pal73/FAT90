@@ -24,10 +24,10 @@ char *textSMS;																//Указатель не строку с текстом SMS
 @near char numberToSendSMS_[20];							//Вспомогательная строка с номером телефона адресата СМС
 @near char textToSendPDUSMS[70];							//Строка с текстом PDU SMS
 @near char buferHeadToSendPDUSMS[30];					//Буфер с началом пакета PDU
-@near char buferBodyToSendPDUSMS[300];				//Буфер с телом пакета PDU
+@near char buferBodyToSendPDUSMS[350];				//Буфер с телом пакета PDU
+@near char buferBodyToSendPDUSMS__[100];				//Буфер с телом пакета PDU
 @near short lenPDUSMS;													//Длина пакета PDU 
 @near char ptrTemp[30];
-
 
 //-----------------------------------------------
 void modem_gpio_init(void)
@@ -304,7 +304,27 @@ else
 			{
 			//printf("PRIVET\r");
 			printf(buferHeadToSendPDUSMS);
-			printf(buferBodyToSendPDUSMS);
+			//printf(buferBodyToSendPDUSMS);
+			//printf("A1K");
+			memcpy(buferBodyToSendPDUSMS__,buferBodyToSendPDUSMS,75);
+			buferBodyToSendPDUSMS__[75]='\0';
+			printf(buferBodyToSendPDUSMS__);
+			//printf("A2K");
+			memcpy(buferBodyToSendPDUSMS__,&buferBodyToSendPDUSMS[75],75);
+			buferBodyToSendPDUSMS__[75]='\0';
+			printf(buferBodyToSendPDUSMS__);
+			//printf("A3K");
+			memcpy(buferBodyToSendPDUSMS__,&buferBodyToSendPDUSMS[150],75);
+			buferBodyToSendPDUSMS__[75]='\0';
+			printf(buferBodyToSendPDUSMS__);
+			//printf("A4K");
+			memcpy(buferBodyToSendPDUSMS__,&buferBodyToSendPDUSMS[225],75);
+			buferBodyToSendPDUSMS__[75]='\0';
+			printf(buferBodyToSendPDUSMS__);/**/
+			memcpy(buferBodyToSendPDUSMS__,&buferBodyToSendPDUSMS[300],50);
+			buferBodyToSendPDUSMS__[50]='\0';
+			printf(buferBodyToSendPDUSMS__);
+			//printf("A5K");
 			printf("%c",(char)26);
 			modemDrvPDUSMSSendStepCnt=0;
 			}		
@@ -358,11 +378,16 @@ else if(mode=='p')
 	strcat(buferHeadToSendPDUSMS,numberToSendSMS_);
 	strcat(buferHeadToSendPDUSMS,"0008");
 	//strcat(buferToSendPDUSMS,"000810041F0440043804320435044200210021");
-	//text2PDU(text,buferBodyToSendPDUSMS);
-	strcpy(buferBodyToSendPDUSMS,"04100410041004100410041004100410041004100410041004100410041004110412041004100410041004100410041304140415041604100410041004100417");//041004100410
-	lenPDUSMS=77;
+	text2PDU(text,buferBodyToSendPDUSMS);
+	/*Это максимальная смска в ПДУ режиме
+	strcpy(buferBodyToSendPDUSMS,"8C0410041004100410041004100410041004100410041004100410041004100411041204100410041004100410041004130414041504160410041004100410041704100410041704100413041404150416041004130414041504160410041304140415041604100413041404150416041004130414041504160410041304140415041604100413041404150416");//
+	lenPDUSMS=153;*/
 	modemDrvPDUSMSSendStepCnt=1;
+/*	printf("4004100410041004100410041004100410041004100410041004100410041004110412041004100410041004100410041304140415041604100410041004100417041004100410");*/
 	enableInterrupts();
+	
+		//printf("ABCDEFGHIJKLMN1ABCDEFGHIJKLMN2ABCDEFGHIJKLMN3ABCDEFGHIJKLMN4ABCDEFGHIJKLMN5");
+	//printf("ABCDEFGHIJKLMN6ABCDEFGHIJKLMN7ABCDEFGHIJKLMN8ABCDEFGHIJKLMN9");
 	}
 }
 
