@@ -426,3 +426,43 @@ lenPDUSMS+=13;
 //return ret;
 }
 
+//-----------------------------------------------
+void PDU2text( char* adr, char* text)
+{
+//char temp_buf[2];
+char i=0;
+//lenPDUSMS=0;
+//strcpy(adr,"00");
+while(1)
+	{
+	char c = text[i];
+	char cc[2];
+	char cccc[4];
+	memcpy(cc,text[i],2);
+	if(c==0)break;
+	else if(strstr(cc,"00")
+		{
+		char temp[6];
+		sprintf(temp,"%04X",(short)c);
+		strcat(adr,temp);
+		}
+	else if(strstr(cc,"04")	
+		{
+		char temp;
+		temp= (char)((int
+		sprintf(temp,"%04X",(short)c+0x0350);
+		strcat(adr,temp);
+		}
+	lenPDUSMS+=2;
+	i++;
+	}
+sprintf(temp_buf,"%02X",lenPDUSMS);
+//strcat(adr,"04C1");
+memcpy(adr,temp_buf,2);
+
+lenPDUSMS+=13;
+
+//return ret;
+}
+
+
