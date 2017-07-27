@@ -4,6 +4,7 @@
 #include <string.h>
 #include <stdlib.h>
 #include "modem.h"
+#include <stdio.h>
 
 //-----------------------------------------------
 @near char rxBuffer1[RX_BUFFER_1_SIZE];			//Приемный буфер UART1
@@ -20,7 +21,7 @@
 bool isFromMainNumberMess;									//флаг, пришедшее смс от мастерского телефона
 bool isFromAutorizedNumberMess;							//флаг, пришедшее смс от одного из прописанных немастерских телефонов
 bool isFromNotAutorizedNumberMess;					//флаг, пришедшее смс от неавторизованного телефона
-
+bool bOK;																		//Модем ответил "OK"
 //-----------------------------------------------
 //Отладка
 @near char uart1_plazma;
@@ -64,6 +65,11 @@ if (rx_status1 & (UART1_SR_RXNE))
 		bRXIN1=1;
 		rx_wr_index1=0;
 		}
+	else if(rx_data1=='>') 
+		{
+		bOK=1;
+		rx_wr_index1=0;	
+		}
 	else if(rx_data1!='\n') 
 		{
 		rxBuffer1[rx_wr_index1++]=rx_data1;
@@ -72,6 +78,7 @@ if (rx_status1 & (UART1_SR_RXNE))
 			rx_wr_index1=0;	
 			}
 		}
+		
 /*	cntAirSensorLineErrorHi=0;
 	cntAirSensorLineErrorLo=0;
 	if(airSensorErrorStat==taesLHI)airSensorErrorStat=taesNORM;
@@ -119,7 +126,11 @@ if(!bRXIN1)return;
 disableInterrupts();
 bRXIN1=0;
 
-if(strstr(uart1_an_buffer,"+CMT"))
+if(strstr(uart1_an_buffer,"OK"))
+	{
+	bOK=1;
+	}
+else if(strstr(uart1_an_buffer,"+CMT"))
 	{
 	char volatile ptr_temp[15];
 	char volatile str_main_num[15];
@@ -178,29 +189,38 @@ else
 	{
 	if((isFromMainNumberMess)||(isFromAutorizedNumberMess)||(isFromNotAutorizedNumberMess))
 		{
-		//char *ptr_temp;
-		//strcpy(ptr_temp,uart1_an_buffer);
+		PDU2text(uart1_an_buffer); 	//Пропускаем все пришедшие смс через парсер PDU
 		
-		if(strstr(uart1_an_buffer,"0423042104220410041D041E041204180422042C00200413041B04100412041D042B0419")) //"УСТАНОВИТЬ ГЛАВНЫЙ"
+		if(strstr(russianText,"УСТАНОВИТЬ ГЛАВНЫЙ")) //"0423042104220410041D041E041204180422042C00200413041B04100412041D042B0419"
 			{
 			modem_plazma1++;
 			memcpy(incommingNumberToMain,incommingNumber,10);
-			modem_send_sms('p',incommingNumber,"ОТПРАВЬТЕ В ОТВЕТНОМ СМС 7 ЦИФР ВЫВЕДЕННЫХ НА ИНДИКАТОР УСТРОЙСТВА");
+			modem_send_sms('p',incommingNumber,"ОТПРАВЬТЕ В ОТВЕТНОМ СМС 7 ЦИФР ВЫВЕДЕННЫХ НА ИНДИКАТОР УСТРОЙСТВА");/**/
 			
 			}
 		else if(strstr(uart1_an_buffer,"1234576"))
 			{
 			if(memcmp(incommingNumber,incommingNumberToMain,10)==0)
 				{
-				modem_send_sms('t',incommingNumber,"OK");
+				modem_send_sms('p',MAIN_NUMBER,"Ваш номер установлен как главный");
 				memcpy(MAIN_NUMBER,incommingNumberToMain,10);
 				AUTH_NUMBER_FLAGS|=0x01;
+				
 				}
 			}
-		else if(strstr(uart1_an_buffer,"123")) //"УСТАНОВИТЬ ГЛАВНЫЙ"
+		else if((strstr(uart1_an_buffer,"УСТАНОВИТЬ"))&&(isFromMainNumberMess)) //"УСТАНОВИТЬ номер
 			{
+			char number_temp[];
+			
+			
 			//modem_plazma1++;
 			modem_send_sms('t',"9139294352",/*"OTPRAVTE 7 CIFR, VIVEDENNIH NA EKRAN USTROISTVA"*/"mama1");
+			}	
+			
+		else if(uart1_an_buffer[0]=='0') 
+			{
+			PDU2text(uart1_an_buffer);
+			printf(russianText);
 			}	
 		isFromMainNumberMess=0;
 		isFromAutorizedNumberMess=0;

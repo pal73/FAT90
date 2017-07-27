@@ -1244,7 +1244,8 @@ else if(ind==iModem_deb)
 		
 		//modem_send_sms('p',"9139294352","нропюбэре б нрбермнл яля 7 жхтп бшбедеммшу мю хмдхйюрнп сярпниярбю "); //
 		//modem_send_sms('p',"9139294352","бюь рекетнм сярюмнбкем йюй цкюбмши дкъ дюммнцн йнмрпнккепю ");
-		printf("ATD*100#;\r");
+		//printf("ATD*100#;\r");
+		}
 /*		
 		+CUSD: 0,"0421043F0430044104380431043E0020043704300020043E04310440043004490435043D0438043500210020041C044B0020043D0430043F0440043004320438043C0020043E04420432043504420020043D04300020041204300448002004370430043F0440043E04410020043200200053004D0053",72
 
@@ -1259,11 +1260,23 @@ else if(ind==iModem_deb)
 +CMT: "Balance
 ","","17/07/26,17:28:08+28"
 0020002A003500350035002A0031003300320023*/
-		}
+	
 	else if(but==butD_)
 		{
 		AUTH_NUMBER_FLAGS=0;
+		memcpy(MAIN_NUMBER,"xxxxxxxxxx",10);
+		memcpy(AUTH_NUMBER_1,"xxxxxxxxxx",10);
+		memcpy(AUTH_NUMBER_2,"xxxxxxxxxx",10);
+		memcpy(AUTH_NUMBER_3,"xxxxxxxxxx",10);
 		}
+	else if(but==butU_)
+		{
+		AUTH_NUMBER_FLAGS=0x07;
+		memcpy(MAIN_NUMBER,"9139294352",10);
+		memcpy(AUTH_NUMBER_1,"9134863890",10);
+		memcpy(AUTH_NUMBER_2,"9237328354",10);
+		memcpy(AUTH_NUMBER_3,"xxxxxxxxxx",10);
+		}		
 	}
 	
 else if(ind==iDefSet)
@@ -1473,6 +1486,8 @@ memcpy(AUTH_NUMBER_3,"9139294352",10);
 memcpy(AUTH_NUMBER_2,"9139294355",10);
 memcpy(AUTH_NUMBER_1,"9139294354",10);
 memcpy(MAIN_NUMBER,"9139294353",10);
+
+//PDU2text("043E0442043F044004300432044C0442043500200441043C04410031003200330034");
 
 while (1)
 	{

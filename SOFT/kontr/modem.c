@@ -3,6 +3,9 @@
 #include "modem.h"
 #include <stdio.h>
 #include <string.h>
+#include <stdlib.h>
+#include <ctype.h>
+#include "uart1.h"
 
 char modemStatCnt0;
 
@@ -28,6 +31,7 @@ char *textSMS;																//Указатель не строку с текстом SMS
 @near char buferBodyToSendPDUSMS__[100];				//Буфер с телом пакета PDU
 @near short lenPDUSMS;													//Длина пакета PDU 
 @near char ptrTemp[30];
+@near char russianText[70];										//Буфер для преобразованного русского текста
 
 //-----------------------------------------------
 void modem_gpio_init(void)
@@ -201,49 +205,64 @@ else
 			{
 			//printf("AT+COPS?\r\n");
 			printf("ATE0\r\n");
+			bOK=0;
 			modemDrvInitStepCnt++;
 			}
 
-		else if(modemDrvInitStepCnt==45)
+		else if(modemDrvInitStepCnt==36)
 			{
-			printf("AT+CMGF=1\r\n");
-			modemDrvInitStepCnt++;
+			if(bOK)
+				{
+				printf("AT+CMGF=1\r\n");
+				modemDrvInitStepCnt++;
+				bOK=0;
+				}
 			}
 
-		else if(modemDrvInitStepCnt==55)
+		else if(modemDrvInitStepCnt==37)
 			{
-			printf("AT+IFC=0, 0\r");
-			modemDrvInitStepCnt++;
+			if(bOK)
+				{
+				printf("AT+IFC=0, 0\r");
+				modemDrvInitStepCnt++;
+				bOK=0;
+				}
 			}
 			
-		else if(modemDrvInitStepCnt==65)
+		else if(modemDrvInitStepCnt==38)
 			{
-			printf("AT+CPBS=\"SM\"\r");
-			modemDrvInitStepCnt++;
+			if(bOK)
+				{
+				printf("AT+CPBS=\"SM\"\r");
+				modemDrvInitStepCnt++;
+				bOK=0;
+				}
 			}
 
-		else if(modemDrvInitStepCnt==75)
+		else if(modemDrvInitStepCnt==39)
 			{
-			printf("AT+CNMI=1,2,2,1,0\r");
-			modemDrvInitStepCnt++;
+			if(bOK)
+				{
+				printf("AT+CNMI=1,2,2,1,0\r");
+				modemDrvInitStepCnt++;
+				bOK=0;
+				}				
 			}
 
-		else if(modemDrvInitStepCnt==80)
+		else if(modemDrvInitStepCnt==40)
 			{
-			modemState=MS_LINKED_INITIALIZED;
-			modemDrvInitStepCnt++;
+			if(bOK)
+				{
+				modemState=MS_LINKED_INITIALIZED;
+				modemDrvInitStepCnt=50;
+				bOK=0;
+				}
 			}
 
-
-		else if(modemDrvInitStepCnt==100)
-			{
-			modemState=MS_LINKED_INITIALIZED;
-			modemDrvInitStepCnt++;
-			}
 
 		else
 			{
-			if(modemDrvInitStepCnt<1000)	modemDrvInitStepCnt++;
+			if(modemDrvInitStepCnt<50)	modemDrvInitStepCnt++;
 			}
 		}
 		
@@ -287,48 +306,58 @@ else
 		if(modemDrvPDUSMSSendStepCnt==11)
 			{
 			printf("AT+CMGF=0\r");
+			bOK=0;
 			modemDrvPDUSMSSendStepCnt++;
 			}
-		else if(modemDrvPDUSMSSendStepCnt==21)
+		else if(modemDrvPDUSMSSendStepCnt==12)
 			{
-
-			//ptrTemp[0]='\0';
-			//lenPDUSMS=15;
-			//sprintf(ptrTemp,"AT + CMGS = %d \r",lenPDUSMS);
-			printf("AT + CMGS = %d \r",lenPDUSMS);
-			//printf(ptrTemp);			
-
-			modemDrvPDUSMSSendStepCnt++;
+			if(bOK)
+				{
+				printf("AT + CMGS = %d \r",lenPDUSMS);
+				bOK=0;
+				modemDrvPDUSMSSendStepCnt++;
+				}
 			}	
-		else if(modemDrvPDUSMSSendStepCnt==31)
+		else if(modemDrvPDUSMSSendStepCnt==13)
 			{
-			//printf("PRIVET\r");
-			printf(buferHeadToSendPDUSMS);
-			//printf(buferBodyToSendPDUSMS);
-			//printf("A1K");
-			memcpy(buferBodyToSendPDUSMS__,buferBodyToSendPDUSMS,75);
-			buferBodyToSendPDUSMS__[75]='\0';
-			printf(buferBodyToSendPDUSMS__);
-			//printf("A2K");
-			memcpy(buferBodyToSendPDUSMS__,&buferBodyToSendPDUSMS[75],75);
-			buferBodyToSendPDUSMS__[75]='\0';
-			printf(buferBodyToSendPDUSMS__);
-			//printf("A3K");
-			memcpy(buferBodyToSendPDUSMS__,&buferBodyToSendPDUSMS[150],75);
-			buferBodyToSendPDUSMS__[75]='\0';
-			printf(buferBodyToSendPDUSMS__);
-			//printf("A4K");
-			memcpy(buferBodyToSendPDUSMS__,&buferBodyToSendPDUSMS[225],75);
-			buferBodyToSendPDUSMS__[75]='\0';
-			printf(buferBodyToSendPDUSMS__);/**/
-			memcpy(buferBodyToSendPDUSMS__,&buferBodyToSendPDUSMS[300],50);
-			buferBodyToSendPDUSMS__[50]='\0';
-			printf(buferBodyToSendPDUSMS__);
-			//printf("A5K");
-			printf("%c",(char)26);
-			modemDrvPDUSMSSendStepCnt=0;
-			}		
-	
+			if(bOK)
+				{
+				//printf("PRIVET\r");
+				printf(buferHeadToSendPDUSMS);
+				//printf(buferBodyToSendPDUSMS);
+				//printf("A1K");
+				memcpy(buferBodyToSendPDUSMS__,buferBodyToSendPDUSMS,75);
+				buferBodyToSendPDUSMS__[75]='\0';
+				printf(buferBodyToSendPDUSMS__);
+				//printf("A2K");
+				memcpy(buferBodyToSendPDUSMS__,&buferBodyToSendPDUSMS[75],75);
+				buferBodyToSendPDUSMS__[75]='\0';
+				printf(buferBodyToSendPDUSMS__);
+				//printf("A3K");
+				memcpy(buferBodyToSendPDUSMS__,&buferBodyToSendPDUSMS[150],75);
+				buferBodyToSendPDUSMS__[75]='\0';
+				printf(buferBodyToSendPDUSMS__);
+				//printf("A4K");
+				memcpy(buferBodyToSendPDUSMS__,&buferBodyToSendPDUSMS[225],75);
+				buferBodyToSendPDUSMS__[75]='\0';
+				printf(buferBodyToSendPDUSMS__);/**/
+				memcpy(buferBodyToSendPDUSMS__,&buferBodyToSendPDUSMS[300],50);
+				buferBodyToSendPDUSMS__[50]='\0';
+				printf(buferBodyToSendPDUSMS__);
+				//printf("A5K");
+				printf("%c",(char)26);
+				modemDrvPDUSMSSendStepCnt++;
+				bOK=0;
+				}
+			}
+		else if(modemDrvPDUSMSSendStepCnt==14)
+			{
+			if(bOK)
+				{
+				printf("AT+CMGF=1\r");
+				modemDrvPDUSMSSendStepCnt=0;
+				}
+			}
 		else
 			{
 			if(modemDrvPDUSMSSendStepCnt<1000)	modemDrvPDUSMSSendStepCnt++;
@@ -427,42 +456,43 @@ lenPDUSMS+=13;
 }
 
 //-----------------------------------------------
-void PDU2text( char* adr, char* text)
+void PDU2text(char* text)
 {
 //char temp_buf[2];
 char i=0;
+char ir=0;
 //lenPDUSMS=0;
 //strcpy(adr,"00");
 while(1)
 	{
 	char c = text[i];
 	char cc[2];
-	char cccc[4];
-	memcpy(cc,text[i],2);
-	if(c==0)break;
-	else if(strstr(cc,"00")
+	char cccc[5];
+	unsigned char temp;
+	if(c==0)
 		{
-		char temp[6];
-		sprintf(temp,"%04X",(short)c);
-		strcat(adr,temp);
+		russianText[ir]='\0';
+		break;
 		}
-	else if(strstr(cc,"04")	
+	memcpy(cc,&text[i],2);
+	cc[2]='\0';
+	memcpy(cccc,&text[i],4);
+	cccc[4]='\0';
+	if(strstr(cc,"00"))
 		{
-		char temp;
-		temp= (char)((int
-		sprintf(temp,"%04X",(short)c+0x0350);
-		strcat(adr,temp);
+		temp= (unsigned char)strtol(cccc,NULL,16);
 		}
-	lenPDUSMS+=2;
-	i++;
+	else if(strstr(cc,"04"))	
+		{
+		int tempI;
+		tempI=strtol(cccc,NULL,16);
+		tempI-=0x0350;
+		temp= (unsigned char)(tempI);
+		if((temp>=0xE0)&&(temp<=0xFF))temp-=0x20;
+		}
+	russianText[ir++]=tolower(temp);
+	i+=4;
 	}
-sprintf(temp_buf,"%02X",lenPDUSMS);
-//strcat(adr,"04C1");
-memcpy(adr,temp_buf,2);
-
-lenPDUSMS+=13;
-
-//return ret;
 }
 
 
