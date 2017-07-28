@@ -210,8 +210,31 @@ else
 			}
 		else if((strstr(uart1_an_buffer,"УСТАНОВИТЬ"))&&(isFromMainNumberMess)) //"УСТАНОВИТЬ номер
 			{
-			char number_temp[];
-			
+			char number_temp[11];
+			if(find_number_in_text(uart_an_buffer,number_temp))
+				{
+				if(find_this_number_in_autorizred) 
+					{
+					modem_send_sms('p',MAIN_NUMBER,"Такой номер уже есть в списке авторизованых");
+					}
+				else if(find_empty_number_cell())
+					{
+					char temp = find_empty_number_cell();
+					if(temp==1)
+						{
+						memcpy(NUMBER_AUTORIZED_1,number_temp,10);
+						AUTH_NUMBER_FLAGS|=0b00000010;
+						}
+					else if(temp==2)
+						{
+						memcpy(NUMBER_AUTORIZED_2,number_temp,10);
+						AUTH_NUMBER_FLAGS|=0b00000100;							
+						}
+					else if(temp==3)
+						{
+						}
+					}
+				}
 			
 			//modem_plazma1++;
 			modem_send_sms('t',"9139294352",/*"OTPRAVTE 7 CIFR, VIVEDENNIH NA EKRAN USTROISTVA"*/"mama1");

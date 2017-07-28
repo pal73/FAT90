@@ -49,3 +49,6 @@ void modem_send_sms(char mode, char *number, char *text);
 void text2PDU(char* text, char* adr);
 //-----------------------------------------------
 void PDU2text(char* text);
+//-----------------------------------------------
+//Поиск телефонного номера в тексте смс
+char find_number_in_text(char* text, char* number);

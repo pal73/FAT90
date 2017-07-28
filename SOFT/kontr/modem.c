@@ -495,4 +495,20 @@ while(1)
 	}
 }
 
+//-----------------------------------------------
+//Поиск телефонного номера в тексте смс
+char find_number_in_text(char* text, char* number)
+{
+char* ptr_temp;
+unsigned int len,firstDigit,lastDigit;
+len=strlen(text);
+firstDigit=strcspn(text,"1234567890");
+if(len==firstDigit) return 0;
+
+ptr_temp=(char*)(text+firstDigit);
+lastDigit=strspn(ptr_temp,"1234567890");
+number=ptr_temp+lastDigit-10;
+return 1;
+}
+
 
