@@ -22,6 +22,10 @@ bool isFromMainNumberMess;									//флаг, пришедшее смс от мастерского телефона
 bool isFromAutorizedNumberMess;							//флаг, пришедшее смс от одного из прописанных немастерских телефонов
 bool isFromNotAutorizedNumberMess;					//флаг, пришедшее смс от неавторизованного телефона
 bool bOK;																		//Модем ответил "OK"
+bool bERROR;																	//Модем ответил "ERROR"
+
+@near char* number_temp;
+@near short cell;
 //-----------------------------------------------
 //Отладка
 @near char uart1_plazma;
@@ -130,6 +134,10 @@ if(strstr(uart1_an_buffer,"OK"))
 	{
 	bOK=1;
 	}
+else if(strstr(uart1_an_buffer,"ERROR"))
+	{
+	bERROR=1;
+	}	
 else if(strstr(uart1_an_buffer,"+CMT"))
 	{
 	char volatile ptr_temp[15];
@@ -150,7 +158,7 @@ else if(strstr(uart1_an_buffer,"+CMT"))
 	memcpy(str_main_num,/*"9139294352"*/MAIN_NUMBER,10);
 	
 	//if(strcmp(ptr_temp,str_main_num)==0)
-	if(strstr(incommingNumber,str_main_num)!=NULL)
+	if((strstr(incommingNumber,str_main_num)!=NULL)&&(AUTH_NUMBER_FLAGS&0x01))
 		{
 		modem_plazma++;
 		isFromMainNumberMess=1;
@@ -159,27 +167,27 @@ else if(strstr(uart1_an_buffer,"+CMT"))
 	memset(str_main_num,'\0',15);
 	memcpy(str_main_num,AUTH_NUMBER_1,10);
 	
-	if(strstr(incommingNumber,str_main_num)!=NULL)
+	if((strstr(incommingNumber,str_main_num)!=NULL)&&(AUTH_NUMBER_FLAGS&0x02))
 		{
-		modem_plazma++;
+		//modem_plazma++;
 		isFromAutorizedNumberMess=1;
 		}		
 
 	memset(str_main_num,'\0',15);
 	memcpy(str_main_num,AUTH_NUMBER_2,10);
 	
-	if(strstr(incommingNumber,str_main_num)!=NULL)
+	if((strstr(incommingNumber,str_main_num)!=NULL)&&(AUTH_NUMBER_FLAGS&0x04))
 		{
-		modem_plazma++;
+		//modem_plazma++;
 		isFromAutorizedNumberMess=1;
 		}		
 
 	memset(str_main_num,'\0',15);
 	memcpy(str_main_num,AUTH_NUMBER_3,10);
 	
-	if(strstr(incommingNumber,str_main_num)!=NULL)
+	if((strstr(incommingNumber,str_main_num)!=NULL)&&(AUTH_NUMBER_FLAGS&0x08))
 		{
-		modem_plazma++;
+		//modem_plazma++;
 		isFromAutorizedNumberMess=1;
 		}
 
@@ -187,13 +195,15 @@ else if(strstr(uart1_an_buffer,"+CMT"))
 	}	
 else
 	{
+	//modem_plazma1++;
 	if((isFromMainNumberMess)||(isFromAutorizedNumberMess)||(isFromNotAutorizedNumberMess))
 		{
+			modem_plazma1++;
 		PDU2text(uart1_an_buffer); 	//Пропускаем все пришедшие смс через парсер PDU
 		
-		if(strstr(russianText,"УСТАНОВИТЬ ГЛАВНЫЙ")) //"0423042104220410041D041E041204180422042C00200413041B04100412041D042B0419"
+		if(strstr(russianText,"НОМЕР ГЛАВНЫЙ")) //"0423042104220410041D041E041204180422042C00200413041B04100412041D042B0419"
 			{
-			modem_plazma1++;
+			//modem_plazma1++;
 			memcpy(incommingNumberToMain,incommingNumber,10);
 			modem_send_sms('p',incommingNumber,"ОТПРАВЬТЕ В ОТВЕТНОМ СМС 7 ЦИФР ВЫВЕДЕННЫХ НА ИНДИКАТОР УСТРОЙСТВА");/**/
 			
@@ -202,49 +212,81 @@ else
 			{
 			if(memcmp(incommingNumber,incommingNumberToMain,10)==0)
 				{
-				modem_send_sms('p',MAIN_NUMBER,"Ваш номер установлен как главный");
 				memcpy(MAIN_NUMBER,incommingNumberToMain,10);
-				AUTH_NUMBER_FLAGS|=0x01;
-				
+				AUTH_NUMBER_FLAGS=0x01;
+				modem_send_sms('p',MAIN_NUMBER,"Ваш номер установлен как главный");
 				}
 			}
-		else if((strstr(uart1_an_buffer,"УСТАНОВИТЬ"))&&(isFromMainNumberMess)) //"УСТАНОВИТЬ номер
+		else if((strstr(russianText,"НОМЕР"))&&(isFromMainNumberMess)) //"УСТАНОВИТЬ номер
 			{
-			char number_temp[11];
-			if(find_number_in_text(uart_an_buffer,number_temp))
+			number_temp=find_number_in_text(russianText);
+			if(number_temp)
 				{
-				if(find_this_number_in_autorizred) 
+				if(find_this_number_in_autorized(number_temp)) 
 					{
 					modem_send_sms('p',MAIN_NUMBER,"Такой номер уже есть в списке авторизованых");
 					}
 				else if(find_empty_number_cell())
 					{
-					char temp = find_empty_number_cell();
-					if(temp==1)
+					cell = find_empty_number_cell();
+					if(cell==1)
 						{
-						memcpy(NUMBER_AUTORIZED_1,number_temp,10);
+						memcpy(AUTH_NUMBER_1,number_temp,10);
 						AUTH_NUMBER_FLAGS|=0b00000010;
 						}
-					else if(temp==2)
+					else if(cell==2)
 						{
-						memcpy(NUMBER_AUTORIZED_2,number_temp,10);
+						memcpy(AUTH_NUMBER_2,number_temp,10);
 						AUTH_NUMBER_FLAGS|=0b00000100;							
 						}
-					else if(temp==3)
+					else if(cell==3)
 						{
+						memcpy(AUTH_NUMBER_3,number_temp,10);
+						AUTH_NUMBER_FLAGS|=0b00001000;							
 						}
+					sprintf(tempRussianText,"Номер %s добавлен в список (ячейка %d)",number_temp,cell);
+					modem_send_sms('p',MAIN_NUMBER,tempRussianText);
+					sprintf(tempRussianText,"Ваш номер добавлен в список ");
+					modem_send_sms('p',number_temp,tempRussianText);
+
+					}
+				else
+					{
+					modem_send_sms('p',MAIN_NUMBER,"Номер не добавлен, память заполнена");
 					}
 				}
 			
 			//modem_plazma1++;
-			modem_send_sms('t',"9139294352",/*"OTPRAVTE 7 CIFR, VIVEDENNIH NA EKRAN USTROISTVA"*/"mama1");
-			}	
-			
-		else if(uart1_an_buffer[0]=='0') 
+			//modem_send_sms('t',"9139294352",/*"OTPRAVTE 7 CIFR, VIVEDENNIH NA EKRAN USTROISTVA"*/"mama1");
+			}
+		else if((strstr(russianText,"СПИСОК"))&&(isFromMainNumberMess||isFromAutorizedNumberMess)) //Список телефонов
 			{
-			PDU2text(uart1_an_buffer);
-			printf(russianText);
-			}	
+			
+			sprintf(tempRussianText,"Список номеров: \r\n");
+			strcat(tempRussianText,"+7");
+			strcat(tempRussianText,MAIN_NUMBER);
+			strcat(tempRussianText," (главный)");
+			//strcpy(tempRussianText,tempStr);
+			//sprintf(tempStr,"%s (главный),",MAIN_NUMBER);
+			//strcat(tempRussianText,tempStr);
+			/*if(AUTH_NUMBER_FLAGS&0x01)
+				{
+				strcat(tempRussianText,",\r\n+7");
+				strcat(tempRussianText,AUTH_NUMBER_1);
+				strcat(tempRussianText,"(1)");	
+				}*/
+			/*if(AUTH_NUMBER_FLAGS&0x02)
+				{
+				sprintf(tempStr,"+7%s (1),",AUTH_NUMBER_2);
+				strcat(tempRussianText,tempStr);	
+				}
+			if(AUTH_NUMBER_FLAGS&0x04)
+				{
+				sprintf(tempStr,"+7%s (1),",AUTH_NUMBER_3);
+				strcat(tempRussianText,tempStr);	
+				}*/
+			modem_send_sms('p',MAIN_NUMBER,tempRussianText);
+			}
 		isFromMainNumberMess=0;
 		isFromAutorizedNumberMess=0;
 		isFromNotAutorizedNumberMess=0;

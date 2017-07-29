@@ -1231,19 +1231,19 @@ else if(ind==iModem_deb)
 		{
 		//modemDrvSMSSendStepCnt=1;
 		
-//		modem_send_sms('p', "9139294352", "лЮЛЮ1 \r\nлЮЛЮ2");
+		modem_send_sms('p', "9139294352", "лЮЛЮ1 \r\nлЮЛЮ2");
 		
-		sprintf(textToSendPDUSMS,"лЮЛЮ1 %d \r\nлЮЛЮ2 %d",123,456);
+		//sprintf(textToSendPDUSMS,"лЮЛЮ1 %d \r\nлЮЛЮ2 %d",123,456);
 		//sprintf(textToSendPDUSMS,"лЮЛЮ ЛШКЮ ПЮЛС, С ЬСПШ ЬЮПШ. It is OK?");
 		//sprintf(textToSendPDUSMS,);
-		modem_send_sms('p', "9139294352", textToSendPDUSMS);
+		//modem_send_sms('p', "9139294352", textToSendPDUSMS);
 		}
 	else if(but==butD)
 		{
-		char puts_bufer[100];
+		//char puts_bufer[100];
 		
 		//modem_send_sms('p',"9139294352","нропюбэре б нрбермнл яля 7 жхтп бшбедеммшу мю хмдхйюрнп сярпниярбю "); //
-		//modem_send_sms('p',"9139294352","бюь рекетнм сярюмнбкем йюй цкюбмши дкъ дюммнцн йнмрпнккепю ");
+		modem_send_sms('p',MAIN_NUMBER,"бюь рекетнм сярюмнбкем йюй цкюбмши дкъ дюммнцн йнмрпнккепю ");
 		//printf("ATD*100#;\r");
 		}
 /*		
@@ -1264,18 +1264,18 @@ else if(ind==iModem_deb)
 	else if(but==butD_)
 		{
 		AUTH_NUMBER_FLAGS=0;
-		memcpy(MAIN_NUMBER,"xxxxxxxxxx",10);
-		memcpy(AUTH_NUMBER_1,"xxxxxxxxxx",10);
-		memcpy(AUTH_NUMBER_2,"xxxxxxxxxx",10);
-		memcpy(AUTH_NUMBER_3,"xxxxxxxxxx",10);
+		//memcpy(MAIN_NUMBER,"xxxxxxxxxx",10);
+		//memcpy(AUTH_NUMBER_1,"xxxxxxxxxx",10);
+		//memcpy(AUTH_NUMBER_2,"xxxxxxxxxx",10);
+		//memcpy(AUTH_NUMBER_3,"xxxxxxxxxx",10);
 		}
 	else if(but==butU_)
 		{
-		AUTH_NUMBER_FLAGS=0x07;
-		memcpy(MAIN_NUMBER,"9139294352",10);
-		memcpy(AUTH_NUMBER_1,"9134863890",10);
-		memcpy(AUTH_NUMBER_2,"9237328354",10);
-		memcpy(AUTH_NUMBER_3,"xxxxxxxxxx",10);
+		AUTH_NUMBER_FLAGS&=0x01;
+		//memcpy(MAIN_NUMBER,"9139294352",10);
+		//memcpy(AUTH_NUMBER_1,"9134863890",10);
+		//memcpy(AUTH_NUMBER_2,"9237328354",10);
+		//memcpy(AUTH_NUMBER_3,"xxxxxxxxxx",10);
 		}		
 	}
 	
@@ -1482,10 +1482,6 @@ out_mode=osOFF;
 bERR=0;
 bWARN=0;
 
-memcpy(AUTH_NUMBER_3,"9139294352",10);
-memcpy(AUTH_NUMBER_2,"9139294355",10);
-memcpy(AUTH_NUMBER_1,"9139294354",10);
-memcpy(MAIN_NUMBER,"9139294353",10);
 
 //PDU2text("043E0442043F044004300432044C0442043500200441043C04410031003200330034");
 
@@ -1516,6 +1512,7 @@ while (1)
 		matemath();
 		
 		modem_drv();
+		sms_fifo_drv();
 		}
 	if(b5Hz)
 		{

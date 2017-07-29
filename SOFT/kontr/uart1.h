@@ -13,6 +13,7 @@ extern @near char incommingNumber[10];							//Буфер для хранения номера отправи
 extern @near char incommingNumberToMain[10];				//Буфер для хранения номера просящегося в главные
 
 extern bool bOK;																		//Модем ответил "OK"
+extern bool bERROR;																	//Модем ответил "ERROR"
 
 //-----------------------------------------------
 //Отладка

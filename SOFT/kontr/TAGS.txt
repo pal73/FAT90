@@ -96,8 +96,8 @@ BRR1	include\stm8s.h	1961;"	member	struct:UART3_struct
 BRR2	include\stm8s.h	1756;"	member	struct:UART1_struct
 BRR2	include\stm8s.h	1854;"	member	struct:UART2_struct
 BRR2	include\stm8s.h	1962;"	member	struct:UART3_struct
-BTR1	include\stm8s.h	2179;"	member	struct:__anon5::__anon6::__anon12
-BTR2	include\stm8s.h	2180;"	member	struct:__anon5::__anon6::__anon12
+BTR1	include\stm8s.h	2179;"	member	struct:__anon6::__anon7::__anon13
+BTR2	include\stm8s.h	2180;"	member	struct:__anon6::__anon7::__anon13
 BUFSIZ	c:\program files\cosmic\cxstm8_32k\hstm8\stdio.h	26;"	macro
 BUT_ON	lowlev.h	11;"	macro
 BUT_ONL	lowlev.h	12;"	macro
@@ -105,10 +105,10 @@ BYTE_0	include\stm8s.h	2685;"	macro
 BYTE_1	include\stm8s.h	2686;"	macro
 BYTE_2	include\stm8s.h	2687;"	macro
 BYTE_3	include\stm8s.h	2688;"	macro
-BitAction	include\stm8s.h	221;"	typedef	typeref:enum:__anon2
+BitAction	include\stm8s.h	221;"	typedef	typeref:enum:__anon3
 BitClr	include\stm8s.h	2706;"	macro
 BitSet	include\stm8s.h	2707;"	macro
-BitStatus	include\stm8s.h	221;"	typedef	typeref:enum:__anon2
+BitStatus	include\stm8s.h	221;"	typedef	typeref:enum:__anon3
 BitVal	include\stm8s.h	2708;"	macro
 CAN	include\stm8s.h	2505;"	macro
 CAN_BTR1_RESET_VALUE	include\stm8s.h	2390;"	macro
@@ -245,7 +245,7 @@ CAN_TSR_RQCP2	include\stm8s.h	2238;"	macro
 CAN_TSR_TXOK0	include\stm8s.h	2240;"	macro
 CAN_TSR_TXOK1	include\stm8s.h	2241;"	macro
 CAN_TSR_TXOK2	include\stm8s.h	2242;"	macro
-CAN_TypeDef	include\stm8s.h	2212;"	typedef	typeref:struct:__anon5
+CAN_TypeDef	include\stm8s.h	2212;"	typedef	typeref:struct:__anon6
 CCER1	include\stm8s.h	1117;"	member	struct:TIM5_struct
 CCER1	include\stm8s.h	610;"	member	struct:TIM1_struct
 CCER1	include\stm8s.h	822;"	member	struct:TIM2_struct
@@ -421,7 +421,7 @@ CSR	include\stm8s.h	466;"	member	struct:BEEP_struct
 CSSR	include\stm8s.h	502;"	member	struct:CLK_struct
 ChgBit	include\stm8s.h	2677;"	macro
 ClrBit	include\stm8s.h	2675;"	macro
-Config	include\stm8s.h	2189;"	member	union:__anon5::__anon6	typeref:struct:__anon5::__anon6::__anon12
+Config	include\stm8s.h	2189;"	member	union:__anon6::__anon7	typeref:struct:__anon6::__anon7::__anon13
 DB0RH	include\stm8s.h	284;"	member	struct:ADC1_struct
 DB0RL	include\stm8s.h	285;"	member	struct:ADC1_struct
 DB1RH	include\stm8s.h	286;"	member	struct:ADC1_struct
@@ -443,9 +443,9 @@ DB8RL	include\stm8s.h	301;"	member	struct:ADC1_struct
 DB9RH	include\stm8s.h	302;"	member	struct:ADC1_struct
 DB9RL	include\stm8s.h	303;"	member	struct:ADC1_struct
 DDR	include\stm8s.h	257;"	member	struct:GPIO_struct
-DGR	include\stm8s.h	2058;"	member	struct:__anon5
+DGR	include\stm8s.h	2058;"	member	struct:__anon6
 DIGISYM	main.c	63;"	variable
-DISABLE	include\stm8s.h	223;"	enumerator	enum:__anon3
+DISABLE	include\stm8s.h	223;"	enumerator	enum:__anon4
 DM	include\stm8s.h	2589;"	macro
 DM_BaseAddress	include\stm8s.h	2480;"	macro
 DR	include\stm8s.h	1320;"	member	struct:I2C_struct
@@ -471,11 +471,11 @@ EGR	include\stm8s.h	1251;"	member	struct:TIM6_struct
 EGR	include\stm8s.h	605;"	member	struct:TIM1_struct
 EGR	include\stm8s.h	818;"	member	struct:TIM2_struct
 EGR	include\stm8s.h	942;"	member	struct:TIM3_struct
-EIER	include\stm8s.h	2176;"	member	struct:__anon5::__anon6::__anon12
-ENABLE	include\stm8s.h	223;"	enumerator	enum:__anon3
+EIER	include\stm8s.h	2176;"	member	struct:__anon6::__anon7::__anon13
+ENABLE	include\stm8s.h	223;"	enumerator	enum:__anon4
 EOF	c:\program files\cosmic\cxstm8_32k\hstm8\stdio.h	27;"	macro
-ERROR	include\stm8s.h	226;"	enumerator	enum:__anon4
-ESR	include\stm8s.h	2175;"	member	struct:__anon5::__anon6::__anon12
+ERROR	include\stm8s.h	226;"	enumerator	enum:__anon5
+ESR	include\stm8s.h	2175;"	member	struct:__anon6::__anon7::__anon13
 ETR	include\stm8s.h	601;"	member	struct:TIM1_struct
 EXIT_FAILURE	c:\program files\cosmic\cxstm8_32k\hstm8\stdlib.h	7;"	macro
 EXIT_SUCCESS	c:\program files\cosmic\cxstm8_32k\hstm8\stdlib.h	8;"	macro
@@ -491,62 +491,62 @@ EXTI_CR2_RESET_VALUE	include\stm8s.h	1469;"	macro
 EXTI_CR2_TLIS	include\stm8s.h	1484;"	macro
 EXTI_TypeDef	include\stm8s.h	1462;"	typedef	typeref:struct:EXTI_struct
 EXTI_struct	include\stm8s.h	1457;"	struct
-ErrorStatus	include\stm8s.h	226;"	typedef	typeref:enum:__anon4
-F0R1	include\stm8s.h	2109;"	member	struct:__anon5::__anon6::__anon9
-F0R2	include\stm8s.h	2110;"	member	struct:__anon5::__anon6::__anon9
-F0R3	include\stm8s.h	2111;"	member	struct:__anon5::__anon6::__anon9
-F0R4	include\stm8s.h	2112;"	member	struct:__anon5::__anon6::__anon9
-F0R5	include\stm8s.h	2113;"	member	struct:__anon5::__anon6::__anon9
-F0R6	include\stm8s.h	2114;"	member	struct:__anon5::__anon6::__anon9
-F0R7	include\stm8s.h	2115;"	member	struct:__anon5::__anon6::__anon9
-F0R8	include\stm8s.h	2116;"	member	struct:__anon5::__anon6::__anon9
-F1R1	include\stm8s.h	2118;"	member	struct:__anon5::__anon6::__anon9
-F1R2	include\stm8s.h	2119;"	member	struct:__anon5::__anon6::__anon9
-F1R3	include\stm8s.h	2120;"	member	struct:__anon5::__anon6::__anon9
-F1R4	include\stm8s.h	2121;"	member	struct:__anon5::__anon6::__anon9
-F1R5	include\stm8s.h	2122;"	member	struct:__anon5::__anon6::__anon9
-F1R6	include\stm8s.h	2123;"	member	struct:__anon5::__anon6::__anon9
-F1R7	include\stm8s.h	2124;"	member	struct:__anon5::__anon6::__anon9
-F1R8	include\stm8s.h	2125;"	member	struct:__anon5::__anon6::__anon9
-F2R1	include\stm8s.h	2131;"	member	struct:__anon5::__anon6::__anon10
-F2R2	include\stm8s.h	2132;"	member	struct:__anon5::__anon6::__anon10
-F2R3	include\stm8s.h	2133;"	member	struct:__anon5::__anon6::__anon10
-F2R4	include\stm8s.h	2134;"	member	struct:__anon5::__anon6::__anon10
-F2R5	include\stm8s.h	2135;"	member	struct:__anon5::__anon6::__anon10
-F2R6	include\stm8s.h	2136;"	member	struct:__anon5::__anon6::__anon10
-F2R7	include\stm8s.h	2137;"	member	struct:__anon5::__anon6::__anon10
-F2R8	include\stm8s.h	2138;"	member	struct:__anon5::__anon6::__anon10
-F3R1	include\stm8s.h	2140;"	member	struct:__anon5::__anon6::__anon10
-F3R2	include\stm8s.h	2141;"	member	struct:__anon5::__anon6::__anon10
-F3R3	include\stm8s.h	2142;"	member	struct:__anon5::__anon6::__anon10
-F3R4	include\stm8s.h	2143;"	member	struct:__anon5::__anon6::__anon10
-F3R5	include\stm8s.h	2144;"	member	struct:__anon5::__anon6::__anon10
-F3R6	include\stm8s.h	2145;"	member	struct:__anon5::__anon6::__anon10
-F3R7	include\stm8s.h	2146;"	member	struct:__anon5::__anon6::__anon10
-F3R8	include\stm8s.h	2147;"	member	struct:__anon5::__anon6::__anon10
-F4R1	include\stm8s.h	2153;"	member	struct:__anon5::__anon6::__anon11
-F4R2	include\stm8s.h	2154;"	member	struct:__anon5::__anon6::__anon11
-F4R3	include\stm8s.h	2155;"	member	struct:__anon5::__anon6::__anon11
-F4R4	include\stm8s.h	2156;"	member	struct:__anon5::__anon6::__anon11
-F4R5	include\stm8s.h	2157;"	member	struct:__anon5::__anon6::__anon11
-F4R6	include\stm8s.h	2158;"	member	struct:__anon5::__anon6::__anon11
-F4R7	include\stm8s.h	2159;"	member	struct:__anon5::__anon6::__anon11
-F4R8	include\stm8s.h	2160;"	member	struct:__anon5::__anon6::__anon11
-F5R1	include\stm8s.h	2162;"	member	struct:__anon5::__anon6::__anon11
-F5R2	include\stm8s.h	2163;"	member	struct:__anon5::__anon6::__anon11
-F5R3	include\stm8s.h	2164;"	member	struct:__anon5::__anon6::__anon11
-F5R4	include\stm8s.h	2165;"	member	struct:__anon5::__anon6::__anon11
-F5R5	include\stm8s.h	2166;"	member	struct:__anon5::__anon6::__anon11
-F5R6	include\stm8s.h	2167;"	member	struct:__anon5::__anon6::__anon11
-F5R7	include\stm8s.h	2168;"	member	struct:__anon5::__anon6::__anon11
-F5R8	include\stm8s.h	2169;"	member	struct:__anon5::__anon6::__anon11
-FALSE	include\stm8s.h	219;"	enumerator	enum:__anon1
+ErrorStatus	include\stm8s.h	226;"	typedef	typeref:enum:__anon5
+F0R1	include\stm8s.h	2109;"	member	struct:__anon6::__anon7::__anon10
+F0R2	include\stm8s.h	2110;"	member	struct:__anon6::__anon7::__anon10
+F0R3	include\stm8s.h	2111;"	member	struct:__anon6::__anon7::__anon10
+F0R4	include\stm8s.h	2112;"	member	struct:__anon6::__anon7::__anon10
+F0R5	include\stm8s.h	2113;"	member	struct:__anon6::__anon7::__anon10
+F0R6	include\stm8s.h	2114;"	member	struct:__anon6::__anon7::__anon10
+F0R7	include\stm8s.h	2115;"	member	struct:__anon6::__anon7::__anon10
+F0R8	include\stm8s.h	2116;"	member	struct:__anon6::__anon7::__anon10
+F1R1	include\stm8s.h	2118;"	member	struct:__anon6::__anon7::__anon10
+F1R2	include\stm8s.h	2119;"	member	struct:__anon6::__anon7::__anon10
+F1R3	include\stm8s.h	2120;"	member	struct:__anon6::__anon7::__anon10
+F1R4	include\stm8s.h	2121;"	member	struct:__anon6::__anon7::__anon10
+F1R5	include\stm8s.h	2122;"	member	struct:__anon6::__anon7::__anon10
+F1R6	include\stm8s.h	2123;"	member	struct:__anon6::__anon7::__anon10
+F1R7	include\stm8s.h	2124;"	member	struct:__anon6::__anon7::__anon10
+F1R8	include\stm8s.h	2125;"	member	struct:__anon6::__anon7::__anon10
+F2R1	include\stm8s.h	2131;"	member	struct:__anon6::__anon7::__anon11
+F2R2	include\stm8s.h	2132;"	member	struct:__anon6::__anon7::__anon11
+F2R3	include\stm8s.h	2133;"	member	struct:__anon6::__anon7::__anon11
+F2R4	include\stm8s.h	2134;"	member	struct:__anon6::__anon7::__anon11
+F2R5	include\stm8s.h	2135;"	member	struct:__anon6::__anon7::__anon11
+F2R6	include\stm8s.h	2136;"	member	struct:__anon6::__anon7::__anon11
+F2R7	include\stm8s.h	2137;"	member	struct:__anon6::__anon7::__anon11
+F2R8	include\stm8s.h	2138;"	member	struct:__anon6::__anon7::__anon11
+F3R1	include\stm8s.h	2140;"	member	struct:__anon6::__anon7::__anon11
+F3R2	include\stm8s.h	2141;"	member	struct:__anon6::__anon7::__anon11
+F3R3	include\stm8s.h	2142;"	member	struct:__anon6::__anon7::__anon11
+F3R4	include\stm8s.h	2143;"	member	struct:__anon6::__anon7::__anon11
+F3R5	include\stm8s.h	2144;"	member	struct:__anon6::__anon7::__anon11
+F3R6	include\stm8s.h	2145;"	member	struct:__anon6::__anon7::__anon11
+F3R7	include\stm8s.h	2146;"	member	struct:__anon6::__anon7::__anon11
+F3R8	include\stm8s.h	2147;"	member	struct:__anon6::__anon7::__anon11
+F4R1	include\stm8s.h	2153;"	member	struct:__anon6::__anon7::__anon12
+F4R2	include\stm8s.h	2154;"	member	struct:__anon6::__anon7::__anon12
+F4R3	include\stm8s.h	2155;"	member	struct:__anon6::__anon7::__anon12
+F4R4	include\stm8s.h	2156;"	member	struct:__anon6::__anon7::__anon12
+F4R5	include\stm8s.h	2157;"	member	struct:__anon6::__anon7::__anon12
+F4R6	include\stm8s.h	2158;"	member	struct:__anon6::__anon7::__anon12
+F4R7	include\stm8s.h	2159;"	member	struct:__anon6::__anon7::__anon12
+F4R8	include\stm8s.h	2160;"	member	struct:__anon6::__anon7::__anon12
+F5R1	include\stm8s.h	2162;"	member	struct:__anon6::__anon7::__anon12
+F5R2	include\stm8s.h	2163;"	member	struct:__anon6::__anon7::__anon12
+F5R3	include\stm8s.h	2164;"	member	struct:__anon6::__anon7::__anon12
+F5R4	include\stm8s.h	2165;"	member	struct:__anon6::__anon7::__anon12
+F5R5	include\stm8s.h	2166;"	member	struct:__anon6::__anon7::__anon12
+F5R6	include\stm8s.h	2167;"	member	struct:__anon6::__anon7::__anon12
+F5R7	include\stm8s.h	2168;"	member	struct:__anon6::__anon7::__anon12
+F5R8	include\stm8s.h	2169;"	member	struct:__anon6::__anon7::__anon12
+FALSE	include\stm8s.h	219;"	enumerator	enum:__anon2
 FAR	include\stm8s.h	112;"	macro
 FAR	include\stm8s.h	118;"	macro
 FAR	include\stm8s.h	132;"	macro
-FCR1	include\stm8s.h	2184;"	member	struct:__anon5::__anon6::__anon12
-FCR2	include\stm8s.h	2185;"	member	struct:__anon5::__anon6::__anon12
-FCR3	include\stm8s.h	2186;"	member	struct:__anon5::__anon6::__anon12
+FCR1	include\stm8s.h	2184;"	member	struct:__anon6::__anon7::__anon13
+FCR2	include\stm8s.h	2185;"	member	struct:__anon6::__anon7::__anon13
+FCR3	include\stm8s.h	2186;"	member	struct:__anon6::__anon7::__anon13
 FLASH	include\stm8s.h	2512;"	macro
 FLASH_BaseAddress	include\stm8s.h	2456;"	macro
 FLASH_CR1_AHALT	include\stm8s.h	1534;"	macro
@@ -578,32 +578,32 @@ FLASH_PUKR_PUK	include\stm8s.h	1556;"	macro
 FLASH_PUKR_RESET_VALUE	include\stm8s.h	1522;"	macro
 FLASH_TypeDef	include\stm8s.h	1512;"	typedef	typeref:struct:FLASH_struct
 FLASH_struct	include\stm8s.h	1498;"	struct
-FMR1	include\stm8s.h	2182;"	member	struct:__anon5::__anon6::__anon12
-FMR2	include\stm8s.h	2183;"	member	struct:__anon5::__anon6::__anon12
+FMR1	include\stm8s.h	2182;"	member	struct:__anon6::__anon7::__anon13
+FMR2	include\stm8s.h	2183;"	member	struct:__anon6::__anon7::__anon13
 FPR	include\stm8s.h	1503;"	member	struct:FLASH_struct
-FR01	include\stm8s.h	2086;"	member	struct:__anon5::__anon6::__anon8
-FR02	include\stm8s.h	2087;"	member	struct:__anon5::__anon6::__anon8
-FR03	include\stm8s.h	2088;"	member	struct:__anon5::__anon6::__anon8
-FR04	include\stm8s.h	2089;"	member	struct:__anon5::__anon6::__anon8
-FR05	include\stm8s.h	2090;"	member	struct:__anon5::__anon6::__anon8
-FR06	include\stm8s.h	2091;"	member	struct:__anon5::__anon6::__anon8
-FR07	include\stm8s.h	2092;"	member	struct:__anon5::__anon6::__anon8
-FR08	include\stm8s.h	2093;"	member	struct:__anon5::__anon6::__anon8
-FR09	include\stm8s.h	2095;"	member	struct:__anon5::__anon6::__anon8
-FR10	include\stm8s.h	2096;"	member	struct:__anon5::__anon6::__anon8
-FR11	include\stm8s.h	2097;"	member	struct:__anon5::__anon6::__anon8
-FR12	include\stm8s.h	2098;"	member	struct:__anon5::__anon6::__anon8
-FR13	include\stm8s.h	2099;"	member	struct:__anon5::__anon6::__anon8
-FR14	include\stm8s.h	2100;"	member	struct:__anon5::__anon6::__anon8
-FR15	include\stm8s.h	2101;"	member	struct:__anon5::__anon6::__anon8
-FR16	include\stm8s.h	2102;"	member	struct:__anon5::__anon6::__anon8
+FR01	include\stm8s.h	2086;"	member	struct:__anon6::__anon7::__anon9
+FR02	include\stm8s.h	2087;"	member	struct:__anon6::__anon7::__anon9
+FR03	include\stm8s.h	2088;"	member	struct:__anon6::__anon7::__anon9
+FR04	include\stm8s.h	2089;"	member	struct:__anon6::__anon7::__anon9
+FR05	include\stm8s.h	2090;"	member	struct:__anon6::__anon7::__anon9
+FR06	include\stm8s.h	2091;"	member	struct:__anon6::__anon7::__anon9
+FR07	include\stm8s.h	2092;"	member	struct:__anon6::__anon7::__anon9
+FR08	include\stm8s.h	2093;"	member	struct:__anon6::__anon7::__anon9
+FR09	include\stm8s.h	2095;"	member	struct:__anon6::__anon7::__anon9
+FR10	include\stm8s.h	2096;"	member	struct:__anon6::__anon7::__anon9
+FR11	include\stm8s.h	2097;"	member	struct:__anon6::__anon7::__anon9
+FR12	include\stm8s.h	2098;"	member	struct:__anon6::__anon7::__anon9
+FR13	include\stm8s.h	2099;"	member	struct:__anon6::__anon7::__anon9
+FR14	include\stm8s.h	2100;"	member	struct:__anon6::__anon7::__anon9
+FR15	include\stm8s.h	2101;"	member	struct:__anon6::__anon7::__anon9
+FR16	include\stm8s.h	2102;"	member	struct:__anon6::__anon7::__anon9
 FREQR	include\stm8s.h	1316;"	member	struct:I2C_struct
-Filter	include\stm8s.h	2104;"	member	union:__anon5::__anon6	typeref:struct:__anon5::__anon6::__anon8
-Filter01	include\stm8s.h	2127;"	member	union:__anon5::__anon6	typeref:struct:__anon5::__anon6::__anon9
-Filter23	include\stm8s.h	2149;"	member	union:__anon5::__anon6	typeref:struct:__anon5::__anon6::__anon10
-Filter45	include\stm8s.h	2171;"	member	union:__anon5::__anon6	typeref:struct:__anon5::__anon6::__anon11
-FlagStatus	include\stm8s.h	221;"	typedef	typeref:enum:__anon2
-FunctionalState	include\stm8s.h	223;"	typedef	typeref:enum:__anon3
+Filter	include\stm8s.h	2104;"	member	union:__anon6::__anon7	typeref:struct:__anon6::__anon7::__anon9
+Filter01	include\stm8s.h	2127;"	member	union:__anon6::__anon7	typeref:struct:__anon6::__anon7::__anon10
+Filter23	include\stm8s.h	2149;"	member	union:__anon6::__anon7	typeref:struct:__anon6::__anon7::__anon11
+Filter45	include\stm8s.h	2171;"	member	union:__anon6::__anon7	typeref:struct:__anon6::__anon7::__anon12
+FlagStatus	include\stm8s.h	221;"	typedef	typeref:enum:__anon3
+FunctionalState	include\stm8s.h	223;"	typedef	typeref:enum:__anon4
 GCR	include\stm8s.h	2410;"	member	struct:CFG_struct
 GPIOA	include\stm8s.h	2516;"	macro
 GPIOA_BaseAddress	include\stm8s.h	2447;"	macro
@@ -700,7 +700,7 @@ IDR	include\stm8s.h	256;"	member	struct:GPIO_struct
 IER	include\stm8s.h	1049;"	member	struct:TIM4_struct
 IER	include\stm8s.h	1110;"	member	struct:TIM5_struct
 IER	include\stm8s.h	1249;"	member	struct:TIM6_struct
-IER	include\stm8s.h	2057;"	member	struct:__anon5
+IER	include\stm8s.h	2057;"	member	struct:__anon6
 IER	include\stm8s.h	602;"	member	struct:TIM1_struct
 IER	include\stm8s.h	815;"	member	struct:TIM2_struct
 IER	include\stm8s.h	939;"	member	struct:TIM3_struct
@@ -732,7 +732,7 @@ ITC_SPRX_RESET_VALUE	include\stm8s.h	1436;"	macro
 ITC_TypeDef	include\stm8s.h	1430;"	typedef	typeref:struct:ITC_struct
 ITC_struct	include\stm8s.h	1419;"	struct
 ITR	include\stm8s.h	1324;"	member	struct:I2C_struct
-ITStatus	include\stm8s.h	221;"	typedef	typeref:enum:__anon2
+ITStatus	include\stm8s.h	221;"	typedef	typeref:enum:__anon3
 IWDG	include\stm8s.h	2542;"	macro
 IWDG_BaseAddress	include\stm8s.h	2461;"	macro
 IWDG_PR_RESET_VALUE	include\stm8s.h	1605;"	macro
@@ -744,54 +744,54 @@ LSI_VALUE	include\stm8s.h	109;"	macro
 LTRH	include\stm8s.h	315;"	member	struct:ADC1_struct
 LTRL	include\stm8s.h	316;"	member	struct:ADC1_struct
 MB_CUR_MAX	c:\program files\cosmic\cxstm8_32k\hstm8\stdlib.h	9;"	macro
-MCR	include\stm8s.h	2052;"	member	struct:__anon5
-MCSR	include\stm8s.h	2065;"	member	struct:__anon5::__anon6::__anon7
-MDAR1	include\stm8s.h	2071;"	member	struct:__anon5::__anon6::__anon7
-MDAR1	include\stm8s.h	2199;"	member	struct:__anon5::__anon6::__anon13
-MDAR2	include\stm8s.h	2072;"	member	struct:__anon5::__anon6::__anon7
-MDAR2	include\stm8s.h	2200;"	member	struct:__anon5::__anon6::__anon13
-MDAR3	include\stm8s.h	2073;"	member	struct:__anon5::__anon6::__anon7
-MDAR3	include\stm8s.h	2201;"	member	struct:__anon5::__anon6::__anon13
-MDAR4	include\stm8s.h	2074;"	member	struct:__anon5::__anon6::__anon7
-MDAR4	include\stm8s.h	2202;"	member	struct:__anon5::__anon6::__anon13
-MDAR5	include\stm8s.h	2075;"	member	struct:__anon5::__anon6::__anon7
-MDAR5	include\stm8s.h	2203;"	member	struct:__anon5::__anon6::__anon13
-MDAR6	include\stm8s.h	2076;"	member	struct:__anon5::__anon6::__anon7
-MDAR6	include\stm8s.h	2204;"	member	struct:__anon5::__anon6::__anon13
-MDAR7	include\stm8s.h	2077;"	member	struct:__anon5::__anon6::__anon7
-MDAR7	include\stm8s.h	2205;"	member	struct:__anon5::__anon6::__anon13
-MDAR8	include\stm8s.h	2078;"	member	struct:__anon5::__anon6::__anon7
-MDAR8	include\stm8s.h	2206;"	member	struct:__anon5::__anon6::__anon13
-MDLCR	include\stm8s.h	2066;"	member	struct:__anon5::__anon6::__anon7
-MDLCR	include\stm8s.h	2194;"	member	struct:__anon5::__anon6::__anon13
+MCR	include\stm8s.h	2052;"	member	struct:__anon6
+MCSR	include\stm8s.h	2065;"	member	struct:__anon6::__anon7::__anon8
+MDAR1	include\stm8s.h	2071;"	member	struct:__anon6::__anon7::__anon8
+MDAR1	include\stm8s.h	2199;"	member	struct:__anon6::__anon7::__anon14
+MDAR2	include\stm8s.h	2072;"	member	struct:__anon6::__anon7::__anon8
+MDAR2	include\stm8s.h	2200;"	member	struct:__anon6::__anon7::__anon14
+MDAR3	include\stm8s.h	2073;"	member	struct:__anon6::__anon7::__anon8
+MDAR3	include\stm8s.h	2201;"	member	struct:__anon6::__anon7::__anon14
+MDAR4	include\stm8s.h	2074;"	member	struct:__anon6::__anon7::__anon8
+MDAR4	include\stm8s.h	2202;"	member	struct:__anon6::__anon7::__anon14
+MDAR5	include\stm8s.h	2075;"	member	struct:__anon6::__anon7::__anon8
+MDAR5	include\stm8s.h	2203;"	member	struct:__anon6::__anon7::__anon14
+MDAR6	include\stm8s.h	2076;"	member	struct:__anon6::__anon7::__anon8
+MDAR6	include\stm8s.h	2204;"	member	struct:__anon6::__anon7::__anon14
+MDAR7	include\stm8s.h	2077;"	member	struct:__anon6::__anon7::__anon8
+MDAR7	include\stm8s.h	2205;"	member	struct:__anon6::__anon7::__anon14
+MDAR8	include\stm8s.h	2078;"	member	struct:__anon6::__anon7::__anon8
+MDAR8	include\stm8s.h	2206;"	member	struct:__anon6::__anon7::__anon14
+MDLCR	include\stm8s.h	2066;"	member	struct:__anon6::__anon7::__anon8
+MDLCR	include\stm8s.h	2194;"	member	struct:__anon6::__anon7::__anon14
 MEMCPY	include\stm8s.h	126;"	macro
 MEMCPY	include\stm8s.h	129;"	macro
-MFMI	include\stm8s.h	2193;"	member	struct:__anon5::__anon6::__anon13
-MIDR1	include\stm8s.h	2067;"	member	struct:__anon5::__anon6::__anon7
-MIDR1	include\stm8s.h	2195;"	member	struct:__anon5::__anon6::__anon13
-MIDR2	include\stm8s.h	2068;"	member	struct:__anon5::__anon6::__anon7
-MIDR2	include\stm8s.h	2196;"	member	struct:__anon5::__anon6::__anon13
-MIDR3	include\stm8s.h	2069;"	member	struct:__anon5::__anon6::__anon7
-MIDR3	include\stm8s.h	2197;"	member	struct:__anon5::__anon6::__anon13
-MIDR4	include\stm8s.h	2070;"	member	struct:__anon5::__anon6::__anon7
-MIDR4	include\stm8s.h	2198;"	member	struct:__anon5::__anon6::__anon13
-MLS_GPRS	modem.h	11;"	enumerator	enum:__anon23
-MLS_LINKED	modem.h	11;"	enumerator	enum:__anon23
-MLS_UNKNOWN	modem.h	11;"	enumerator	enum:__anon23
-MLS_UNLINKED	modem.h	11;"	enumerator	enum:__anon23
-MPS_POWEROFF	modem.h	6;"	enumerator	enum:__anon22
-MPS_POWERON	modem.h	6;"	enumerator	enum:__anon22
-MSR	include\stm8s.h	2053;"	member	struct:__anon5
-MS_GPRS	modem.h	13;"	enumerator	enum:__anon24
-MS_LINKED	modem.h	13;"	enumerator	enum:__anon24
-MS_LINKED_INITIALIZED	modem.h	13;"	enumerator	enum:__anon24
-MS_POWEROFF	modem.h	13;"	enumerator	enum:__anon24
-MS_UNKNOWN	modem.h	13;"	enumerator	enum:__anon24
-MS_UNLINKED	modem.h	13;"	enumerator	enum:__anon24
-MTSRH	include\stm8s.h	2080;"	member	struct:__anon5::__anon6::__anon7
-MTSRH	include\stm8s.h	2208;"	member	struct:__anon5::__anon6::__anon13
-MTSRL	include\stm8s.h	2079;"	member	struct:__anon5::__anon6::__anon7
-MTSRL	include\stm8s.h	2207;"	member	struct:__anon5::__anon6::__anon13
+MFMI	include\stm8s.h	2193;"	member	struct:__anon6::__anon7::__anon14
+MIDR1	include\stm8s.h	2067;"	member	struct:__anon6::__anon7::__anon8
+MIDR1	include\stm8s.h	2195;"	member	struct:__anon6::__anon7::__anon14
+MIDR2	include\stm8s.h	2068;"	member	struct:__anon6::__anon7::__anon8
+MIDR2	include\stm8s.h	2196;"	member	struct:__anon6::__anon7::__anon14
+MIDR3	include\stm8s.h	2069;"	member	struct:__anon6::__anon7::__anon8
+MIDR3	include\stm8s.h	2197;"	member	struct:__anon6::__anon7::__anon14
+MIDR4	include\stm8s.h	2070;"	member	struct:__anon6::__anon7::__anon8
+MIDR4	include\stm8s.h	2198;"	member	struct:__anon6::__anon7::__anon14
+MLS_GPRS	modem.h	11;"	enumerator	enum:__anon24
+MLS_LINKED	modem.h	11;"	enumerator	enum:__anon24
+MLS_UNKNOWN	modem.h	11;"	enumerator	enum:__anon24
+MLS_UNLINKED	modem.h	11;"	enumerator	enum:__anon24
+MPS_POWEROFF	modem.h	6;"	enumerator	enum:__anon23
+MPS_POWERON	modem.h	6;"	enumerator	enum:__anon23
+MSR	include\stm8s.h	2053;"	member	struct:__anon6
+MS_GPRS	modem.h	13;"	enumerator	enum:__anon25
+MS_LINKED	modem.h	13;"	enumerator	enum:__anon25
+MS_LINKED_INITIALIZED	modem.h	13;"	enumerator	enum:__anon25
+MS_POWEROFF	modem.h	13;"	enumerator	enum:__anon25
+MS_UNKNOWN	modem.h	13;"	enumerator	enum:__anon25
+MS_UNLINKED	modem.h	13;"	enumerator	enum:__anon25
+MTSRH	include\stm8s.h	2080;"	member	struct:__anon6::__anon7::__anon8
+MTSRH	include\stm8s.h	2208;"	member	struct:__anon6::__anon7::__anon14
+MTSRL	include\stm8s.h	2079;"	member	struct:__anon6::__anon7::__anon8
+MTSRL	include\stm8s.h	2207;"	member	struct:__anon6::__anon7::__anon14
 MskBit	include\stm8s.h	2681;"	macro
 NCR2	include\stm8s.h	1502;"	member	struct:FLASH_struct
 NEAR	include\stm8s.h	113;"	macro
@@ -825,8 +825,8 @@ OPT_TypeDef	include\stm8s.h	1586;"	typedef	typeref:struct:OPT_struct
 OPT_struct	include\stm8s.h	1568;"	struct
 PCKENR1	include\stm8s.h	501;"	member	struct:CLK_struct
 PCKENR2	include\stm8s.h	504;"	member	struct:CLK_struct
-PDU2text	modem.c	433;"	function	signature:(char* text)
-PDU2text	modem.h	51;"	prototype	signature:(char* text)
+PDU2text	modem.c	436;"	function	signature:(char* text)
+PDU2text	modem.h	56;"	prototype	signature:(char* text)
 PR	include\stm8s.h	1596;"	member	struct:IWDG_struct
 PSCR	include\stm8s.h	1053;"	member	struct:TIM4_struct
 PSCR	include\stm8s.h	1121;"	member	struct:TIM5_struct
@@ -837,14 +837,14 @@ PSCR	include\stm8s.h	826;"	member	struct:TIM2_struct
 PSCR	include\stm8s.h	948;"	member	struct:TIM3_struct
 PSCRH	include\stm8s.h	614;"	member	struct:TIM1_struct
 PSCRL	include\stm8s.h	615;"	member	struct:TIM1_struct
-PSR	include\stm8s.h	2059;"	member	struct:__anon5
+PSR	include\stm8s.h	2059;"	member	struct:__anon6
 PUKR	include\stm8s.h	1508;"	member	struct:FLASH_struct
-Page	include\stm8s.h	2211;"	member	struct:__anon5	typeref:union:__anon5::__anon6
+Page	include\stm8s.h	2211;"	member	struct:__anon6	typeref:union:__anon6::__anon7
 PointerAttr	include\stm8s.h	146;"	macro
 PointerAttr	include\stm8s.h	149;"	macro
 RAND_MAX	c:\program files\cosmic\cxstm8_32k\hstm8\stdlib.h	10;"	macro
 RCR	include\stm8s.h	618;"	member	struct:TIM1_struct
-RECR	include\stm8s.h	2178;"	member	struct:__anon5::__anon6::__anon12
+RECR	include\stm8s.h	2178;"	member	struct:__anon6::__anon7::__anon13
 RESERVED	include\stm8s.h	1967;"	member	struct:UART3_struct
 RESERVED	include\stm8s.h	304;"	member	struct:ADC1_struct
 RESERVED	include\stm8s.h	379;"	member	struct:ADC2_struct
@@ -861,8 +861,8 @@ RESERVED2	include\stm8s.h	1507;"	member	struct:FLASH_struct
 RESERVED2	include\stm8s.h	1582;"	member	struct:OPT_struct
 RESERVED2	include\stm8s.h	813;"	member	struct:TIM2_struct
 RESERVED3	include\stm8s.h	1509;"	member	struct:FLASH_struct
-RESET	include\stm8s.h	221;"	enumerator	enum:__anon2
-RFR	include\stm8s.h	2056;"	member	struct:__anon5
+RESET	include\stm8s.h	221;"	enumerator	enum:__anon3
+RFR	include\stm8s.h	2056;"	member	struct:__anon6
 RLR	include\stm8s.h	1597;"	member	struct:IWDG_struct
 RST	include\stm8s.h	2539;"	macro
 RST_BaseAddress	include\stm8s.h	2458;"	macro
@@ -876,9 +876,9 @@ RST_struct	include\stm8s.h	1655;"	struct
 RXCRCR	include\stm8s.h	1688;"	member	struct:SPI_struct
 RX_BUFFER_1_SIZE	uart1.h	2;"	macro
 RX_BUFFER_3_SIZE	uart3.h	2;"	macro
-Reserved1	include\stm8s.h	2181;"	member	struct:__anon5::__anon6::__anon12
-Reserved2	include\stm8s.h	2187;"	member	struct:__anon5::__anon6::__anon12
-RxFIFO	include\stm8s.h	2210;"	member	union:__anon5::__anon6	typeref:struct:__anon5::__anon6::__anon13
+Reserved1	include\stm8s.h	2181;"	member	struct:__anon6::__anon7::__anon13
+Reserved2	include\stm8s.h	2187;"	member	struct:__anon6::__anon7::__anon13
+RxFIFO	include\stm8s.h	2210;"	member	union:__anon6::__anon7	typeref:struct:__anon6::__anon7::__anon14
 S16_MAX	include\stm8s.h	232;"	macro
 S16_MIN	include\stm8s.h	233;"	macro
 S32_MAX	include\stm8s.h	235;"	macro
@@ -893,7 +893,7 @@ SDA_HIGH	i2c.h	10;"	macro
 SDA_INIT	i2c.h	3;"	macro
 SDA_LOW	i2c.h	11;"	macro
 SDA_PIN	i2c.h	12;"	macro
-SET	include\stm8s.h	221;"	enumerator	enum:__anon2
+SET	include\stm8s.h	221;"	enumerator	enum:__anon3
 SMCR	include\stm8s.h	1109;"	member	struct:TIM5_struct
 SMCR	include\stm8s.h	1248;"	member	struct:TIM6_struct
 SMCR	include\stm8s.h	600;"	member	struct:TIM1_struct
@@ -953,7 +953,7 @@ SR2	include\stm8s.h	941;"	member	struct:TIM3_struct
 SR3	include\stm8s.h	1323;"	member	struct:I2C_struct
 STM8S007	include\stm8s.h	35;"	macro
 STRINGVECTOR	include\stm8s.h	2643;"	macro
-SUCCESS	include\stm8s.h	226;"	enumerator	enum:__anon4
+SUCCESS	include\stm8s.h	226;"	enumerator	enum:__anon5
 SWCR	include\stm8s.h	499;"	member	struct:CLK_struct
 SWIMCCR	include\stm8s.h	507;"	member	struct:CLK_struct
 SWR	include\stm8s.h	498;"	member	struct:CLK_struct
@@ -965,7 +965,7 @@ TDRH	include\stm8s.h	311;"	member	struct:ADC1_struct
 TDRH	include\stm8s.h	382;"	member	struct:ADC2_struct
 TDRL	include\stm8s.h	312;"	member	struct:ADC1_struct
 TDRL	include\stm8s.h	383;"	member	struct:ADC2_struct
-TECR	include\stm8s.h	2177;"	member	struct:__anon5::__anon6::__anon12
+TECR	include\stm8s.h	2177;"	member	struct:__anon6::__anon7::__anon13
 TIM1	include\stm8s.h	2561;"	macro
 TIM1_ARRH_ARR	include\stm8s.h	765;"	macro
 TIM1_ARRH_RESET_VALUE	include\stm8s.h	655;"	macro
@@ -1241,7 +1241,7 @@ TIM4_PSCR_RESET_VALUE	include\stm8s.h	1067;"	macro
 TIM4_SR1_RESET_VALUE	include\stm8s.h	1064;"	macro
 TIM4_SR1_UIF	include\stm8s.h	1086;"	macro
 TIM4_TypeDef	include\stm8s.h	1056;"	typedef	typeref:struct:TIM4_struct
-TIM4_UPD_Interrupt	main.c	1375;"	function	signature:(void)
+TIM4_UPD_Interrupt	main.c	1388;"	function	signature:(void)
 TIM4_UPD_Interrupt	stm8_interrupt_vector.c	24;"	prototype	file:	signature:(void)
 TIM4_struct	include\stm8s.h	1042;"	struct
 TIM5	include\stm8s.h	2581;"	macro
@@ -1356,23 +1356,23 @@ TIM6_struct	include\stm8s.h	1244;"	struct
 TINY	include\stm8s.h	114;"	macro
 TINY	include\stm8s.h	120;"	macro
 TINY	include\stm8s.h	134;"	macro
-TPR	include\stm8s.h	2055;"	member	struct:__anon5
+TPR	include\stm8s.h	2055;"	member	struct:__anon6
 TRISER	include\stm8s.h	1327;"	member	struct:I2C_struct
-TRUE	include\stm8s.h	219;"	enumerator	enum:__anon1
-TSR	include\stm8s.h	2054;"	member	struct:__anon5
+TRUE	include\stm8s.h	219;"	enumerator	enum:__anon2
+TSR	include\stm8s.h	2054;"	member	struct:__anon6
 TXCRCR	include\stm8s.h	1689;"	member	struct:SPI_struct
 TX_BUFFER_1_SIZE	uart1.h	3;"	macro
-TxMailbox	include\stm8s.h	2082;"	member	union:__anon5::__anon6	typeref:struct:__anon5::__anon6::__anon7
+TxMailbox	include\stm8s.h	2082;"	member	union:__anon6::__anon7	typeref:struct:__anon6::__anon7::__anon8
 U16_MAX	include\stm8s.h	231;"	macro
 U32_MAX	include\stm8s.h	234;"	macro
 U8_MAX	include\stm8s.h	228;"	macro
 UART1	include\stm8s.h	2549;"	macro
 UART1RxInterrupt	stm8_interrupt_vector.c	22;"	prototype	file:	signature:(void)
-UART1RxInterrupt	uart1.c	54;"	function	signature:(void)
-UART1RxInterrupt	uart1.h	26;"	prototype	signature:(void)
+UART1RxInterrupt	uart1.c	58;"	function	signature:(void)
+UART1RxInterrupt	uart1.h	27;"	prototype	signature:(void)
 UART1TxInterrupt	stm8_interrupt_vector.c	21;"	prototype	file:	signature:(void)
-UART1TxInterrupt	uart1.c	84;"	function	signature:(void)
-UART1TxInterrupt	uart1.h	28;"	prototype	signature:(void)
+UART1TxInterrupt	uart1.c	94;"	function	signature:(void)
+UART1TxInterrupt	uart1.h	29;"	prototype	signature:(void)
 UART1_BRR1_DIVM	include\stm8s.h	1799;"	macro
 UART1_BRR1_RESET_VALUE	include\stm8s.h	1772;"	macro
 UART1_BRR2_DIVF	include\stm8s.h	1802;"	macro
@@ -1605,10 +1605,12 @@ b1Hz	main.c	51;"	variable
 b2Hz	main.c	51;"	variable
 b5Hz	main.c	51;"	variable
 bERR	main.c	120;"	variable
+bERROR	uart1.c	25;"	variable
 bFL1	main.c	70;"	variable
 bFL2	main.c	70;"	variable
 bFL5	main.c	70;"	variable
 bFL_	main.c	70;"	variable
+bOK	uart1.c	24;"	variable
 bRXIN1	uart1.c	17;"	variable
 bRXIN3	uart3.c	11;"	variable
 bWARN	main.c	121;"	variable
@@ -1621,10 +1623,10 @@ beep_drv	main.c	184;"	function	signature:(void)
 beep_drv_cnt	main.c	116;"	variable
 bin2bcd_int	lowlev.c	202;"	function	signature:(unsigned short in)
 bin2bcd_int	lowlev.h	50;"	prototype	signature:(unsigned short in)
-bool	include\stm8s.h	219;"	typedef	typeref:enum:__anon1
-buferBodyToSendPDUSMS	modem.c	29;"	variable
-buferBodyToSendPDUSMS__	modem.c	30;"	variable
-buferHeadToSendPDUSMS	modem.c	28;"	variable
+bool	include\stm8s.h	219;"	typedef	typeref:enum:__anon2
+buferBodyToSendPDUSMS	modem.c	31;"	variable
+buferBodyToSendPDUSMS__	modem.c	32;"	variable
+buferHeadToSendPDUSMS	modem.c	30;"	variable
 buff_for_time	main.c	90;"	variable
 but	lowlev.c	9;"	variable
 but0_cnt	lowlev.c	11;"	variable
@@ -1652,6 +1654,7 @@ but_onL_temp	lowlev.c	13;"	variable
 but_s	lowlev.c	9;"	variable
 c_ind	main.c	67;"	variable
 calloc	c:\program files\cosmic\cxstm8_32k\hstm8\stdlib.h	40;"	prototype	signature:(unsigned int nelem, unsigned int elsize)
+cell	uart1.c	28;"	variable
 clear_ind	lowlev.c	145;"	function	signature:(void)
 clear_ind	lowlev.h	38;"	prototype	signature:(void)
 cntAirSensorLineErrorHi	main.c	126;"	variable
@@ -1666,29 +1669,36 @@ disableInterrupts	include\stm8s.h	2602;"	macro
 disableInterrupts	include\stm8s.h	2611;"	macro
 disableInterrupts	include\stm8s.h	2621;"	macro
 div	c:\program files\cosmic\cxstm8_32k\hstm8\stdlib.h	41;"	prototype	signature:(int numer, int denom)
-div_t	c:\program files\cosmic\cxstm8_32k\hstm8\stdlib.h	29;"	typedef	typeref:struct:__anon14
+div_t	c:\program files\cosmic\cxstm8_32k\hstm8\stdlib.h	29;"	typedef	typeref:struct:__anon15
 ds18b20ErrorHiCnt	ds18b20.c	7;"	variable
 ds18b20ErrorLoCnt	ds18b20.c	8;"	variable
 ds18b20ErrorOffCnt	ds18b20.c	9;"	variable
 ds18b20_temper_drv	ds18b20.c	15;"	function	signature:(void)
 ds18b20_temper_drv	ds18b20.h	13;"	prototype	signature:(void)
-dsesHI	ds18b20.h	6;"	enumerator	enum:__anon16
-dsesLO	ds18b20.h	6;"	enumerator	enum:__anon16
-dsesNORM	ds18b20.h	6;"	enumerator	enum:__anon16
+dsesHI	ds18b20.h	6;"	enumerator	enum:__anon17
+dsesLO	ds18b20.h	6;"	enumerator	enum:__anon17
+dsesNORM	ds18b20.h	6;"	enumerator	enum:__anon17
+dummy	modem.c	42;"	member	struct:__anon1	file:
 eepera	c:\program files\cosmic\cxstm8_32k\hstm8\string.h	35;"	macro
 enableInterrupts	include\stm8s.h	2601;"	macro
 enableInterrupts	include\stm8s.h	2610;"	macro
 enableInterrupts	include\stm8s.h	2620;"	macro
-enumDsErrorStat	ds18b20.h	6;"	typedef	typeref:enum:__anon16
-enumTemperOfAirErrorStat	main.h	97;"	typedef	typeref:enum:__anon21
-enum_modemLinkState	modem.h	11;"	typedef	typeref:enum:__anon23
-enum_modemPowerState	modem.h	6;"	typedef	typeref:enum:__anon22
-enum_modemState	modem.h	13;"	typedef	typeref:enum:__anon24
-enum_out_stat	main.h	75;"	typedef	typeref:enum:__anon20
-enum_power_stat	lowlev.h	16;"	typedef	typeref:enum:__anon17
+enumDsErrorStat	ds18b20.h	6;"	typedef	typeref:enum:__anon17
+enumTemperOfAirErrorStat	main.h	97;"	typedef	typeref:enum:__anon22
+enum_modemLinkState	modem.h	11;"	typedef	typeref:enum:__anon24
+enum_modemPowerState	modem.h	6;"	typedef	typeref:enum:__anon23
+enum_modemState	modem.h	13;"	typedef	typeref:enum:__anon25
+enum_out_stat	main.h	75;"	typedef	typeref:enum:__anon21
+enum_power_stat	lowlev.h	16;"	typedef	typeref:enum:__anon18
 error_warn_hndl	main.c	138;"	function	signature:(void)
 exit	c:\program files\cosmic\cxstm8_32k\hstm8\stdlib.h	42;"	prototype	signature:(int status)
 fiksRandom	main.c	47;"	variable
+find_empty_number_cell	modem.c	523;"	function	signature:(void)
+find_empty_number_cell	modem.h	65;"	prototype	signature:(void)
+find_number_in_text	modem.c	477;"	function	signature:(char* text)
+find_number_in_text	modem.h	59;"	prototype	signature:(char* text)
+find_this_number_in_autorized	modem.c	493;"	function	signature:(char* number)
+find_this_number_in_autorized	modem.h	62;"	prototype	signature:(char* number)
 free	c:\program files\cosmic\cxstm8_32k\hstm8\stdlib.h	43;"	prototype	signature:(void *ptr)
 getchar	c:\program files\cosmic\cxstm8_32k\hstm8\stdio.h	15;"	prototype	signature:(void)
 gets	c:\program files\cosmic\cxstm8_32k\hstm8\stdio.h	16;"	prototype	signature:(char *s)
@@ -1701,7 +1711,7 @@ gran_uchar	lowlev.h	46;"	prototype	signature:(unsigned char *adr, unsigned char 
 halt	include\stm8s.h	2608;"	macro
 halt	include\stm8s.h	2617;"	macro
 halt	include\stm8s.h	2627;"	macro
-i	main.h	54;"	member	struct:__anon19
+i	main.h	54;"	member	struct:__anon20
 i2c_ReadAcknowledge	i2c.c	31;"	function	signature:(void)
 i2c_ReadAcknowledge	i2c.h	21;"	prototype	signature:(void)
 i2c_ReadByte	i2c.c	47;"	function	signature:(void)
@@ -1717,23 +1727,23 @@ i2c_Start	i2c.h	17;"	prototype	signature:(void)
 i2c_Stop	i2c.c	120;"	function	signature:(void)
 i2c_Stop	i2c.h	29;"	prototype	signature:(void)
 i2c_init	i2c.h	15;"	prototype	signature:(void)
-iDate_W	main.h	48;"	enumerator	enum:__anon18
-iDeb	main.h	48;"	enumerator	enum:__anon18
-iDefSet	main.h	48;"	enumerator	enum:__anon18
-iMn	main.h	48;"	enumerator	enum:__anon18
-iModem_deb	main.h	49;"	enumerator	enum:__anon18
-iSet	main.h	48;"	enumerator	enum:__anon18
-iSetT	main.h	48;"	enumerator	enum:__anon18
-iSetTable	main.h	48;"	enumerator	enum:__anon18
-iSetTable_	main.h	48;"	enumerator	enum:__anon18
-iSet_	main.h	48;"	enumerator	enum:__anon18
-iTemperSet	main.h	48;"	enumerator	enum:__anon18
-i_s	main.h	58;"	member	struct:__anon19
+iDate_W	main.h	48;"	enumerator	enum:__anon19
+iDeb	main.h	48;"	enumerator	enum:__anon19
+iDefSet	main.h	48;"	enumerator	enum:__anon19
+iMn	main.h	48;"	enumerator	enum:__anon19
+iModem_deb	main.h	49;"	enumerator	enum:__anon19
+iSet	main.h	48;"	enumerator	enum:__anon19
+iSetT	main.h	48;"	enumerator	enum:__anon19
+iSetTable	main.h	48;"	enumerator	enum:__anon19
+iSetTable_	main.h	48;"	enumerator	enum:__anon19
+iSet_	main.h	48;"	enumerator	enum:__anon19
+iTemperSet	main.h	48;"	enumerator	enum:__anon19
+i_s	main.h	58;"	member	struct:__anon20
 incommingNumber	uart1.c	18;"	variable
 incommingNumberToMain	uart1.c	19;"	variable
 ind	main.h	63;"	macro
 ind_cnt	main.c	56;"	variable
-ind_enum	main.h	50;"	typedef	typeref:enum:__anon18
+ind_enum	main.h	50;"	typedef	typeref:enum:__anon19
 ind_hndl	main.c	338;"	function	signature:(void)
 ind_hndl	main.h	136;"	prototype	signature:(void)
 ind_outB	main.c	57;"	variable
@@ -1775,7 +1785,7 @@ isxdigit	c:\program files\cosmic\cxstm8_32k\hstm8\ctype.h	20;"	prototype	signatu
 l_but	lowlev.c	10;"	variable
 labs	c:\program files\cosmic\cxstm8_32k\hstm8\stdlib.h	44;"	prototype	signature:(long l)
 ldiv	c:\program files\cosmic\cxstm8_32k\hstm8\stdlib.h	45;"	prototype	signature:(long numer, long denom)
-ldiv_t	c:\program files\cosmic\cxstm8_32k\hstm8\stdlib.h	34;"	typedef	typeref:struct:__anon15
+ldiv_t	c:\program files\cosmic\cxstm8_32k\hstm8\stdlib.h	34;"	typedef	typeref:struct:__anon16
 led_flash	lowlev.c	362;"	function	signature:(signed char led_num)
 led_flash	lowlev.h	74;"	prototype	signature:(signed char led_num)
 led_ind_out1	main.c	71;"	variable
@@ -1790,9 +1800,9 @@ led_on	lowlev.c	355;"	function	signature:(signed char led_num)
 led_on	lowlev.h	72;"	prototype	signature:(signed char led_num)
 led_set	lowlev.c	311;"	function	signature:(signed char led_num, signed char led_stat)
 led_set	lowlev.h	64;"	prototype	signature:(signed char led_num, signed char led_stat)
-lenPDUSMS	modem.c	31;"	variable
+lenPDUSMS	modem.c	33;"	variable
 lsqrt	c:\program files\cosmic\cxstm8_32k\hstm8\stdlib.h	54;"	prototype	signature:(unsigned long)
-main	main.c	1432;"	function
+main	main.c	1445;"	function
 mainCnt	main.c	53;"	variable
 malloc	c:\program files\cosmic\cxstm8_32k\hstm8\stdlib.h	46;"	prototype	signature:(unsigned int size)
 matemath	main.c	311;"	function	signature:(void)
@@ -1801,43 +1811,46 @@ memcmp	c:\program files\cosmic\cxstm8_32k\hstm8\string.h	22;"	prototype	signatur
 memcpy	c:\program files\cosmic\cxstm8_32k\hstm8\string.h	29;"	prototype	signature:(void *s1, void *s2, unsigned int n)
 memmove	c:\program files\cosmic\cxstm8_32k\hstm8\string.h	30;"	prototype	signature:(void *s1, void *s2, unsigned int n)
 memset	c:\program files\cosmic\cxstm8_32k\hstm8\string.h	31;"	prototype	signature:(void *s, char c, unsigned int n)
-modemDrvInitStepCnt	modem.c	19;"	variable
-modemDrvPDUSMSSendStepCnt	modem.c	21;"	variable
-modemDrvPowerStartCnt	modem.c	18;"	variable
-modemDrvTextSMSSendStepCnt	modem.c	20;"	variable
-modemLinkState	modem.c	15;"	variable
-modemPowerStatCnt	modem.c	11;"	variable
-modemPowerState	modem.c	12;"	variable
-modemStatCnt0	modem.c	9;"	variable
-modemState	modem.c	16;"	variable
-modem_drv	modem.c	152;"	function	signature:(void)
-modem_drv	modem.h	45;"	prototype	signature:(void)
-modem_gpio_init	modem.c	36;"	function	signature:(void)
-modem_gpio_init	modem.h	40;"	prototype	signature:(void)
-modem_plazma	uart1.c	28;"	variable
-modem_plazma1	uart1.c	29;"	variable
-modem_send_sms	modem.c	345;"	function	signature:(char mode, char *number, char *text)
-modem_send_sms	modem.h	47;"	prototype	signature:(char mode, char *number, char *text)
-modem_stat_drv	modem.c	65;"	function	signature:(void)
-modem_stat_drv	modem.h	43;"	prototype	signature:(void)
+mode	modem.c	41;"	member	struct:__anon1	file:
+modemDrvInitStepCnt	modem.c	21;"	variable
+modemDrvPDUSMSSendStepCnt	modem.c	23;"	variable
+modemDrvPowerStartCnt	modem.c	20;"	variable
+modemDrvTextSMSSendStepCnt	modem.c	22;"	variable
+modemLinkState	modem.c	17;"	variable
+modemPowerStatCnt	modem.c	13;"	variable
+modemPowerState	modem.c	14;"	variable
+modemStatCnt0	modem.c	11;"	variable
+modemState	modem.c	18;"	variable
+modem_drv	modem.c	165;"	function	signature:(void)
+modem_drv	modem.h	50;"	prototype	signature:(void)
+modem_gpio_init	modem.c	49;"	function	signature:(void)
+modem_gpio_init	modem.h	45;"	prototype	signature:(void)
+modem_plazma	uart1.c	32;"	variable
+modem_plazma1	uart1.c	33;"	variable
+modem_send_sms	modem.c	389;"	function	signature:(char mode, char *number, char *text)
+modem_send_sms	modem.h	52;"	prototype	signature:(char mode, char *number, char *text)
+modem_stat_drv	modem.c	78;"	function	signature:(void)
+modem_stat_drv	modem.h	48;"	prototype	signature:(void)
 n_but	lowlev.c	10;"	variable
-net_l_cnt_down	modem.c	13;"	variable
-net_l_cnt_one	modem.c	14;"	variable
-net_l_cnt_one_temp	modem.c	14;"	variable
-net_l_cnt_up	modem.c	13;"	variable
-net_l_cnt_zero	modem.c	14;"	variable
+net_l_cnt_down	modem.c	15;"	variable
+net_l_cnt_one	modem.c	16;"	variable
+net_l_cnt_one_temp	modem.c	16;"	variable
+net_l_cnt_up	modem.c	15;"	variable
+net_l_cnt_zero	modem.c	16;"	variable
 nop	include\stm8s.h	2605;"	macro
 nop	include\stm8s.h	2614;"	macro
 nop	include\stm8s.h	2624;"	macro
-numberToSendSMS	modem.c	25;"	variable
-numberToSendSMS_	modem.c	26;"	variable
-osOFF	main.h	75;"	enumerator	enum:__anon20
-osON	main.h	75;"	enumerator	enum:__anon20
+number	modem.c	40;"	member	struct:__anon1	file:
+numberToSendSMS	modem.c	27;"	variable
+numberToSendSMS_	modem.c	28;"	variable
+number_temp	uart1.c	27;"	variable
+osOFF	main.h	75;"	enumerator	enum:__anon21
+osON	main.h	75;"	enumerator	enum:__anon21
 out_drv	lowlev.c	26;"	function	signature:(void)
 out_drv	lowlev.h	30;"	prototype	signature:(void)
 out_mode	main.c	75;"	variable
 out_stat	main.c	75;"	variable
-phoneNumberForSMS	modem.c	22;"	variable
+phoneNumberForSMS	modem.c	24;"	variable
 powerNecc	main.c	111;"	variable
 powerNeccDelta	main.c	112;"	variable
 powerNeccOld	main.c	111;"	variable
@@ -1849,21 +1862,21 @@ power_stat_drv	lowlev.c	48;"	function	signature:(void)
 power_stat_drv	lowlev.h	32;"	prototype	signature:(void)
 power_stat_old	lowlev.c	17;"	variable
 printf	c:\program files\cosmic\cxstm8_32k\hstm8\stdio.h	17;"	prototype	signature:(char *format, ...)
-psOFF	lowlev.h	16;"	enumerator	enum:__anon17
-psON	lowlev.h	16;"	enumerator	enum:__anon17
+psOFF	lowlev.h	16;"	enumerator	enum:__anon18
+psON	lowlev.h	16;"	enumerator	enum:__anon18
 ptr1	uart3.c	16;"	variable
 ptr2	uart3.c	17;"	variable
-ptrTemp	modem.c	32;"	variable
-putchar	uart1.c	100;"	function	signature:(char c)
+ptrTemp	modem.c	34;"	variable
+putchar	uart1.c	110;"	function	signature:(char c)
 puts	c:\program files\cosmic\cxstm8_32k\hstm8\stdio.h	19;"	prototype	signature:(char *s)
-quot	c:\program files\cosmic\cxstm8_32k\hstm8\stdlib.h	27;"	member	struct:__anon14
-quot	c:\program files\cosmic\cxstm8_32k\hstm8\stdlib.h	32;"	member	struct:__anon15
+quot	c:\program files\cosmic\cxstm8_32k\hstm8\stdlib.h	27;"	member	struct:__anon15
+quot	c:\program files\cosmic\cxstm8_32k\hstm8\stdlib.h	32;"	member	struct:__anon16
 rand	c:\program files\cosmic\cxstm8_32k\hstm8\stdlib.h	47;"	prototype	signature:(void)
 random_gen	lowlev.c	369;"	function	signature:(void)
 random_gen	lowlev.h	76;"	prototype	signature:(void)
 realloc	c:\program files\cosmic\cxstm8_32k\hstm8\stdlib.h	48;"	prototype	signature:(void *ptr, unsigned int size)
-rem	c:\program files\cosmic\cxstm8_32k\hstm8\stdlib.h	28;"	member	struct:__anon14
-rem	c:\program files\cosmic\cxstm8_32k\hstm8\stdlib.h	33;"	member	struct:__anon15
+rem	c:\program files\cosmic\cxstm8_32k\hstm8\stdlib.h	28;"	member	struct:__anon15
+rem	c:\program files\cosmic\cxstm8_32k\hstm8\stdlib.h	33;"	member	struct:__anon16
 retCnt	lowlev.c	22;"	variable
 retStep	lowlev.c	23;"	variable
 ret_ind	lowlev.c	292;"	function	signature:(char r_c, char r_s)
@@ -1873,7 +1886,7 @@ ret_ind_hndl	lowlev.h	62;"	prototype	signature:(void)
 rim	include\stm8s.h	2603;"	macro
 rim	include\stm8s.h	2612;"	macro
 rim	include\stm8s.h	2622;"	macro
-russianText	modem.c	33;"	variable
+russianText	modem.c	35;"	variable
 rxBuffer1	uart1.c	10;"	variable
 rxBuffer3	uart3.c	8;"	variable
 rx_wr_index1	uart1.c	12;"	variable
@@ -1881,9 +1894,9 @@ rx_wr_index3	uart3.c	9;"	variable
 s16	include\stm8s.h	211;"	typedef
 s32	include\stm8s.h	210;"	typedef
 s8	include\stm8s.h	212;"	typedef
-s_i	main.h	55;"	member	struct:__anon19
-s_i1	main.h	56;"	member	struct:__anon19
-s_i2	main.h	57;"	member	struct:__anon19
+s_i	main.h	55;"	member	struct:__anon20
+s_i1	main.h	56;"	member	struct:__anon20
+s_i2	main.h	57;"	member	struct:__anon20
 scanf	c:\program files\cosmic\cxstm8_32k\hstm8\stdio.h	20;"	prototype	signature:(char *format, ...)
 sheduler_hndl	main.c	229;"	function	signature:(void)
 sim	include\stm8s.h	2604;"	macro
@@ -1891,6 +1904,11 @@ sim	include\stm8s.h	2613;"	macro
 sim	include\stm8s.h	2623;"	macro
 size_t	c:\program files\cosmic\cxstm8_32k\hstm8\stdio.h	10;"	typedef
 size_t	c:\program files\cosmic\cxstm8_32k\hstm8\stdlib.h	18;"	typedef
+smsFifo	modem.c	43;"	variable	typeref:struct:__anon1
+smsFifoRdPtr	modem.c	45;"	variable
+smsFifoWrPtr	modem.c	44;"	variable
+sms_fifo_drv	modem.c	533;"	function	signature:(void)
+sms_fifo_drv	modem.h	68;"	prototype	signature:(void)
 speed	lowlev.c	12;"	variable
 sprintf	c:\program files\cosmic\cxstm8_32k\hstm8\stdio.h	22;"	prototype	signature:(char *s, char *format, ...)
 srand	c:\program files\cosmic\cxstm8_32k\hstm8\stdlib.h	49;"	prototype	signature:(unsigned int seed)
@@ -1911,7 +1929,7 @@ strstr	c:\program files\cosmic\cxstm8_32k\hstm8\string.h	21;"	prototype	signatur
 strtod	c:\program files\cosmic\cxstm8_32k\hstm8\stdlib.h	50;"	prototype	signature:(char *s, char **endptr)
 strtol	c:\program files\cosmic\cxstm8_32k\hstm8\stdlib.h	51;"	prototype	signature:(char *s, char **endptr, int base)
 strtoul	c:\program files\cosmic\cxstm8_32k\hstm8\stdlib.h	58;"	macro
-struct_ind	main.h	59;"	typedef	typeref:struct:__anon19
+struct_ind	main.h	59;"	typedef	typeref:struct:__anon20
 sub_ind	main.h	64;"	macro
 sub_ind1	main.h	65;"	macro
 sub_ind2	main.h	66;"	macro
@@ -1920,24 +1938,27 @@ t0_cnt1	main.c	52;"	variable
 t0_cnt2	main.c	52;"	variable
 t0_cnt3	main.c	52;"	variable
 t0_cnt4	main.c	52;"	variable
-t4_init	main.c	1361;"	function	signature:(void)
+t4_init	main.c	1374;"	function	signature:(void)
 t4_init	main.h	138;"	prototype	signature:(void)
-taesHI	main.h	97;"	enumerator	enum:__anon21
-taesLHI	main.h	97;"	enumerator	enum:__anon21
-taesLLO	main.h	97;"	enumerator	enum:__anon21
-taesLO	main.h	97;"	enumerator	enum:__anon21
-taesNORM	main.h	97;"	enumerator	enum:__anon21
+taesHI	main.h	97;"	enumerator	enum:__anon22
+taesLHI	main.h	97;"	enumerator	enum:__anon22
+taesLLO	main.h	97;"	enumerator	enum:__anon22
+taesLO	main.h	97;"	enumerator	enum:__anon22
+taesNORM	main.h	97;"	enumerator	enum:__anon22
+tempRussianText	modem.c	36;"	variable
+tempStr	modem.c	46;"	variable
 tempUC	main.c	131;"	variable
 temperOfAir	main.c	80;"	variable
 temperOfWater	main.c	79;"	variable
 temperRegTo	main.c	82;"	variable
 temperRegToSheduler	main.c	83;"	variable
 temperToReg	main.c	81;"	variable
-text2PDU	modem.c	398;"	function	signature:(char* text, char* adr)
-text2PDU	modem.h	49;"	prototype	signature:(char* text, char* adr)
-textSMS	modem.c	23;"	variable
-textToSendPDUSMS	modem.c	27;"	variable
-textToSendSMS	modem.c	24;"	variable
+text	modem.c	39;"	member	struct:__anon1	file:
+text2PDU	modem.c	401;"	function	signature:(char* text, char* adr)
+text2PDU	modem.h	54;"	prototype	signature:(char* text, char* adr)
+textSMS	modem.c	25;"	variable
+textToSendPDUSMS	modem.c	29;"	variable
+textToSendSMS	modem.c	26;"	variable
 time_date	main.c	95;"	variable
 time_day_of_week	main.c	94;"	variable
 time_drv	main.c	214;"	function	signature:(void)
@@ -1963,11 +1984,11 @@ u16	include\stm8s.h	215;"	typedef
 u32	include\stm8s.h	214;"	typedef
 u8	include\stm8s.h	216;"	typedef
 uart1_an_buffer	uart1.c	16;"	variable
-uart1_in_an	uart1.c	116;"	function	signature:(void)
-uart1_in_an	uart1.h	30;"	prototype	signature:(void)
-uart1_init	uart1.c	35;"	function	signature:(void)
-uart1_init	uart1.h	24;"	prototype	signature:(void)
-uart1_plazma	uart1.c	27;"	variable
+uart1_in_an	uart1.c	126;"	function	signature:(void)
+uart1_in_an	uart1.h	31;"	prototype	signature:(void)
+uart1_init	uart1.c	39;"	function	signature:(void)
+uart1_init	uart1.h	25;"	prototype	signature:(void)
+uart1_plazma	uart1.c	31;"	variable
 uart3_an_buffer	uart3.c	10;"	variable
 uart3_in_an	uart3.c	62;"	function	signature:(void)
 uart3_in_an	uart3.h	19;"	prototype	signature:(void)

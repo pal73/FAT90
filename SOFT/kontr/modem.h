@@ -25,8 +25,13 @@ extern @near char numberToSendSMS_[20];							//Вспомогательная строка с номером
 extern @near char textToSendPDUSMS[70];							//Строка с текстом PDU SMS
 extern @near char buferHeadToSendPDUSMS[30];				//Буфер с началом пакета PDU
 extern @near char buferBodyToSendPDUSMS[350];				//Буфер с телом пакета PDU
-extern @near short lenPDUSMS;												//Длина пакета PDU
+extern @near short lenPDUSMS;										//Длина пакета PDU
 extern @near char russianText[70];									//Буфер для преобразованного русского текста
+extern @near struct smsFifo[10];									//Фифо для отправки СМС
+extern @near char smsFifoWrPtr;										//Указатель на ячейку ФИФО для записи
+extern @near char smsFifoRdPtr;										//Указатель на ячейку ФИФО для чтения
+extern @near char tempRussianText[70];								//Буфер для отправляемого русского текста
+extern @near char tempStr[30];
 
 
 
@@ -51,4 +56,14 @@ void text2PDU(char* text, char* adr);
 void PDU2text(char* text);
 //-----------------------------------------------
 //Поиск телефонного номера в тексте смс
-char find_number_in_text(char* text, char* number);
+char* find_number_in_text(char* text);
+//-----------------------------------------------
+//Поиск на наличие номера в авторизованных
+char find_this_number_in_autorized(char* number);
+//-----------------------------------------------
+//Поиск на наличие свободных ячеек памяти
+char find_empty_number_cell(void);
+//-----------------------------------------------
+//Драйвер ФИФО отправки смс
+void sms_fifo_drv(void);
+

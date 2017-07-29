@@ -6,6 +6,7 @@
 #include <stdlib.h>
 #include <ctype.h>
 #include "uart1.h"
+#include "main.h"
 
 char modemStatCnt0;
 
@@ -32,7 +33,18 @@ char *textSMS;																//Указатель не строку с текстом SMS
 @near short lenPDUSMS;													//Длина пакета PDU 
 @near char ptrTemp[30];
 @near char russianText[70];										//Буфер для преобразованного русского текста
-
+@near char tempRussianText[70];									//Буфер для отправляемого русского текста
+@near struct 													//Фифо для отправки СМС
+	{
+	char text[80];
+	char number[11];
+	char mode;
+	char dummy[8];
+	} smsFifo[10];
+@near char smsFifoWrPtr;										//Указатель на ячейку ФИФО для записи
+@near char smsFifoRdPtr;										//Указатель на ячейку ФИФО для чтения
+@near char tempStr[30];
+	
 //-----------------------------------------------
 void modem_gpio_init(void)
 {
@@ -352,72 +364,37 @@ else
 			}
 		else if(modemDrvPDUSMSSendStepCnt==14)
 			{
-			if(bOK)
+			if(bOK||bERROR)
 				{
 				printf("AT+CMGF=1\r");
-				modemDrvPDUSMSSendStepCnt=0;
+				modemDrvPDUSMSSendStepCnt++;
 				}
 			}
+		else if(modemDrvPDUSMSSendStepCnt==25)
+			{
+			modemDrvPDUSMSSendStepCnt=0;
+			}			
 		else
 			{
 			if(modemDrvPDUSMSSendStepCnt<1000)	modemDrvPDUSMSSendStepCnt++;
 			}			
 		}		
 	}
+bOK=0;
+bERROR=0;
 enableInterrupts();
 }
 
 //-----------------------------------------------
 void modem_send_sms(char mode, char *number, char *text)
 {
-if(mode=='t')
-	{
-	disableInterrupts();
-	numberToSendSMS[0]='\0';
-	strcat(numberToSendSMS,"+7");
-	strcat(numberToSendSMS,number);
-	
-	textToSendSMS[0]='\0';
-	strcat(textToSendSMS,text);
-	strcat(textToSendSMS,"\r");
-	
-	modemDrvTextSMSSendStepCnt=1;
-	enableInterrupts();
-	}
-else if(mode=='p')
-	{
-	disableInterrupts();
-	
-	numberToSendSMS_[0]=number[0];
-	numberToSendSMS_[1]='7';
-	numberToSendSMS_[2]=number[2];
-	numberToSendSMS_[3]=number[1];
-	numberToSendSMS_[4]=number[4];
-	numberToSendSMS_[5]=number[3];
-	numberToSendSMS_[6]=number[6];
-	numberToSendSMS_[7]=number[5];
-	numberToSendSMS_[8]=number[8];
-	numberToSendSMS_[9]=number[7];
-	numberToSendSMS_[10]='F';
-	numberToSendSMS_[11]=number[9];	
-	numberToSendSMS_[12]='\0';
-	
-	buferHeadToSendPDUSMS[0]='\0';
-	strcat(buferHeadToSendPDUSMS,"0001000B91");
-	strcat(buferHeadToSendPDUSMS,numberToSendSMS_);
-	strcat(buferHeadToSendPDUSMS,"0008");
-	//strcat(buferToSendPDUSMS,"000810041F0440043804320435044200210021");
-	text2PDU(text,buferBodyToSendPDUSMS);
-	/*Это максимальная смска в ПДУ режиме
-	strcpy(buferBodyToSendPDUSMS,"8C0410041004100410041004100410041004100410041004100410041004100411041204100410041004100410041004130414041504160410041004100410041704100410041704100413041404150416041004130414041504160410041304140415041604100413041404150416041004130414041504160410041304140415041604100413041404150416");//
-	lenPDUSMS=153;*/
-	modemDrvPDUSMSSendStepCnt=1;
-/*	printf("4004100410041004100410041004100410041004100410041004100410041004110412041004100410041004100410041304140415041604100410041004100417041004100410");*/
-	enableInterrupts();
-	
-		//printf("ABCDEFGHIJKLMN1ABCDEFGHIJKLMN2ABCDEFGHIJKLMN3ABCDEFGHIJKLMN4ABCDEFGHIJKLMN5");
-	//printf("ABCDEFGHIJKLMN6ABCDEFGHIJKLMN7ABCDEFGHIJKLMN8ABCDEFGHIJKLMN9");
-	}
+strncpy((char*)&(smsFifo[smsFifoWrPtr].text),text,70);
+strncpy((char*)&(smsFifo[smsFifoWrPtr].number),number,10);
+smsFifo[smsFifoWrPtr].mode=mode;
+
+smsFifoWrPtr++;
+if(smsFifoWrPtr>=10)smsFifoWrPtr=0;
+
 }
 
 //-----------------------------------------------
@@ -497,18 +474,115 @@ while(1)
 
 //-----------------------------------------------
 //Поиск телефонного номера в тексте смс
-char find_number_in_text(char* text, char* number)
+char* find_number_in_text(char* text)
 {
 char* ptr_temp;
 unsigned int len,firstDigit,lastDigit;
 len=strlen(text);
 firstDigit=strcspn(text,"1234567890");
-if(len==firstDigit) return 0;
+if(len==firstDigit) return NULL;
 
 ptr_temp=(char*)(text+firstDigit);
 lastDigit=strspn(ptr_temp,"1234567890");
-number=ptr_temp+lastDigit-10;
-return 1;
+//number=(char*)ptr_temp+lastDigit-10;
+return (char*)(ptr_temp+lastDigit-10);
 }
+
+//-----------------------------------------------
+//Поиск на наличие номера в авторизованных
+char find_this_number_in_autorized(char* number)
+{
+char *ttt;
+
+if(AUTH_NUMBER_FLAGS&0x01)
+	{
+	ttt=strstr(MAIN_NUMBER,number);	
+	if(ttt) return 1;
+	}
+if(AUTH_NUMBER_FLAGS&0x02)
+	{
+	ttt=strstr(AUTH_NUMBER_1,number);
+	if(ttt) return 1;
+	}
+if(AUTH_NUMBER_FLAGS&0x04)
+	{
+	ttt=strstr(AUTH_NUMBER_2,number);
+	if(ttt) return 1;
+	}
+if(AUTH_NUMBER_FLAGS&0x08)
+	{
+	ttt=strstr(AUTH_NUMBER_3,number);
+	if(ttt) return 1;
+	}
+return 0;
+	
+}
+
+//-----------------------------------------------
+//Поиск на наличие свободных ячеек памяти
+char find_empty_number_cell(void)
+{
+if((AUTH_NUMBER_FLAGS&0x02)==0) return 1;
+if((AUTH_NUMBER_FLAGS&0x04)==0) return 2;
+if((AUTH_NUMBER_FLAGS&0x08)==0) return 3;
+return 0;
+}
+
+//-----------------------------------------------
+//Драйвер ФИФО отправки смс
+void sms_fifo_drv(void)
+{
+if((!(modemState==MS_LINKED)||(modemState==MS_LINKED_INITIALIZED))||(modemDrvTextSMSSendStepCnt)||(modemDrvPDUSMSSendStepCnt)) return;
+
+if(smsFifoRdPtr!=smsFifoWrPtr)
+	{
+	if(smsFifo[smsFifoRdPtr].mode=='t')
+		{
+		disableInterrupts();
+		numberToSendSMS[0]='\0';
+		strcat(numberToSendSMS,"+7");
+		strcat(numberToSendSMS,smsFifo[smsFifoRdPtr].number);
+		
+		textToSendSMS[0]='\0';
+		strcat(textToSendSMS,smsFifo[smsFifoRdPtr].text);
+		strcat(textToSendSMS,"\r");
+		
+		modemDrvTextSMSSendStepCnt=1;
+		enableInterrupts();
+		}
+	else if(smsFifo[smsFifoRdPtr].mode=='p')
+		{
+		disableInterrupts();
+	
+		numberToSendSMS_[0]=smsFifo[smsFifoRdPtr].number[0];
+		numberToSendSMS_[1]='7';
+		numberToSendSMS_[2]=smsFifo[smsFifoRdPtr].number[2];
+		numberToSendSMS_[3]=smsFifo[smsFifoRdPtr].number[1];
+		numberToSendSMS_[4]=smsFifo[smsFifoRdPtr].number[4];
+		numberToSendSMS_[5]=smsFifo[smsFifoRdPtr].number[3];
+		numberToSendSMS_[6]=smsFifo[smsFifoRdPtr].number[6];
+		numberToSendSMS_[7]=smsFifo[smsFifoRdPtr].number[5];
+		numberToSendSMS_[8]=smsFifo[smsFifoRdPtr].number[8];
+		numberToSendSMS_[9]=smsFifo[smsFifoRdPtr].number[7];
+		numberToSendSMS_[10]='F';
+		numberToSendSMS_[11]=smsFifo[smsFifoRdPtr].number[9];	
+		numberToSendSMS_[12]='\0';
+	
+		buferHeadToSendPDUSMS[0]='\0';
+		strcat(buferHeadToSendPDUSMS,"0001000B91");
+		strcat(buferHeadToSendPDUSMS,numberToSendSMS_);
+		strcat(buferHeadToSendPDUSMS,"0008");
+	
+		text2PDU(smsFifo[smsFifoRdPtr].text,buferBodyToSendPDUSMS);
+		
+		modemDrvPDUSMSSendStepCnt=1;
+		
+		enableInterrupts();
+		}
+	smsFifoRdPtr++;
+	if(smsFifoRdPtr>=10)smsFifoRdPtr=0;
+	}
+}
+
 
 
