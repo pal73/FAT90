@@ -464,11 +464,11 @@ else if(ind==iSet_)
 		}
 	else if(sub_ind==1)
 		{
-		int2indII_slkuf(NECC_TEMPER_AIR_EE,0, 2, 0, 1, 1);
+		int2indII_slkuf(NECC_TEMPER_WATER_EE,0, 2, 0, 1, 1);
 		}	
 	else if(sub_ind==2)
 		{
-		int2indII_slkuf(NECC_TEMPER_WATER_EE,0, 2, 0, 1, 0);
+		int2indII_slkuf(NECC_TEMPER_AIR_EE,0, 2, 0, 1, 1);
 		}
 	else if(sub_ind==3)
 		{
@@ -682,6 +682,18 @@ else if(ind==iDefSet)
 	int2indI_slkuf(123,1, 3, 0, 0, 0);
 	int2indII_slkuf(4567,0, 4, 0, 0, 0);
 	}
+else if(ind==iMn_number)
+	{
+	led_mask_off(0x00);
+
+	int2indI_slkuf(rand_dig[0], 3, 1, 0, 0, 0);
+	int2indI_slkuf(rand_dig[1], 2, 1, 0, 0, 0);
+	int2indI_slkuf(rand_dig[2], 1, 1, 0, 0, 0);
+	int2indII_slkuf(rand_dig[3], 3, 1, 0, 0, 0);
+	int2indII_slkuf(rand_dig[4], 2, 1, 0, 0, 0);
+	int2indII_slkuf(rand_dig[5], 1, 1, 0, 0, 0);
+	int2indII_slkuf(rand_dig[6], 0, 1, 0, 0, 0);
+	}	
 
 if(bFL5)
 	{
@@ -1276,7 +1288,15 @@ else if(ind==iModem_deb)
 		//memcpy(AUTH_NUMBER_1,"9134863890",10);
 		//memcpy(AUTH_NUMBER_2,"9237328354",10);
 		//memcpy(AUTH_NUMBER_3,"xxxxxxxxxx",10);
-		}		
+		}	
+	else if(but==butUD_)
+		{
+		AUTH_NUMBER_FLAGS=0x0f;
+		memcpy(MAIN_NUMBER,"9139294352",10);
+		memcpy(AUTH_NUMBER_1,"9134863890",10);
+		memcpy(AUTH_NUMBER_2,"9237328354",10);
+		memcpy(AUTH_NUMBER_3,"11234567890",10);
+		}			
 	}
 	
 else if(ind==iDefSet)
@@ -1475,7 +1495,7 @@ modem_gpio_init();
 enableInterrupts();
 
 clear_ind();
-ind=iModem_deb;//iMn;
+ind=iMn;//iModem_deb;
 
 out_mode=osOFF;
 
@@ -1484,7 +1504,7 @@ bWARN=0;
 
 
 //PDU2text("043E0442043F044004300432044C0442043500200441043C04410031003200330034");
-
+//ODE_EE=1;
 while (1)
 	{
 	if(b100Hz)
@@ -1500,17 +1520,11 @@ while (1)
 	if(b10Hz)
 		{
 		b10Hz=0;
-		//ind_outB[2]=DIGISYM[3];
-		//int2indI_slkuf(time_sec,1, 3, 0, 1, 0);
+
 		ind_hndl();
-		//int2indI_slkuf(but,1, 3, 0, 1, 0);
-		//int2indII_slkuf(time_min,2, 2, 0, 0, 0);
-		//int2indII_slkuf(time_sec,0, 2, 0, 0, 0);
-		
 		uart3_in_an();
 		out_drv();
 		matemath();
-		
 		modem_drv();
 		sms_fifo_drv();
 		}

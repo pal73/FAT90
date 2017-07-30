@@ -33,7 +33,7 @@ char *textSMS;																//Указатель не строку с текстом SMS
 @near short lenPDUSMS;													//Длина пакета PDU 
 @near char ptrTemp[30];
 @near char russianText[70];										//Буфер для преобразованного русского текста
-@near char tempRussianText[70];									//Буфер для отправляемого русского текста
+@near char tempRussianText[90];									//Буфер для отправляемого русского текста
 @near struct 													//Фифо для отправки СМС
 	{
 	char text[80];
@@ -493,25 +493,30 @@ return (char*)(ptr_temp+lastDigit-10);
 char find_this_number_in_autorized(char* number)
 {
 char *ttt;
+char temp_tt[15];
 
 if(AUTH_NUMBER_FLAGS&0x01)
 	{
-	ttt=strstr(MAIN_NUMBER,number);	
+	strncpy(temp_tt,MAIN_NUMBER,10);	
+	ttt=strstr(temp_tt,number);	
 	if(ttt) return 1;
 	}
 if(AUTH_NUMBER_FLAGS&0x02)
 	{
-	ttt=strstr(AUTH_NUMBER_1,number);
+	strncpy(temp_tt,AUTH_NUMBER_1,10);
+	ttt=strstr(temp_tt,number);
 	if(ttt) return 1;
 	}
 if(AUTH_NUMBER_FLAGS&0x04)
 	{
-	ttt=strstr(AUTH_NUMBER_2,number);
+	strncpy(temp_tt,AUTH_NUMBER_2,10);		
+	ttt=strstr(temp_tt,number);
 	if(ttt) return 1;
 	}
 if(AUTH_NUMBER_FLAGS&0x08)
 	{
-	ttt=strstr(AUTH_NUMBER_3,number);
+	strncpy(temp_tt,AUTH_NUMBER_3,10);		
+	ttt=strstr(temp_tt,number);
 	if(ttt) return 1;
 	}
 return 0;

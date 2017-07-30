@@ -30,7 +30,7 @@ extern @near char russianText[70];									//Буфер для преобразованного русского
 extern @near struct smsFifo[10];									//Фифо для отправки СМС
 extern @near char smsFifoWrPtr;										//Указатель на ячейку ФИФО для записи
 extern @near char smsFifoRdPtr;										//Указатель на ячейку ФИФО для чтения
-extern @near char tempRussianText[70];								//Буфер для отправляемого русского текста
+extern @near char tempRussianText[90];								//Буфер для отправляемого русского текста
 extern @near char tempStr[30];
 
 

@@ -46,7 +46,7 @@ extern const char DIGISYM[30];
 typedef enum 
 	{
 	iMn,iSet,iSet_,iSetT,iDate_W,iSetTable,iSetTable_,iDeb,iTemperSet,iDefSet,
-	iModem_deb
+	iModem_deb,iMn_number
 	} ind_enum;
 	
 typedef struct  
@@ -94,6 +94,7 @@ extern enum_out_stat out_stat[3],out_mode;
 extern signed char 	temperOfWater;
 extern signed char	temperOfAir;
 extern signed char 	temperToReg;
+extern signed char 	temperRegTo;
 typedef enum {taesNORM=0x55,taesHI=1,taesLO=0,taesLHI=3,taesLLO=2} enumTemperOfAirErrorStat; 
 extern enumTemperOfAirErrorStat airSensorErrorStat;
 

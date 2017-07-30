@@ -201,12 +201,13 @@ else
 			modem_plazma1++;
 		PDU2text(uart1_an_buffer); 	//Пропускаем все пришедшие смс через парсер PDU
 		
-		if(strstr(russianText,"НОМЕР ГЛАВНЫЙ")) //"0423042104220410041D041E041204180422042C00200413041B04100412041D042B0419"
+		if(strstr(russianText,"НОМЕР ГЛАВНЫЙ")) //Установить главный номер
 			{
 			//modem_plazma1++;
 			memcpy(incommingNumberToMain,incommingNumber,10);
-			modem_send_sms('p',incommingNumber,"ОТПРАВЬТЕ В ОТВЕТНОМ СМС 7 ЦИФР ВЫВЕДЕННЫХ НА ИНДИКАТОР УСТРОЙСТВА");/**/
-			
+			modem_send_sms('p',incommingNumber,"Отправьте в ответном смс 7 цифр выведенных на индикатор устройства");/**/
+			tree_up(iMn_number,0,0,0);
+			ret_ind(4,0);
 			}
 		else if(strstr(uart1_an_buffer,"1234576"))
 			{
@@ -217,7 +218,7 @@ else
 				modem_send_sms('p',MAIN_NUMBER,"Ваш номер установлен как главный");
 				}
 			}
-		else if((strstr(russianText,"НОМЕР"))&&(isFromMainNumberMess)) //"УСТАНОВИТЬ номер
+		else if((strstr(russianText,"НОМЕР"))&&(isFromMainNumberMess)) //"Установить номер
 			{
 			number_temp=find_number_in_text(russianText);
 			if(number_temp)
@@ -262,30 +263,81 @@ else
 		else if((strstr(russianText,"СПИСОК"))&&(isFromMainNumberMess||isFromAutorizedNumberMess)) //Список телефонов
 			{
 			
-			sprintf(tempRussianText,"Список номеров: \r\n");
-			strcat(tempRussianText,"+7");
-			strcat(tempRussianText,MAIN_NUMBER);
-			strcat(tempRussianText," (главный)");
+			sprintf(tempRussianText,"Список:\n"); //номеров\n
+			//strcat(tempRussianText,"+7");
+			strncat(tempRussianText,MAIN_NUMBER,10);
+			strcat(tempRussianText," (гл.)\n");
 			//strcpy(tempRussianText,tempStr);
-			//sprintf(tempStr,"%s (главный),",MAIN_NUMBER);
+			//sprintf(tempStr,"%s (главн),",MAIN_NUMBER);
 			//strcat(tempRussianText,tempStr);
-			/*if(AUTH_NUMBER_FLAGS&0x01)
+			if(AUTH_NUMBER_FLAGS&0x02)
 				{
-				strcat(tempRussianText,",\r\n+7");
-				strcat(tempRussianText,AUTH_NUMBER_1);
-				strcat(tempRussianText,"(1)");	
-				}*/
-			/*if(AUTH_NUMBER_FLAGS&0x02)
-				{
-				sprintf(tempStr,"+7%s (1),",AUTH_NUMBER_2);
-				strcat(tempRussianText,tempStr);	
+				//strcat(tempRussianText,",\r\n+7");
+				strncat(tempRussianText,AUTH_NUMBER_1,10);
+				strcat(tempRussianText," (1)\n");	
 				}
 			if(AUTH_NUMBER_FLAGS&0x04)
 				{
-				sprintf(tempStr,"+7%s (1),",AUTH_NUMBER_3);
-				strcat(tempRussianText,tempStr);	
-				}*/
-			modem_send_sms('p',MAIN_NUMBER,tempRussianText);
+				//strcat(tempRussianText,",\r\n+7");
+				strncat(tempRussianText,AUTH_NUMBER_2,10);
+				strcat(tempRussianText," (2)\n");	
+				}
+			if(AUTH_NUMBER_FLAGS&0x08)
+				{
+				//strcat(tempRussianText,",\r\n+7");
+				strncat(tempRussianText,AUTH_NUMBER_3,10);
+				strcat(tempRussianText," (3)");	
+				}
+			modem_send_sms('p',incommingNumber,tempRussianText);
+			}
+			
+		else if((strstr(russianText,"УДАЛИТЬ"))&&(isFromMainNumberMess)) //Удаление номеров
+			{
+			if(strstr(russianText,"ВСЕ"))
+				{
+				if(AUTH_NUMBER_FLAGS&0x0e)
+					{
+					AUTH_NUMBER_FLAGS&=0x01;
+				
+					modem_send_sms('p',MAIN_NUMBER,"Все номера кроме главного удалены");
+					}
+				else
+					{
+					modem_send_sms('p',MAIN_NUMBER,"В списке нет номеров кроме главного");
+					}
+				}
+			else if(find_number_in_text(russianText))
+				{
+				number_temp=find_number_in_text(russianText);
+				if(find_this_number_in_autorized(number_temp))
+					{
+					char temp=find_this_number_in_autorized(number_temp);
+					AUTH_NUMBER_FLAGS&=(char)(~(1<<temp));
+					strcpy(tempRussianText,"Номер ");
+					strncat(tempRussianText,number_temp,10);
+					strcat(tempRussianText," удален из списка номеров");
+					modem_send_sms('p',MAIN_NUMBER,tempRussianText);
+					}
+				else modem_send_sms('p',MAIN_NUMBER,"Такого номера нет в списке");
+				}
+			}
+
+		else if((strstr(russianText,"УСТАВКИ"))&&(isFromMainNumberMess||isFromAutorizedNumberMess)) //УСТАВКИ
+			{
+			if(MODE_EE==1)
+				{
+				sprintf(tempRussianText,"Режим - по воде\nуставка %dгр.\nмакс.мощность %d",(int)temperRegTo,(int)MAX_POWER_EE);
+				}
+			if(MODE_EE==2)
+				{
+				sprintf(tempRussianText,"Режим - по воздуху\nуставка %dгр.\nмакс.мощность %d",(int)temperRegTo,(int)MAX_POWER_EE);
+				}
+			if(MODE_EE==3)
+				{
+				sprintf(tempRussianText,"Режим - по графику\nтекущая уставка %dгр.(воздух)\nмакс.мощность %d",(int)temperRegTo,(int)MAX_POWER_EE);
+				}				
+
+			modem_send_sms('p',incommingNumber,tempRussianText);
 			}
 		isFromMainNumberMess=0;
 		isFromAutorizedNumberMess=0;
