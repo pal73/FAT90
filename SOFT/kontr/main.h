@@ -126,6 +126,12 @@ extern bool bWARN; //предупреждение
 //Исправность линии воздушного датчика
 extern char cntAirSensorLineErrorLo;
 extern char cntAirSensorLineErrorHi;
+
+//-----------------------------------------------
+//Случайные числа для запоминания главного номера
+extern @near char rand_dig[7];
+extern @near char rand_dig_str[8];
+
 //^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 //отладка
 //extern char random_plazma;

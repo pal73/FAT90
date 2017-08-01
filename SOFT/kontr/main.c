@@ -125,6 +125,11 @@ bool bWARN; //предупреждение
 char cntAirSensorLineErrorLo;
 char cntAirSensorLineErrorHi;
 
+//-----------------------------------------------
+//Случайные числа для запоминания главного номера
+@near char rand_dig[7];
+@near char rand_dig_str[8];
+
 //^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 //отладка
 //char random_plazma;

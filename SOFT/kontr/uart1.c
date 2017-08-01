@@ -5,6 +5,7 @@
 #include <stdlib.h>
 #include "modem.h"
 #include <stdio.h>
+#include "lowlev.h"
 
 //-----------------------------------------------
 @near char rxBuffer1[RX_BUFFER_1_SIZE];			//Приемный буфер UART1
@@ -207,9 +208,17 @@ else
 			memcpy(incommingNumberToMain,incommingNumber,10);
 			modem_send_sms('p',incommingNumber,"Отправьте в ответном смс 7 цифр выведенных на индикатор устройства");/**/
 			tree_up(iMn_number,0,0,0);
-			ret_ind(4,0);
+			rand_dig[0]=(rand()%10);
+			rand_dig[1]=(rand()%10);
+			rand_dig[2]=(rand()%10);
+			rand_dig[3]=(rand()%10);
+			rand_dig[4]=(rand()%10);
+			rand_dig[5]=(rand()%10);
+			rand_dig[6]=(rand()%10);
+			sprintf(rand_dig_str,"%d%d%d%d%d%d%d",(int)rand_dig[0],(int)rand_dig[1],(int)rand_dig[2],(int)rand_dig[3],(int)rand_dig[4],(int)rand_dig[5],(int)rand_dig[6]);
+			ret_ind(120,0);
 			}
-		else if(strstr(uart1_an_buffer,"1234576"))
+		else if(strstr(uart1_an_buffer,rand_dig_str/*"1234576"*/))
 			{
 			if(memcmp(incommingNumber,incommingNumberToMain,10)==0)
 				{
