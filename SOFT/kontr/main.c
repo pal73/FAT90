@@ -130,6 +130,13 @@ char cntAirSensorLineErrorHi;
 @near char rand_dig[7];
 @near char rand_dig_str[8];
 
+//-----------------------------------------------
+//Статус питающей сети
+@near short power_in_drv_off_cnt=9;
+@near short power_in_drv_alarm_cnt=30;
+enumPowerStat powerStat=psOFF;
+enumPowerAlarm powerAlarm=paALARM;
+
 //^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 //отладка
 //char random_plazma;
@@ -137,7 +144,95 @@ unsigned char tempUC;
 //@near signed char 	TABLE_TEMPER_EE[7][5];
 //^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
+//-----------------------------------------------
+//Статус питающей сети
+void power_in_drv(void)
+{
+//Статус сети 
+GPIOA->DDR&=~(1<<6);		
+GPIOA->CR1&=~(1<<6);		
+GPIOA->CR2&=~(1<<6);
+GPIOA->ODR&=~(1<<6);
 
+if(!((GPIOA->IDR)&(1<<6)))
+	{
+	if(power_in_drv_off_cnt<10)
+		{
+		power_in_drv_off_cnt++;	
+		}
+	else
+		{
+		powerStat=psOFF;
+		}
+	
+	if(power_in_drv_alarm_cnt<60)
+		{
+		power_in_drv_alarm_cnt++;	
+		if((power_in_drv_alarm_cnt>=60)&&(powerAlarm!=paALARM))
+			{
+			powerAlarm=paALARM;
+			
+			strcpy(tempRussianText,"Электричество отключено"); 
+						
+			if(AUTH_NUMBER_FLAGS&0x01) //если установлен главный номер
+				{
+				modem_send_sms('p',MAIN_NUMBER,tempRussianText);
+				}
+			if(AUTH_NUMBER_FLAGS&0x02) //если установлен главный номер
+				{
+				//modem_send_sms('p',AUTH_NUMBER_1,tempRussianText);
+				}	
+			if(AUTH_NUMBER_FLAGS&0x04) //если установлен главный номер
+				{
+				//modem_send_sms('p',AUTH_NUMBER_2,tempRussianText);
+				}	
+			if(AUTH_NUMBER_FLAGS&0x08) //если установлен главный номер
+				{
+				//modem_send_sms('p',AUTH_NUMBER_3,tempRussianText);
+				}					
+			}
+		}		
+	}
+else
+	{
+	if(power_in_drv_off_cnt)
+		{
+		power_in_drv_off_cnt--;	
+		}
+	else
+		{
+		powerStat=psON;
+		}
+	
+	if(power_in_drv_alarm_cnt)
+		{
+		power_in_drv_alarm_cnt--;	
+		if((power_in_drv_alarm_cnt==0)&&(powerAlarm!=paNORM))
+			{
+			powerAlarm=paNORM;
+			
+			strcpy(tempRussianText,"Электричество включено"); 
+						
+			if(AUTH_NUMBER_FLAGS&0x01) //если установлен главный номер
+				{
+				modem_send_sms('p',MAIN_NUMBER,tempRussianText);
+				}
+			if(AUTH_NUMBER_FLAGS&0x02) //если установлен главный номер
+				{
+				//modem_send_sms('p',AUTH_NUMBER_1,tempRussianText);
+				}	
+			if(AUTH_NUMBER_FLAGS&0x04) //если установлен главный номер
+				{
+				//modem_send_sms('p',AUTH_NUMBER_2,tempRussianText);
+				}	
+			if(AUTH_NUMBER_FLAGS&0x08) //если установлен главный номер
+				{
+				//modem_send_sms('p',AUTH_NUMBER_3,tempRussianText);
+				}					
+			}
+		}		
+	}
+}
 
 //-----------------------------------------------
 void error_warn_hndl(void)
@@ -346,8 +441,9 @@ char i;
 
 if(ind==iMn)
 	{
-	int2indII_slkuf(time_hour,2, 2, 0, 0, 0);
-	int2indII_slkuf(time_min,0, 2, 0, 0, 0);
+	///int2indII_slkuf(time_hour,2, 2, 0, 0, 0);
+	///int2indII_slkuf(time_min,0, 2, 0, 0, 0);
+	int2indII_slkuf(power_in_drv_off_cnt,2, 2, 0, 0, 0);
 	if(bFL2)	ind_outG[2]&=0b11111110;
 	//int2indII_slkuf(time_sec,0, 2, 0, 0, 0);
 	//else 		int2indII_slkuf(time_sec,0, 2, 1, 0, 0);
@@ -1426,7 +1522,8 @@ GPIOG->ODR|=0x01;
 GPIOG->ODR&=ind_outG[ind_cnt];
 if(ind_cnt==9)GPIOB->DDR=0x00;
 else GPIOB->DDR=0xff;
-GPIOD->ODR&=ind_strob[ind_cnt];
+if(powerStat==psOFF)GPIOD->ODR|=0b00111100;
+else GPIOD->ODR&=ind_strob[ind_cnt];
 
 if(++t0_cnt0>=10)
 	{
@@ -1532,6 +1629,7 @@ while (1)
 		matemath();
 		modem_drv();
 		sms_fifo_drv();
+		power_in_drv();
 		}
 	if(b5Hz)
 		{

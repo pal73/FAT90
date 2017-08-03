@@ -11,11 +11,11 @@ char l_but, n_but;
 short but0_cnt, but1_cnt;
 char speed;
 short but_onL_temp;
-
+/*
 //-----------------------------------------------
 //Состояние питающего напряжения
 enum_power_stat power_stat=psOFF,power_stat_old=psOFF;
-char power_stat_cnt;
+char power_stat_cnt;*/
 
 //-----------------------------------------------
 //Самовозврат меню
@@ -43,7 +43,7 @@ else
 	else 						GPIOE->ODR|=0b00100000;
 	}
 }
-
+/*
 //-----------------------------------------------
 void power_stat_drv(void)
 {
@@ -79,7 +79,7 @@ if(power_stat!=power_stat_old)
 	}
 	
 power_stat_old=power_stat;
-}
+}*/
 
 //-----------------------------------------------
 void delay_us(short num_of_delay)

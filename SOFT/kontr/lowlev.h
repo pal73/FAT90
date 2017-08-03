@@ -10,12 +10,12 @@ extern short but_onL_temp;
 
 #define BUT_ON	5
 #define BUT_ONL	20
-
+/*
 //-----------------------------------------------
 //Состояние питающего напряжения
 typedef enum {psOFF=0xAA,psON=0x55} enum_power_stat;
 extern enum_power_stat power_stat,power_stat_old;
-extern char power_stat_cnt;
+extern char power_stat_cnt;*/
 
 //-----------------------------------------------
 //Самовозврат меню
@@ -29,7 +29,7 @@ extern char retStep;
 //-----------------------------------------------
 void out_drv(void);
 //-----------------------------------------------
-void power_stat_drv(void);
+//void power_stat_drv(void);
 //-----------------------------------------------
 void delay_us(short num_of_delay);
 //-----------------------------------------------

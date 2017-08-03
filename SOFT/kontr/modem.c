@@ -589,5 +589,19 @@ if(smsFifoRdPtr!=smsFifoWrPtr)
 	}
 }
 
+//-----------------------------------------------
+//Поиск числа в тексте смс
+short find_number_fild_in_text(char* text)
+{
+char* ptr_temp;
+unsigned int len,firstDigit,lastDigit;
+len=strlen(text);
+firstDigit=strcspn(text,"1234567890");
+//if(len==firstDigit) return NULL;
+ptr_temp=(char*)(text+firstDigit);
+
+return (short)strtol(ptr_temp,NULL,0);
+}
+
 
 
