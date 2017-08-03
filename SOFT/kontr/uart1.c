@@ -348,6 +348,109 @@ else
 
 			modem_send_sms('p',incommingNumber,tempRussianText);
 			}
+
+		else if((strstr(russianText,"РЕЖИМ"))&&(isFromMainNumberMess||isFromAutorizedNumberMess)) //Установка режима работы
+			{
+			if(strstr(russianText,"ВОДА"))
+				{
+				MODE_EE=1;
+				modem_send_sms('p',incommingNumber,"Установлен режим регулирования по температуре воды");
+				}
+			else if(strstr(russianText,"ВОЗДУХ"))
+				{
+				MODE_EE=2;
+				modem_send_sms('p',incommingNumber,"Установлен режим регулирования по температуре воздуха");
+				}
+			else
+				{
+				modem_send_sms('p',incommingNumber,"Команда не распознана");
+				}				
+
+%			modem_send_sms('p',incommingNumber,tempRussianText);
+			}
+			
+		else if((strstr(russianText,"ВОДА"))&&(isFromMainNumberMess||isFromAutorizedNumberMess)) //Установка температуры воды
+			{
+			if(strstr(russianText,"ВОДА"))
+				{
+				short tempSS=find_number_fild_in_text(russianText);	
+				
+				if(MODEM_EE!=1)
+					{
+					modem_send_sms('p',incommingNumber,"В текущем режиме работы выполнение такой команды невозможно");	
+					}
+				else if((tempSS<5)||(tempSS>85))
+					{
+					modem_send_sms('p',incommingNumber,"Значение находится за пределами разрешенных(5-85).Команда отклонена");
+					}
+				else
+					{
+					NECC_TEMPER_WATER_EE=tempSS;
+					sprintf(tempRussianText,"Температура воды установлена на %dгр.Ц"
+					modem_send_sms('p',incommingNumber,"Зн
+					}					
+							else if((strstr(russianText,"НОМЕР"))&&(isFromMainNumberMess)) //"Установить номер
+			{
+			number_temp=find_number_in_text(russianText);
+			if(number_temp)
+				{
+				if(find_this_number_in_autorized(number_temp)) 
+					{
+					modem_send_sms('p',MAIN_NUMBER,"Такой номер уже есть в списке авторизованых");
+					}
+				else if(find_empty_number_cell())
+					{
+					cell = find_empty_number_cell();
+					if(cell==1)
+						{
+						memcpy(AUTH_NUMBER_1,number_temp,10);
+						AUTH_NUMBER_FLAGS|=0b00000010;
+						}
+					else if(cell==2)
+						{
+						memcpy(AUTH_NUMBER_2,number_temp,10);
+						AUTH_NUMBER_FLAGS|=0b00000100;							
+						}
+					else if(cell==3)
+						{
+						memcpy(AUTH_NUMBER_3,number_temp,10);
+						AUTH_NUMBER_FLAGS|=0b00001000;							
+						}
+					sprintf(tempRussianText,"Номер %s добавлен в список (ячейка %d)",number_temp,cell);
+					modem_send_sms('p',MAIN_NUMBER,tempRussianText);
+					sprintf(tempRussianText,"Ваш номер добавлен в список ");
+					modem_send_sms('p',number_temp,tempRussianText);
+
+					}
+				else
+					{
+					modem_send_sms('p',MAIN_NUMBER,"Номер не добавлен, память заполнена");
+					}
+				}
+			
+			//modem_plazma1++;
+			//modem_send_sms('t',"9139294352",/*"OTPRAVTE 7 CIFR, VIVEDENNIH NA EKRAN USTROISTVA"*/"mama1");
+			}
+					
+					
+					
+					
+					
+				MODE_EE=1;
+				modem_send_sms('p',incommingNumber,"Установлен режим регулирования по температуре воды");
+				}
+			else if(strstr(russianText,"ВОЗДУХ"))
+				{
+				MODE_EE=2;
+				modem_send_sms('p',incommingNumber,"Установлен режим регулирования по температуре воздуха");
+				}
+			else
+				{
+				modem_send_sms('p',incommingNumber,"Команда не распознана");
+				}				
+
+			modem_send_sms('p',incommingNumber,tempRussianText);
+			}			
 		isFromMainNumberMess=0;
 		isFromAutorizedNumberMess=0;
 		isFromNotAutorizedNumberMess=0;

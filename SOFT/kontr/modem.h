@@ -66,4 +66,7 @@ char find_empty_number_cell(void);
 //-----------------------------------------------
 //Драйвер ФИФО отправки смс
 void sms_fifo_drv(void);
+//-----------------------------------------------
+//Поиск числа в тексте смс
+short find_number_fild_in_text(char* text);
 

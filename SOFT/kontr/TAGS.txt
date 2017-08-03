@@ -775,19 +775,19 @@ MIDR3	include\stm8s.h	2069;"	member	struct:__anon6::__anon7::__anon8
 MIDR3	include\stm8s.h	2197;"	member	struct:__anon6::__anon7::__anon14
 MIDR4	include\stm8s.h	2070;"	member	struct:__anon6::__anon7::__anon8
 MIDR4	include\stm8s.h	2198;"	member	struct:__anon6::__anon7::__anon14
-MLS_GPRS	modem.h	11;"	enumerator	enum:__anon24
-MLS_LINKED	modem.h	11;"	enumerator	enum:__anon24
-MLS_UNKNOWN	modem.h	11;"	enumerator	enum:__anon24
-MLS_UNLINKED	modem.h	11;"	enumerator	enum:__anon24
-MPS_POWEROFF	modem.h	6;"	enumerator	enum:__anon23
-MPS_POWERON	modem.h	6;"	enumerator	enum:__anon23
+MLS_GPRS	modem.h	11;"	enumerator	enum:__anon25
+MLS_LINKED	modem.h	11;"	enumerator	enum:__anon25
+MLS_UNKNOWN	modem.h	11;"	enumerator	enum:__anon25
+MLS_UNLINKED	modem.h	11;"	enumerator	enum:__anon25
+MPS_POWEROFF	modem.h	6;"	enumerator	enum:__anon24
+MPS_POWERON	modem.h	6;"	enumerator	enum:__anon24
 MSR	include\stm8s.h	2053;"	member	struct:__anon6
-MS_GPRS	modem.h	13;"	enumerator	enum:__anon25
-MS_LINKED	modem.h	13;"	enumerator	enum:__anon25
-MS_LINKED_INITIALIZED	modem.h	13;"	enumerator	enum:__anon25
-MS_POWEROFF	modem.h	13;"	enumerator	enum:__anon25
-MS_UNKNOWN	modem.h	13;"	enumerator	enum:__anon25
-MS_UNLINKED	modem.h	13;"	enumerator	enum:__anon25
+MS_GPRS	modem.h	13;"	enumerator	enum:__anon26
+MS_LINKED	modem.h	13;"	enumerator	enum:__anon26
+MS_LINKED_INITIALIZED	modem.h	13;"	enumerator	enum:__anon26
+MS_POWEROFF	modem.h	13;"	enumerator	enum:__anon26
+MS_UNKNOWN	modem.h	13;"	enumerator	enum:__anon26
+MS_UNLINKED	modem.h	13;"	enumerator	enum:__anon26
 MTSRH	include\stm8s.h	2080;"	member	struct:__anon6::__anon7::__anon8
 MTSRH	include\stm8s.h	2208;"	member	struct:__anon6::__anon7::__anon14
 MTSRL	include\stm8s.h	2079;"	member	struct:__anon6::__anon7::__anon8
@@ -1241,7 +1241,7 @@ TIM4_PSCR_RESET_VALUE	include\stm8s.h	1067;"	macro
 TIM4_SR1_RESET_VALUE	include\stm8s.h	1064;"	macro
 TIM4_SR1_UIF	include\stm8s.h	1086;"	macro
 TIM4_TypeDef	include\stm8s.h	1056;"	typedef	typeref:struct:TIM4_struct
-TIM4_UPD_Interrupt	main.c	1412;"	function	signature:(void)
+TIM4_UPD_Interrupt	main.c	1509;"	function	signature:(void)
 TIM4_UPD_Interrupt	stm8_interrupt_vector.c	24;"	prototype	file:	signature:(void)
 TIM4_struct	include\stm8s.h	1042;"	struct
 TIM5	include\stm8s.h	2581;"	macro
@@ -1592,7 +1592,7 @@ a_ind	main.c	67;"	variable
 abort	c:\program files\cosmic\cxstm8_32k\hstm8\stdlib.h	57;"	macro
 abs	c:\program files\cosmic\cxstm8_32k\hstm8\stdlib.h	36;"	prototype	signature:(int i)
 airSensorErrorStat	main.c	84;"	variable
-airSensorLineErrorDrv	main.c	161;"	function	signature:(void)
+airSensorLineErrorDrv	main.c	257;"	function	signature:(void)
 assert_failed	include\stm8s_conf.h	99;"	prototype	signature:(uint8_t* file, uint32_t line)
 assert_param	include\stm8s_conf.h	101;"	macro
 assert_param	include\stm8s_conf.h	97;"	macro
@@ -1619,7 +1619,7 @@ bcd2ind	lowlev.c	214;"	function	signature:(void)
 bcd2ind	lowlev.h	52;"	prototype	signature:(void)
 bcd2ind_zero	lowlev.c	225;"	function	signature:(void)
 bcd2ind_zero	lowlev.h	54;"	prototype	signature:()
-beep_drv	main.c	188;"	function	signature:(void)
+beep_drv	main.c	284;"	function	signature:(void)
 beep_drv_cnt	main.c	116;"	variable
 bin2bcd_int	lowlev.c	202;"	function	signature:(unsigned short in)
 bin2bcd_int	lowlev.h	50;"	prototype	signature:(unsigned short in)
@@ -1631,21 +1631,21 @@ buff_for_time	main.c	90;"	variable
 but	lowlev.c	9;"	variable
 but0_cnt	lowlev.c	11;"	variable
 but1_cnt	lowlev.c	11;"	variable
-butD	main.h	81;"	macro
-butD_	main.h	86;"	macro
-butM	main.h	79;"	macro
-butMD_	main.h	88;"	macro
-butMU_	main.h	90;"	macro
-butM_	main.h	84;"	macro
-butON	main.h	78;"	macro
-butOND_	main.h	89;"	macro
-butON_	main.h	83;"	macro
-butU	main.h	80;"	macro
-butUD	main.h	82;"	macro
-butUD_	main.h	87;"	macro
-butU_	main.h	85;"	macro
-but_an	main.c	727;"	function	signature:(void)
-but_an	main.h	140;"	prototype	signature:(void)
+butD	main.h	82;"	macro
+butD_	main.h	87;"	macro
+butM	main.h	80;"	macro
+butMD_	main.h	89;"	macro
+butMU_	main.h	91;"	macro
+butM_	main.h	85;"	macro
+butON	main.h	79;"	macro
+butOND_	main.h	90;"	macro
+butON_	main.h	84;"	macro
+butU	main.h	81;"	macro
+butUD	main.h	83;"	macro
+butUD_	main.h	88;"	macro
+butU_	main.h	86;"	macro
+but_an	main.c	824;"	function	signature:(void)
+but_an	main.h	152;"	prototype	signature:(void)
 but_drv	lowlev.c	95;"	function	signature:(void)
 but_drv	lowlev.h	36;"	prototype	signature:(void)
 but_n	lowlev.c	9;"	variable
@@ -1684,17 +1684,20 @@ enableInterrupts	include\stm8s.h	2601;"	macro
 enableInterrupts	include\stm8s.h	2610;"	macro
 enableInterrupts	include\stm8s.h	2620;"	macro
 enumDsErrorStat	ds18b20.h	6;"	typedef	typeref:enum:__anon17
-enumTemperOfAirErrorStat	main.h	98;"	typedef	typeref:enum:__anon22
-enum_modemLinkState	modem.h	11;"	typedef	typeref:enum:__anon24
-enum_modemPowerState	modem.h	6;"	typedef	typeref:enum:__anon23
-enum_modemState	modem.h	13;"	typedef	typeref:enum:__anon25
-enum_out_stat	main.h	75;"	typedef	typeref:enum:__anon21
-enum_power_stat	lowlev.h	16;"	typedef	typeref:enum:__anon18
-error_warn_hndl	main.c	142;"	function	signature:(void)
+enumPowerAlarm	main.h	143;"	typedef	typeref:enum:__anon23
+enumPowerStat	main.h	141;"	typedef	typeref:enum:__anon22
+enumTemperOfAirErrorStat	main.h	99;"	typedef	typeref:enum:__anon21
+enum_modemLinkState	modem.h	11;"	typedef	typeref:enum:__anon25
+enum_modemPowerState	modem.h	6;"	typedef	typeref:enum:__anon24
+enum_modemState	modem.h	13;"	typedef	typeref:enum:__anon26
+enum_out_stat	main.h	76;"	typedef	typeref:enum:__anon20
+error_warn_hndl	main.c	238;"	function	signature:(void)
 exit	c:\program files\cosmic\cxstm8_32k\hstm8\stdlib.h	42;"	prototype	signature:(int status)
 fiksRandom	main.c	47;"	variable
 find_empty_number_cell	modem.c	528;"	function	signature:(void)
 find_empty_number_cell	modem.h	65;"	prototype	signature:(void)
+find_number_fild_in_text	modem.c	594;"	function	signature:(char* text)
+find_number_fild_in_text	modem.h	71;"	prototype	signature:(char* text)
 find_number_in_text	modem.c	477;"	function	signature:(char* text)
 find_number_in_text	modem.h	59;"	prototype	signature:(char* text)
 find_this_number_in_autorized	modem.c	493;"	function	signature:(char* number)
@@ -1711,7 +1714,7 @@ gran_uchar	lowlev.h	46;"	prototype	signature:(unsigned char *adr, unsigned char 
 halt	include\stm8s.h	2608;"	macro
 halt	include\stm8s.h	2617;"	macro
 halt	include\stm8s.h	2627;"	macro
-i	main.h	54;"	member	struct:__anon20
+i	main.h	55;"	member	struct:__anon19
 i2c_ReadAcknowledge	i2c.c	31;"	function	signature:(void)
 i2c_ReadAcknowledge	i2c.h	21;"	prototype	signature:(void)
 i2c_ReadByte	i2c.c	47;"	function	signature:(void)
@@ -1727,33 +1730,33 @@ i2c_Start	i2c.h	17;"	prototype	signature:(void)
 i2c_Stop	i2c.c	120;"	function	signature:(void)
 i2c_Stop	i2c.h	29;"	prototype	signature:(void)
 i2c_init	i2c.h	15;"	prototype	signature:(void)
-iDate_W	main.h	48;"	enumerator	enum:__anon19
-iDeb	main.h	48;"	enumerator	enum:__anon19
-iDefSet	main.h	48;"	enumerator	enum:__anon19
-iMn	main.h	48;"	enumerator	enum:__anon19
-iMn_number	main.h	49;"	enumerator	enum:__anon19
-iModem_deb	main.h	49;"	enumerator	enum:__anon19
-iSet	main.h	48;"	enumerator	enum:__anon19
-iSetT	main.h	48;"	enumerator	enum:__anon19
-iSetTable	main.h	48;"	enumerator	enum:__anon19
-iSetTable_	main.h	48;"	enumerator	enum:__anon19
-iSet_	main.h	48;"	enumerator	enum:__anon19
-iTemperSet	main.h	48;"	enumerator	enum:__anon19
-i_s	main.h	58;"	member	struct:__anon20
+iDate_W	main.h	49;"	enumerator	enum:__anon18
+iDeb	main.h	49;"	enumerator	enum:__anon18
+iDefSet	main.h	49;"	enumerator	enum:__anon18
+iMn	main.h	49;"	enumerator	enum:__anon18
+iMn_number	main.h	50;"	enumerator	enum:__anon18
+iModem_deb	main.h	50;"	enumerator	enum:__anon18
+iSet	main.h	49;"	enumerator	enum:__anon18
+iSetT	main.h	49;"	enumerator	enum:__anon18
+iSetTable	main.h	49;"	enumerator	enum:__anon18
+iSetTable_	main.h	49;"	enumerator	enum:__anon18
+iSet_	main.h	49;"	enumerator	enum:__anon18
+iTemperSet	main.h	49;"	enumerator	enum:__anon18
+i_s	main.h	59;"	member	struct:__anon19
 incommingNumber	uart1.c	19;"	variable
 incommingNumberToMain	uart1.c	20;"	variable
-ind	main.h	63;"	macro
+ind	main.h	64;"	macro
 ind_cnt	main.c	56;"	variable
-ind_enum	main.h	50;"	typedef	typeref:enum:__anon19
-ind_hndl	main.c	342;"	function	signature:(void)
-ind_hndl	main.h	142;"	prototype	signature:(void)
+ind_enum	main.h	51;"	typedef	typeref:enum:__anon18
+ind_hndl	main.c	438;"	function	signature:(void)
+ind_hndl	main.h	154;"	prototype	signature:(void)
 ind_outB	main.c	57;"	variable
 ind_outC	main.c	58;"	variable
 ind_outG	main.c	59;"	variable
 ind_out_	main.c	62;"	variable
 ind_pointer	main.c	68;"	variable
 ind_strob	main.c	60;"	variable
-index_set	main.h	67;"	macro
+index_set	main.h	68;"	macro
 int16_t	include\stm8s.h	200;"	typedef
 int2indII_slkuf	lowlev.c	267;"	function	signature:(unsigned short in, char start, char len, char komma, char unzero, char fl)
 int2indII_slkuf	lowlev.h	58;"	prototype	signature:(unsigned short in, char start, char len, char komma, char unzero, char fl)
@@ -1803,10 +1806,10 @@ led_set	lowlev.c	311;"	function	signature:(signed char led_num, signed char led_
 led_set	lowlev.h	64;"	prototype	signature:(signed char led_num, signed char led_stat)
 lenPDUSMS	modem.c	33;"	variable
 lsqrt	c:\program files\cosmic\cxstm8_32k\hstm8\stdlib.h	54;"	prototype	signature:(unsigned long)
-main	main.c	1469;"	function
+main	main.c	1567;"	function
 mainCnt	main.c	53;"	variable
 malloc	c:\program files\cosmic\cxstm8_32k\hstm8\stdlib.h	46;"	prototype	signature:(unsigned int size)
-matemath	main.c	315;"	function	signature:(void)
+matemath	main.c	411;"	function	signature:(void)
 memchr	c:\program files\cosmic\cxstm8_32k\hstm8\string.h	28;"	prototype	signature:(void *s, char c, unsigned int n)
 memcmp	c:\program files\cosmic\cxstm8_32k\hstm8\string.h	22;"	prototype	signature:(void *s1, void *s2, unsigned int n)
 memcpy	c:\program files\cosmic\cxstm8_32k\hstm8\string.h	29;"	prototype	signature:(void *s1, void *s2, unsigned int n)
@@ -1845,26 +1848,28 @@ number	modem.c	40;"	member	struct:__anon1	file:
 numberToSendSMS	modem.c	27;"	variable
 numberToSendSMS_	modem.c	28;"	variable
 number_temp	uart1.c	28;"	variable
-osOFF	main.h	75;"	enumerator	enum:__anon21
-osON	main.h	75;"	enumerator	enum:__anon21
+osOFF	main.h	76;"	enumerator	enum:__anon20
+osON	main.h	76;"	enumerator	enum:__anon20
 out_drv	lowlev.c	26;"	function	signature:(void)
 out_drv	lowlev.h	30;"	prototype	signature:(void)
 out_mode	main.c	75;"	variable
 out_stat	main.c	75;"	variable
+paALARM	main.h	143;"	enumerator	enum:__anon23
+paNORM	main.h	143;"	enumerator	enum:__anon23
 phoneNumberForSMS	modem.c	24;"	variable
+powerAlarm	main.c	138;"	variable
 powerNecc	main.c	111;"	variable
 powerNeccDelta	main.c	112;"	variable
 powerNeccOld	main.c	111;"	variable
-power_hndl	main.c	267;"	function	signature:(void)
-power_necc_hndl	main.c	296;"	function	signature:(void)
-power_stat	lowlev.c	17;"	variable
-power_stat_cnt	lowlev.c	18;"	variable
-power_stat_drv	lowlev.c	48;"	function	signature:(void)
-power_stat_drv	lowlev.h	32;"	prototype	signature:(void)
-power_stat_old	lowlev.c	17;"	variable
+powerStat	main.c	137;"	variable
+power_hndl	main.c	363;"	function	signature:(void)
+power_in_drv	main.c	149;"	function	signature:(void)
+power_in_drv_alarm_cnt	main.c	136;"	variable
+power_in_drv_off_cnt	main.c	135;"	variable
+power_necc_hndl	main.c	392;"	function	signature:(void)
 printf	c:\program files\cosmic\cxstm8_32k\hstm8\stdio.h	17;"	prototype	signature:(char *format, ...)
-psOFF	lowlev.h	16;"	enumerator	enum:__anon18
-psON	lowlev.h	16;"	enumerator	enum:__anon18
+psOFF	main.h	141;"	enumerator	enum:__anon22
+psON	main.h	141;"	enumerator	enum:__anon22
 ptr1	uart3.c	16;"	variable
 ptr2	uart3.c	17;"	variable
 ptrTemp	modem.c	34;"	variable
@@ -1874,6 +1879,7 @@ quot	c:\program files\cosmic\cxstm8_32k\hstm8\stdlib.h	27;"	member	struct:__anon
 quot	c:\program files\cosmic\cxstm8_32k\hstm8\stdlib.h	32;"	member	struct:__anon16
 rand	c:\program files\cosmic\cxstm8_32k\hstm8\stdlib.h	47;"	prototype	signature:(void)
 rand_dig	main.c	130;"	variable
+rand_dig_str	main.c	131;"	variable
 random_gen	lowlev.c	369;"	function	signature:(void)
 random_gen	lowlev.h	76;"	prototype	signature:(void)
 realloc	c:\program files\cosmic\cxstm8_32k\hstm8\stdlib.h	48;"	prototype	signature:(void *ptr, unsigned int size)
@@ -1896,11 +1902,11 @@ rx_wr_index3	uart3.c	9;"	variable
 s16	include\stm8s.h	211;"	typedef
 s32	include\stm8s.h	210;"	typedef
 s8	include\stm8s.h	212;"	typedef
-s_i	main.h	55;"	member	struct:__anon20
-s_i1	main.h	56;"	member	struct:__anon20
-s_i2	main.h	57;"	member	struct:__anon20
+s_i	main.h	56;"	member	struct:__anon19
+s_i1	main.h	57;"	member	struct:__anon19
+s_i2	main.h	58;"	member	struct:__anon19
 scanf	c:\program files\cosmic\cxstm8_32k\hstm8\stdio.h	20;"	prototype	signature:(char *format, ...)
-sheduler_hndl	main.c	233;"	function	signature:(void)
+sheduler_hndl	main.c	329;"	function	signature:(void)
 sim	include\stm8s.h	2604;"	macro
 sim	include\stm8s.h	2613;"	macro
 sim	include\stm8s.h	2623;"	macro
@@ -1931,25 +1937,25 @@ strstr	c:\program files\cosmic\cxstm8_32k\hstm8\string.h	21;"	prototype	signatur
 strtod	c:\program files\cosmic\cxstm8_32k\hstm8\stdlib.h	50;"	prototype	signature:(char *s, char **endptr)
 strtol	c:\program files\cosmic\cxstm8_32k\hstm8\stdlib.h	51;"	prototype	signature:(char *s, char **endptr, int base)
 strtoul	c:\program files\cosmic\cxstm8_32k\hstm8\stdlib.h	58;"	macro
-struct_ind	main.h	59;"	typedef	typeref:struct:__anon20
-sub_ind	main.h	64;"	macro
-sub_ind1	main.h	65;"	macro
-sub_ind2	main.h	66;"	macro
+struct_ind	main.h	60;"	typedef	typeref:struct:__anon19
+sub_ind	main.h	65;"	macro
+sub_ind1	main.h	66;"	macro
+sub_ind2	main.h	67;"	macro
 t0_cnt0	main.c	52;"	variable
 t0_cnt1	main.c	52;"	variable
 t0_cnt2	main.c	52;"	variable
 t0_cnt3	main.c	52;"	variable
 t0_cnt4	main.c	52;"	variable
-t4_init	main.c	1398;"	function	signature:(void)
-t4_init	main.h	144;"	prototype	signature:(void)
-taesHI	main.h	98;"	enumerator	enum:__anon22
-taesLHI	main.h	98;"	enumerator	enum:__anon22
-taesLLO	main.h	98;"	enumerator	enum:__anon22
-taesLO	main.h	98;"	enumerator	enum:__anon22
-taesNORM	main.h	98;"	enumerator	enum:__anon22
+t4_init	main.c	1495;"	function	signature:(void)
+t4_init	main.h	156;"	prototype	signature:(void)
+taesHI	main.h	99;"	enumerator	enum:__anon21
+taesLHI	main.h	99;"	enumerator	enum:__anon21
+taesLLO	main.h	99;"	enumerator	enum:__anon21
+taesLO	main.h	99;"	enumerator	enum:__anon21
+taesNORM	main.h	99;"	enumerator	enum:__anon21
 tempRussianText	modem.c	36;"	variable
 tempStr	modem.c	46;"	variable
-tempUC	main.c	135;"	variable
+tempUC	main.c	143;"	variable
 temperOfAir	main.c	80;"	variable
 temperOfWater	main.c	79;"	variable
 temperRegTo	main.c	82;"	variable
@@ -1963,7 +1969,7 @@ textToSendPDUSMS	modem.c	29;"	variable
 textToSendSMS	modem.c	26;"	variable
 time_date	main.c	95;"	variable
 time_day_of_week	main.c	94;"	variable
-time_drv	main.c	218;"	function	signature:(void)
+time_drv	main.c	314;"	function	signature:(void)
 time_hour	main.c	93;"	variable
 time_min	main.c	92;"	variable
 time_month	main.c	96;"	variable

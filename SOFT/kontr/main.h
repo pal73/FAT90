@@ -25,6 +25,7 @@
 extern const char warmOrder[6][3];
 extern char currRandom,fiksRandom;
 
+
 //-----------------------------------------------
 //Временная сетка
 //extern bool b100Hz,b10Hz,b5Hz,b2Hz,b1Hz;
@@ -131,6 +132,16 @@ extern char cntAirSensorLineErrorHi;
 //Случайные числа для запоминания главного номера
 extern @near char rand_dig[7];
 extern @near char rand_dig_str[8];
+
+
+//-----------------------------------------------
+//Статус питающей сети
+@near extern short power_in_drv_off_cnt;
+@near extern short power_in_drv_alarm_cnt;
+typedef enum {psOFF=0x55,psON=0xAA} enumPowerStat; 
+extern enumPowerStat powerStat;
+typedef enum {paNORM=0xcc,paALARM=0x33} enumPowerAlarm; 
+extern enumPowerAlarm powerAlarm;
 
 //^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 //отладка
