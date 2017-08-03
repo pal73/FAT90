@@ -444,10 +444,11 @@ if(ind==iMn)
 	///int2indII_slkuf(time_hour,2, 2, 0, 0, 0);
 	///int2indII_slkuf(time_min,0, 2, 0, 0, 0);
 	int2indII_slkuf(power_in_drv_off_cnt,2, 2, 0, 0, 0);
+	int2indII_slkuf(power_in_drv_alarm_cnt,0, 2, 0, 0, 0);
 	if(bFL2)	ind_outG[2]&=0b11111110;
 	//int2indII_slkuf(time_sec,0, 2, 0, 0, 0);
 	//else 		int2indII_slkuf(time_sec,0, 2, 1, 0, 0);
-	
+/*	
 	if(temperToReg>=0)
 		{
 		int2indI_slkuf(temperToReg,2, 2, 0, 1, 0);
@@ -467,8 +468,9 @@ if(ind==iMn)
 			int2indI_slkuf(-temperToReg,1, 2, 0, 1, 0);
 			}
 		}
-	
-//	int2indI_slkuf(random_plazma,3, 1, 0, 1, 0);
+*/	
+	int2indI_slkuf(powerStat,3, 1, 0, 1, 0);
+	int2indI_slkuf(powerAlarm,1, 1, 0, 1, 0);
 	
 	led_mask_off(0x00);
 	if(out_mode==osON)
@@ -853,6 +855,9 @@ if(ind==iMn)
 	else if(but==butD_)
 		{
 		tree_up(iDeb,0,0,0);
+		//modemDrvSMSSendStepCnt=1;
+		
+		modem_send_sms('p', "9139294352", "Мама1 \r\nМама2");
 		}
 	}
 
@@ -1597,7 +1602,7 @@ modem_gpio_init();
 enableInterrupts();
 
 clear_ind();
-ind=iMn;//iModem_deb;
+ind=iModem_deb;//iMn;
 
 out_mode=osOFF;
 

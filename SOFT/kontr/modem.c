@@ -154,9 +154,21 @@ else  //если светодиод LINK не горит
 		}
     }
 
-if(modemPowerState==MPS_POWEROFF)										modemState=MS_POWEROFF;
-else if(modemLinkState==MLS_UNLINKED)									modemState=MS_UNLINKED;
-else if(modemLinkState==MLS_LINKED)										modemState=MS_LINKED;
+if(modemPowerState==MPS_POWEROFF)
+	{
+	modemState=MS_POWEROFF;
+	bINITIALIZED=0;
+	}
+else if(modemLinkState==MLS_UNLINKED)
+	{
+	modemState=MS_UNLINKED;
+	bINITIALIZED=0;
+	}
+else if(modemLinkState==MLS_LINKED)
+	{
+	if(bINITIALIZED==0)modemState=MS_LINKED;
+	else if(bINITIALIZED==1)modemState=MS_LINKED_INITIALIZED;
+	}
 else if(modemLinkState==MLS_GPRS)										modemState=MS_GPRS;
 else 																	modemState=MS_UNKNOWN;
 }
@@ -172,7 +184,7 @@ if(modemDrvPowerStartCnt<70)
 	}
 else
 	{
-	if(modemState!=MS_LINKED)
+	if((modemState!=MS_LINKED)&&(modemState!=MS_LINKED_INITIALIZED))
 		{
 		if(modemDrvInitStepCnt==0)modemDrvInitStepCnt=1;	
 		}
@@ -265,7 +277,8 @@ else
 			{
 			if(bOK)
 				{
-				modemState=MS_LINKED_INITIALIZED;
+				//modemState=MS_LINKED_INITIALIZED;
+				bINITIALIZED=1;
 				modemDrvInitStepCnt=50;
 				bOK=0;
 				}
@@ -537,7 +550,7 @@ return 0;
 //Драйвер ФИФО отправки смс
 void sms_fifo_drv(void)
 {
-if((!(modemState==MS_LINKED)||(modemState==MS_LINKED_INITIALIZED))||(modemDrvTextSMSSendStepCnt)||(modemDrvPDUSMSSendStepCnt)) return;
+if((/*(modemState!=MS_LINKED)&&*/(modemState!=MS_LINKED_INITIALIZED))||(modemDrvTextSMSSendStepCnt)||(modemDrvPDUSMSSendStepCnt)) return;
 
 if(smsFifoRdPtr!=smsFifoWrPtr)
 	{

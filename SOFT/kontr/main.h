@@ -138,9 +138,9 @@ extern @near char rand_dig_str[8];
 //Статус питающей сети
 @near extern short power_in_drv_off_cnt;
 @near extern short power_in_drv_alarm_cnt;
-typedef enum {psOFF=0x55,psON=0xAA} enumPowerStat; 
+typedef enum {psOFF/*=0x55*/,psON/*=0xAA*/} enumPowerStat; 
 extern enumPowerStat powerStat;
-typedef enum {paNORM=0xcc,paALARM=0x33} enumPowerAlarm; 
+typedef enum {paNORM/*=0xcc*/,paALARM/*=0x33*/} enumPowerAlarm; 
 extern enumPowerAlarm powerAlarm;
 
 //^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^

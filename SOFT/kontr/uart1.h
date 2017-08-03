@@ -12,9 +12,9 @@ extern @near char bRXIN1;														//Индикатор принятой строки в uart1_an_bu
 extern @near char incommingNumber[10];							//Буфер для хранения номера отправителя пришедшей смс
 extern @near char incommingNumberToMain[10];				//Буфер для хранения номера просящегося в главные
 
-extern bool bOK;																		//Модем ответил "OK"
-extern bool bERROR;																	//Модем ответил "ERROR"
-
+extern bool bOK;											//Модем ответил "OK"
+extern bool bERROR;											//Модем ответил "ERROR"
+extern bool bINITIALIZED;									//Модем инициализирован
 //-----------------------------------------------
 //Отладка
 extern @near char uart1_plazma;
