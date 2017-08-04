@@ -4,20 +4,22 @@
 #define _FLASH_IAPSR FLASH->IAPSR
 //-----------------------------------------------
 //ѕеременные в EEPROM
-@eeprom extern char						MAIN_NUMBER[10];			//ячейка дл€ хранени€ номера мастера
-@eeprom extern char						AUTH_NUMBER_1[10];		//ячейка дл€ хранени€ номера первого авторизованого телефона
-@eeprom extern signed short		HUMAN_SET_EE; 				//подпись человека (0x1234)
-@eeprom extern signed char	  NECC_TEMPER_AIR_EE; 	//температура поддержани€ воздуха
+@eeprom extern char				MAIN_NUMBER[10];		//ячейка дл€ хранени€ номера мастера
+@eeprom extern char				AUTH_NUMBER_1[10];		//ячейка дл€ хранени€ номера первого авторизованого телефона
+typedef enum {paNORM/*=0xcc*/,paALARM/*=0x33*/} enumPowerAlarm; 
+@eeprom extern char 			powerAlarm;				//—татус аварийности сети
+@eeprom extern signed short		HUMAN_SET_EE; 			//подпись человека (0x1234)
+@eeprom extern signed char	  	NECC_TEMPER_AIR_EE; 	//температура поддержани€ воздуха
 @eeprom extern signed char		NECC_TEMPER_WATER_EE;	//температура поддержани€ воды
-@eeprom extern signed char 		MODE_EE;							//режим работы устройства (1 - по воде, 2 - по воздуху, 3 - по графику) 
-@eeprom extern signed char 		MAX_POWER_EE;					//максимальна€ мощность нагревани€ 
-@eeprom extern char						AUTH_NUMBER_2[10];		//ячейка дл€ хранени€ номера второго авторизованого телефона
-@eeprom extern char						AUTH_NUMBER_3[10];		//ячейка дл€ хранени€ номера третьего авторизованого телефона
-@eeprom extern char						AUTH_NUMBER_FLAGS;		//ячейка флагов обозначающих наличие установленных телефонных номеров
-																										//0b00000001 - установлен главный телефон
-																										//0b00000010 - установлен первый неглавный телефон
-																										//0b00000100 - установлен второй неглавный телефон
-																										//0b00001000 - установлен третий неглавный телефон
+@eeprom extern signed char 		MODE_EE;				//режим работы устройства (1 - по воде, 2 - по воздуху, 3 - по графику) 
+@eeprom extern signed char 		MAX_POWER_EE;			//максимальна€ мощность нагревани€ 
+@eeprom extern char				AUTH_NUMBER_2[10];		//ячейка дл€ хранени€ номера второго авторизованого телефона
+@eeprom extern char				AUTH_NUMBER_3[10];		//ячейка дл€ хранени€ номера третьего авторизованого телефона
+@eeprom extern char				AUTH_NUMBER_FLAGS;		//ячейка флагов обозначающих наличие установленных телефонных номеров
+														//0b00000001 - установлен главный телефон
+														//0b00000010 - установлен первый неглавный телефон
+														//0b00000100 - установлен второй неглавный телефон
+														//0b00001000 - установлен третий неглавный телефон
 																										
 
 //-----------------------------------------------
@@ -140,8 +142,8 @@ extern @near char rand_dig_str[8];
 @near extern short power_in_drv_alarm_cnt;
 typedef enum {psOFF/*=0x55*/,psON/*=0xAA*/} enumPowerStat; 
 extern enumPowerStat powerStat;
-typedef enum {paNORM/*=0xcc*/,paALARM/*=0x33*/} enumPowerAlarm; 
-extern enumPowerAlarm powerAlarm;
+//typedef enum {paNORM/*=0xcc*/,paALARM/*=0x33*/} enumPowerAlarm; 
+//extern enumPowerAlarm powerAlarm;
 
 //^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 //отладка

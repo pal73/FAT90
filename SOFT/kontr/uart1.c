@@ -8,19 +8,19 @@
 #include "lowlev.h"
 
 //-----------------------------------------------
-@near char rxBuffer1[RX_BUFFER_1_SIZE];			//Приемный буфер UART1
-@near char txBuffer1[TX_BUFFER_1_SIZE];			//Передающий буфер UART1
-@near short rx_wr_index1;										//Указатель на следующий принимаемый байт
-@near short tx_wr_index1;										//Указатель на следующую ячейку передающего ФИФО
-@near short tx_rd_index1;										//Указатель на следующий отправляемый из ФИФО байт	
-@near short tx_counter1;										//Счетчик заполненности передающего ФИФО
-@near char uart1_an_buffer[200];						//Буфер для анализа принятых по UART1 строк
-@near char bRXIN1;													//Индикатор принятой строки в uart1_an_buffer
-@near char incommingNumber[10];							//Буфер для хранения номера отправителя пришедшей смс
+@near char rxBuffer1[RX_BUFFER_1_SIZE];				//Приемный буфер UART1
+@near char txBuffer1[TX_BUFFER_1_SIZE];				//Передающий буфер UART1
+@near short rx_wr_index1;							//Указатель на следующий принимаемый байт
+@near short tx_wr_index1;							//Указатель на следующую ячейку передающего ФИФО
+@near short tx_rd_index1;							//Указатель на следующий отправляемый из ФИФО байт	
+@near short tx_counter1;							//Счетчик заполненности передающего ФИФО
+@near char uart1_an_buffer[200];					//Буфер для анализа принятых по UART1 строк
+@near char bRXIN1;									//Индикатор принятой строки в uart1_an_buffer
+@near char incommingNumber[10];						//Буфер для хранения номера отправителя пришедшей смс
 @near char incommingNumberToMain[10];				//Буфер для хранения номера просящегося в главные
 
-bool isFromMainNumberMess;									//флаг, пришедшее смс от мастерского телефона
-bool isFromAutorizedNumberMess;							//флаг, пришедшее смс от одного из прописанных немастерских телефонов
+bool isFromMainNumberMess;							//флаг, пришедшее смс от мастерского телефона
+bool isFromAutorizedNumberMess;						//флаг, пришедшее смс от одного из прописанных немастерских телефонов
 bool isFromNotAutorizedNumberMess;					//флаг, пришедшее смс от неавторизованного телефона
 bool bOK;											//Модем ответил "OK"
 bool bERROR;										//Модем ответил "ERROR"
@@ -162,7 +162,7 @@ else if(strstr(uart1_an_buffer,"+CMT"))
 	//if(strcmp(ptr_temp,str_main_num)==0)
 	if((strstr(incommingNumber,str_main_num)!=NULL)&&(AUTH_NUMBER_FLAGS&0x01))
 		{
-		modem_plazma++;
+		//modem_plazma++;
 		isFromMainNumberMess=1;
 		}
 		
@@ -200,7 +200,7 @@ else
 	//modem_plazma1++;
 	if((isFromMainNumberMess)||(isFromAutorizedNumberMess)||(isFromNotAutorizedNumberMess))
 		{
-			modem_plazma1++;
+		modem_plazma++;
 		PDU2text(uart1_an_buffer); 	//Пропускаем все пришедшие смс через парсер PDU
 		
 		if(strstr(russianText,"НОМЕР ГЛАВНЫЙ")) //Установить главный номер
@@ -372,32 +372,43 @@ else
 			
 		else if((strstr(russianText,"ВОДА"))&&(isFromMainNumberMess||isFromAutorizedNumberMess)) //Установка температуры воды
 			{
-			if(strstr(russianText,"ВОДА"))
-				{
-				short tempSS=find_number_fild_in_text(russianText);	
+			short tempSS=find_number_fild_in_text(russianText);	
 				
-				if(MODE_EE!=1)
-					{
-					modem_send_sms('p',incommingNumber,"В текущем режиме работы выполнение такой команды невозможно");	
-					}
-				else if((tempSS<5)||(tempSS>85))
-					{
-					modem_send_sms('p',incommingNumber,"Значение находится за пределами разрешенных(5-85).Команда отклонена");
-					}
-				else
-					{
-					NECC_TEMPER_WATER_EE=tempSS;
-					sprintf(tempRussianText,"Температура воды установлена на %dгр.Ц");
-					modem_send_sms('p',incommingNumber,"Зн");
-					}					
-
+			if(MODE_EE!=1)
+				{
+				modem_send_sms('p',incommingNumber,"В текущем режиме работы выполнение такой команды невозможно");	
 				}
-			
-			//modem_plazma1++;
-			//modem_send_sms('t',"9139294352",/*"OTPRAVTE 7 CIFR, VIVEDENNIH NA EKRAN USTROISTVA"*/"mama1");
+			else if((tempSS<5)||(tempSS>85))
+				{
+				modem_send_sms('p',incommingNumber,"Значение находится за пределами разрешенных(5-85).Команда отклонена");
+				}
+			else
+				{
+				NECC_TEMPER_WATER_EE=tempSS;
+				sprintf(tempRussianText,"Температура воды установлена на %dгр.Ц.",(int)NECC_TEMPER_WATER_EE);
+				modem_send_sms('p',incommingNumber,tempRussianText);
+				}					
 			}
-					
-					
+
+		else if((strstr(russianText,"ВОЗДУХ"))&&(isFromMainNumberMess||isFromAutorizedNumberMess)) //Установка температуры воздуха
+			{
+			short tempSS=find_number_fild_in_text(russianText);	
+				
+			if(MODE_EE!=2)
+				{
+				modem_send_sms('p',incommingNumber,"В текущем режиме работы выполнение такой команды невозможно");	
+				}
+			else if((tempSS<5)||(tempSS>35))
+				{
+				modem_send_sms('p',incommingNumber,"Значение находится за пределами разрешенных(5-35).Команда отклонена");
+				}
+			else
+				{
+				NECC_TEMPER_AIR_EE=tempSS;
+				sprintf(tempRussianText,"Температура воздуха установлена на %dгр.Ц.",(int)NECC_TEMPER_AIR_EE);
+				modem_send_sms('p',incommingNumber,tempRussianText);
+				}					
+			}
 		isFromMainNumberMess=0;
 		isFromAutorizedNumberMess=0;
 		isFromNotAutorizedNumberMess=0;
