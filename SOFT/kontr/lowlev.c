@@ -29,7 +29,7 @@ GPIOE->DDR|=0b00101001;
 GPIOE->CR1&=0b11010110;
 GPIOE->CR2&=0b11010110;
 
-if(out_mode==osOFF)
+if(outMode==omOFF)
 	{
 	GPIOE->ODR|=0b00101001;
 	}

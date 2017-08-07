@@ -6,8 +6,10 @@
 //Переменные в EEPROM
 @eeprom extern char				MAIN_NUMBER[10];		//Ячейка для хранения номера мастера
 @eeprom extern char				AUTH_NUMBER_1[10];		//Ячейка для хранения номера первого авторизованого телефона
-typedef enum {paNORM/*=0xcc*/,paALARM/*=0x33*/} enumPowerAlarm; 
+typedef enum {paNORM,paALARM} 	enumPowerAlarm; 
 @eeprom extern char 			powerAlarm;				//Статус аварийности сети
+typedef enum {omOFF,omON} 		enumOutMode;
+@eeprom extern enumOutMode		outMode;				//Термостат включен-выключен
 @eeprom extern signed short		HUMAN_SET_EE; 			//подпись человека (0x1234)
 @eeprom extern signed char	  	NECC_TEMPER_AIR_EE; 	//температура поддержания воздуха
 @eeprom extern signed char		NECC_TEMPER_WATER_EE;	//температура поддержания воды
@@ -76,7 +78,7 @@ extern char led_ind_out1,led_ind_out2;
 //-----------------------------------------------
 //Управление выходом
 typedef enum {osOFF,osON}enum_out_stat;
-extern enum_out_stat out_stat[3],out_mode;
+extern enum_out_stat out_stat[3];
 
 #define butON	254
 #define butM	253

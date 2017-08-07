@@ -19,6 +19,7 @@
 @eeprom char			MAIN_NUMBER[10]				@0x4002;	//Ячейка для хранения номера мастера
 @eeprom char			AUTH_NUMBER_1[10]			@0x400C;	//Ячейка для хранения номера первого авторизованого телефона
 @eeprom char 			powerAlarm					@0x401C;	//Статус аварийности сети
+@eeprom enumOutMode		outMode					@0x401D;	//Термостат включен-выключен
 @eeprom signed short	HUMAN_SET_EE 				@0x401E;	//подпись человека (0x1234)
 @eeprom unsigned char 	TABLE_TIME_EE[7][5]			@0x4020;	//таблица временных меток для семи дней недели, временная метка 
 //выражается в десятках минут
@@ -73,7 +74,7 @@ char led_ind_out1,led_ind_out2;
 
 //-----------------------------------------------
 //Управление выходом
-enum_out_stat out_stat[3],out_mode=osOFF;
+enum_out_stat out_stat[3];
 
 //-----------------------------------------------
 //Температура
@@ -412,9 +413,9 @@ else
 powerNeccOld=powerNecc;
 
 powerEnabled=0;
-if(out_stat[0]==osON)powerEnabled++;
-if(out_stat[1]==osON)powerEnabled++;
-if(out_stat[2]==osON)powerEnabled++;
+if((out_stat[0]==osON)&&(outMode==omON))powerEnabled++;
+if((out_stat[1]==osON)&&(outMode==omON))powerEnabled++;
+if((out_stat[2]==osON)&&(outMode==omON))powerEnabled++;
 
 enableInterrupts();
 }
@@ -423,7 +424,7 @@ enableInterrupts();
 void power_necc_hndl(void)
 {
 
-if((temperToReg>=temperRegTo)||(temperOfWater>=90))
+if((temperToReg>=temperRegTo)||(temperOfWater>=90)||(mainCnt<3))
 	{
 	powerNecc=0;	
 	}
@@ -504,7 +505,7 @@ if(ind==iMn)
 	//int2indI_slkuf(powerAlarm,1, 1, 0, 1, 0);
 	
 	led_mask_off(0x00);
-	if(out_mode==osON)
+	if(outMode==omON)
 		{
 		if(MODE_EE==1)led_on(1);
 		else if(MODE_EE==2) led_on(2);
@@ -514,9 +515,9 @@ if(ind==iMn)
 			led_on(3);
 			}
 		}
-	if((out_mode==osON)&&(out_stat[0]==osON))led_on(4);
-	if((out_mode==osON)&&(out_stat[1]==osON))led_on(5);
-	if((out_mode==osON)&&(out_stat[2]==osON))led_on(6);
+	if((outMode==omON)&&(out_stat[0]==osON))led_on(4);
+	if((outMode==omON)&&(out_stat[1]==osON))led_on(5);
+	if((outMode==omON)&&(out_stat[2]==osON))led_on(6);
 	
 	if(bERR)led_on(7);
 	else if(bWARN)led_flash(7);
@@ -759,14 +760,14 @@ else if(ind==iModem_deb)
 else if(ind==iTemperSet)
 	{
 /*	led_mask_off(0x00);
-	if(out_mode==osON)led_on(MODE_EE);
-	if((out_mode==osON)&&(out_stat[0]==osON))led_on(4);
-	if((out_mode==osON)&&(out_stat[1]==osON))led_on(5);
-	if((out_mode==osON)&&(out_stat[2]==osON))led_on(6);
+	if(outMode==osON)led_on(MODE_EE);
+	if((outMode==osON)&&(out_stat[0]==osON))led_on(4);
+	if((outMode==osON)&&(out_stat[1]==osON))led_on(5);
+	if((outMode==osON)&&(out_stat[2]==osON))led_on(6);
 */
 
 	led_mask_off(0x00);
-	if(out_mode==osON)
+	if(outMode==omON)
 		{
 		if(MODE_EE==1)led_on(1);
 		else if(MODE_EE==2) led_on(2);
@@ -776,9 +777,9 @@ else if(ind==iTemperSet)
 			led_on(3);
 			}
 		}
-	if((out_mode==osON)&&(out_stat[0]==osON))led_on(4);
-	if((out_mode==osON)&&(out_stat[1]==osON))led_on(5);
-	if((out_mode==osON)&&(out_stat[2]==osON))led_on(6);
+	if((outMode==omON)&&(out_stat[0]==osON))led_on(4);
+	if((outMode==omON)&&(out_stat[1]==osON))led_on(5);
+	if((outMode==omON)&&(out_stat[2]==osON))led_on(6);
 	
 	if(bERR)led_on(7);
 	else if(bWARN)led_flash(7);
@@ -861,8 +862,8 @@ n_but=0;
 
 if(but==butON)
 	{
-	if(out_mode==osON)	out_mode=osOFF;
-	else 				out_mode=osON;
+	if(outMode==omON)	outMode=omOFF;
+	else 				outMode=omON;
 	}
 
 
@@ -1635,7 +1636,7 @@ enableInterrupts();
 clear_ind();
 ind=iModem_deb;//iMn;
 
-out_mode=osOFF;
+//outMode=osOFF;
 
 bERR=0;
 bWARN=0;
@@ -1685,7 +1686,7 @@ while (1)
 		if(mainCnt<10)
 			{
 			mainCnt++;
-			if(mainCnt==3)out_mode=osON;
+			//if(mainCnt==3)outMode=osON;
 			}
 		
 		ds18b20_temper_drv();

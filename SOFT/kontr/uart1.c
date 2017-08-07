@@ -422,7 +422,7 @@ else
 			modem_send_sms('p',incommingNumber,tempRussianText);
 			if(powerAlarm == paNORM) strcat(tempRussianText,"Питание норма\n");
 			else 					 strcat(tempRussianText,"Питание отключено\n");
-			if(out_mode==osON)		 strcat(tempRussianText,"Термостат включен\n");
+			if(outMode==omON)		 strcat(tempRussianText,"Термостат включен\n");
 			else 					 strcat(tempRussianText,"Термостат выключен\n");
 			sprintf(tempStr,"Нагрев %d",powerEnabled);
 			strcat(tempRussianText,tempStr);
