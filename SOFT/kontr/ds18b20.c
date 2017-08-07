@@ -1,13 +1,16 @@
 #include "stm8s.h"
 #include "main.h"
 #include "ds18b20.h"
+#include <string.h>
+#include <stdlib.h>
+#include "modem.h"
 
 
-char wire1_in[10];		//—читывание данных, буфер 1wire
-char ds18b20ErrorHiCnt; //—четчик ошибок по замыканию линии в "+" (или отсутствию датчика)
-char ds18b20ErrorLoCnt;	//—четчик ошибок по замыканию линии в "-" 
-char ds18b20ErrorOffCnt;//—четчик нормальных ответов датчика
-enumDsErrorStat waterSensorErrorStat = dsesNORM;
+@near char wire1_in[10];		//—читывание данных, буфер 1wire
+@near char ds18b20ErrorHiCnt; //—четчик ошибок по замыканию линии в "+" (или отсутствию датчика)
+@near char ds18b20ErrorLoCnt;	//—четчик ошибок по замыканию линии в "-" 
+@near char ds18b20ErrorOffCnt;//—четчик нормальных ответов датчика
+@near enumDsErrorStat waterSensorErrorStat = dsesNORM, waterSensorErrorStatOld = dsesNORM;
 
 //-----------------------------------------------
 //-----------------------------------------------
@@ -113,6 +116,31 @@ else
 			}			
 		}
 	}
+
+if((waterSensorErrorStat!=dsesNORM)&&(waterSensorErrorStatOld==dsesNORM))
+	{
+	strcpy(tempRussianText,"Ќеисправность датчика температуры воды"); 
+						
+	if(AUTH_NUMBER_FLAGS&0x01) //если установлен главный номер
+		{
+		modem_send_sms('p',MAIN_NUMBER,tempRussianText);
+		}
+	if(AUTH_NUMBER_FLAGS&0x02) //если установлен главный номер
+		{
+		//modem_send_sms('p',AUTH_NUMBER_1,tempRussianText);
+		}	
+		if(AUTH_NUMBER_FLAGS&0x04) //если установлен главный номер
+		{
+		//modem_send_sms('p',AUTH_NUMBER_2,tempRussianText);
+		}	
+	if(AUTH_NUMBER_FLAGS&0x08) //если установлен главный номер
+		{
+		//modem_send_sms('p',AUTH_NUMBER_3,tempRussianText);
+		}					
+	}
+
+waterSensorErrorStatOld=waterSensorErrorStat;
+	
 }
 
 //-----------------------------------------------

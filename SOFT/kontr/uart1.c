@@ -6,6 +6,7 @@
 #include "modem.h"
 #include <stdio.h>
 #include "lowlev.h"
+#include "ds18b20.h"
 
 //-----------------------------------------------
 @near char rxBuffer1[RX_BUFFER_1_SIZE];				//Приемный буфер UART1
@@ -408,6 +409,23 @@ else
 				sprintf(tempRussianText,"Температура воздуха установлена на %dгр.Ц.",(int)NECC_TEMPER_AIR_EE);
 				modem_send_sms('p',incommingNumber,tempRussianText);
 				}					
+			}
+
+		else if((strstr(russianText,"СТАТУС"))&&(isFromMainNumberMess||isFromAutorizedNumberMess)) //Запрос состояния системы
+			{
+			sprintf(tempStr,"Tводы %dгр.Ц \n",(int)temperOfWater);
+			if(waterSensorErrorStat == dsesNORM)strcpy(tempRussianText,tempStr);
+			else strcpy(tempRussianText,"Tводы неиспр.\n");
+			sprintf(tempStr,"Tвоздуха %dгр.Ц \n",temperOfAir);
+			if(airSensorErrorStat == taesNORM)strcat(tempRussianText,tempStr);
+			else strcat(tempRussianText,"Tвоздуха неиспр.\n");
+			modem_send_sms('p',incommingNumber,tempRussianText);
+			if(powerAlarm == paNORM) strcat(tempRussianText,"Питание норма\n");
+			else 					 strcat(tempRussianText,"Питание отключено\n");
+			if(out_mode==osON)		 strcat(tempRussianText,"Термостат включен\n");
+			else 					 strcat(tempRussianText,"Термостат выключен\n");
+			sprintf(tempStr,"Нагрев %d",powerEnabled);
+			strcat(tempRussianText,tempStr);
 			}
 		isFromMainNumberMess=0;
 		isFromAutorizedNumberMess=0;

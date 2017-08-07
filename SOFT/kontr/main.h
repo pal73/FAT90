@@ -99,7 +99,7 @@ extern signed char	temperOfAir;
 extern signed char 	temperToReg;
 extern signed char 	temperRegTo;
 typedef enum {taesNORM=0x55,taesHI=1,taesLO=0,taesLHI=3,taesLLO=2} enumTemperOfAirErrorStat; 
-extern enumTemperOfAirErrorStat airSensorErrorStat;
+extern enumTemperOfAirErrorStat airSensorErrorStat,airSensorErrorStatOld;
 
 //-----------------------------------------------
 //Время
@@ -115,6 +115,7 @@ extern char time_year;
 //Регулирование мощности
 extern signed char powerNecc,powerNeccOld;
 extern signed char powerNeccDelta;
+extern signed char powerEnabled;
 
 //-----------------------------------------------
 //Зуммер

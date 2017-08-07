@@ -29,12 +29,12 @@ char *textSMS;																//Указатель не строку с текстом SMS
 @near char textToSendPDUSMS[70];							//Строка с текстом PDU SMS
 @near char buferHeadToSendPDUSMS[30];					//Буфер с началом пакета PDU
 @near char buferBodyToSendPDUSMS[350];				//Буфер с телом пакета PDU
-@near char buferBodyToSendPDUSMS__[100];				//Буфер с телом пакета PDU
+@near char buferBodyToSendPDUSMS__[100];			//Буфер с телом пакета PDU
 @near short lenPDUSMS;													//Длина пакета PDU 
 @near char ptrTemp[30];
-@near char russianText[70];										//Буфер для преобразованного русского текста
-@near char tempRussianText[90];									//Буфер для отправляемого русского текста
-@near struct 													//Фифо для отправки СМС
+@near char russianText[70];							//Буфер для преобразованного русского текста
+@near char tempRussianText[90];						//Буфер для отправляемого русского текста
+@near struct 										//Фифо для отправки СМС
 	{
 	char text[80];
 	char number[11];

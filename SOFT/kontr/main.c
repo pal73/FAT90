@@ -82,7 +82,7 @@ signed char	temperOfAir;
 signed char temperToReg;
 signed char temperRegTo;
 signed char temperRegToSheduler;
-enumTemperOfAirErrorStat airSensorErrorStat=taesNORM;
+enumTemperOfAirErrorStat airSensorErrorStat=taesNORM, airSensorErrorStatOld=taesNORM;
 
 
 
@@ -111,6 +111,7 @@ const unsigned char TABLE_TIME_EE_MAX[5]={35,71,107,125,143};
 //Регулирование мощности
 signed char powerNecc=0,powerNeccOld=0;
 signed char powerNeccDelta;
+signed char powerEnabled;
 
 //-----------------------------------------------
 //Зуммер
@@ -278,7 +279,30 @@ else
 			airSensorErrorStat=taesLHI;	
 			}
 		}
-	}	
+	}
+
+if((airSensorErrorStat!=taesNORM)&&(airSensorErrorStatOld==taesNORM))
+	{
+	strcpy(tempRussianText,"Неисправность датчика температуры воздуха"); 
+						
+	if(AUTH_NUMBER_FLAGS&0x01) //если установлен главный номер
+		{
+		modem_send_sms('p',MAIN_NUMBER,tempRussianText);
+		}
+	if(AUTH_NUMBER_FLAGS&0x02) //если установлен главный номер
+		{
+		//modem_send_sms('p',AUTH_NUMBER_1,tempRussianText);
+		}	
+	if(AUTH_NUMBER_FLAGS&0x04) //если установлен главный номер
+		{
+		//modem_send_sms('p',AUTH_NUMBER_2,tempRussianText);
+		}	
+	if(AUTH_NUMBER_FLAGS&0x08) //если установлен главный номер
+		{
+		//modem_send_sms('p',AUTH_NUMBER_3,tempRussianText);
+		}					
+	}
+airSensorErrorStatOld=airSensorErrorStat;
 }
 
 //-----------------------------------------------
@@ -386,6 +410,12 @@ else
 	}
 	
 powerNeccOld=powerNecc;
+
+powerEnabled=0;
+if(out_stat[0]==osON)powerEnabled++;
+if(out_stat[1]==osON)powerEnabled++;
+if(out_stat[2]==osON)powerEnabled++;
+
 enableInterrupts();
 }
 
