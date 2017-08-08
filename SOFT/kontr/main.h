@@ -34,7 +34,7 @@ extern char currRandom,fiksRandom;
 //Временная сетка
 //extern bool b100Hz,b10Hz,b5Hz,b2Hz,b1Hz;
 extern char t0_cnt0,t0_cnt1,t0_cnt2,t0_cnt3,t0_cnt4;
-extern signed char mainCnt;
+extern signed short mainCnt;
 
 //-----------------------------------------------
 //Индикация
@@ -132,6 +132,11 @@ extern bool bWARN; //предупреждение
 //Исправность линии воздушного датчика
 extern char cntAirSensorLineErrorLo;
 extern char cntAirSensorLineErrorHi;
+
+//-----------------------------------------------
+//Аварийный перегрев или охлаждение системы
+typedef enum {wtaNORM,wtaCOOL,wtaHEAT}enumWaterTemperAlarm;
+extern enumWaterTemperAlarm waterTemperAlarm, waterTemperAlarmOld;
 
 //-----------------------------------------------
 //Случайные числа для запоминания главного номера

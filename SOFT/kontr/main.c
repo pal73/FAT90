@@ -52,7 +52,7 @@ char currRandom,fiksRandom;
 //¬ременна€ сетка
 bool b100Hz=0,b10Hz=0,b5Hz=0,b2Hz=0,b1Hz=0;
 char t0_cnt0=0,t0_cnt1=0,t0_cnt2=0,t0_cnt3=0,t0_cnt4=0;
-signed char mainCnt;
+signed short mainCnt;
 //-----------------------------------------------
 //»ндикаци€
 char ind_cnt;
@@ -129,6 +129,11 @@ char cntAirSensorLineErrorLo;
 char cntAirSensorLineErrorHi;
 
 //-----------------------------------------------
+//јварийный перегрев или охлаждение системы
+enumWaterTemperAlarm waterTemperAlarm=wtaNORM, waterTemperAlarmOld=wtaNORM;
+
+
+//-----------------------------------------------
 //—лучайные числа дл€ запоминани€ главного номера
 @near char rand_dig[7];
 @near char rand_dig_str[8]="0000000";
@@ -176,23 +181,24 @@ if(!((GPIOA->IDR)&(1<<6)))
 			powerAlarm=paALARM;
 			
 			strcpy(tempRussianText,"Ёлектричество отключено"); 
-						
+#ifdef FINAL_RELEASE						
 			if(AUTH_NUMBER_FLAGS&0x01) //если установлен главный номер
 				{
 				modem_send_sms('p',MAIN_NUMBER,tempRussianText);
 				}
 			if(AUTH_NUMBER_FLAGS&0x02) //если установлен главный номер
 				{
-				//modem_send_sms('p',AUTH_NUMBER_1,tempRussianText);
+				modem_send_sms('p',AUTH_NUMBER_1,tempRussianText);
 				}	
 			if(AUTH_NUMBER_FLAGS&0x04) //если установлен главный номер
 				{
-				//modem_send_sms('p',AUTH_NUMBER_2,tempRussianText);
+				modem_send_sms('p',AUTH_NUMBER_2,tempRussianText);
 				}	
 			if(AUTH_NUMBER_FLAGS&0x08) //если установлен главный номер
 				{
-				//modem_send_sms('p',AUTH_NUMBER_3,tempRussianText);
-				}					
+				modem_send_sms('p',AUTH_NUMBER_3,tempRussianText);
+				}
+#endif				
 			}
 		}		
 	}
@@ -285,25 +291,69 @@ else
 if((airSensorErrorStat!=taesNORM)&&(airSensorErrorStatOld==taesNORM))
 	{
 	strcpy(tempRussianText,"Ќеисправность датчика температуры воздуха"); 
-						
+
+#ifdef FINAL_RELEASE
 	if(AUTH_NUMBER_FLAGS&0x01) //если установлен главный номер
 		{
 		modem_send_sms('p',MAIN_NUMBER,tempRussianText);
 		}
 	if(AUTH_NUMBER_FLAGS&0x02) //если установлен главный номер
 		{
-		//modem_send_sms('p',AUTH_NUMBER_1,tempRussianText);
+		modem_send_sms('p',AUTH_NUMBER_1,tempRussianText);
 		}	
 	if(AUTH_NUMBER_FLAGS&0x04) //если установлен главный номер
 		{
-		//modem_send_sms('p',AUTH_NUMBER_2,tempRussianText);
+		modem_send_sms('p',AUTH_NUMBER_2,tempRussianText);
 		}	
 	if(AUTH_NUMBER_FLAGS&0x08) //если установлен главный номер
 		{
-		//modem_send_sms('p',AUTH_NUMBER_3,tempRussianText);
-		}					
+		modem_send_sms('p',AUTH_NUMBER_3,tempRussianText);
+		}	
+#endif		
 	}
 airSensorErrorStatOld=airSensorErrorStat;
+}
+
+//-----------------------------------------------
+void waterTemperAlarmHndl(void)
+{
+if((waterSensorErrorStat==dsesNORM)&&(temperOfWater<3)&&(mainCnt>60))
+	{
+	waterTemperAlarm=wtaCOOL;	
+	}
+else if((waterSensorErrorStat==dsesNORM)&&(temperOfWater>90)&&(mainCnt>60))
+	{
+	waterTemperAlarm=wtaHEAT;	
+	}
+else if((waterSensorErrorStat==dsesNORM)&&(temperOfWater>=10)&&(temperOfWater<=80))
+	{
+	waterTemperAlarm=wtaNORM;	
+	}
+if((waterTemperAlarm!=wtaNORM)&&(waterTemperAlarmOld==wtaNORM))
+	{
+	if(waterTemperAlarm==wtaCOOL) strcpy(tempRussianText,"“емпература воды в системе ниже 3 гр.÷."); 
+	else if(waterTemperAlarm==wtaHEAT) strcpy(tempRussianText,"“емпература воды в системе выше 90 гр.÷."); 
+
+
+	if(AUTH_NUMBER_FLAGS&0x01) //если установлен главный номер
+		{
+		modem_send_sms('p',MAIN_NUMBER,tempRussianText);
+		}
+#ifdef FINAL_RELEASE	if(AUTH_NUMBER_FLAGS&0x02) //если установлен главный номер
+		{
+		modem_send_sms('p',AUTH_NUMBER_1,tempRussianText);
+		}	
+	if(AUTH_NUMBER_FLAGS&0x04) //если установлен главный номер
+		{
+		modem_send_sms('p',AUTH_NUMBER_2,tempRussianText);
+		}	
+	if(AUTH_NUMBER_FLAGS&0x08) //если установлен главный номер
+		{
+		modem_send_sms('p',AUTH_NUMBER_3,tempRussianText);
+		}	
+#endif		
+	}
+waterTemperAlarmOld=waterTemperAlarm;
 }
 
 //-----------------------------------------------
@@ -1683,7 +1733,7 @@ while (1)
 		{
 		b1Hz=0;
 		
-		if(mainCnt<10)
+		if(mainCnt<1000)
 			{
 			mainCnt++;
 			//if(mainCnt==3)outMode=osON;
@@ -1697,6 +1747,7 @@ while (1)
 		sheduler_hndl();
 		error_warn_hndl();
 		airSensorLineErrorDrv();
+		waterTemperAlarmHndl();
 		
 		//printf("%s \r", MAIN_NUMBER);
 		//printf("OK%dCRC%d\n",13,14);

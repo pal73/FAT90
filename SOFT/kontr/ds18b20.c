@@ -120,23 +120,25 @@ else
 if((waterSensorErrorStat!=dsesNORM)&&(waterSensorErrorStatOld==dsesNORM))
 	{
 	strcpy(tempRussianText,"Ќеисправность датчика температуры воды"); 
-						
+
+#ifdef FINAL_RELEASE
 	if(AUTH_NUMBER_FLAGS&0x01) //если установлен главный номер
 		{
 		modem_send_sms('p',MAIN_NUMBER,tempRussianText);
 		}
 	if(AUTH_NUMBER_FLAGS&0x02) //если установлен главный номер
 		{
-		//modem_send_sms('p',AUTH_NUMBER_1,tempRussianText);
+		modem_send_sms('p',AUTH_NUMBER_1,tempRussianText);
 		}	
 		if(AUTH_NUMBER_FLAGS&0x04) //если установлен главный номер
 		{
-		//modem_send_sms('p',AUTH_NUMBER_2,tempRussianText);
+		modem_send_sms('p',AUTH_NUMBER_2,tempRussianText);
 		}	
 	if(AUTH_NUMBER_FLAGS&0x08) //если установлен главный номер
 		{
-		//modem_send_sms('p',AUTH_NUMBER_3,tempRussianText);
-		}					
+		modem_send_sms('p',AUTH_NUMBER_3,tempRussianText);
+		}
+#endif		
 	}
 
 waterSensorErrorStatOld=waterSensorErrorStat;

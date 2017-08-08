@@ -26,8 +26,8 @@ char *textSMS;																//Указатель не строку с текстом SMS
 @near char textToSendSMS[200];								//Строка с текстом SMS
 @near char numberToSendSMS[20];								//Строка с номером телефона адресата СМС
 @near char numberToSendSMS_[20];							//Вспомогательная строка с номером телефона адресата СМС
-@near char textToSendPDUSMS[70];							//Строка с текстом PDU SMS
-@near char buferHeadToSendPDUSMS[30];					//Буфер с началом пакета PDU
+@near char textToSendPDUSMS[70];					//Строка с текстом PDU SMS
+@near char buferHeadToSendPDUSMS[30];				//Буфер с началом пакета PDU
 @near char buferBodyToSendPDUSMS[350];				//Буфер с телом пакета PDU
 @near char buferBodyToSendPDUSMS__[100];			//Буфер с телом пакета PDU
 @near short lenPDUSMS;													//Длина пакета PDU 

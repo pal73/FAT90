@@ -7,6 +7,7 @@
 #include <stdio.h>
 #include "lowlev.h"
 #include "ds18b20.h"
+#include "version.h"
 
 //-----------------------------------------------
 @near char rxBuffer1[RX_BUFFER_1_SIZE];				//Приемный буфер UART1
@@ -419,13 +420,19 @@ else
 			sprintf(tempStr,"Tвоздуха %dгр.Ц \n",temperOfAir);
 			if(airSensorErrorStat == taesNORM)strcat(tempRussianText,tempStr);
 			else strcat(tempRussianText,"Tвоздуха неиспр.\n");
-			modem_send_sms('p',incommingNumber,tempRussianText);
 			if(powerAlarm == paNORM) strcat(tempRussianText,"Питание норма\n");
-			else 					 strcat(tempRussianText,"Питание отключено\n");
-			if(outMode==omON)		 strcat(tempRussianText,"Термостат включен\n");
-			else 					 strcat(tempRussianText,"Термостат выключен\n");
-			sprintf(tempStr,"Нагрев %d",powerEnabled);
+			else 					 strcat(tempRussianText,"Питание выкл.\n");
+			if(outMode==omON)		 strcat(tempRussianText,"Термостат вкл.\n");
+			else 					 strcat(tempRussianText,"Термостат выкл.\n");
+			powerEnabled=3;
+			sprintf(tempStr,"Нагрев %d",(int)powerEnabled);
 			strcat(tempRussianText,tempStr);
+			modem_send_sms('p',incommingNumber,tempRussianText);
+			}
+		else if((strstr(russianText,"ВЕРСИЯ"))&&(isFromMainNumberMess||isFromAutorizedNumberMess)) //Запрос версии прошивки
+			{
+			sprintf(tempRussianText,"Версия ПО %d.%03d",VERSION,BUILD);
+			modem_send_sms('p',incommingNumber,tempRussianText);			
 			}
 		isFromMainNumberMess=0;
 		isFromAutorizedNumberMess=0;
