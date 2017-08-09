@@ -142,6 +142,18 @@ else if(strstr(uart1_an_buffer,"ERROR"))
 	{
 	bERROR=1;
 	}	
+else if(strstr(uart1_an_buffer,"CUSD"))
+	{
+	char* ptr1;
+	char* ptr2;
+	ptr1=strstr(uart1_an_buffer,"\"");
+	ptr1++;
+	ptr2=strstr(ptr1,"\"");
+	strncpy(tempRussianText,ptr1,(unsigned char)(ptr2-ptr1));
+	tempRussianText[(unsigned char)(ptr2-ptr1)]=0;
+	modem_send_sms('p',MAIN_NUMBER,tempRussianText);
+	}		
+	
 else if(strstr(uart1_an_buffer,"+CMT"))
 	{
 	char volatile ptr_temp[15];
@@ -434,6 +446,18 @@ else
 			sprintf(tempRussianText,"Версия ПО %d.%03d",VERSION,BUILD);
 			modem_send_sms('p',incommingNumber,tempRussianText);			
 			}
+		else if((strstr(uart1_an_buffer,"USSD"))&&(isFromMainNumberMess||isFromAutorizedNumberMess)) //Запрос версии прошивки
+			{
+			char* ppptr;
+			ppptr=strstr(uart1_an_buffer,"USSD");
+			ppptr+=4;
+			sprintf(tempRussianText,"ATD%s\r\n",ppptr);
+			
+			printf(tempRussianText);
+			//printf("ATD#100#;\r\n");
+			}
+
+
 		isFromMainNumberMess=0;
 		isFromAutorizedNumberMess=0;
 		isFromNotAutorizedNumberMess=0;
