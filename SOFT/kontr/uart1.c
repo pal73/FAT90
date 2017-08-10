@@ -7,7 +7,7 @@
 #include <stdio.h>
 #include "lowlev.h"
 #include "ds18b20.h"
-#include "version.h"
+#include "next_version.h"
 
 //-----------------------------------------------
 @near char rxBuffer1[RX_BUFFER_1_SIZE];				//Приемный буфер UART1
@@ -16,7 +16,7 @@
 @near short tx_wr_index1;							//Указатель на следующую ячейку передающего ФИФО
 @near short tx_rd_index1;							//Указатель на следующий отправляемый из ФИФО байт	
 @near short tx_counter1;							//Счетчик заполненности передающего ФИФО
-@near char uart1_an_buffer[200];					//Буфер для анализа принятых по UART1 строк
+@near char uart1_an_buffer[350];					//Буфер для анализа принятых по UART1 строк
 @near char bRXIN1;									//Индикатор принятой строки в uart1_an_buffer
 @near char incommingNumber[10];						//Буфер для хранения номера отправителя пришедшей смс
 @near char incommingNumberToMain[10];				//Буфер для хранения номера просящегося в главные
@@ -148,10 +148,18 @@ else if(strstr(uart1_an_buffer,"CUSD"))
 	char* ptr2;
 	ptr1=strstr(uart1_an_buffer,"\"");
 	ptr1++;
+	if((*(ptr1))=='0')
+		{
+		strncpy(tempRussianText,ptr1,80);
+		PDU2text(tempRussianText);
+		modem_send_sms('p',MAIN_NUMBER,russianText);
+		}
+	else
+{	
 	ptr2=strstr(ptr1,"\"");
-	strncpy(tempRussianText,ptr1,(unsigned char)(ptr2-ptr1));
-	tempRussianText[(unsigned char)(ptr2-ptr1)]=0;
-	modem_send_sms('p',MAIN_NUMBER,tempRussianText);
+	strncpy(tempRussianText,ptr1,/*(unsigned char)(ptr2-ptr1)*/40);
+	tempRussianText[40/*(unsigned char)(ptr2-ptr1)*/]=0;
+modem_send_sms('p',MAIN_NUMBER,tempRussianText);}
 	}		
 	
 else if(strstr(uart1_an_buffer,"+CMT"))
@@ -444,7 +452,7 @@ else
 		else if((strstr(russianText,"ВЕРСИЯ"))&&(isFromMainNumberMess||isFromAutorizedNumberMess)) //Запрос версии прошивки
 			{
 			sprintf(tempRussianText,"Версия ПО %d.%03d",VERSION,BUILD);
-			modem_send_sms('p',incommingNumber,tempRussianText);			
+			modem_send_sms('p',incommingNumber,"Привет  0"/*tempRussianText*/);			
 			}
 		else if((strstr(uart1_an_buffer,"USSD"))&&(isFromMainNumberMess||isFromAutorizedNumberMess)) //Запрос версии прошивки
 			{
