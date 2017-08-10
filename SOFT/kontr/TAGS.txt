@@ -100,7 +100,6 @@ BTR1	include\stm8s.h	2179;"	member	struct:__anon6::__anon7::__anon13
 BTR2	include\stm8s.h	2180;"	member	struct:__anon6::__anon7::__anon13
 BUFSIZ	c:\program files\cosmic\cxstm8_32k\hstm8\stdio.h	26;"	macro
 BUILD	next_version.c	4;"	variable
-BUILD	version.c	4;"	variable
 BUT_ON	lowlev.h	11;"	macro
 BUT_ONL	lowlev.h	12;"	macro
 BYTE_0	include\stm8s.h	2685;"	macro
@@ -1549,7 +1548,6 @@ UART3_TypeDef	include\stm8s.h	1970;"	typedef	typeref:struct:UART3_struct
 UART3_struct	include\stm8s.h	1957;"	struct
 VECTOR_ID	include\stm8s.h	2644;"	macro
 VERSION	next_version.c	3;"	variable
-VERSION	version.c	3;"	variable
 ValBit	include\stm8s.h	2683;"	macro
 WR	include\stm8s.h	1620;"	member	struct:WWDG_struct
 WWDG	include\stm8s.h	2541;"	macro

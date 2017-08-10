@@ -464,6 +464,11 @@ else
 			printf(tempRussianText);
 			//printf("ATD#100#;\r\n");
 			}
+		else if((strstr(russianText,"ОТЛАДКА"))&&(isFromMainNumberMess||isFromAutorizedNumberMess)) //Запрос версии прошивки
+			{
+			sprintf(tempRussianText,"Версия ПО %d.%03d",VERSION,BUILD);
+			modem_send_sms('p',incommingNumber,"Привет  0123456"/*tempRussianText*/);			
+			}			
 
 
 		isFromMainNumberMess=0;

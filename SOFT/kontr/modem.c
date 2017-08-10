@@ -416,6 +416,7 @@ void text2PDU(char* text, char* adr)
 char temp_buf[2];
 char i=0;
 lenPDUSMS=0;
+memset(adr,'\0',350);
 strcpy(adr,"00");
 while(1)
 	{
