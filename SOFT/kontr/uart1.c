@@ -7,7 +7,7 @@
 #include <stdio.h>
 #include "lowlev.h"
 #include "ds18b20.h"
-#include "version.h"
+#include "next_version.h"
 
 //-----------------------------------------------
 @near char rxBuffer1[RX_BUFFER_1_SIZE];				//Приемный буфер UART1
@@ -16,10 +16,11 @@
 @near short tx_wr_index1;							//Указатель на следующую ячейку передающего ФИФО
 @near short tx_rd_index1;							//Указатель на следующий отправляемый из ФИФО байт	
 @near short tx_counter1;							//Счетчик заполненности передающего ФИФО
-@near char uart1_an_buffer[200];					//Буфер для анализа принятых по UART1 строк
+@near char uart1_an_buffer[350];					//Буфер для анализа принятых по UART1 строк
 @near char bRXIN1;									//Индикатор принятой строки в uart1_an_buffer
 @near char incommingNumber[10];						//Буфер для хранения номера отправителя пришедшей смс
 @near char incommingNumberToMain[10];				//Буфер для хранения номера просящегося в главные
+@near char incommingNumberUSSDRequ[10];				//Буфер для хранения номера приславшео USSD запрос
 
 bool isFromMainNumberMess;							//флаг, пришедшее смс от мастерского телефона
 bool isFromAutorizedNumberMess;						//флаг, пришедшее смс от одного из прописанных немастерских телефонов
@@ -27,6 +28,7 @@ bool isFromNotAutorizedNumberMess;					//флаг, пришедшее смс от неавторизованног
 bool bOK;											//Модем ответил "OK"
 bool bERROR;										//Модем ответил "ERROR"
 bool bINITIALIZED;									//Модем инициализирован
+char ussdRequ;										//Был USSD запрос
 
 @near char* number_temp;
 @near short cell;
@@ -81,14 +83,21 @@ if (rx_status1 & (UART1_SR_RXNE))
 	else if(rx_data1!='\n') 
 		{
 		rxBuffer1[rx_wr_index1++]=rx_data1;
+
+
+		
 		if(rx_wr_index1>=RX_BUFFER_1_SIZE)
 			{
 			rx_wr_index1=0;	
 			}
 		}
 		
+		if(rx_wr_index1>=1)
+			{
+			cntAirSensorLineErrorLo=0;	
+			}		
 /*	cntAirSensorLineErrorHi=0;
-	cntAirSensorLineErrorLo=0;
+	
 	if(airSensorErrorStat==taesLHI)airSensorErrorStat=taesNORM;
 	if(airSensorErrorStat==taesLLO)airSensorErrorStat=taesNORM;*/
 	}
@@ -142,16 +151,26 @@ else if(strstr(uart1_an_buffer,"ERROR"))
 	{
 	bERROR=1;
 	}	
-else if(strstr(uart1_an_buffer,"CUSD"))
+else if((strstr(uart1_an_buffer,"CUSD"))&&(ussdRequ))
 	{
 	char* ptr1;
 	char* ptr2;
 	ptr1=strstr(uart1_an_buffer,"\"");
 	ptr1++;
-	ptr2=strstr(ptr1,"\"");
-	strncpy(tempRussianText,ptr1,(unsigned char)(ptr2-ptr1));
-	tempRussianText[(unsigned char)(ptr2-ptr1)]=0;
-	modem_send_sms('p',MAIN_NUMBER,tempRussianText);
+	if((*(ptr1))=='0')
+		{
+		strncpy(tempRussianText,ptr1,80);
+		PDU2text(tempRussianText);
+		modem_send_sms('p',incommingNumberUSSDRequ,russianText);
+		}
+	else
+		{	
+		ptr2=strstr(ptr1,"\"");
+		strncpy(tempRussianText,ptr1,/*(unsigned char)(ptr2-ptr1)*/40);
+		tempRussianText[40/*(unsigned char)(ptr2-ptr1)*/]=0;
+		modem_send_sms('p',incommingNumberUSSDRequ,tempRussianText);
+		}
+	if(ussdRequ)ussdRequ--;	
 	}		
 	
 else if(strstr(uart1_an_buffer,"+CMT"))
@@ -240,6 +259,9 @@ else
 				memcpy(MAIN_NUMBER,incommingNumberToMain,10);
 				AUTH_NUMBER_FLAGS=0x01;
 				modem_send_sms('p',MAIN_NUMBER,"Ваш номер установлен как главный");
+				tree_down(0,0);
+				ind=iMn;
+				ret_ind(0,0);
 				}
 			}
 		else if((strstr(russianText,"НОМЕР"))&&(isFromMainNumberMess)) //"Установить номер
@@ -426,18 +448,18 @@ else
 
 		else if((strstr(russianText,"СТАТУС"))&&(isFromMainNumberMess||isFromAutorizedNumberMess)) //Запрос состояния системы
 			{
-			sprintf(tempStr,"Tводы %dгр.Ц \n",(int)temperOfWater);
+			sprintf(tempStr,"Tвода %3dгр.Ц \n",(int)temperOfWater);
 			if(waterSensorErrorStat == dsesNORM)strcpy(tempRussianText,tempStr);
 			else strcpy(tempRussianText,"Tводы неиспр.\n");
-			sprintf(tempStr,"Tвоздуха %dгр.Ц \n",temperOfAir);
+			sprintf(tempStr,"Tвоздух %3dгр.Ц \n",(int)temperOfAir);
 			if(airSensorErrorStat == taesNORM)strcat(tempRussianText,tempStr);
 			else strcat(tempRussianText,"Tвоздуха неиспр.\n");
 			if(powerAlarm == paNORM) strcat(tempRussianText,"Питание норма\n");
 			else 					 strcat(tempRussianText,"Питание выкл.\n");
 			if(outMode==omON)		 strcat(tempRussianText,"Термостат вкл.\n");
 			else 					 strcat(tempRussianText,"Термостат выкл.\n");
-			powerEnabled=3;
-			sprintf(tempStr,"Нагрев %d",(int)powerEnabled);
+			
+			sprintf(tempStr,"Нагрев %1d",(int)powerEnabled);
 			strcat(tempRussianText,tempStr);
 			modem_send_sms('p',incommingNumber,tempRussianText);
 			}
@@ -455,7 +477,14 @@ else
 			
 			printf(tempRussianText);
 			//printf("ATD#100#;\r\n");
+			memcpy(incommingNumberUSSDRequ,incommingNumber,10);
+			ussdRequ=2;
 			}
+		else if((strstr(russianText,"ОТЛАДКА"))&&(isFromMainNumberMess||isFromAutorizedNumberMess)) //Запрос версии прошивки
+			{
+			sprintf(tempRussianText,"Версия ПО %d.%03d",VERSION,BUILD);
+			modem_send_sms('p',incommingNumber,"Привет  0123456"/*tempRussianText*/);			
+			}			
 
 
 		isFromMainNumberMess=0;

@@ -219,7 +219,7 @@ else
 		if((power_in_drv_alarm_cnt==0)&&(powerAlarm!=paNORM))
 			{
 			powerAlarm=paNORM;
-			
+#ifdef FINAL_RELEASE			
 			strcpy(tempRussianText,"Электричество включено"); 
 						
 			if(AUTH_NUMBER_FLAGS&0x01) //если установлен главный номер
@@ -228,16 +228,17 @@ else
 				}
 			if(AUTH_NUMBER_FLAGS&0x02) //если установлен главный номер
 				{
-				//modem_send_sms('p',AUTH_NUMBER_1,tempRussianText);
+				modem_send_sms('p',AUTH_NUMBER_1,tempRussianText);
 				}	
 			if(AUTH_NUMBER_FLAGS&0x04) //если установлен главный номер
 				{
-				//modem_send_sms('p',AUTH_NUMBER_2,tempRussianText);
+				modem_send_sms('p',AUTH_NUMBER_2,tempRussianText);
 				}	
 			if(AUTH_NUMBER_FLAGS&0x08) //если установлен главный номер
 				{
-				//modem_send_sms('p',AUTH_NUMBER_3,tempRussianText);
-				}					
+				modem_send_sms('p',AUTH_NUMBER_3,tempRussianText);
+				}
+#endif
 			}
 		}		
 	}
@@ -521,16 +522,18 @@ void ind_hndl(void)
 {
 char i;
 
+
+	
 if(ind==iMn)
 	{
-	///int2indII_slkuf(time_hour,2, 2, 0, 0, 0);
-	///int2indII_slkuf(time_min,0, 2, 0, 0, 0);
-	int2indII_slkuf(power_in_drv_off_cnt,2, 2, 0, 0, 0);
-	int2indII_slkuf(power_in_drv_alarm_cnt,0, 2, 0, 0, 0);
+	int2indII_slkuf(time_hour,2, 2, 0, 0, 0);
+	int2indII_slkuf(time_min,0, 2, 0, 0, 0);
+	//int2indII_slkuf(power_in_drv_off_cnt,2, 2, 0, 0, 0);
+	//int2indII_slkuf(power_in_drv_alarm_cnt,0, 2, 0, 0, 0);
 	if(bFL2)	ind_outG[2]&=0b11111110;
 	//int2indII_slkuf(time_sec,0, 2, 0, 0, 0);
 	//else 		int2indII_slkuf(time_sec,0, 2, 1, 0, 0);
-/*	
+	
 	if(temperToReg>=0)
 		{
 		int2indI_slkuf(temperToReg,2, 2, 0, 1, 0);
@@ -550,8 +553,8 @@ if(ind==iMn)
 			int2indI_slkuf(-temperToReg,1, 2, 0, 1, 0);
 			}
 		}
-*/	
-	int2indI_slkuf(powerStat,3, 1, 0, 1, 0);
+	
+	//int2indI_slkuf(powerStat,3, 1, 0, 1, 0);
 	//int2indI_slkuf(powerAlarm,1, 1, 0, 1, 0);
 	
 	led_mask_off(0x00);
@@ -571,8 +574,12 @@ if(ind==iMn)
 	
 	if(bERR)led_on(7);
 	else if(bWARN)led_flash(7);
+	
+
 	//led_set(2,0);
 	//led_set(3,2);
+	if(modemState==MS_LINKED_INITIALIZED)	led_on(8);
+	else 									led_off(8);
 	}
 else if(ind==iDate_W)
 	{
@@ -939,7 +946,7 @@ if(ind==iMn)
 		tree_up(iDeb,0,0,0);
 		//modemDrvSMSSendStepCnt=1;
 		
-		modem_send_sms('p', "9139294352", "Мама1 \r\nМама2");
+		//modem_send_sms('p', "9139294352", "Мама1 \r\nМама2");
 		}
 	}
 
@@ -1421,8 +1428,15 @@ else if(ind==iDeb)
 		}
 	else if(but==butD_)
 		{
-		tree_down(0,0);
+		tree_down(-1,0);
 		}
+	else if(but==butM)
+		{
+		tree_up(iModem_deb,0,0,0);
+		//modemDrvSMSSendStepCnt=1;
+		
+		//modem_send_sms('p', "9139294352", "Мама1 \r\nМама2");
+		}		
 	}
 	
 else if(ind==iModem_deb)
@@ -1431,7 +1445,7 @@ else if(ind==iModem_deb)
 		{
 		//modemDrvSMSSendStepCnt=1;
 		
-		modem_send_sms('p', "9139294352", "Мама1 \r\nМама2");
+		//modem_send_sms('p', "9139294352", "Мама1 \r\nМама2");
 		
 		//sprintf(textToSendPDUSMS,"Мама1 %d \r\nМама2 %d",123,456);
 		//sprintf(textToSendPDUSMS,"Мама мыла раму, у шуры шары. It is OK?");
@@ -1443,9 +1457,14 @@ else if(ind==iModem_deb)
 		//char puts_bufer[100];
 		
 		//modem_send_sms('p',"9139294352","ОТПРАВЬТЕ В ОТВЕТНОМ СМС 7 ЦИФР ВЫВЕДЕННЫХ НА ИНДИКАТОР УСТРОЙСТВА "); //
-		modem_send_sms('p',MAIN_NUMBER,"ВАШ ТЕЛЕФОН УСТАНОВЛЕН КАК ГЛАВНЫЙ ДЛЯ ДАННОГО КОНТРОЛЛЕРА ");
+		//modem_send_sms('p',MAIN_NUMBER,"ВАШ ТЕЛЕФОН УСТАНОВЛЕН КАК ГЛАВНЫЙ ДЛЯ ДАННОГО КОНТРОЛЛЕРА ");
 		//printf("ATD*100#;\r");
 		}
+	else if(but==butUD_)
+		{
+		tree_down(0,0);
+		}
+		
 /*		
 		+CUSD: 0,"0421043F0430044104380431043E0020043704300020043E04310440043004490435043D0438043500210020041C044B0020043D0430043F0440043004320438043C0020043E04420432043504420020043D04300020041204300448002004370430043F0440043E04410020043200200053004D0053",72
 
@@ -1684,13 +1703,14 @@ modem_gpio_init();
 enableInterrupts();
 
 clear_ind();
-ind=iModem_deb;//iMn;
+ind=iMn;//iModem_deb;
 
 //outMode=osOFF;
 
 bERR=0;
 bWARN=0;
 
+modemDrvInitStepCnt=1;
 
 //PDU2text("043E0442043F044004300432044C0442043500200441043C04410031003200330034");
 //ODE_EE=1;

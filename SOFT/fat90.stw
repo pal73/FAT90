@@ -21,4 +21,4 @@ Dependencies=
 [Options]
 ActiveProject=fat90_kontr
 ActiveConfig=Debug
-AddSortedElements=0
+AddSortedElements=1

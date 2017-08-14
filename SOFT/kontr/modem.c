@@ -16,6 +16,7 @@ signed char net_l_cnt_up,net_l_cnt_down;			//Счетчики антидребезга светодиода ли
 short net_l_cnt_one, net_l_cnt_zero, net_l_cnt_one_temp; 	//Счетчики свечения светодиода линка
 enum_modemLinkState modemLinkState=MLS_UNKNOWN;		//Состояние подключения к провайдеру модема
 enum_modemState modemState=MS_UNKNOWN;				//Состояние модема
+short modemNotReadyCnt;								//Счетчик неготового состояния модема
 
 signed char modemDrvPowerStartCnt=0;					//Счетчик 100мС-интервалов от включения питания 
 signed short modemDrvInitStepCnt=0;						//Счетчик 100мС-шагов инициализации модема
@@ -123,7 +124,11 @@ if(!(GPIOE->IDR&(1<<7))) //если светодиод LINK горит
 			if((net_l_cnt_one_temp>4) && (net_l_cnt_one_temp<8))
 				{
 				if((net_l_cnt_zero>70) && (net_l_cnt_zero<90))			modemLinkState=MLS_UNLINKED; 
-				else if((net_l_cnt_zero>250) && (net_l_cnt_zero<350))	modemLinkState=MLS_LINKED;  
+				else if((net_l_cnt_zero>250) && (net_l_cnt_zero<350))	
+					{
+					if((modemLinkState!=MLS_PRELINKED)&&(modemLinkState!=MLS_LINKED))modemLinkState=MLS_PRELINKED; 
+					else modemLinkState=MLS_LINKED;
+					}
 				else if((net_l_cnt_zero>25) && (net_l_cnt_zero<35))		modemLinkState=MLS_GPRS; 
 				else 													modemLinkState=MLS_UNKNOWN;
 				}
@@ -171,6 +176,21 @@ else if(modemLinkState==MLS_LINKED)
 	}
 else if(modemLinkState==MLS_GPRS)										modemState=MS_GPRS;
 else 																	modemState=MS_UNKNOWN;
+
+
+
+if(modemState!=MS_LINKED_INITIALIZED)
+	{
+	if(modemNotReadyCnt<6000)
+		{
+		modemNotReadyCnt++;
+		if(modemNotReadyCnt>=6000)
+			{
+			modemDrvInitStepCnt=1;
+			modemNotReadyCnt=0;			
+			}
+		}
+	}
 }
 
 //-----------------------------------------------
@@ -186,7 +206,7 @@ else
 	{
 	if((modemState!=MS_LINKED)&&(modemState!=MS_LINKED_INITIALIZED))
 		{
-		if(modemDrvInitStepCnt==0)modemDrvInitStepCnt=1;	
+		//if(modemDrvInitStepCnt==0)modemDrvInitStepCnt=1;	
 		}
 	else 
 		{
@@ -200,18 +220,24 @@ else
 			{
 			GPIOD->ODR|=(1<<0);			//Сброс
 			modemDrvInitStepCnt++;
+			modemLinkState=MLS_UNLINKED;
+			net_l_cnt_zero=0;
+			net_l_cnt_up=0;
 			}
 			
-		else if(modemDrvInitStepCnt==7)
+		else if(modemDrvInitStepCnt==10)
 			{
 			GPIOD->ODR&=~(1<<0);		//Конец сброса
 			modemDrvInitStepCnt++;
 			}	
 
-		else if(modemDrvInitStepCnt==20)
+		else if(modemDrvInitStepCnt==15)
 			{
 			GPIOA->ODR|=(1<<3);			//Воздействие на вход управления питанием модема
 			modemDrvInitStepCnt++;
+			modemLinkState=MLS_UNLINKED;
+			net_l_cnt_zero=0;
+			net_l_cnt_up=0;
 			}	
 			
 		else if(modemDrvInitStepCnt==25)
@@ -224,7 +250,23 @@ else
 			{
 			if(modemState==MS_LINKED)modemDrvInitStepCnt++;
 			}
-			
+
+		else if(modemDrvInitStepCnt==31)
+			{
+			modemDrvInitStepCnt++;
+			}
+
+/*		else if(modemDrvInitStepCnt==32)
+			{
+			printf("AT\r\n");
+			bOK=0;
+			modemDrvInitStepCnt++;
+			}
+		else if(modemDrvInitStepCnt==33)
+			{
+			if(bOK)modemDrvInitStepCnt++;
+			}*/
+
 		else if(modemDrvInitStepCnt==35)
 			{
 			//printf("AT+COPS?\r\n");
@@ -416,6 +458,7 @@ void text2PDU(char* text, char* adr)
 char temp_buf[2];
 char i=0;
 lenPDUSMS=0;
+memset(adr,'\0',350);
 strcpy(adr,"00");
 while(1)
 	{
