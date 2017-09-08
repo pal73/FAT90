@@ -340,7 +340,8 @@ if((waterTemperAlarm!=wtaNORM)&&(waterTemperAlarmOld==wtaNORM))
 		{
 		modem_send_sms('p',MAIN_NUMBER,tempRussianText);
 		}
-#ifdef FINAL_RELEASE	if(AUTH_NUMBER_FLAGS&0x02) //если установлен главный номер
+#ifdef FINAL_RELEASE	
+	if(AUTH_NUMBER_FLAGS&0x02) //если установлен главный номер
 		{
 		modem_send_sms('p',AUTH_NUMBER_1,tempRussianText);
 		}	
