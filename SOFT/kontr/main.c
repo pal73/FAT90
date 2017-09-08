@@ -12,6 +12,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
+#include "watchdog.h"
 
 //-----------------------------------------------
 //Переменные в EEPROM
@@ -150,6 +151,7 @@ enumPowerStat powerStat=psOFF;
 //char random_plazma;
 unsigned char tempUC;
 //@near signed char 	TABLE_TEMPER_EE[7][5];
+bool bWATCHDOG_REFRESH=1;
 //^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 //-----------------------------------------------
@@ -888,6 +890,14 @@ else if(ind==iMn_number)
 	int2indII_slkuf(rand_dig[6], 0, 1, 0, 0, 0);
 	}	
 
+else if(ind==iAfterReset)
+	{
+	led_mask_off(0x00);
+
+	int2indI_slkuf(mainCnt, 1, 3, 0, 0, 0);
+	}	
+
+
 if(bFL5)
 	{
 	ind_outB[0]=led_ind_out1;
@@ -949,6 +959,11 @@ if(ind==iMn)
 		
 		//modem_send_sms('p', "9139294352", "Мама1 \r\nМама2");
 		}
+		
+	else if(but==butD)
+		{
+		bWATCHDOG_REFRESH=0;
+		}		
 	}
 
 else if(ind==iTemperSet)
@@ -1705,7 +1720,8 @@ enableInterrupts();
 
 clear_ind();
 ind=iMn;//iModem_deb;
-
+tree_up(iAfterReset,0,0,0);
+ret_ind(10,0);
 //outMode=osOFF;
 
 bERR=0;
@@ -1715,6 +1731,9 @@ modemDrvInitStepCnt=1;
 
 //PDU2text("043E0442043F044004300432044C0442043500200441043C04410031003200330034");
 //ODE_EE=1;
+
+watchdog_enable();
+
 while (1)
 	{
 	if(b100Hz)
@@ -1731,6 +1750,7 @@ while (1)
 		{
 		b10Hz=0;
 
+		if(bWATCHDOG_REFRESH)watchdog_reset();
 		ind_hndl();
 		uart3_in_an();
 		out_drv();
