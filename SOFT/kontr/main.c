@@ -897,6 +897,17 @@ else if(ind==iAfterReset)
 	int2indI_slkuf(mainCnt, 1, 3, 0, 0, 0);
 	}	
 
+if(powerStat==psOFF)
+	{
+	led_set(1,0);
+	led_set(2,0);
+	led_set(3,0);
+	led_set(4,0);
+	led_set(5,0);
+	led_set(6,0);
+	led_set(7,0);
+	led_set(8,2);
+	}
 
 if(bFL5)
 	{
@@ -962,7 +973,9 @@ if(ind==iMn)
 		
 	else if(but==butD)
 		{
-		bWATCHDOG_REFRESH=0;
+		//bWATCHDOG_REFRESH=0;
+		//printf("AT + CPOWD = 1 \r");
+		printf("AT + CBC \r");
 		}		
 	}
 
@@ -1640,11 +1653,16 @@ if(ind_cnt>=10)
 	}
 GPIOB->ODR=ind_outB[ind_cnt];
 GPIOC->ODR=ind_outC[ind_cnt];
+if(powerStat==psOFF)GPIOC->ODR=0xff;
 GPIOG->ODR|=0x01;
 GPIOG->ODR&=ind_outG[ind_cnt];
 if(ind_cnt==9)GPIOB->DDR=0x00;
 else GPIOB->DDR=0xff;
-if(powerStat==psOFF)GPIOD->ODR|=0b00111100;
+if(powerStat==psOFF)
+	{
+	GPIOD->ODR|=0b00111100;
+	if((ind_cnt==0)||(ind_cnt>3))GPIOD->ODR&=ind_strob[0];
+	}
 else GPIOD->ODR&=ind_strob[ind_cnt];
 
 if(++t0_cnt0>=10)
