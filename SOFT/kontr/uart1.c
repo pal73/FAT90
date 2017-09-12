@@ -150,7 +150,34 @@ if(strstr(uart1_an_buffer,"OK"))
 else if(strstr(uart1_an_buffer,"ERROR"))
 	{
 	bERROR=1;
-	}	
+	}
+
+else if(strstr(uart1_an_buffer,"UNDER-VOLTAGE WARNNING"))
+	{
+	//tree_up(iAfterReset,0,0,0);
+	//printf("AT + CPOWD = 1 \r");
+	printf("AT + CBC \r");
+	}
+	
+else if(strstr(uart1_an_buffer,"CBC"))
+	{
+	char* ptr1;
+	char* ptr2;
+	char volatile ptr_temp[15];
+	ptr1=strstr(uart1_an_buffer,",");
+	ptr1++;
+	ptr2=strstr(ptr1,",");
+	ptr2++;
+	memset(ptr_temp,'\0',15);
+	memcpy(ptr_temp,ptr2,1);
+	memcpy(ptr_temp+1,".",1);
+	memcpy(ptr_temp+2,ptr2,3);
+	
+	sprintf(tempRussianText,"Напряжение аккумулятора %sв, система выключена до появления сети",ptr_temp);
+	modem_send_sms('p',MAIN_NUMBER,tempRussianText);
+	//printf(ptr_temp);
+	
+	}
 else if((strstr(uart1_an_buffer,"CUSD"))&&(ussdRequ))
 	{
 	char* ptr1;

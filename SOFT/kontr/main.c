@@ -247,6 +247,32 @@ else
 }
 
 //-----------------------------------------------
+//Статус питающей сети (разовый, при старте)
+short power_in_test(void)
+{
+//Статус сети 
+GPIOA->DDR&=~(1<<6);		
+GPIOA->CR1&=~(1<<6);		
+GPIOA->CR2&=~(1<<6);
+GPIOA->ODR&=~(1<<6);
+
+power_in_drv_off_cnt=500;
+
+while(1)
+	{
+	if(!((GPIOA->IDR)&(1<<6)))
+		{
+		power_in_drv_off_cnt++;	
+		if(power_in_drv_off_cnt>1000) return 0;
+		}
+	else 
+		{
+		power_in_drv_off_cnt--;	
+		if(power_in_drv_off_cnt==0) return 1;		
+		}
+	}
+}
+//-----------------------------------------------
 void error_warn_hndl(void)
 {
 if(mainCnt<3)return;	
@@ -975,8 +1001,14 @@ if(ind==iMn)
 		{
 		//bWATCHDOG_REFRESH=0;
 		//printf("AT + CPOWD = 1 \r");
-		printf("AT + CBC \r");
-		}		
+		//printf("AT + CBC \r");
+		halt();
+		}	
+
+	else if(but==butU_)
+		{
+		printf("AT + CPAS \r");	
+		}
 	}
 
 else if(ind==iTemperSet)
@@ -1752,8 +1784,14 @@ modemDrvInitStepCnt=1;
 
 watchdog_enable();
 
+if(power_in_test()==0)
+	{
+		halt();
+	}
+
 while (1)
 	{
+	uart1_in_an();
 	if(b100Hz)
 		{
 		b100Hz=0;
@@ -1762,7 +1800,7 @@ while (1)
 		but_an();
 		beep_drv();
 		modem_stat_drv();
-		uart1_in_an();
+		
 		}
 	if(b10Hz)
 		{
