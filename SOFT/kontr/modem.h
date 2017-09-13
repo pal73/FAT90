@@ -18,6 +18,7 @@ extern signed char modemDrvPowerStartCnt;						//Счетчик 100мС-интервалов от вкл
 extern signed short modemDrvInitStepCnt;						//Счетчик 100мС-шагов инициализации модема
 extern signed short modemDrvTextSMSSendStepCnt;			//Счетчик 100мС-шагов отправки текстового СМС
 extern signed short modemDrvPDUSMSSendStepCnt;			//Счетчик 100мС-шагов отправки PDU СМС
+extern signed short modemDrvPowerDownStepCnt;				//Счетчик шагов по выключению системы
 extern char *phoneNumberForSMS;											//Указатель на строку с номером телефона аддресата СМС
 extern char *textSMS;																//Указатель не строку с текстом SMS
 extern @near char textToSendSMS[200];								//Строка с текстом SMS

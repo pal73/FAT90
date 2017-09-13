@@ -21,6 +21,7 @@
 @near char incommingNumber[10];						//Буфер для хранения номера отправителя пришедшей смс
 @near char incommingNumberToMain[10];				//Буфер для хранения номера просящегося в главные
 @near char incommingNumberUSSDRequ[10];				//Буфер для хранения номера приславшео USSD запрос
+@near char cbc_temp[10];													//Буфер для хранения информации о напряжении питания модема
 
 bool isFromMainNumberMess;							//флаг, пришедшее смс от мастерского телефона
 bool isFromAutorizedNumberMess;						//флаг, пришедшее смс от одного из прописанных немастерских телефонов
@@ -29,6 +30,8 @@ bool bOK;											//Модем ответил "OK"
 bool bERROR;										//Модем ответил "ERROR"
 bool bINITIALIZED;									//Модем инициализирован
 char ussdRequ;										//Был USSD запрос
+bool bCBC;												//модем ответил CBC
+bool bBUY_SMS;											//Прощальное SMS ушло
 
 @near char* number_temp;
 @near short cell;
@@ -156,26 +159,29 @@ else if(strstr(uart1_an_buffer,"UNDER-VOLTAGE WARNNING"))
 	{
 	//tree_up(iAfterReset,0,0,0);
 	//printf("AT + CPOWD = 1 \r");
-	printf("AT + CBC \r");
+	//printf("AT + CBC \r");
+	modemDrvPowerDownStepCnt=1;
 	}
 	
 else if(strstr(uart1_an_buffer,"CBC"))
 	{
 	char* ptr1;
 	char* ptr2;
-	char volatile ptr_temp[15];
+	//char volatile ptr_temp[15];
 	ptr1=strstr(uart1_an_buffer,",");
 	ptr1++;
 	ptr2=strstr(ptr1,",");
 	ptr2++;
-	memset(ptr_temp,'\0',15);
-	memcpy(ptr_temp,ptr2,1);
-	memcpy(ptr_temp+1,".",1);
-	memcpy(ptr_temp+2,ptr2,3);
+	memset(cbc_temp,'\0',15);
+	memcpy(cbc_temp,ptr2,1);
+	memcpy(cbc_temp+1,".",1);
+	memcpy(cbc_temp+2,ptr2,3);
 	
-	sprintf(tempRussianText,"Напряжение аккумулятора %sв, система выключена до появления сети",ptr_temp);
-	modem_send_sms('p',MAIN_NUMBER,tempRussianText);
+	//sprintf(tempRussianText,"Напряжение аккумулятора %sв, система выключена до появления сети",ptr_temp);
+	//modem_send_sms('p',MAIN_NUMBER,tempRussianText);
 	//printf(ptr_temp);
+	
+	bCBC=1;
 	
 	}
 else if((strstr(uart1_an_buffer,"CUSD"))&&(ussdRequ))

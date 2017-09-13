@@ -1845,6 +1845,7 @@ while (1)
 		error_warn_hndl();
 		airSensorLineErrorDrv();
 		waterTemperAlarmHndl();
+//		power_off_hndl();
 		
 		//printf("%s \r", MAIN_NUMBER);
 		//printf("OK%dCRC%d\n",13,14);

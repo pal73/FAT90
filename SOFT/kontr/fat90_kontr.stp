@@ -97,7 +97,8 @@ String.6.0=2017,5,22,10,6,23
 
 [Root.Config.0.Settings.5]
 String.2.0=Running Pre-Link step
-String.6.0=2017,5,22,10,6,23
+String.3.0=C:\Python27\python.exe inc_version.py
+String.6.0=2017,9,13,15,1,40
 String.8.0=
 
 [Root.Config.0.Settings.6]

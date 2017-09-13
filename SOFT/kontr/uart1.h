@@ -12,11 +12,15 @@ extern @near char bRXIN1;									//Индикатор принятой строки в uart1_an_buffer
 extern @near char incommingNumber[10];						//Буфер для хранения номера отправителя пришедшей смс
 extern @near char incommingNumberToMain[10];				//Буфер для хранения номера просящегося в главные
 extern @near char incommingNumberUSSDRequ[10];				//Буфер для хранения номера приславшео USSD запрос
+extern @near char cbc_temp[10];													//Буфер для хранения информации о напряжении питания модема
+
 
 extern bool bOK;											//Модем ответил "OK"
 extern bool bERROR;											//Модем ответил "ERROR"
 extern bool bINITIALIZED;									//Модем инициализирован
 extern char ussdRequ;										//Был USSD запрос
+extern bool bCBC;												//модем ответил CBC
+extern bool bBUY_SMS;											//Прощальное SMS ушло
 
 //-----------------------------------------------
 //Отладка

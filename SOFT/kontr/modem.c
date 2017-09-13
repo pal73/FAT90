@@ -22,6 +22,7 @@ signed char modemDrvPowerStartCnt=0;					//Счетчик 100мС-интервалов от включения
 signed short modemDrvInitStepCnt=0;						//Счетчик 100мС-шагов инициализации модема
 signed short modemDrvTextSMSSendStepCnt=0;			//Счетчик 100мС-шагов отправки текстового СМС
 signed short modemDrvPDUSMSSendStepCnt=0;				//Счетчик 100мС-шагов отправки PDU СМС
+signed short modemDrvPowerDownStepCnt=0;			//Счетчик шагов по выключению системы
 char *phoneNumberForSMS;											//Указатель на строку с номером телефона аддресата СМС
 char *textSMS;																//Указатель не строку с текстом SMS
 @near char textToSendSMS[200];								//Строка с текстом SMS
@@ -428,12 +429,45 @@ else
 		else if(modemDrvPDUSMSSendStepCnt==25)
 			{
 			modemDrvPDUSMSSendStepCnt=0;
+			bBUY_SMS=1;
 			}			
 		else
 			{
 			if(modemDrvPDUSMSSendStepCnt<1000)	modemDrvPDUSMSSendStepCnt++;
 			}			
-		}		
+		}
+
+	if(modemDrvPowerDownStepCnt)	//полное выключение системы
+		{
+		if(modemDrvPowerDownStepCnt==11)
+			{
+			printf("AT + CBC \r");
+			bCBC=0;
+			modemDrvPowerDownStepCnt++;
+			}
+		else if(modemDrvPowerDownStepCnt==12)
+			{
+			if(bCBC==1)
+				{
+				sprintf(tempRussianText,"Напряжение аккумулятора %sв, система выключена до появления сети",cbc_temp);
+				modem_send_sms('p',MAIN_NUMBER,tempRussianText);
+				bBUY_SMS=0;
+				modemDrvPowerDownStepCnt++;
+				}
+			}
+		else if(modemDrvPowerDownStepCnt==13)
+			{
+			if(bBUY_SMS==1)
+				{
+				halt();
+				}
+			}
+		else if(modemDrvPowerDownStepCnt<1000)
+			{
+			modemDrvPowerDownStepCnt++;
+			}
+		}
+
 	}
 bOK=0;
 bERROR=0;
