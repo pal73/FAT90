@@ -12,6 +12,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
+#include "watchdog.h"
 
 //-----------------------------------------------
 //Переменные в EEPROM
@@ -150,6 +151,7 @@ enumPowerStat powerStat=psOFF;
 //char random_plazma;
 unsigned char tempUC;
 //@near signed char 	TABLE_TEMPER_EE[7][5];
+bool bWATCHDOG_REFRESH=1;
 //^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 //-----------------------------------------------
@@ -244,6 +246,32 @@ else
 	}
 }
 
+//-----------------------------------------------
+//Статус питающей сети (разовый, при старте)
+short power_in_test(void)
+{
+//Статус сети 
+GPIOA->DDR&=~(1<<6);		
+GPIOA->CR1&=~(1<<6);		
+GPIOA->CR2&=~(1<<6);
+GPIOA->ODR&=~(1<<6);
+
+power_in_drv_off_cnt=500;
+
+while(1)
+	{
+	if(!((GPIOA->IDR)&(1<<6)))
+		{
+		power_in_drv_off_cnt++;	
+		if(power_in_drv_off_cnt>1000) return 0;
+		}
+	else 
+		{
+		power_in_drv_off_cnt--;	
+		if(power_in_drv_off_cnt==0) return 1;		
+		}
+	}
+}
 //-----------------------------------------------
 void error_warn_hndl(void)
 {
@@ -340,7 +368,8 @@ if((waterTemperAlarm!=wtaNORM)&&(waterTemperAlarmOld==wtaNORM))
 		{
 		modem_send_sms('p',MAIN_NUMBER,tempRussianText);
 		}
-#ifdef FINAL_RELEASE	if(AUTH_NUMBER_FLAGS&0x02) //если установлен главный номер
+#ifdef FINAL_RELEASE	
+	if(AUTH_NUMBER_FLAGS&0x02) //если установлен главный номер
 		{
 		modem_send_sms('p',AUTH_NUMBER_1,tempRussianText);
 		}	
@@ -887,6 +916,25 @@ else if(ind==iMn_number)
 	int2indII_slkuf(rand_dig[6], 0, 1, 0, 0, 0);
 	}	
 
+else if(ind==iAfterReset)
+	{
+	led_mask_off(0x00);
+
+	int2indI_slkuf(mainCnt, 1, 3, 0, 0, 0);
+	}	
+
+if(powerStat==psOFF)
+	{
+	led_set(1,0);
+	led_set(2,0);
+	led_set(3,0);
+	led_set(4,0);
+	led_set(5,0);
+	led_set(6,0);
+	led_set(7,0);
+	led_set(8,2);
+	}
+
 if(bFL5)
 	{
 	ind_outB[0]=led_ind_out1;
@@ -947,6 +995,19 @@ if(ind==iMn)
 		//modemDrvSMSSendStepCnt=1;
 		
 		//modem_send_sms('p', "9139294352", "Мама1 \r\nМама2");
+		}
+		
+	else if(but==butD)
+		{
+		//bWATCHDOG_REFRESH=0;
+		//printf("AT + CPOWD = 1 \r");
+		//printf("AT + CBC \r");
+		halt();
+		}	
+
+	else if(but==butU_)
+		{
+		printf("AT + CPAS \r");	
 		}
 	}
 
@@ -1624,11 +1685,16 @@ if(ind_cnt>=10)
 	}
 GPIOB->ODR=ind_outB[ind_cnt];
 GPIOC->ODR=ind_outC[ind_cnt];
+if(powerStat==psOFF)GPIOC->ODR=0xff;
 GPIOG->ODR|=0x01;
 GPIOG->ODR&=ind_outG[ind_cnt];
 if(ind_cnt==9)GPIOB->DDR=0x00;
 else GPIOB->DDR=0xff;
-if(powerStat==psOFF)GPIOD->ODR|=0b00111100;
+if(powerStat==psOFF)
+	{
+	GPIOD->ODR|=0b00111100;
+	if((ind_cnt==0)||(ind_cnt>3))GPIOD->ODR&=ind_strob[0];
+	}
 else GPIOD->ODR&=ind_strob[ind_cnt];
 
 if(++t0_cnt0>=10)
@@ -1704,7 +1770,8 @@ enableInterrupts();
 
 clear_ind();
 ind=iMn;//iModem_deb;
-
+tree_up(iAfterReset,0,0,0);
+ret_ind(10,0);
 //outMode=osOFF;
 
 bERR=0;
@@ -1714,8 +1781,17 @@ modemDrvInitStepCnt=1;
 
 //PDU2text("043E0442043F044004300432044C0442043500200441043C04410031003200330034");
 //ODE_EE=1;
+
+watchdog_enable();
+
+if(power_in_test()==0)
+	{
+		halt();
+	}
+
 while (1)
 	{
+	uart1_in_an();
 	if(b100Hz)
 		{
 		b100Hz=0;
@@ -1724,12 +1800,13 @@ while (1)
 		but_an();
 		beep_drv();
 		modem_stat_drv();
-		uart1_in_an();
+		
 		}
 	if(b10Hz)
 		{
 		b10Hz=0;
 
+		if(bWATCHDOG_REFRESH)watchdog_reset();
 		ind_hndl();
 		uart3_in_an();
 		out_drv();

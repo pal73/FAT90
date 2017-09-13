@@ -337,6 +337,11 @@ Next=Root.Source Files.uart3.c
 [Root.Source Files.uart3.c]
 ElemType=File
 PathName=uart3.c
+Next=Root.Source Files.watchdog.c
+
+[Root.Source Files.watchdog.c]
+ElemType=File
+PathName=watchdog.c
 
 [Root.Include Files]
 ElemType=Folder
