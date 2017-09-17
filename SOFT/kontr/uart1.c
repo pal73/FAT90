@@ -21,7 +21,7 @@
 @near char incommingNumber[10];						//Буфер для хранения номера отправителя пришедшей смс
 @near char incommingNumberToMain[10];				//Буфер для хранения номера просящегося в главные
 @near char incommingNumberUSSDRequ[10];				//Буфер для хранения номера приславшео USSD запрос
-@near char cbc_temp[10];													//Буфер для хранения информации о напряжении питания модема
+
 
 bool isFromMainNumberMess;							//флаг, пришедшее смс от мастерского телефона
 bool isFromAutorizedNumberMess;						//флаг, пришедшее смс от одного из прописанных немастерских телефонов
@@ -31,7 +31,9 @@ bool bERROR;										//Модем ответил "ERROR"
 bool bINITIALIZED;									//Модем инициализирован
 char ussdRequ;										//Был USSD запрос
 bool bCBC;												//модем ответил CBC
+
 bool bBUY_SMS;											//Прощальное SMS ушло
+@near char cbcRequ;										//Был запрос состояния аккумулятора
 
 @near char* number_temp;
 @near short cell;
@@ -176,12 +178,18 @@ else if(strstr(uart1_an_buffer,"CBC"))
 	memcpy(cbc_temp,ptr2,1);
 	memcpy(cbc_temp+1,".",1);
 	memcpy(cbc_temp+2,ptr2,3);
+	memset(cbc_temp1,'\0',15);
+	memcpy(cbc_temp1,ptr2,4);
+	
+	cbcVoltage=(short)strtol(cbc_temp1,NULL,0);
+
 	
 	//sprintf(tempRussianText,"Напряжение аккумулятора %sв, система выключена до появления сети",ptr_temp);
 	//modem_send_sms('p',MAIN_NUMBER,tempRussianText);
 	//printf(ptr_temp);
 	
 	bCBC=1;
+	bCBC_SELF=1;
 	
 	}
 else if((strstr(uart1_an_buffer,"CUSD"))&&(ussdRequ))
@@ -512,6 +520,11 @@ else
 			//printf("ATD#100#;\r\n");
 			memcpy(incommingNumberUSSDRequ,incommingNumber,10);
 			ussdRequ=2;
+			}
+		else if((strstr(russianText,"АККУМУЛЯТОР"))&&(isFromMainNumberMess||isFromAutorizedNumberMess)) //Запрос состояния аккумулятора
+			{
+			printf("AT + CBC \r");
+			cbcRequ=1;
 			}
 		else if((strstr(russianText,"ОТЛАДКА"))&&(isFromMainNumberMess||isFromAutorizedNumberMess)) //Запрос версии прошивки
 			{

@@ -132,7 +132,7 @@ char cntAirSensorLineErrorHi;
 //-----------------------------------------------
 //Аварийный перегрев или охлаждение системы
 enumWaterTemperAlarm waterTemperAlarm=wtaNORM, waterTemperAlarmOld=wtaNORM;
-
+@near signed char waterTemperAlarmCnt;
 
 //-----------------------------------------------
 //Случайные числа для запоминания главного номера
@@ -145,6 +145,15 @@ enumWaterTemperAlarm waterTemperAlarm=wtaNORM, waterTemperAlarmOld=wtaNORM;
 @near short power_in_drv_alarm_cnt=30;
 enumPowerStat powerStat=psOFF;
 
+//-----------------------------------------------
+//Выключение по разряду аккумулятора
+//#define POWER_OFF_HNDL_PERIOD_IN_SEC	60
+@near short main_power_off_hndl_cnt;
+@near char cbcSystemRequ;
+@near char cbc_temp[10];							//Буфер для хранения информации о напряжении питания модема
+@near char cbc_temp1[10];							//Буфер для хранения информации о напряжении питания модема
+@near short cbcVoltage;								//Напряжение батареи в милливольтах
+@near bool bCBC_SELF;												//модем ответил CBC
 
 //^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 //отладка
@@ -152,6 +161,7 @@ enumPowerStat powerStat=psOFF;
 unsigned char tempUC;
 //@near signed char 	TABLE_TEMPER_EE[7][5];
 bool bWATCHDOG_REFRESH=1;
+bool bDEB;
 //^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 //-----------------------------------------------
@@ -287,7 +297,7 @@ else if((MODE_EE==2)||(MODE_EE==3))
 	else bWARN=0;
 	}
 	
-if((waterSensorErrorStat==dsesNORM)&&((temperOfWater<=3)||(temperOfWater>=90)))bERR=1;	
+if((waterSensorErrorStat==dsesNORM)&&((waterTemperAlarm==wtaCOOL/*temperOfWater<=3*/)||(waterTemperAlarm==wtaHEAT/*temperOfWater>=90*/)))bERR=1;	
 else bERR=0;
 }
 
@@ -346,18 +356,29 @@ airSensorErrorStatOld=airSensorErrorStat;
 //-----------------------------------------------
 void waterTemperAlarmHndl(void)
 {
-if((waterSensorErrorStat==dsesNORM)&&(temperOfWater<3)&&(mainCnt>60))
+if((waterSensorErrorStat==dsesNORM)&&((temperOfWater<3)||(temperOfWater>90))&&(mainCnt>60))
 	{
-	waterTemperAlarm=wtaCOOL;	
+	if(waterTemperAlarmCnt<15)waterTemperAlarmCnt++;//=wtaCOOL;	
 	}
-else if((waterSensorErrorStat==dsesNORM)&&(temperOfWater>90)&&(mainCnt>60))
+/*else if((waterSensorErrorStat==dsesNORM)&&(temperOfWater>90)&&(mainCnt>60))
 	{
 	waterTemperAlarm=wtaHEAT;	
-	}
+	}*/
 else if((waterSensorErrorStat==dsesNORM)&&(temperOfWater>=10)&&(temperOfWater<=80))
+	{
+	if(waterTemperAlarmCnt)waterTemperAlarmCnt--;//waterTemperAlarm=wtaNORM;	
+	}
+//gran_char(&waterTemperAlarmCnt);	
+if(waterTemperAlarmCnt>14)
+	{
+	if(temperOfWater<3)waterTemperAlarm=wtaCOOL;
+	else if(temperOfWater>>90)waterTemperAlarm=wtaHEAT;
+	}
+else if(waterTemperAlarmCnt<1)
 	{
 	waterTemperAlarm=wtaNORM;	
 	}
+	
 if((waterTemperAlarm!=wtaNORM)&&(waterTemperAlarmOld==wtaNORM))
 	{
 	if(waterTemperAlarm==wtaCOOL) strcpy(tempRussianText,"Температура воды в системе ниже 3 гр.Ц."); 
@@ -466,6 +487,36 @@ else if((day_sheduler_time>=TABLE_TIME_EE[time_day_of_week-1][4])&&(day_sheduler
 }
 
 //-----------------------------------------------
+void power_off_hndl(void)
+{
+if(powerStat==psON)
+	{
+	main_power_off_hndl_cnt=0;
+	return;
+	}
+if(main_power_off_hndl_cnt<POWER_OFF_HNDL_PERIOD_IN_SEC)
+	{
+	main_power_off_hndl_cnt++;
+	}
+if(main_power_off_hndl_cnt==POWER_OFF_HNDL_PERIOD_IN_SEC)
+	{
+	printf("AT + CBC \r");
+	cbcSystemRequ++;
+	if(cbcSystemRequ>=2)halt();
+	}
+if(bCBC_SELF)
+	{
+	bCBC_SELF=0;
+	
+	cbcSystemRequ=0;
+	if(cbcVoltage<3500)
+		{
+		modemDrvPowerDownStepCnt=1;	
+		}
+	}
+}
+
+//-----------------------------------------------
 void power_hndl(void)
 {
 disableInterrupts();	
@@ -527,7 +578,7 @@ if((wire1_in[1]&0xf0)==0)
 	{
 	temperOfWaterTemp=((wire1_in[0]&0xf0)>>4)+((wire1_in[1]&0x0f)<<4);
 	temperOfWater=(signed short)temperOfWaterTemp;
-	//temperOfWater=92;
+	if(bDEB)temperOfWater=1;
 	}
 if(MODE_EE==1)
 	{
@@ -794,7 +845,27 @@ else if(ind==iDeb)
 		//int2indII_slkuf(out_stat[1],2, 1, 0, 0, 0);
 		//int2indII_slkuf(out_stat[2],1, 1, 0, 0, 0);
 		int2indII_slkuf(day_sheduler_time,0, 3, 0, 0, 0);
-		}			
+		}	
+
+	else if(sub_ind==4)
+		{
+		int2indI_slkuf(modemDrvPDUSMSSendStepCnt,1, 3, 0, 0, 0);	
+		//int2indI_slkuf(powerNecc,1, 1, 0, 0, 0);
+		int2indII_slkuf(modemDrvWatchDogCnt,0, 3, 0, 0, 0);
+		//int2indII_slkuf(out_stat[1],2, 1, 0, 0, 0);
+		//int2indII_slkuf(out_stat[2],1, 1, 0, 0, 0);
+		int2indII_slkuf(4,3, 1, 0, 0, 1);
+		}
+	else if(sub_ind==5)
+		{
+		int2indI_slkuf(main_power_off_hndl_cnt,1, 3, 0, 0, 0);	
+		//int2indI_slkuf(powerNecc,1, 1, 0, 0, 0);
+		int2indII_slkuf(cbcVoltage,0, 4, 0, 0, 0);
+		//int2indII_slkuf(out_stat[1],2, 1, 0, 0, 0);
+		//int2indII_slkuf(out_stat[2],1, 1, 0, 0, 0);
+		//int2indII_slkuf(4,3, 1, 0, 0, 1);
+		}
+		
 	}
 
 else if(ind==iModem_deb)
@@ -1002,7 +1073,8 @@ if(ind==iMn)
 		//bWATCHDOG_REFRESH=0;
 		//printf("AT + CPOWD = 1 \r");
 		//printf("AT + CBC \r");
-		halt();
+		//halt();
+		bDEB=!bDEB;
 		}	
 
 	else if(but==butU_)
@@ -1685,17 +1757,17 @@ if(ind_cnt>=10)
 	}
 GPIOB->ODR=ind_outB[ind_cnt];
 GPIOC->ODR=ind_outC[ind_cnt];
-if(powerStat==psOFF)GPIOC->ODR=0xff;
+//if(powerStat==psOFF)GPIOC->ODR=0xff;
 GPIOG->ODR|=0x01;
 GPIOG->ODR&=ind_outG[ind_cnt];
 if(ind_cnt==9)GPIOB->DDR=0x00;
 else GPIOB->DDR=0xff;
-if(powerStat==psOFF)
+/*if(powerStat==psOFF)
 	{
 	GPIOD->ODR|=0b00111100;
 	if((ind_cnt==0)||(ind_cnt>3))GPIOD->ODR&=ind_strob[0];
 	}
-else GPIOD->ODR&=ind_strob[ind_cnt];
+else*/ GPIOD->ODR&=ind_strob[ind_cnt];
 
 if(++t0_cnt0>=10)
 	{
@@ -1845,7 +1917,7 @@ while (1)
 		error_warn_hndl();
 		airSensorLineErrorDrv();
 		waterTemperAlarmHndl();
-//		power_off_hndl();
+		power_off_hndl();
 		
 		//printf("%s \r", MAIN_NUMBER);
 		//printf("OK%dCRC%d\n",13,14);

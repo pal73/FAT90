@@ -137,6 +137,7 @@ extern char cntAirSensorLineErrorHi;
 //Аварийный перегрев или охлаждение системы
 typedef enum {wtaNORM,wtaCOOL,wtaHEAT}enumWaterTemperAlarm;
 extern enumWaterTemperAlarm waterTemperAlarm, waterTemperAlarmOld;
+extern @near signed char waterTemperAlarmCnt;
 
 //-----------------------------------------------
 //Случайные числа для запоминания главного номера
@@ -152,6 +153,17 @@ typedef enum {psOFF/*=0x55*/,psON/*=0xAA*/} enumPowerStat;
 extern enumPowerStat powerStat;
 //typedef enum {paNORM/*=0xcc*/,paALARM/*=0x33*/} enumPowerAlarm; 
 //extern enumPowerAlarm powerAlarm;
+
+//-----------------------------------------------
+//Выключение по разряду аккумулятора
+#define POWER_OFF_HNDL_PERIOD_IN_SEC	60
+extern @near short main_power_off_hndl_cnt;
+extern @near char cbcSystemRequ;
+extern @near char cbc_temp[10];							//Буфер для хранения информации о напряжении питания модема
+extern @near char cbc_temp1[10];							//Буфер для хранения информации о напряжении питания модема
+extern @near short cbcVoltage;								//Напряжение батареи в милливольтах
+extern @near bool bCBC_SELF;												//модем ответил CBC
+
 
 //^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 //отладка

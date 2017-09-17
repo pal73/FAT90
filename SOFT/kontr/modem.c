@@ -18,12 +18,13 @@ enum_modemLinkState modemLinkState=MLS_UNKNOWN;		//Состояние подключения к прова
 enum_modemState modemState=MS_UNKNOWN;				//Состояние модема
 short modemNotReadyCnt;								//Счетчик неготового состояния модема
 
-signed char modemDrvPowerStartCnt=0;					//Счетчик 100мС-интервалов от включения питания 
-signed short modemDrvInitStepCnt=0;						//Счетчик 100мС-шагов инициализации модема
+signed char modemDrvPowerStartCnt=0;				//Счетчик 100мС-интервалов от включения питания 
+signed short modemDrvInitStepCnt=0;					//Счетчик 100мС-шагов инициализации модема
 signed short modemDrvTextSMSSendStepCnt=0;			//Счетчик 100мС-шагов отправки текстового СМС
-signed short modemDrvPDUSMSSendStepCnt=0;				//Счетчик 100мС-шагов отправки PDU СМС
+signed short modemDrvPDUSMSSendStepCnt=0;			//Счетчик 100мС-шагов отправки PDU СМС
 signed short modemDrvPowerDownStepCnt=0;			//Счетчик шагов по выключению системы
-char *phoneNumberForSMS;											//Указатель на строку с номером телефона аддресата СМС
+signed short modemDrvWatchDogCnt;					//Счетчик против зависания обработчика модема
+char *phoneNumberForSMS;										//Указатель на строку с номером телефона аддресата СМС
 char *textSMS;																//Указатель не строку с текстом SMS
 @near char textToSendSMS[200];								//Строка с текстом SMS
 @near char numberToSendSMS[20];								//Строка с номером телефона адресата СМС
@@ -336,6 +337,18 @@ else
 		
 	if(modemDrvTextSMSSendStepCnt)	//отправка текстового СМС
 		{
+		if(modemDrvWatchDogCnt==0)modemDrvWatchDogCnt=150;
+		else 
+			{
+			if(modemDrvWatchDogCnt)
+				{
+				modemDrvWatchDogCnt--;	
+				if(modemDrvWatchDogCnt==0)
+					{
+					modemDrvTextSMSSendStepCnt=0;	
+					}
+				}
+			}			
 		if(modemDrvTextSMSSendStepCnt==11)
 			{
 			printf("AT+CMGF=1\r");
@@ -362,6 +375,7 @@ else
 			{
 			printf("%c",(char)26);
 			modemDrvTextSMSSendStepCnt=0;
+			modemDrvWatchDogCnt=0;
 			}				
 		else
 			{
@@ -371,6 +385,18 @@ else
 		
 	if(modemDrvPDUSMSSendStepCnt)	//отправка PDU СМС
 		{
+		if(modemDrvWatchDogCnt==0)modemDrvWatchDogCnt=150;
+		else 
+			{
+			if(modemDrvWatchDogCnt)
+				{
+				modemDrvWatchDogCnt--;	
+				if(modemDrvWatchDogCnt==0)
+					{
+					modemDrvPDUSMSSendStepCnt=0;	
+					}
+				}
+			}
 		if(modemDrvPDUSMSSendStepCnt==11)
 			{
 			printf("AT+CMGF=0\r");
@@ -430,15 +456,30 @@ else
 			{
 			modemDrvPDUSMSSendStepCnt=0;
 			bBUY_SMS=1;
+			modemDrvWatchDogCnt=0;
 			}			
 		else
 			{
-			if(modemDrvPDUSMSSendStepCnt<1000)	modemDrvPDUSMSSendStepCnt++;
+			if(modemDrvPDUSMSSendStepCnt&&(modemDrvPDUSMSSendStepCnt<1000))	modemDrvPDUSMSSendStepCnt++;
 			}			
 		}
 
 	if(modemDrvPowerDownStepCnt)	//полное выключение системы
 		{
+			
+		if(modemDrvWatchDogCnt==0)modemDrvWatchDogCnt=200;
+		else 
+			{
+			if(modemDrvWatchDogCnt)
+				{
+				modemDrvWatchDogCnt--;	
+				if(modemDrvWatchDogCnt==0)
+					{
+					//halt();	
+					}
+				}
+			}	
+			
 		if(modemDrvPowerDownStepCnt==11)
 			{
 			printf("AT + CBC \r");
@@ -455,12 +496,20 @@ else
 				modemDrvPowerDownStepCnt++;
 				}
 			}
+
 		else if(modemDrvPowerDownStepCnt==13)
 			{
 			if(bBUY_SMS==1)
 				{
-				halt();
+				printf("AT + CPOWD = 1 \r");
+				modemDrvPowerDownStepCnt++;
 				}
+			}
+			
+		else if(modemDrvPowerDownStepCnt==20)
+			{
+			modemDrvWatchDogCnt=0;
+			halt();
 			}
 		else if(modemDrvPowerDownStepCnt<1000)
 			{
