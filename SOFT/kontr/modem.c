@@ -483,17 +483,18 @@ else
 		if(modemDrvPowerDownStepCnt==11)
 			{
 			printf("AT + CBC \r");
-			bCBC=0;
+			bCBC=1;
 			modemDrvPowerDownStepCnt++;
 			}
 		else if(modemDrvPowerDownStepCnt==12)
 			{
-			if(bCBC==1)
+			if(bCBC==2)
 				{
 				sprintf(tempRussianText,"Напряжение аккумулятора %sв, система выключена до появления сети",cbc_temp);
 				modem_send_sms('p',MAIN_NUMBER,tempRussianText);
 				bBUY_SMS=0;
 				modemDrvPowerDownStepCnt++;
+				bCBC=0;
 				}
 			}
 

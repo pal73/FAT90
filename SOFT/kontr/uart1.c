@@ -30,7 +30,7 @@ bool bOK;											//Модем ответил "OK"
 bool bERROR;										//Модем ответил "ERROR"
 bool bINITIALIZED;									//Модем инициализирован
 char ussdRequ;										//Был USSD запрос
-bool bCBC;												//модем ответил CBC
+char bCBC;												//модем ответил CBC
 
 bool bBUY_SMS;											//Прощальное SMS ушло
 @near char cbcRequ;										//Был запрос состояния аккумулятора
@@ -177,19 +177,21 @@ else if(strstr(uart1_an_buffer,"CBC"))
 	memset(cbc_temp,'\0',15);
 	memcpy(cbc_temp,ptr2,1);
 	memcpy(cbc_temp+1,".",1);
-	memcpy(cbc_temp+2,ptr2,3);
+	memcpy(cbc_temp+2,ptr2+1,3);
 	memset(cbc_temp1,'\0',15);
 	memcpy(cbc_temp1,ptr2,4);
 	
 	cbcVoltage=(short)strtol(cbc_temp1,NULL,0);
 
+//memset(cbc_temp,'\0',15);
+//memcpy(cbc_temp,"7654",5);
 	
 	//sprintf(tempRussianText,"Напряжение аккумулятора %sв, система выключена до появления сети",ptr_temp);
 	//modem_send_sms('p',MAIN_NUMBER,tempRussianText);
 	//printf(ptr_temp);
 	
-	bCBC=1;
-	bCBC_SELF=1;
+	if(bCBC==1)bCBC=2;
+	if(bCBC_SELF==1)bCBC_SELF=2;
 	
 	}
 else if((strstr(uart1_an_buffer,"CUSD"))&&(ussdRequ))

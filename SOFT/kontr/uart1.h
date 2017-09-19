@@ -17,7 +17,7 @@ extern bool bOK;											//Модем ответил "OK"
 extern bool bERROR;											//Модем ответил "ERROR"
 extern bool bINITIALIZED;									//Модем инициализирован
 extern char ussdRequ;										//Был USSD запрос
-extern bool bCBC;												//модем ответил CBC
+extern char bCBC;												//модем ответил CBC
 extern bool bBUY_SMS;											//Прощальное SMS ушло
 
 //-----------------------------------------------

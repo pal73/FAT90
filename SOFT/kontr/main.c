@@ -147,13 +147,12 @@ enumPowerStat powerStat=psOFF;
 
 //-----------------------------------------------
 //Выключение по разряду аккумулятора
-//#define POWER_OFF_HNDL_PERIOD_IN_SEC	60
 @near short main_power_off_hndl_cnt;
 @near char cbcSystemRequ;
-@near char cbc_temp[10];							//Буфер для хранения информации о напряжении питания модема
-@near char cbc_temp1[10];							//Буфер для хранения информации о напряжении питания модема
+@near char cbc_temp[15];							//Буфер для хранения информации о напряжении питания модема
+@near char cbc_temp1[15];							//Буфер для хранения информации о напряжении питания модема
 @near short cbcVoltage;								//Напряжение батареи в милливольтах
-@near bool bCBC_SELF;												//модем ответил CBC
+@near char bCBC_SELF;												//модем ответил CBC
 
 //^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 //отладка
@@ -502,14 +501,16 @@ if(main_power_off_hndl_cnt==POWER_OFF_HNDL_PERIOD_IN_SEC)
 	{
 	printf("AT + CBC \r");
 	cbcSystemRequ++;
-	if(cbcSystemRequ>=2)halt();
+	if(cbcSystemRequ>=4)halt();
+	main_power_off_hndl_cnt=0;
+	bCBC_SELF=1;
 	}
-if(bCBC_SELF)
+if(bCBC_SELF==2)
 	{
 	bCBC_SELF=0;
 	
 	cbcSystemRequ=0;
-	if(cbcVoltage<3500)
+	if(cbcVoltage<3800)
 		{
 		modemDrvPowerDownStepCnt=1;	
 		}
@@ -860,8 +861,8 @@ else if(ind==iDeb)
 		{
 		int2indI_slkuf(main_power_off_hndl_cnt,1, 3, 0, 0, 0);	
 		//int2indI_slkuf(powerNecc,1, 1, 0, 0, 0);
-		int2indII_slkuf(cbcVoltage,0, 4, 0, 0, 0);
-		//int2indII_slkuf(out_stat[1],2, 1, 0, 0, 0);
+		int2indII_slkuf(cbcSystemRequ,0, 1, 0, 0, 0);
+		int2indII_slkuf(modemDrvPowerDownStepCnt,2, 2, 0, 0, 0);
 		//int2indII_slkuf(out_stat[2],1, 1, 0, 0, 0);
 		//int2indII_slkuf(4,3, 1, 0, 0, 1);
 		}
@@ -1843,7 +1844,8 @@ enableInterrupts();
 clear_ind();
 ind=iMn;//iModem_deb;
 tree_up(iAfterReset,0,0,0);
-ret_ind(10,0);
+tree_up(iDeb,5,0,0);
+//ret_ind(10,0);
 //outMode=osOFF;
 
 bERR=0;
