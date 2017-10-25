@@ -1,0 +1,8 @@
+[ProjectGroup]
+Version=1.0
+[Project1]
+ProjectPath=KONTROLLER\KONTROLLER.PrjPCB
+[Project2]
+ProjectPath=MODEM\MODEM.PrjPCB
+[Project3]
+ProjectPath=..\..\FAT89\HARD\MODEM\MODEM.PrjPCB
