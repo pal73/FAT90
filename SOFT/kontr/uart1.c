@@ -128,7 +128,7 @@ else
 void putchar(char c)
 {
 while (tx_counter1 == TX_BUFFER_1_SIZE);
-
+disableInterrupts();
 if (tx_counter1 || ((UART1->SR & UART1_SR_TXE)==0))
    {
    txBuffer1[tx_wr_index1]=c;
@@ -136,7 +136,7 @@ if (tx_counter1 || ((UART1->SR & UART1_SR_TXE)==0))
    ++tx_counter1;
    }
 else UART1->DR=c;
-
+enableInterrupts();
 UART1->CR2|= UART1_CR2_TIEN;
 }
 

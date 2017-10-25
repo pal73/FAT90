@@ -510,6 +510,7 @@ else
 		else if(modemDrvPowerDownStepCnt==20)
 			{
 			modemDrvWatchDogCnt=0;
+			GPIOD->ODR|=0b00111100;
 			halt();
 			}
 		else if(modemDrvPowerDownStepCnt<1000)

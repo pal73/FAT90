@@ -156,7 +156,7 @@ extern enumPowerStat powerStat;
 
 //-----------------------------------------------
 //Выключение по разряду аккумулятора
-#define POWER_OFF_HNDL_PERIOD_IN_SEC	25
+#define POWER_OFF_HNDL_PERIOD_IN_SEC	60
 extern @near short main_power_off_hndl_cnt;
 extern @near char cbcSystemRequ;
 extern @near char cbc_temp[15];							//Буфер для хранения информации о напряжении питания модема

@@ -501,7 +501,11 @@ if(main_power_off_hndl_cnt==POWER_OFF_HNDL_PERIOD_IN_SEC)
 	{
 	printf("AT + CBC \r");
 	cbcSystemRequ++;
-	if(cbcSystemRequ>=4)halt();
+	if(cbcSystemRequ>=4)
+		{
+		GPIOD->ODR|=0b00111100;
+		halt();
+		}
 	main_power_off_hndl_cnt=0;
 	bCBC_SELF=1;
 	}
@@ -510,7 +514,7 @@ if(bCBC_SELF==2)
 	bCBC_SELF=0;
 	
 	cbcSystemRequ=0;
-	if(cbcVoltage<3800)
+	if(cbcVoltage<3500)
 		{
 		modemDrvPowerDownStepCnt=1;	
 		}
@@ -866,7 +870,16 @@ else if(ind==iDeb)
 		//int2indII_slkuf(out_stat[2],1, 1, 0, 0, 0);
 		//int2indII_slkuf(4,3, 1, 0, 0, 1);
 		}
-		
+
+	else if(sub_ind==6)
+		{
+		int2indI_slkuf(tx_counter1,1, 3, 0, 0, 0);	
+		//int2indI_slkuf(powerNecc,1, 1, 0, 0, 0);
+		int2indII_slkuf(tx_wr_index1,0, 3, 0, 0, 0);
+		//int2indII_slkuf(modemDrvPowerDownStepCnt,2, 2, 0, 0, 0);
+		//int2indII_slkuf(out_stat[2],1, 1, 0, 0, 0);
+		//int2indII_slkuf(4,3, 1, 0, 0, 1);
+		}
 	}
 
 else if(ind==iModem_deb)
@@ -1758,17 +1771,17 @@ if(ind_cnt>=10)
 	}
 GPIOB->ODR=ind_outB[ind_cnt];
 GPIOC->ODR=ind_outC[ind_cnt];
-//if(powerStat==psOFF)GPIOC->ODR=0xff;
+if(powerStat==psOFF)GPIOC->ODR=0xff;
 GPIOG->ODR|=0x01;
 GPIOG->ODR&=ind_outG[ind_cnt];
 if(ind_cnt==9)GPIOB->DDR=0x00;
 else GPIOB->DDR=0xff;
-/*if(powerStat==psOFF)
+if(powerStat==psOFF)
 	{
 	GPIOD->ODR|=0b00111100;
 	if((ind_cnt==0)||(ind_cnt>3))GPIOD->ODR&=ind_strob[0];
 	}
-else*/ GPIOD->ODR&=ind_strob[ind_cnt];
+else GPIOD->ODR&=ind_strob[ind_cnt];
 
 if(++t0_cnt0>=10)
 	{
@@ -1843,8 +1856,8 @@ enableInterrupts();
 
 clear_ind();
 ind=iMn;//iModem_deb;
-tree_up(iAfterReset,0,0,0);
-tree_up(iDeb,5,0,0);
+//tree_up(iAfterReset,0,0,0);
+//tree_up(iDeb,6,0,0);
 //ret_ind(10,0);
 //outMode=osOFF;
 
@@ -1860,7 +1873,8 @@ watchdog_enable();
 
 if(power_in_test()==0)
 	{
-		halt();
+	GPIOD->ODR|=0b00111100;
+	halt();
 	}
 
 while (1)
