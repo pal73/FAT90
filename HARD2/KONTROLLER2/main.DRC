@@ -1,19 +1,13 @@
 Protel Design System Design Rule Check
-PCB File : \Users\Pal\DEVICES\FAT90_dev\HARD2\KONTROLLER2\main.PcbDoc
-Date     : 27.10.2017
-Time     : 12:08:50
+PCB File : \Users\Pal\DEVICES\FAT90_DEV\HARD2\KONTROLLER2\main.PcbDoc
+Date     : 07.11.2017
+Time     : 15:09:43
 
 Processing Rule : Short-Circuit Constraint (Allowed=No) (All),(All)
 Rule Violations :0
 
 Processing Rule : Broken-Net Constraint ( (All) )
-   Violation         Net GND   is broken into 2 sub-nets. Routed To 97.30%
-     Subnet : JP4-2    U8-4     JP8-3    JP7-3    JP3-5    C4-2     C6-2     S2-2     S2-2     S1-2
-              S1-2     C8-1     JP500-9  JP500-10 C12-1    C13-1    C14-1    R34-2    Q6-2     D4-1     R41-2
-              C7-1     C11-2    U1-14    C10-2    D2-1     S4-2     U1-31    U2-4     C9-1     C1-1     C2-1
-              S4-2     S3-2     S3-2     BT1-2
-     Subnet : U1-4     U1-5
-Rule Violations :1
+Rule Violations :0
 
 Processing Rule : Clearance Constraint (Gap=0.2mm) (All),(All)
 Rule Violations :0
@@ -31,5 +25,5 @@ Processing Rule : Clearance Constraint (Gap=2mm) (HasPad('Free-0')),(InPoly)
 Rule Violations :0
 
 
-Violations Detected : 1
-Time Elapsed        : 00:00:12
+Violations Detected : 0
+Time Elapsed        : 00:00:13
