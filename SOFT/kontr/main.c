@@ -1079,7 +1079,7 @@ if(ind==iMn)
 		tree_up(iDeb,0,0,0);
 		//modemDrvSMSSendStepCnt=1;
 		
-		//modem_send_sms('p', "9139294352", "Ìàìà1 \r\nÌàìà2");
+		modem_send_sms('t', "9139294352", "Ìàìà1 \r\nÌàìà2");
 		}
 		
 	else if(but==butD)

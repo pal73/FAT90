@@ -358,7 +358,7 @@ else
 			{
 
 			ptrTemp[0]='\0';
-			strcat(ptrTemp,"AT + CMGS = \"");
+			strcat(ptrTemp,"AT+CMGS=\"");
 			strcat(ptrTemp,numberToSendSMS);
 			strcat(ptrTemp,"\"\r");
 			printf(ptrTemp);			///*"AT + CMGS = \"" + numberToSendSMS +/*+79139294352*/ "\"\r"*/
@@ -407,7 +407,7 @@ else
 			{
 			if(bOK)
 				{
-				printf("AT + CMGS = %d \r",lenPDUSMS);
+				printf("AT+CMGS=%d\r",lenPDUSMS);
 				bOK=0;
 				modemDrvPDUSMSSendStepCnt++;
 				}
