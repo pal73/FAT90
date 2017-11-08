@@ -1,7 +1,7 @@
 Protel Design System Design Rule Check
 PCB File : \Users\Pal\DEVICES\FAT90\HARD2\KONTROLLER2\main.PcbDoc
 Date     : 08.11.2017
-Time     : 20:16:25
+Time     : 20:35:59
 
 Processing Rule : Clearance Constraint (Gap=2mm) (HasPad('Free-0')),(InPoly)
 Rule Violations :0
@@ -22,8 +22,405 @@ Processing Rule : Broken-Net Constraint ( (All) )
 Rule Violations :0
 
 Processing Rule : Short-Circuit Constraint (Allowed=No) (All),(All)
-Rule Violations :0
+   Violation between Track (213.1816mm,56.2876mm)(213.1816mm,57.1816mm)  Top Layer and                      Pad C108-2(213.1816mm,56.2876mm)  Top Layer   
+   Violation between Via (213.1602mm,57.1816mm) Top Layer to Bottom Layer and                      Pad C108-2(213.1816mm,56.2876mm)  Top Layer   
+   Violation between Polygon Track (212.0316mm,53.4876mm)(213.1816mm,53.4876mm)  Top Layer and                      Pad C108-1(213.1816mm,53.4876mm)  Top Layer   
+   Violation between Polygon Track (213.1816mm,52.4376mm)(213.1816mm,53.4876mm)  Top Layer and                      Pad C108-1(213.1816mm,53.4876mm)  Top Layer   
+   Violation between Polygon Track (213.1816mm,53.4876mm)(213.1816mm,54.5376mm)  Top Layer and                      Pad C108-1(213.1816mm,53.4876mm)  Top Layer   
+   Violation between Polygon Track (213.1816mm,53.4876mm)(214.3316mm,53.4876mm)  Top Layer and                      Pad C108-1(213.1816mm,53.4876mm)  Top Layer   
+   Violation between Track (224.5876mm,44.2934mm)(226.2934mm,44.2934mm)  Top Layer and                      Pad C106-2(224.5876mm,44.2934mm)  Top Layer   
+   Violation between Polygon Track (220.7376mm,44.2934mm)(221.7876mm,44.2934mm)  Top Layer and                      Pad C106-1(221.7876mm,44.2934mm)  Top Layer   
+   Violation between Polygon Track (221.7876mm,43.1434mm)(221.7876mm,44.2934mm)  Top Layer and                      Pad C106-1(221.7876mm,44.2934mm)  Top Layer   
+   Violation between Polygon Track (221.7876mm,44.2934mm)(222.8376mm,44.2934mm)  Top Layer and                      Pad C106-1(221.7876mm,44.2934mm)  Top Layer   
+   Violation between Polygon Track (221.7876mm,44.2934mm)(221.7876mm,45.4434mm)  Top Layer and                      Pad C106-1(221.7876mm,44.2934mm)  Top Layer   
+   Violation between Track (183.0198mm,48.2803mm)(183.0198mm,52.5mm)  Top Layer and                      Pad U102-7(183.0198mm,52.5mm)  Top Layer   
+   Violation between Polygon Track (188.0998mm,50.75mm)(188.0998mm,52.5mm)  Top Layer and                      Pad U102-5(188.0998mm,52.5mm)  Top Layer   
+   Violation between Polygon Track (187.0998mm,52.5mm)(188.0998mm,52.5mm)  Top Layer and                      Pad U102-5(188.0998mm,52.5mm)  Top Layer   
+   Violation between Polygon Track (188.0998mm,52.5mm)(189.0998mm,52.5mm)  Top Layer and                      Pad U102-5(188.0998mm,52.5mm)  Top Layer   
+   Violation between Polygon Track (188.0998mm,52.5mm)(188.0998mm,54.25mm)  Top Layer and                      Pad U102-5(188.0998mm,52.5mm)  Top Layer   
+   Violation between Track (188.0998mm,26.5mm)(188.0998mm,43.6mm)  Top Layer and                      Pad U102-4(188.0998mm,26.5mm)  Top Layer   
+   Violation between Track (185.4998mm,26.56mm)(185.5598mm,26.5mm)  Top Layer and                      Pad U102-3(185.5598mm,26.5mm)  Top Layer   
+   Violation between Track (185.4998mm,26.56mm)(185.4998mm,30.75mm)  Top Layer and                      Pad U102-3(185.5598mm,26.5mm)  Top Layer   
+   Violation between Track (183.0198mm,26.5mm)(183.0198mm,41.6054mm)  Top Layer and                      Pad U102-2(183.0198mm,26.5mm)  Top Layer   
+   Violation between Pad DS103-1(230.6883mm,23.9082mm)  Multi-Layer and                      Track (230.6883mm,23.8867mm)(230.6883mm,23.9082mm)  Top Layer   
+   Violation between Pad DS103-1(230.6883mm,23.9082mm)  Multi-Layer and                      Track (230.6883mm,23.8867mm)(232.775mm,21.8mm)  Top Layer   
+   Violation between Pad JP100-7(151.3mm,11.32mm)  Multi-Layer and                      Track (151.3mm,11.32mm)(152.65mm,12.67mm)  Top Layer   
+   Violation between Pad B101-1(228mm,10.8mm)  Multi-Layer and                      Track (228mm,2.1753mm)(228mm,10.8mm)  Top Layer   
+   Violation between Pad P1-2(233mm,37.1mm)  Multi-Layer and                      Polygon Track (233mm,37.1mm)(233mm,38.7mm)  Top Layer   
+   Violation between Pad P1-2(228mm,37.1mm)  Multi-Layer and                      Polygon Track (228mm,37.1mm)(228mm,38.7mm)  Top Layer   
+   Violation between Pad P1-2(233mm,37.1mm)  Multi-Layer and                      Polygon Track (233mm,37.1mm)(234.6mm,37.1mm)  Top Layer   
+   Violation between Pad P1-2(233mm,37.1mm)  Multi-Layer and                      Polygon Track (233mm,35.5mm)(233mm,37.1mm)  Top Layer   
+   Violation between Pad P1-2(233mm,37.1mm)  Multi-Layer and                      Polygon Track (231.4mm,37.1mm)(233mm,37.1mm)  Top Layer   
+   Violation between Pad P1-2(228mm,37.1mm)  Multi-Layer and                      Polygon Track (228mm,37.1mm)(229.6mm,37.1mm)  Top Layer   
+   Violation between Pad P1-2(228mm,37.1mm)  Multi-Layer and                      Polygon Track (228mm,35.5mm)(228mm,37.1mm)  Top Layer   
+   Violation between Pad P1-2(233mm,32.1mm)  Multi-Layer and                      Polygon Track (233mm,32.1mm)(234.6mm,32.1mm)  Top Layer   
+   Violation between Pad P1-2(233mm,32.1mm)  Multi-Layer and                      Polygon Track (233mm,32.1mm)(233mm,33.7mm)  Top Layer   
+   Violation between Pad P1-2(233mm,32.1mm)  Multi-Layer and                      Polygon Track (231.4mm,32.1mm)(233mm,32.1mm)  Top Layer   
+   Violation between Pad P1-2(228mm,32.1mm)  Multi-Layer and                      Polygon Track (228mm,32.1mm)(228mm,33.7mm)  Top Layer   
+   Violation between Pad P1-2(228mm,32.1mm)  Multi-Layer and                      Polygon Track (228mm,32.1mm)(229.6mm,32.1mm)  Top Layer   
+   Violation between Pad P1-2(228mm,37.1mm)  Multi-Layer and                      Polygon Track (226.4mm,37.1mm)(228mm,37.1mm)  Top Layer   
+   Violation between Pad P1-2(233mm,32.1mm)  Multi-Layer and                      Polygon Track (233mm,30.5mm)(233mm,32.1mm)  Top Layer   
+   Violation between Pad P1-2(228mm,32.1mm)  Multi-Layer and                      Polygon Track (228mm,30.5mm)(228mm,32.1mm)  Top Layer   
+   Violation between Pad C111-2(219.0915mm,16.6114mm)  Multi-Layer and                      Polygon Track (219.0915mm,16.6114mm)(220.3415mm,16.6114mm)  Top Layer   
+   Violation between Pad C111-2(219.0915mm,16.6114mm)  Multi-Layer and                      Polygon Track (219.0915mm,16.6114mm)(219.0915mm,17.8614mm)  Top Layer   
+   Violation between Pad C111-2(219.0915mm,16.6114mm)  Multi-Layer and                      Polygon Track (217.8415mm,16.6114mm)(219.0915mm,16.6114mm)  Top Layer   
+   Violation between Pad U105-3(214.9mm,19.1mm)  Multi-Layer and                      Polygon Track (214.9mm,19.1mm)(214.9mm,20.85mm)  Top Layer   
+   Violation between Pad U105-3(214.9mm,19.1mm)  Multi-Layer and                      Polygon Track (214.9mm,19.1mm)(216.65mm,19.1mm)  Top Layer   
+   Violation between Pad U105-3(214.9mm,19.1mm)  Multi-Layer and                      Polygon Track (214.9mm,17.35mm)(214.9mm,19.1mm)  Top Layer   
+   Violation between Pad U105-3(214.9mm,19.1mm)  Multi-Layer and                      Polygon Track (213.15mm,19.1mm)(214.9mm,19.1mm)  Top Layer   
+   Violation between Pad U105-2(175.9mm,19.1mm)  Multi-Layer and                      Polygon Track (175.9mm,19.1mm)(177.65mm,19.1mm)  Top Layer   
+   Violation between Pad U105-2(175.9mm,19.1mm)  Multi-Layer and                      Polygon Track (175.9mm,19.1mm)(175.9mm,20.85mm)  Top Layer   
+   Violation between Pad U105-2(175.9mm,19.1mm)  Multi-Layer and                      Polygon Track (175.9mm,17.35mm)(175.9mm,19.1mm)  Top Layer   
+   Violation between Pad U105-2(175.9mm,19.1mm)  Multi-Layer and                      Polygon Track (174.15mm,19.1mm)(175.9mm,19.1mm)  Top Layer   
+   Violation between Pad C110-2(173.2926mm,13.6988mm)  Multi-Layer and                      Polygon Track (173.2926mm,13.6988mm)(174.7926mm,13.6988mm)  Top Layer   
+   Violation between Pad C110-2(173.2926mm,13.6988mm)  Multi-Layer and                      Polygon Track (173.2926mm,13.6988mm)(173.2926mm,15.1988mm)  Top Layer   
+   Violation between Pad C110-2(173.2926mm,13.6988mm)  Multi-Layer and                      Polygon Track (173.2926mm,12.1988mm)(173.2926mm,13.6988mm)  Top Layer   
+   Violation between Pad C110-2(173.2926mm,13.6988mm)  Multi-Layer and                      Polygon Track (171.7926mm,13.6988mm)(173.2926mm,13.6988mm)  Top Layer   
+   Violation between Pad B101-2(156mm,10.8mm)  Multi-Layer and                      Polygon Track (156mm,10.8mm)(156mm,13.05mm)  Top Layer   
+   Violation between Pad JP100-9(151.3mm,13.86mm)  Multi-Layer and                      Polygon Track (151.3mm,13.86mm)(151.3mm,14.86mm)  Top Layer   
+   Violation between Pad JP100-9(151.3mm,13.86mm)  Multi-Layer and                      Polygon Track (151.3mm,12.86mm)(151.3mm,13.86mm)  Top Layer   
+   Violation between Pad JP100-9(151.3mm,13.86mm)  Multi-Layer and                      Polygon Track (150.3mm,13.86mm)(151.3mm,13.86mm)  Top Layer   
+   Violation between Pad JP100-10(148.76mm,13.86mm)  Multi-Layer and                      Polygon Track (148.76mm,13.86mm)(149.76mm,13.86mm)  Top Layer   
+   Violation between Pad JP100-10(148.76mm,13.86mm)  Multi-Layer and                      Polygon Track (148.76mm,13.86mm)(148.76mm,14.86mm)  Top Layer   
+   Violation between Pad JP100-10(148.76mm,13.86mm)  Multi-Layer and                      Polygon Track (148.76mm,12.86mm)(148.76mm,13.86mm)  Top Layer   
+   Violation between Pad B101-2(156mm,10.8mm)  Multi-Layer and                      Polygon Track (156mm,10.8mm)(158.25mm,10.8mm)  Top Layer   
+   Violation between Pad B101-2(156mm,10.8mm)  Multi-Layer and                      Polygon Track (156mm,8.55mm)(156mm,10.8mm)  Top Layer   
+   Violation between Pad B101-2(156mm,10.8mm)  Multi-Layer and                      Polygon Track (153.75mm,10.8mm)(156mm,10.8mm)  Top Layer   
+   Violation between Track (172.825mm,32.944mm)(172.825mm,39.5808mm)  Bottom Layer and                      Pad R120-2(172.7876mm,32.9066mm)  Bottom Layer   
+   Violation between Track (172.7876mm,32.9066mm)(172.825mm,32.944mm)  Bottom Layer and                      Pad R120-2(172.7876mm,32.9066mm)  Bottom Layer   
+   Violation between Track (169.95mm,31.625mm)(169.95mm,32.869mm)  Bottom Layer and                      Pad R120-1(169.9876mm,32.9066mm)  Bottom Layer   
+   Violation between Track (166.5934mm,32.9066mm)(169.9876mm,32.9066mm)  Bottom Layer and                      Pad R120-1(169.9876mm,32.9066mm)  Bottom Layer   
+   Violation between Track (169.95mm,32.869mm)(169.9876mm,32.9066mm)  Bottom Layer and                      Pad R120-1(169.9876mm,32.9066mm)  Bottom Layer   
+   Violation between Polygon Track (153.3934mm,31.3376mm)(153.3934mm,32.3876mm)  Bottom Layer and                      Pad R113-2(153.3934mm,32.3876mm)  Bottom Layer   
+   Violation between Polygon Track (152.2434mm,32.3876mm)(153.3934mm,32.3876mm)  Bottom Layer and                      Pad R113-2(153.3934mm,32.3876mm)  Bottom Layer   
+   Violation between Polygon Track (153.3934mm,32.3876mm)(154.5434mm,32.3876mm)  Bottom Layer and                      Pad R113-2(153.3934mm,32.3876mm)  Bottom Layer   
+   Violation between Polygon Track (153.3934mm,32.3876mm)(153.3934mm,33.4376mm)  Bottom Layer and                      Pad R113-2(153.3934mm,32.3876mm)  Bottom Layer   
+   Violation between Track (153.3066mm,26.5124mm)(153.3066mm,29.4316mm)  Bottom Layer and                      Pad R113-1(153.3934mm,29.5876mm)  Bottom Layer   
+   Violation between Track (153.3066mm,29.4316mm)(153.7166mm,29.8416mm)  Bottom Layer and                      Pad R113-1(153.3934mm,29.5876mm)  Bottom Layer   
+   Violation between Track (153.7166mm,29.8416mm)(156.2388mm,29.8416mm)  Bottom Layer and                      Pad R113-1(153.3934mm,29.5876mm)  Bottom Layer   
+   Violation between Track (158.7388mm,30.7916mm)(167.5084mm,30.7916mm)  Bottom Layer and                      Pad Q103-3(158.5978mm,30.8016mm)  Bottom Layer   
+   Violation between Track (153.7166mm,29.8416mm)(156.2388mm,29.8416mm)  Bottom Layer and                      Pad Q103-1(156.3978mm,29.8516mm)  Bottom Layer   
+   Violation between Polygon Track (156.3978mm,31.0766mm)(156.3978mm,31.7516mm)  Bottom Layer and                      Pad Q103-2(156.3978mm,31.7516mm)  Bottom Layer   
+   Violation between Polygon Track (155.4978mm,31.7516mm)(156.3978mm,31.7516mm)  Bottom Layer and                      Pad Q103-2(156.3978mm,31.7516mm)  Bottom Layer   
+   Violation between Polygon Track (156.3978mm,31.7516mm)(156.3978mm,32.4266mm)  Bottom Layer and                      Pad Q103-2(156.3978mm,31.7516mm)  Bottom Layer   
+   Violation between Polygon Track (156.3978mm,31.7516mm)(157.2978mm,31.7516mm)  Bottom Layer and                      Pad Q103-2(156.3978mm,31.7516mm)  Bottom Layer   
+   Violation between Track (160.7751mm,45.3mm)(162.6mm,45.3mm)  Bottom Layer and                      Pad VD101-2(162.6mm,45.3mm)  Bottom Layer   
+   Violation between Track (162.6mm,45.95mm)(162.6mm,47.225mm)  Bottom Layer and                      Pad VD101-3(162.6mm,45.95mm)  Bottom Layer   
+   Violation between Track (164.6mm,45.95mm)(165.5mm,45.95mm)  Bottom Layer and                      Pad VD101-4(164.6mm,45.95mm)  Bottom Layer   
+   Violation between Track (165.5mm,45.95mm)(166.8434mm,47.2934mm)  Bottom Layer and                      Pad VD101-4(164.6mm,45.95mm)  Bottom Layer   
+   Violation between Track (164.6mm,44.65mm)(165.3mm,44.65mm)  Bottom Layer and                      Pad VD101-6(164.6mm,44.65mm)  Bottom Layer   
+   Violation between Track (165.3mm,44.65mm)(166.3566mm,43.5934mm)  Bottom Layer and                      Pad VD101-6(164.6mm,44.65mm)  Bottom Layer   
+   Violation between Track (162.475mm,43mm)(162.475mm,44.625mm)  Bottom Layer and                      Pad VD101-1(162.6mm,44.65mm)  Bottom Layer   
+   Violation between Track (166.3566mm,43.5934mm)(170.0124mm,43.5934mm)  Bottom Layer and                      Pad R103-2(170.0124mm,43.5934mm)  Bottom Layer   
+   Violation between Track (170.0124mm,42.6626mm)(170.775mm,41.9mm)  Bottom Layer and                      Pad R103-2(170.0124mm,43.5934mm)  Bottom Layer   
+   Violation between Track (170.0124mm,42.6626mm)(170.0124mm,43.5934mm)  Bottom Layer and                      Pad R103-2(170.0124mm,43.5934mm)  Bottom Layer   
+   Violation between Track (172.675mm,43.55mm)(173.275mm,43.55mm)  Bottom Layer and                      Pad R103-1(172.8124mm,43.5934mm)  Bottom Layer   
+   Violation between Track (173.275mm,43.55mm)(175.625mm,45.9mm)  Bottom Layer and                      Pad R103-1(172.8124mm,43.5934mm)  Bottom Layer   
+   Violation between Track (166.8434mm,47.2934mm)(170.0124mm,47.2934mm)  Bottom Layer and                      Pad R102-2(170.0124mm,47.2934mm)  Bottom Layer   
+   Violation between Track (170.0124mm,47.2934mm)(170.0124mm,48.9124mm)  Bottom Layer and                      Pad R102-2(170.0124mm,47.2934mm)  Bottom Layer   
+   Violation between Track (173.2058mm,46.9mm)(200.5mm,46.9mm)  Bottom Layer and                      Pad R102-1(172.8124mm,47.2934mm)  Bottom Layer   
+   Violation between Track (172.8124mm,47.2934mm)(173.2058mm,46.9mm)  Bottom Layer and                      Pad R102-1(172.8124mm,47.2934mm)  Bottom Layer   
+   Violation between Track (165.2684mm,39.5934mm)(170.0124mm,39.5934mm)  Bottom Layer and                      Pad R101-2(170.0124mm,39.5934mm)  Bottom Layer   
+   Violation between Track (172.825mm,32.944mm)(172.825mm,39.5808mm)  Bottom Layer and                      Pad R101-1(172.8124mm,39.5934mm)  Bottom Layer   
+   Violation between Track (172.8124mm,39.5934mm)(172.825mm,39.5808mm)  Bottom Layer and                      Pad R101-1(172.8124mm,39.5934mm)  Bottom Layer   
+   Violation between Track (172.8124mm,39.5934mm)(175.1998mm,39.5934mm)  Bottom Layer and                      Pad R101-1(172.8124mm,39.5934mm)  Bottom Layer   
+   Violation between Track (163.475mm,33.15mm)(166.35mm,33.15mm)  Bottom Layer and                      Pad C102-2(166.6066mm,33.1124mm)  Bottom Layer   
+   Violation between Track (166.35mm,33.15mm)(166.5934mm,32.9066mm)  Bottom Layer and                      Pad C102-2(166.6066mm,33.1124mm)  Bottom Layer   
+   Violation between Track (166.5934mm,32.9066mm)(169.9876mm,32.9066mm)  Bottom Layer and                      Pad C102-2(166.6066mm,33.1124mm)  Bottom Layer   
+   Violation between Polygon Track (166.6066mm,34.8624mm)(166.6066mm,35.9124mm)  Bottom Layer and                      Pad C102-1(166.6066mm,35.9124mm)  Bottom Layer   
+   Violation between Polygon Track (165.4566mm,35.9124mm)(166.6066mm,35.9124mm)  Bottom Layer and                      Pad C102-1(166.6066mm,35.9124mm)  Bottom Layer   
+   Violation between Polygon Track (166.6066mm,35.9124mm)(166.6066mm,36.9624mm)  Bottom Layer and                      Pad C102-1(166.6066mm,35.9124mm)  Bottom Layer   
+   Violation between Polygon Track (166.6066mm,35.9124mm)(167.7566mm,35.9124mm)  Bottom Layer and                      Pad C102-1(166.6066mm,35.9124mm)  Bottom Layer   
+   Violation between Track (172.825mm,32.944mm)(172.825mm,39.5808mm)  Bottom Layer and                      Pad C100-2(172.7876mm,36.2066mm)  Bottom Layer   
+   Violation between Polygon Track (169.9876mm,35.0566mm)(169.9876mm,36.2066mm)  Bottom Layer and                      Pad C100-1(169.9876mm,36.2066mm)  Bottom Layer   
+   Violation between Polygon Track (168.9376mm,36.2066mm)(169.9876mm,36.2066mm)  Bottom Layer and                      Pad C100-1(169.9876mm,36.2066mm)  Bottom Layer   
+   Violation between Polygon Track (169.9876mm,36.2066mm)(171.0376mm,36.2066mm)  Bottom Layer and                      Pad C100-1(169.9876mm,36.2066mm)  Bottom Layer   
+   Violation between Polygon Track (169.9876mm,36.2066mm)(169.9876mm,37.3566mm)  Bottom Layer and                      Pad C100-1(169.9876mm,36.2066mm)  Bottom Layer   
+   Violation between Polygon Track (178.4566mm,19.6124mm)(179.6066mm,19.6124mm)  Bottom Layer and                      Pad C112-1(179.6066mm,19.6124mm)  Bottom Layer   
+   Violation between Polygon Track (179.6066mm,18.5624mm)(179.6066mm,19.6124mm)  Bottom Layer and                      Pad C112-1(179.6066mm,19.6124mm)  Bottom Layer   
+   Violation between Polygon Track (179.6066mm,19.6124mm)(179.6066mm,20.6624mm)  Bottom Layer and                      Pad C112-1(179.6066mm,19.6124mm)  Bottom Layer   
+   Violation between Polygon Track (179.6066mm,19.6124mm)(180.7566mm,19.6124mm)  Bottom Layer and                      Pad C112-1(179.6066mm,19.6124mm)  Bottom Layer   
+   Violation between Track (177.2mm,14.1mm)(179.7595mm,16.6595mm)  Bottom Layer and                      Pad C112-2(179.6066mm,16.8124mm)  Bottom Layer   
+   Violation between Track (179.7595mm,16.6595mm)(179.975mm,16.875mm)  Bottom Layer and                      Pad C112-2(179.6066mm,16.8124mm)  Bottom Layer   
+   Violation between Track (179.975mm,16.875mm)(181.975mm,16.875mm)  Bottom Layer and                      Pad C112-2(179.6066mm,16.8124mm)  Bottom Layer   
+   Violation between Polygon Track (185.69mm,2.975mm)(185.69mm,8.375mm)  Bottom Layer and                      Pad U104-6(185.69mm,8.375mm)  Bottom Layer   
+   Violation between Polygon Track (180.19mm,8.375mm)(185.69mm,8.375mm)  Bottom Layer and                      Pad U104-6(185.69mm,8.375mm)  Bottom Layer   
+   Violation between Polygon Track (185.69mm,8.375mm)(191.19mm,8.375mm)  Bottom Layer and                      Pad U104-6(185.69mm,8.375mm)  Bottom Layer   
+   Violation between Polygon Track (185.69mm,8.375mm)(185.69mm,13.775mm)  Bottom Layer and                      Pad U104-6(185.69mm,8.375mm)  Bottom Layer   
+   Violation between Via (182.4998mm,7.475mm) Top Layer to Bottom Layer and                      Pad U104-6(185.69mm,8.375mm)  Bottom Layer   
+   Violation between Via (184.9998mm,4.95mm) Top Layer to Bottom Layer and                      Pad U104-6(185.69mm,8.375mm)  Bottom Layer   
+   Violation between Via (187.45mm,7.5002mm) Top Layer to Bottom Layer and                      Pad U104-6(185.69mm,8.375mm)  Bottom Layer   
+   Violation between Via (184.9998mm,10.025mm) Top Layer to Bottom Layer and                      Pad U104-6(185.69mm,8.375mm)  Bottom Layer   
+   Violation between Via (182.45mm,12.5002mm) Top Layer to Bottom Layer and                      Pad U104-6(185.69mm,8.375mm)  Bottom Layer   
+   Violation between Via (189.9998mm,4.975mm) Top Layer to Bottom Layer and                      Pad U104-6(185.69mm,8.375mm)  Bottom Layer   
+   Violation between Via (187.4998mm,12.475mm) Top Layer to Bottom Layer and                      Pad U104-6(185.69mm,8.375mm)  Bottom Layer   
+   Violation between Via (189.9998mm,9.975mm) Top Layer to Bottom Layer and                      Pad U104-6(185.69mm,8.375mm)  Bottom Layer   
+   Violation between Track (179.975mm,16.875mm)(181.975mm,16.875mm)  Bottom Layer and                      Pad U104-1(182.3mm,16.825mm)  Bottom Layer   
+   Violation between Polygon Track (185.7mm,15.525mm)(185.7mm,16.825mm)  Bottom Layer and                      Pad U104-3(185.7mm,16.825mm)  Bottom Layer   
+   Violation between Polygon Track (185.7mm,16.825mm)(185.7mm,18.125mm)  Bottom Layer and                      Pad U104-3(185.7mm,16.825mm)  Bottom Layer   
+   Violation between Track (185.7mm,16.825mm)(185.7mm,20.375mm)  Bottom Layer and                      Pad U104-3(185.7mm,16.825mm)  Bottom Layer   
+   Violation between Polygon Track (189.1mm,15.525mm)(189.1mm,16.825mm)  Bottom Layer and                      Pad U104-5(189.1mm,16.825mm)  Bottom Layer   
+   Violation between Polygon Track (189.1mm,16.825mm)(189.875mm,16.825mm)  Bottom Layer and                      Pad U104-5(189.1mm,16.825mm)  Bottom Layer   
+   Violation between Polygon Track (189.1mm,16.825mm)(189.1mm,18.125mm)  Bottom Layer and                      Pad U104-5(189.1mm,16.825mm)  Bottom Layer   
+   Violation between Track (189.1mm,16.825mm)(189.1mm,20.35mm)  Bottom Layer and                      Pad U104-5(189.1mm,16.825mm)  Bottom Layer   
+   Violation between Track (187.4mm,16.825mm)(187.4mm,18.925mm)  Bottom Layer and                      Pad U104-4(187.4mm,16.825mm)  Bottom Layer   
+   Violation between Track (184mm,16.825mm)(184mm,21.525mm)  Bottom Layer and                      Pad U104-2(184mm,16.825mm)  Bottom Layer   
+   Violation between Track (223.2247mm,15.55mm)(223.2247mm,19.106mm)  Bottom Layer and                      Pad U103-5(223.2247mm,15.55mm)  Bottom Layer   
+   Violation between Track (223.2247mm,11.9003mm)(223.2247mm,13.65mm)  Bottom Layer and                      Pad U103-4(223.2247mm,13.65mm)  Bottom Layer   
+   Violation between Track (225.3747mm,13.65mm)(227.375mm,13.65mm)  Bottom Layer and                      Pad U103-3(225.3747mm,13.65mm)  Bottom Layer   
+   Violation between Polygon Track (224.3997mm,14.6mm)(225.3747mm,14.6mm)  Bottom Layer and                      Pad U103-2(225.3747mm,14.6mm)  Bottom Layer   
+   Violation between Polygon Track (225.3747mm,14.6mm)(226.3497mm,14.6mm)  Bottom Layer and                      Pad U103-2(225.3747mm,14.6mm)  Bottom Layer   
+   Violation between Track (225.1556mm,15.55mm)(226.8934mm,17.2878mm)  Bottom Layer and                      Pad U103-1(225.3747mm,15.55mm)  Bottom Layer   
+   Violation between Track (161.25mm,27.475mm)(163.694mm,27.475mm)  Bottom Layer and                      Pad R122-2(163.7124mm,27.4934mm)  Bottom Layer   
+   Violation between Track (163.694mm,27.475mm)(163.7124mm,27.4934mm)  Bottom Layer and                      Pad R122-2(163.7124mm,27.4934mm)  Bottom Layer   
+   Violation between Track (166.5124mm,27.4934mm)(167.7066mm,27.4934mm)  Bottom Layer and                      Pad R122-1(166.5124mm,27.4934mm)  Bottom Layer   
+   Violation between Track (160.4816mm,24.6934mm)(163.7124mm,24.6934mm)  Bottom Layer and                      Pad R121-2(163.7124mm,24.6934mm)  Bottom Layer   
+   Violation between Track (166.594mm,24.775mm)(197.3mm,24.775mm)  Bottom Layer and                      Pad R121-1(166.5124mm,24.6934mm)  Bottom Layer   
+   Violation between Track (166.5124mm,24.6934mm)(166.594mm,24.775mm)  Bottom Layer and                      Pad R121-1(166.5124mm,24.6934mm)  Bottom Layer   
+   Violation between Track (224.5873mm,3.5168mm)(224.5873mm,6.4066mm)  Bottom Layer and                      Pad R119-2(224.5873mm,6.4066mm)  Bottom Layer   
+   Violation between Track (224.5873mm,6.4066mm)(225.1904mm,7.0097mm)  Bottom Layer and                      Pad R119-2(224.5873mm,6.4066mm)  Bottom Layer   
+   Violation between Track (224.5873mm,6.4066mm)(224.5873mm,10.5377mm)  Bottom Layer and                      Pad R119-2(224.5873mm,6.4066mm)  Bottom Layer   
+   Violation between Track (225.1904mm,7.0097mm)(225.5057mm,7.325mm)  Bottom Layer and                      Pad R119-2(224.5873mm,6.4066mm)  Bottom Layer   
+   Violation between Track (225.1904mm,7.0097mm)(225.5057mm,7.325mm)  Bottom Layer and                      Pad R119-2(224.5873mm,6.4066mm)  Bottom Layer   
+   Violation between Track (225.5057mm,7.325mm)(229.6997mm,7.325mm)  Bottom Layer and                      Pad R119-2(224.5873mm,6.4066mm)  Bottom Layer   
+   Violation between Track (221.6046mm,3.3118mm)(221.6046mm,6.2239mm)  Bottom Layer and                      Pad R119-1(221.7873mm,6.4066mm)  Bottom Layer   
+   Violation between Track (221.6046mm,6.2239mm)(221.7873mm,6.4066mm)  Bottom Layer and                      Pad R119-1(221.7873mm,6.4066mm)  Bottom Layer   
+   Violation between Track (208.6876mm,2.4066mm)(218.1994mm,2.4066mm)  Bottom Layer and                      Pad R118-2(208.6876mm,2.4066mm)  Bottom Layer   
+   Violation between Track (195.3998mm,1.55mm)(205.031mm,1.55mm)  Bottom Layer and                      Pad R118-1(205.8876mm,2.4066mm)  Bottom Layer   
+   Violation between Track (205.031mm,1.55mm)(205.8876mm,2.4066mm)  Bottom Layer and                      Pad R118-1(205.8876mm,2.4066mm)  Bottom Layer   
+   Violation between Track (205.8876mm,2.4066mm)(205.8876mm,2.6686mm)  Bottom Layer and                      Pad R118-1(205.8876mm,2.4066mm)  Bottom Layer   
+   Violation between Track (205.8876mm,2.6686mm)(208.6124mm,5.3934mm)  Bottom Layer and                      Pad R118-1(205.8876mm,2.4066mm)  Bottom Layer   
+   Violation between Track (205.8876mm,2.6686mm)(208.6124mm,5.3934mm)  Bottom Layer and                      Pad R117-1(208.6124mm,5.3934mm)  Bottom Layer   
+   Violation between Polygon Track (204.7624mm,5.3934mm)(205.8124mm,5.3934mm)  Bottom Layer and                      Pad R117-2(205.8124mm,5.3934mm)  Bottom Layer   
+   Violation between Polygon Track (205.8124mm,4.2434mm)(205.8124mm,5.3934mm)  Bottom Layer and                      Pad R117-2(205.8124mm,5.3934mm)  Bottom Layer   
+   Violation between Polygon Track (205.8124mm,5.3934mm)(206.8624mm,5.3934mm)  Bottom Layer and                      Pad R117-2(205.8124mm,5.3934mm)  Bottom Layer   
+   Violation between Polygon Track (205.8124mm,5.3934mm)(205.8124mm,6.5434mm)  Bottom Layer and                      Pad R117-2(205.8124mm,5.3934mm)  Bottom Layer   
+   Violation between Polygon Track (220.9121mm,19.5934mm)(221.9621mm,19.5934mm)  Bottom Layer and                      Pad R116-2(220.9121mm,19.5934mm)  Bottom Layer   
+   Violation between Polygon Track (220.9121mm,18.4434mm)(220.9121mm,19.5934mm)  Bottom Layer and                      Pad R116-2(220.9121mm,19.5934mm)  Bottom Layer   
+   Violation between Polygon Track (219.8621mm,19.5934mm)(220.9121mm,19.5934mm)  Bottom Layer and                      Pad R116-2(220.9121mm,19.5934mm)  Bottom Layer   
+   Violation between Polygon Track (220.9121mm,19.5934mm)(220.9121mm,20.7434mm)  Bottom Layer and                      Pad R116-2(220.9121mm,19.5934mm)  Bottom Layer   
+   Violation between Track (223.2247mm,15.55mm)(223.2247mm,19.106mm)  Bottom Layer and                      Pad R116-1(223.7121mm,19.5934mm)  Bottom Layer   
+   Violation between Track (223.2247mm,19.106mm)(223.7121mm,19.5934mm)  Bottom Layer and                      Pad R116-1(223.7121mm,19.5934mm)  Bottom Layer   
+   Violation between Track (206.5mm,26.5058mm)(208.0124mm,24.9934mm)  Bottom Layer and                      Pad R115-2(208.0124mm,24.9934mm)  Bottom Layer   
+   Violation between Track (210.65mm,23.25mm)(210.65mm,24.831mm)  Bottom Layer and                      Pad R115-1(210.8124mm,24.9934mm)  Bottom Layer   
+   Violation between Track (210.65mm,24.831mm)(210.8124mm,24.9934mm)  Bottom Layer and                      Pad R115-1(210.8124mm,24.9934mm)  Bottom Layer   
+   Violation between Track (210.8124mm,24.9934mm)(211.5mm,25.681mm)  Bottom Layer and                      Pad R115-1(210.8124mm,24.9934mm)  Bottom Layer   
+   Violation between Track (211.5mm,25.681mm)(211.5mm,27.9mm)  Bottom Layer and                      Pad R115-1(210.8124mm,24.9934mm)  Bottom Layer   
+   Violation between Polygon Track (163.1684mm,20.6376mm)(163.1684mm,21.6876mm)  Bottom Layer and                      Pad R114-2(163.1684mm,21.6876mm)  Bottom Layer   
+   Violation between Polygon Track (162.0184mm,21.6876mm)(163.1684mm,21.6876mm)  Bottom Layer and                      Pad R114-2(163.1684mm,21.6876mm)  Bottom Layer   
+   Violation between Polygon Track (163.1684mm,21.6876mm)(163.1684mm,22.7376mm)  Bottom Layer and                      Pad R114-2(163.1684mm,21.6876mm)  Bottom Layer   
+   Violation between Polygon Track (163.1684mm,21.6876mm)(164.3184mm,21.6876mm)  Bottom Layer and                      Pad R114-2(163.1684mm,21.6876mm)  Bottom Layer   
+   Violation between Track (160.2874mm,18.7934mm)(163.0742mm,18.7934mm)  Bottom Layer and                      Pad R114-1(163.1684mm,18.8876mm)  Bottom Layer   
+   Violation between Track (163.0742mm,18.7934mm)(163.1684mm,18.8876mm)  Bottom Layer and                      Pad R114-1(163.1684mm,18.8876mm)  Bottom Layer   
+   Violation between Track (163.1684mm,18.8876mm)(165.2598mm,18.8876mm)  Bottom Layer and                      Pad R114-1(163.1684mm,18.8876mm)  Bottom Layer   
+   Violation between Track (228.5931mm,20.0876mm)(228.5931mm,23.5034mm)  Bottom Layer and                      Pad R112-2(228.5931mm,20.0876mm)  Bottom Layer   
+   Violation between Track (226.8934mm,17.2878mm)(228.5929mm,17.2878mm)  Bottom Layer and                      Pad R112-1(228.5931mm,17.2876mm)  Bottom Layer   
+   Violation between Track (228.5929mm,17.2878mm)(228.5931mm,17.2876mm)  Bottom Layer and                      Pad R112-1(228.5931mm,17.2876mm)  Bottom Layer   
+   Violation between Polygon Track (226.8566mm,55.5125mm)(228.0066mm,55.5125mm)  Bottom Layer and                      Pad R11_1-2(228.0066mm,55.5125mm)  Bottom Layer   
+   Violation between Polygon Track (228.0066mm,54.4625mm)(228.0066mm,55.5125mm)  Bottom Layer and                      Pad R11_1-2(228.0066mm,55.5125mm)  Bottom Layer   
+   Violation between Polygon Track (228.0066mm,55.5125mm)(228.0066mm,56.5625mm)  Bottom Layer and                      Pad R11_1-2(228.0066mm,55.5125mm)  Bottom Layer   
+   Violation between Track (226.6875mm,58.3125mm)(228.0066mm,58.3125mm)  Bottom Layer and                      Pad R11_1-1(228.0066mm,58.3125mm)  Bottom Layer   
+   Violation between Polygon Track (196.8434mm,58.3876mm)(197.9934mm,58.3876mm)  Bottom Layer and                      Pad R10_1-2(197.9934mm,58.3876mm)  Bottom Layer   
+   Violation between Polygon Track (197.9934mm,57.3376mm)(197.9934mm,58.3876mm)  Bottom Layer and                      Pad R10_1-2(197.9934mm,58.3876mm)  Bottom Layer   
+   Violation between Polygon Track (197.9934mm,58.3876mm)(199.1434mm,58.3876mm)  Bottom Layer and                      Pad R10_1-2(197.9934mm,58.3876mm)  Bottom Layer   
+   Violation between Track (194.8934mm,55.5876mm)(200.3848mm,55.5876mm)  Bottom Layer and                      Pad R10_1-1(197.9934mm,55.5876mm)  Bottom Layer   
+   Violation between Track (150.975mm,18.7934mm)(157.4874mm,18.7934mm)  Bottom Layer and                      Pad R109-2(157.4874mm,18.7934mm)  Bottom Layer   
+   Violation between Track (160.2874mm,18.7934mm)(163.0742mm,18.7934mm)  Bottom Layer and                      Pad R109-1(160.2874mm,18.7934mm)  Bottom Layer   
+   Violation between Track (153.3066mm,22.4066mm)(153.3066mm,23.7124mm)  Bottom Layer and                      Pad R108-2(153.3066mm,23.7124mm)  Bottom Layer   
+   Violation between Track (153.3066mm,26.5124mm)(153.3066mm,29.4316mm)  Bottom Layer and                      Pad R108-1(153.3066mm,26.5124mm)  Bottom Layer   
+   Violation between Track (219.2072mm,55.6124mm)(220.6066mm,55.6124mm)  Bottom Layer and                      Pad R7_1-2(220.4066mm,55.5125mm)  Bottom Layer   
+   Violation between Track (220.4066mm,58.3125mm)(221.5878mm,58.3125mm)  Bottom Layer and                      Pad R7_1-1(220.4066mm,58.3125mm)  Bottom Layer   
+   Violation between Track (208.075mm,58.7mm)(220.319mm,58.7mm)  Bottom Layer and                      Pad R7_1-1(220.4066mm,58.3125mm)  Bottom Layer   
+   Violation between Track (220.319mm,58.7mm)(220.5565mm,58.4624mm)  Bottom Layer and                      Pad R7_1-1(220.4066mm,58.3125mm)  Bottom Layer   
+   Violation between Track (203.1874mm,58.3876mm)(205.8934mm,58.3876mm)  Bottom Layer and                      Pad R6_1-2(205.6934mm,58.3626mm)  Bottom Layer   
+   Violation between Track (205.8934mm,55.5876mm)(207.0844mm,55.5876mm)  Bottom Layer and                      Pad R6_1-1(205.6934mm,55.5626mm)  Bottom Layer   
+   Violation between Track (227.0942mm,47.9mm)(228.4066mm,49.2124mm)  Bottom Layer and                      Pad R5_1-2(228.4066mm,49.2124mm)  Bottom Layer   
+   Violation between Track (228.4066mm,52.0124mm)(229.8123mm,52.0124mm)  Bottom Layer and                      Pad R5_1-1(228.4066mm,52.0124mm)  Bottom Layer   
+   Violation between Track (228.4066mm,52.0124mm)(228.4066mm,52.1066mm)  Bottom Layer and                      Pad R5_1-1(228.4066mm,52.0124mm)  Bottom Layer   
+   Violation between Track (192.9374mm,58.3876mm)(194.8934mm,58.3876mm)  Bottom Layer and                      Pad R4_1-2(194.8934mm,58.3876mm)  Bottom Layer   
+   Violation between Track (194.8934mm,55.5876mm)(200.3848mm,55.5876mm)  Bottom Layer and                      Pad R4_1-1(194.8934mm,55.5876mm)  Bottom Layer   
+   Violation between Track (168.2138mm,20.2916mm)(171.9222mm,24mm)  Bottom Layer and                      Pad Q104-3(168.0728mm,20.3016mm)  Bottom Layer   
+   Violation between Track (163.1684mm,18.8876mm)(165.2598mm,18.8876mm)  Bottom Layer and                      Pad Q104-1(165.8728mm,19.3516mm)  Bottom Layer   
+   Violation between Track (165.2598mm,18.8876mm)(165.7138mm,19.3416mm)  Bottom Layer and                      Pad Q104-1(165.8728mm,19.3516mm)  Bottom Layer   
+   Violation between Polygon Track (164.9728mm,21.2516mm)(165.8728mm,21.2516mm)  Bottom Layer and                      Pad Q104-2(165.8728mm,21.2516mm)  Bottom Layer   
+   Violation between Polygon Track (165.8728mm,20.5766mm)(165.8728mm,21.2516mm)  Bottom Layer and                      Pad Q104-2(165.8728mm,21.2516mm)  Bottom Layer   
+   Violation between Polygon Track (165.8728mm,21.2516mm)(165.8728mm,21.9266mm)  Bottom Layer and                      Pad Q104-2(165.8728mm,21.2516mm)  Bottom Layer   
+   Violation between Polygon Track (165.8728mm,21.2516mm)(166.7728mm,21.2516mm)  Bottom Layer and                      Pad Q104-2(165.8728mm,21.2516mm)  Bottom Layer   
+   Violation between Track (221.5878mm,58.3125mm)(223.0019mm,56.8984mm)  Bottom Layer and                      Pad Q2_1-3(223.0019mm,56.8984mm)  Bottom Layer   
+   Violation between Track (223.1365mm,57.033mm)(223.2612mm,56.9084mm)  Bottom Layer and                      Pad Q2_1-3(223.0019mm,56.8984mm)  Bottom Layer   
+   Violation between Track (225.2019mm,57.8484mm)(226.2234mm,57.8484mm)  Bottom Layer and                      Pad Q2_1-1(225.2019mm,57.8484mm)  Bottom Layer   
+   Violation between Polygon Track (225.2019mm,55.2734mm)(225.2019mm,55.9484mm)  Bottom Layer and                      Pad Q2_1-2(225.2019mm,55.9484mm)  Bottom Layer   
+   Violation between Polygon Track (224.3019mm,55.9484mm)(225.2019mm,55.9484mm)  Bottom Layer and                      Pad Q2_1-2(225.2019mm,55.9484mm)  Bottom Layer   
+   Violation between Polygon Track (225.2019mm,55.9484mm)(226.1019mm,55.9484mm)  Bottom Layer and                      Pad Q2_1-2(225.2019mm,55.9484mm)  Bottom Layer   
+   Violation between Polygon Track (225.2019mm,55.9484mm)(225.2019mm,56.6234mm)  Bottom Layer and                      Pad Q2_1-2(225.2019mm,55.9484mm)  Bottom Layer   
+   Violation between Track (203.125mm,56.75mm)(203.125mm,58.3252mm)  Bottom Layer and                      Pad Q1_1-3(203.0978mm,56.9016mm)  Bottom Layer   
+   Violation between Track (194.8934mm,55.5876mm)(200.3848mm,55.5876mm)  Bottom Layer and                      Pad Q1_1-1(200.8978mm,55.9516mm)  Bottom Layer   
+   Violation between Track (200.3848mm,55.5876mm)(200.7388mm,55.9416mm)  Bottom Layer and                      Pad Q1_1-1(200.8978mm,55.9516mm)  Bottom Layer   
+   Violation between Polygon Track (199.9978mm,57.8516mm)(200.8978mm,57.8516mm)  Bottom Layer and                      Pad Q1_1-2(200.8978mm,57.8516mm)  Bottom Layer   
+   Violation between Polygon Track (200.8978mm,57.1766mm)(200.8978mm,57.8516mm)  Bottom Layer and                      Pad Q1_1-2(200.8978mm,57.8516mm)  Bottom Layer   
+   Violation between Polygon Track (200.8978mm,57.8516mm)(200.8978mm,58.5266mm)  Bottom Layer and                      Pad Q1_1-2(200.8978mm,57.8516mm)  Bottom Layer   
+   Violation between Polygon Track (200.8978mm,57.8516mm)(201.7978mm,57.8516mm)  Bottom Layer and                      Pad Q1_1-2(200.8978mm,57.8516mm)  Bottom Layer   
+   Violation between Track (192.8788mm,13.4714mm)(193.1502mm,13.2mm)  Bottom Layer and                      Pad L101-1(194.5998mm,13.2mm)  Bottom Layer   
+   Violation between Track (193.1502mm,13.2mm)(196.425mm,13.2mm)  Bottom Layer and                      Pad L101-1(194.5998mm,13.2mm)  Bottom Layer   
+   Violation between Track (203.5998mm,13.2mm)(203.7498mm,13.35mm)  Bottom Layer and                      Pad L101-2(203.5998mm,13.2mm)  Bottom Layer   
+   Violation between Track (203.7498mm,13.35mm)(215.5997mm,13.35mm)  Bottom Layer and                      Pad L101-2(203.5998mm,13.2mm)  Bottom Layer   
+   Violation between Polygon Track (226.5451mm,3.309mm)(227.5951mm,3.309mm)  Bottom Layer and                      Pad D105-1(227.5951mm,3.309mm)  Bottom Layer   
+   Violation between Polygon Track (227.5951mm,2.159mm)(227.5951mm,3.309mm)  Bottom Layer and                      Pad D105-1(227.5951mm,3.309mm)  Bottom Layer   
+   Violation between Polygon Track (227.5951mm,3.309mm)(227.5951mm,4.459mm)  Bottom Layer and                      Pad D105-1(227.5951mm,3.309mm)  Bottom Layer   
+   Violation between Polygon Track (227.5951mm,3.309mm)(228.6451mm,3.309mm)  Bottom Layer and                      Pad D105-1(227.5951mm,3.309mm)  Bottom Layer   
+   Violation between Track (224.5873mm,3.5168mm)(224.7951mm,3.309mm)  Bottom Layer and                      Pad D105-2(224.7951mm,3.309mm)  Bottom Layer   
+   Violation between Track (224.5873mm,3.5168mm)(224.5873mm,6.4066mm)  Bottom Layer and                      Pad D105-2(224.7951mm,3.309mm)  Bottom Layer   
+   Violation between Track (203.7498mm,13.35mm)(215.5997mm,13.35mm)  Bottom Layer and                      Pad C113-2(208.8063mm,13.5124mm)  Bottom Layer   
+   Violation between Polygon Track (207.6563mm,16.3124mm)(208.8063mm,16.3124mm)  Bottom Layer and                      Pad C113-1(208.8063mm,16.3124mm)  Bottom Layer   
+   Violation between Polygon Track (208.8063mm,15.2624mm)(208.8063mm,16.3124mm)  Bottom Layer and                      Pad C113-1(208.8063mm,16.3124mm)  Bottom Layer   
+   Violation between Polygon Track (208.8063mm,16.3124mm)(208.8063mm,17.3624mm)  Bottom Layer and                      Pad C113-1(208.8063mm,16.3124mm)  Bottom Layer   
+   Violation between Polygon Track (208.8063mm,16.3124mm)(209.9563mm,16.3124mm)  Bottom Layer and                      Pad C113-1(208.8063mm,16.3124mm)  Bottom Layer   
+   Violation between Polygon Track (233.4056mm,48.1894mm)(233.4056mm,49.9394mm)  Bottom Layer and                      Pad C109-2(233.4056mm,49.9394mm)  Bottom Layer   
+   Violation between Polygon Track (231.1556mm,49.9394mm)(233.4056mm,49.9394mm)  Bottom Layer and                      Pad C109-2(233.4056mm,49.9394mm)  Bottom Layer   
+   Violation between Polygon Track (233.4056mm,49.9394mm)(235.6556mm,49.9394mm)  Bottom Layer and                      Pad C109-2(233.4056mm,49.9394mm)  Bottom Layer   
+   Violation between Track (226.55mm,44mm)(232.85mm,44mm)  Bottom Layer and                      Pad C109-1(233.4056mm,43.5894mm)  Bottom Layer   
+   Violation between Track (232.85mm,44mm)(236.5997mm,40.2503mm)  Bottom Layer and                      Pad C109-1(233.4056mm,43.5894mm)  Bottom Layer   
+   Violation between Track (236.5997mm,21.95mm)(236.5997mm,40.2503mm)  Bottom Layer and                      Pad C105-2(235.6876mm,26.1066mm)  Bottom Layer   
+   Violation between Polygon Track (231.8376mm,26.1066mm)(232.8876mm,26.1066mm)  Bottom Layer and                      Pad C105-1(232.8876mm,26.1066mm)  Bottom Layer   
+   Violation between Polygon Track (232.8876mm,24.9566mm)(232.8876mm,26.1066mm)  Bottom Layer and                      Pad C105-1(232.8876mm,26.1066mm)  Bottom Layer   
+   Violation between Polygon Track (232.8876mm,26.1066mm)(233.9376mm,26.1066mm)  Bottom Layer and                      Pad C105-1(232.8876mm,26.1066mm)  Bottom Layer   
+   Violation between Polygon Track (232.8876mm,26.1066mm)(232.8876mm,27.2566mm)  Bottom Layer and                      Pad C105-1(232.8876mm,26.1066mm)  Bottom Layer   
+   Violation between Polygon Track (196.2566mm,37.2124mm)(197.4066mm,37.2124mm)  Bottom Layer and                      Pad C104-2(197.4066mm,37.2124mm)  Bottom Layer   
+   Violation between Polygon Track (197.4066mm,36.1624mm)(197.4066mm,37.2124mm)  Bottom Layer and                      Pad C104-2(197.4066mm,37.2124mm)  Bottom Layer   
+   Violation between Polygon Track (197.4066mm,37.2124mm)(198.5566mm,37.2124mm)  Bottom Layer and                      Pad C104-2(197.4066mm,37.2124mm)  Bottom Layer   
+   Violation between Polygon Track (197.4066mm,37.2124mm)(197.4066mm,38.2624mm)  Bottom Layer and                      Pad C104-2(197.4066mm,37.2124mm)  Bottom Layer   
+   Violation between Track (197.3934mm,39.9876mm)(197.481mm,39.9mm)  Bottom Layer and                      Pad C104-1(197.4066mm,40.0124mm)  Bottom Layer   
+   Violation between Track (197.481mm,39.9mm)(200.5mm,39.9mm)  Bottom Layer and                      Pad C104-1(197.4066mm,40.0124mm)  Bottom Layer   
+   Violation between Track (202.906mm,23.025mm)(204.875mm,24.994mm)  Bottom Layer and                      Pad C103-2(204.8876mm,25.0066mm)  Bottom Layer   
+   Violation between Track (204.875mm,24.994mm)(205.5mm,25.619mm)  Bottom Layer and                      Pad C103-2(204.8876mm,25.0066mm)  Bottom Layer   
+   Violation between Track (205.5mm,25.619mm)(205.5mm,27.9mm)  Bottom Layer and                      Pad C103-2(204.8876mm,25.0066mm)  Bottom Layer   
+   Violation between Polygon Track (202.0876mm,23.8566mm)(202.0876mm,25.0066mm)  Bottom Layer and                      Pad C103-1(202.0876mm,25.0066mm)  Bottom Layer   
+   Violation between Polygon Track (201.0376mm,25.0066mm)(202.0876mm,25.0066mm)  Bottom Layer and                      Pad C103-1(202.0876mm,25.0066mm)  Bottom Layer   
+   Violation between Polygon Track (202.0876mm,25.0066mm)(202.0876mm,26.1566mm)  Bottom Layer and                      Pad C103-1(202.0876mm,25.0066mm)  Bottom Layer   
+   Violation between Polygon Track (202.0876mm,25.0066mm)(203.1376mm,25.0066mm)  Bottom Layer and                      Pad C103-1(202.0876mm,25.0066mm)  Bottom Layer   
+   Violation between Track (220.5mm,24.225mm)(220.5mm,27.9mm)  Bottom Layer and                      Pad U101-1(220.5mm,27.9mm)  Bottom Layer   
+   Violation between Polygon Track (219.5mm,26.85mm)(219.5mm,27.9mm)  Bottom Layer and                      Pad U101-2(219.5mm,27.9mm)  Bottom Layer   
+   Violation between Polygon Track (219.5mm,27.9mm)(219.5mm,28.95mm)  Bottom Layer and                      Pad U101-2(219.5mm,27.9mm)  Bottom Layer   
+   Violation between Track (212.5mm,23.425mm)(212.5mm,27.9mm)  Bottom Layer and                      Pad U101-9(212.5mm,27.9mm)  Bottom Layer   
+   Violation between Track (211.5mm,25.681mm)(211.5mm,27.9mm)  Bottom Layer and                      Pad U101-10(211.5mm,27.9mm)  Bottom Layer   
+   Violation between Track (206.5mm,26.5058mm)(206.5mm,27.9mm)  Bottom Layer and                      Pad U101-15(206.5mm,27.9mm)  Bottom Layer   
+   Violation between Track (205.5mm,25.619mm)(205.5mm,27.9mm)  Bottom Layer and                      Pad U101-16(205.5mm,27.9mm)  Bottom Layer   
+   Violation between Polygon Track (203.95mm,27.9mm)(204.5mm,27.9mm)  Bottom Layer and                      Pad U101-17(204.5mm,27.9mm)  Bottom Layer   
+   Violation between Polygon Track (204.5mm,26.85mm)(204.5mm,27.9mm)  Bottom Layer and                      Pad U101-17(204.5mm,27.9mm)  Bottom Layer   
+   Violation between Polygon Track (204.5mm,27.9mm)(204.5mm,28.95mm)  Bottom Layer and                      Pad U101-17(204.5mm,27.9mm)  Bottom Layer   
+   Violation between Polygon Track (199.45mm,31.9mm)(200.5mm,31.9mm)  Bottom Layer and                      Pad U101-18(200.5mm,31.9mm)  Bottom Layer   
+   Violation between Polygon Track (200.5mm,31.35mm)(200.5mm,31.9mm)  Bottom Layer and                      Pad U101-18(200.5mm,31.9mm)  Bottom Layer   
+   Violation between Polygon Track (200.5mm,31.9mm)(201.55mm,31.9mm)  Bottom Layer and                      Pad U101-18(200.5mm,31.9mm)  Bottom Layer   
+   Violation between Track (197.481mm,39.9mm)(200.5mm,39.9mm)  Bottom Layer and                      Pad U101-26(200.5mm,39.9mm)  Bottom Layer   
+   Violation between Polygon Track (199.45mm,42.9mm)(200.5mm,42.9mm)  Bottom Layer and                      Pad U101-29(200.5mm,42.9mm)  Bottom Layer   
+   Violation between Polygon Track (200.5mm,42.9mm)(201.55mm,42.9mm)  Bottom Layer and                      Pad U101-29(200.5mm,42.9mm)  Bottom Layer   
+   Violation between Track (188.3998mm,43.9mm)(200.5mm,43.9mm)  Bottom Layer and                      Pad U101-30(200.5mm,43.9mm)  Bottom Layer   
+   Violation between Track (176.6748mm,44.9mm)(200.5mm,44.9mm)  Bottom Layer and                      Pad U101-31(200.5mm,44.9mm)  Bottom Layer   
+   Violation between Track (175.625mm,45.9mm)(200.5mm,45.9mm)  Bottom Layer and                      Pad U101-32(200.5mm,45.9mm)  Bottom Layer   
+   Violation between Track (173.2058mm,46.9mm)(200.5mm,46.9mm)  Bottom Layer and                      Pad U101-33(200.5mm,46.9mm)  Bottom Layer   
+   Violation between Polygon Track (208.5mm,50.85mm)(208.5mm,51.9mm)  Bottom Layer and                      Pad U101-39(208.5mm,51.9mm)  Bottom Layer   
+   Violation between Polygon Track (208.5mm,51.9mm)(208.5mm,52.95mm)  Bottom Layer and                      Pad U101-39(208.5mm,51.9mm)  Bottom Layer   
+   Violation between Polygon Track (214.5mm,50.85mm)(214.5mm,51.9mm)  Bottom Layer and                      Pad U101-45(214.5mm,51.9mm)  Bottom Layer   
+   Violation between Polygon Track (214.5mm,51.9mm)(214.5mm,52.95mm)  Bottom Layer and                      Pad U101-45(214.5mm,51.9mm)  Bottom Layer   
+   Violation between Polygon Track (215.5mm,50.85mm)(215.5mm,51.9mm)  Bottom Layer and                      Pad U101-46(215.5mm,51.9mm)  Bottom Layer   
+   Violation between Polygon Track (215.5mm,51.9mm)(215.5mm,52.95mm)  Bottom Layer and                      Pad U101-46(215.5mm,51.9mm)  Bottom Layer   
+   Violation between Track (224.5mm,47.9mm)(227.0942mm,47.9mm)  Bottom Layer and                      Pad U101-52(224.5mm,47.9mm)  Bottom Layer   
+   Violation between Polygon Track (223.45mm,45.9mm)(224.5mm,45.9mm)  Bottom Layer and                      Pad U101-54(224.5mm,45.9mm)  Bottom Layer   
+   Violation between Polygon Track (224.5mm,45.9mm)(225.55mm,45.9mm)  Bottom Layer and                      Pad U101-54(224.5mm,45.9mm)  Bottom Layer   
+   Violation between Track (224.5mm,44.9mm)(225.9mm,44.9mm)  Bottom Layer and                      Pad U101-55(224.5mm,44.9mm)  Bottom Layer   
+   Violation between Track (224.5mm,43.9mm)(226.05mm,43.9mm)  Bottom Layer and                      Pad U101-56(224.5mm,43.9mm)  Bottom Layer   
+   Violation between Track (224.5mm,42.9mm)(225.875mm,42.9mm)  Bottom Layer and                      Pad U101-57(224.5mm,42.9mm)  Bottom Layer   
+   Violation between Polygon Track (224.5mm,41.9mm)(225.55mm,41.9mm)  Bottom Layer and                      Pad U101-58(224.5mm,41.9mm)  Bottom Layer   
+   Violation between Track (224.5mm,40.9mm)(225.4497mm,40.9mm)  Bottom Layer and                      Pad U101-59(224.5mm,40.9mm)  Bottom Layer   
+   Violation between Track (225.4497mm,40.9mm)(225.9997mm,41.45mm)  Bottom Layer and                      Pad U101-59(224.5mm,40.9mm)  Bottom Layer   
+   Violation between Track (224.5mm,39.9mm)(229.275mm,39.9mm)  Bottom Layer and                      Pad U101-60(224.5mm,39.9mm)  Bottom Layer   
+   Violation between Track (224.275mm,38.9mm)(225.6747mm,38.9mm)  Bottom Layer and                      Pad U101-61(224.5mm,38.9mm)  Bottom Layer   
+   Violation between Polygon Track (224.5mm,37.9mm)(225.55mm,37.9mm)  Bottom Layer and                      Pad U101-62(224.5mm,37.9mm)  Bottom Layer   
+   Violation between Polygon Track (224.5mm,36.9mm)(225.55mm,36.9mm)  Bottom Layer and                      Pad U101-63(224.5mm,36.9mm)  Bottom Layer   
+   Violation between Polygon Track (223.45mm,35.9mm)(224.5mm,35.9mm)  Bottom Layer and                      Pad U101-64(224.5mm,35.9mm)  Bottom Layer   
+   Violation between Polygon Track (224.5mm,35.9mm)(225.55mm,35.9mm)  Bottom Layer and                      Pad U101-64(224.5mm,35.9mm)  Bottom Layer   
+   Violation between Polygon Track (223.45mm,34.9mm)(224.5mm,34.9mm)  Bottom Layer and                      Pad U101-65(224.5mm,34.9mm)  Bottom Layer   
+   Violation between Polygon Track (224.5mm,34.9mm)(225.55mm,34.9mm)  Bottom Layer and                      Pad U101-65(224.5mm,34.9mm)  Bottom Layer   
+   Violation between Track (224.5mm,33.875mm)(225.675mm,33.875mm)  Bottom Layer and                      Pad U101-66(224.5mm,33.875mm)  Bottom Layer   
+   Violation between Track (235.4mm,16.5465mm)(235.4mm,20.7503mm)  Bottom Layer and                      Pad D102-2(235.7997mm,18.8mm)  Bottom Layer   
+   Violation between Track (231.3997mm,16.4247mm)(231.3997mm,18.8mm)  Bottom Layer and                      Pad D102-1(231.3997mm,18.8mm)  Bottom Layer   
+   Violation between Track (232.8749mm,10.5002mm)(235mm,10.5002mm)  Bottom Layer and                      Pad D100-1(235mm,10.5002mm)  Bottom Layer   
+   Violation between Track (235mm,14.9002mm)(235mm,16.1466mm)  Bottom Layer and                      Pad D100-2(235mm,14.9002mm)  Bottom Layer   
+   Violation between Track (235mm,16.1466mm)(235.4mm,16.5465mm)  Bottom Layer and                      Pad D100-2(235mm,14.9002mm)  Bottom Layer   
+   Violation between Track (196.2264mm,4.2014mm)(196.725mm,4.7mm)  Bottom Layer and                      Pad D104-2(196.7998mm,4.7mm)  Bottom Layer   
+   Violation between Track (196.725mm,4.7mm)(196.725mm,12.9mm)  Bottom Layer and                      Pad D104-2(196.7998mm,4.7mm)  Bottom Layer   
+   Violation between Polygon Track (199.8498mm,4.7mm)(201.1998mm,4.7mm)  Bottom Layer and                      Pad D104-1(201.1998mm,4.7mm)  Bottom Layer   
+   Violation between Polygon Track (201.1998mm,3.1mm)(201.1998mm,4.7mm)  Bottom Layer and                      Pad D104-1(201.1998mm,4.7mm)  Bottom Layer   
+   Violation between Polygon Track (201.1998mm,4.7mm)(201.1998mm,6.3mm)  Bottom Layer and                      Pad D104-1(201.1998mm,4.7mm)  Bottom Layer   
+   Violation between Polygon Track (201.1998mm,4.7mm)(202.5498mm,4.7mm)  Bottom Layer and                      Pad D104-1(201.1998mm,4.7mm)  Bottom Layer   
+   Violation between Pad C111-1(219.0915mm,14.1114mm)  Multi-Layer and                      Track (216.9997mm,12.0196mm)(219.0915mm,14.1114mm)  Bottom Layer   
+   Violation between Pad X101-1(219.1046mm,3.3118mm)  Multi-Layer and                      Track (218.1994mm,2.4066mm)(219.1046mm,3.3118mm)  Bottom Layer   
+   Violation between Pad X101-1(219.1046mm,3.3118mm)  Multi-Layer and                      Track (216.9997mm,5.4167mm)(219.1046mm,3.3118mm)  Bottom Layer   
+   Violation between Pad B101-1(228mm,10.8mm)  Multi-Layer and                      Track (228mm,10.8mm)(228mm,13.025mm)  Bottom Layer   
+   Violation between Pad B101-1(228mm,10.8mm)  Multi-Layer and                      Track (227.375mm,13.65mm)(228mm,13.025mm)  Bottom Layer   
+   Violation between Pad B101-1(228mm,10.8mm)  Multi-Layer and                      Track (228mm,13.025mm)(231.3997mm,16.4247mm)  Bottom Layer   
+   Violation between Pad DS103-2(228.1883mm,23.9082mm)  Multi-Layer and                      Track (228.5931mm,20.0876mm)(228.5931mm,23.5034mm)  Bottom Layer   
+   Violation between Pad DS103-2(228.1883mm,23.9082mm)  Multi-Layer and                      Track (228.1883mm,23.9082mm)(228.5931mm,23.5034mm)  Bottom Layer   
+   Violation between Pad U105-1(175.9mm,2.1mm)  Multi-Layer and                      Track (175.9mm,2.1mm)(175.9mm,9.4mm)  Bottom Layer   
+   Violation between Pad C110-1(173.2926mm,8.6988mm)  Multi-Layer and                      Track (173.2926mm,8.6988mm)(175.7512mm,8.6988mm)  Bottom Layer   
+   Violation between Pad JP100-1(151.3mm,3.7mm)  Multi-Layer and                      Track (151.3mm,3.7mm)(167.9938mm,3.7mm)  Bottom Layer   
+   Violation between Pad C110-1(173.2926mm,8.6988mm)  Multi-Layer and                      Track (170.2711mm,5.9773mm)(172.9926mm,8.6988mm)  Bottom Layer   
+   Violation between Pad U105-4(214.9mm,2.1mm)  Multi-Layer and                      Track (214.5934mm,2.4066mm)(214.9mm,2.1mm)  Bottom Layer   
+   Violation between Pad DS2_1-1(215.1114mm,57.1918mm)  Multi-Layer and                      Track (215.095mm,57.1918mm)(215.1114mm,57.2082mm)  Bottom Layer   
+   Violation between Pad DS2_1-1(215.1114mm,57.1918mm)  Multi-Layer and                      Track (213.175mm,57.1918mm)(215.095mm,57.1918mm)  Bottom Layer   
+   Violation between Pad DS2_1-2(217.6114mm,57.1918mm)  Multi-Layer and                      Track (217.6114mm,57.2082mm)(219.2072mm,55.6124mm)  Bottom Layer   
+   Violation between Pad DS1_1-1(211.1772mm,57.2mm)  Multi-Layer and                      Track (211.1886mm,57.1918mm)(213.1602mm,57.1918mm)  Bottom Layer   
+   Violation between Pad DS1_1-2(208.6772mm,57.2mm)  Multi-Layer and                      Track (207.0844mm,55.5876mm)(208.6886mm,57.1918mm)  Bottom Layer   
+   Violation between Pad P1-1(230.5mm,34.6mm)  Multi-Layer and                      Track (230.5mm,34.6mm)(230.5mm,38.675mm)  Bottom Layer   
+   Violation between Pad JP100-3(151.3mm,6.24mm)  Multi-Layer and                      Track (151.3mm,6.24mm)(160.41mm,6.24mm)  Bottom Layer   
+   Violation between Pad JP100-8(148.76mm,11.32mm)  Multi-Layer and                      Track (148.76mm,11.32mm)(150.05mm,12.61mm)  Bottom Layer   
+   Violation between Pad U105-4(214.9mm,2.1mm)  Multi-Layer and                      Track (208.6876mm,2.4066mm)(218.1994mm,2.4066mm)  Bottom Layer   
+   Violation between Pad X101-1(219.1046mm,3.3118mm)  Multi-Layer and                      Track (208.6876mm,2.4066mm)(218.1994mm,2.4066mm)  Bottom Layer   
+   Violation between Pad JP100-5(151.3mm,8.78mm)  Multi-Layer and                      Track (151.3mm,8.78mm)(152.92mm,8.78mm)  Bottom Layer   
+   Violation between Pad JP100-4(148.76mm,6.24mm)  Multi-Layer and                      Track (148.76mm,6.24mm)(150.02mm,7.5mm)  Bottom Layer   
+   Violation between Pad JP100-2(148.76mm,3.7mm)  Multi-Layer and                      Track (148.76mm,2.6902mm)(149.5752mm,1.875mm)  Bottom Layer   
+   Violation between Pad X102-1(221.6046mm,3.3118mm)  Multi-Layer and                      Track (221.6046mm,3.3118mm)(221.6046mm,6.2239mm)  Bottom Layer   
+   Violation between Pad JP100-2(148.76mm,3.7mm)  Multi-Layer and                      Track (148.76mm,2.6902mm)(148.76mm,3.7mm)  Bottom Layer   
+   Violation between Pad JP100-6(148.76mm,8.78mm)  Multi-Layer and                      Track (148.76mm,8.78mm)(150.03mm,10.05mm)  Bottom Layer   
+   Violation between Pad P1-2(233mm,37.1mm)  Multi-Layer and                      Polygon Track (233mm,37.1mm)(234.6mm,37.1mm)  Bottom Layer   
+   Violation between Pad P1-2(233mm,37.1mm)  Multi-Layer and                      Polygon Track (233mm,37.1mm)(233mm,38.7mm)  Bottom Layer   
+   Violation between Pad P1-2(233mm,37.1mm)  Multi-Layer and                      Polygon Track (233mm,35.5mm)(233mm,37.1mm)  Bottom Layer   
+   Violation between Pad P1-2(233mm,32.1mm)  Multi-Layer and                      Polygon Track (233mm,32.1mm)(234.6mm,32.1mm)  Bottom Layer   
+   Violation between Pad P1-2(233mm,32.1mm)  Multi-Layer and                      Polygon Track (233mm,32.1mm)(233mm,33.7mm)  Bottom Layer   
+   Violation between Pad P1-2(233mm,32.1mm)  Multi-Layer and                      Polygon Track (231.4mm,32.1mm)(233mm,32.1mm)  Bottom Layer   
+   Violation between Pad P1-2(233mm,32.1mm)  Multi-Layer and                      Polygon Track (233mm,30.5mm)(233mm,32.1mm)  Bottom Layer   
+   Violation between Pad P1-2(228mm,37.1mm)  Multi-Layer and                      Polygon Track (228mm,37.1mm)(228mm,38.7mm)  Bottom Layer   
+   Violation between Pad P1-2(228mm,37.1mm)  Multi-Layer and                      Polygon Track (228mm,35.5mm)(228mm,37.1mm)  Bottom Layer   
+   Violation between Pad P1-2(228mm,37.1mm)  Multi-Layer and                      Polygon Track (226.4mm,37.1mm)(228mm,37.1mm)  Bottom Layer   
+   Violation between Pad P1-2(228mm,32.1mm)  Multi-Layer and                      Polygon Track (228mm,32.1mm)(228mm,33.7mm)  Bottom Layer   
+   Violation between Pad P1-2(228mm,32.1mm)  Multi-Layer and                      Polygon Track (228mm,32.1mm)(229.6mm,32.1mm)  Bottom Layer   
+   Violation between Pad P1-2(228mm,32.1mm)  Multi-Layer and                      Polygon Track (228mm,30.5mm)(228mm,32.1mm)  Bottom Layer   
+   Violation between Pad P1-2(228mm,32.1mm)  Multi-Layer and                      Polygon Track (226.4mm,32.1mm)(228mm,32.1mm)  Bottom Layer   
+   Violation between Pad C111-2(219.0915mm,16.6114mm)  Multi-Layer and                      Polygon Track (219.0915mm,16.6114mm)(219.0915mm,17.8614mm)  Bottom Layer   
+   Violation between Pad C111-2(219.0915mm,16.6114mm)  Multi-Layer and                      Polygon Track (219.0915mm,16.6114mm)(220.3415mm,16.6114mm)  Bottom Layer   
+   Violation between Pad C111-2(219.0915mm,16.6114mm)  Multi-Layer and                      Polygon Track (217.8415mm,16.6114mm)(219.0915mm,16.6114mm)  Bottom Layer   
+   Violation between Pad U105-3(214.9mm,19.1mm)  Multi-Layer and                      Polygon Track (214.9mm,19.1mm)(214.9mm,20.85mm)  Bottom Layer   
+   Violation between Pad U105-3(214.9mm,19.1mm)  Multi-Layer and                      Polygon Track (214.9mm,19.1mm)(216.65mm,19.1mm)  Bottom Layer   
+   Violation between Pad U105-3(214.9mm,19.1mm)  Multi-Layer and                      Polygon Track (214.9mm,17.35mm)(214.9mm,19.1mm)  Bottom Layer   
+   Violation between Pad U105-3(214.9mm,19.1mm)  Multi-Layer and                      Polygon Track (213.15mm,19.1mm)(214.9mm,19.1mm)  Bottom Layer   
+   Violation between Pad U105-2(175.9mm,19.1mm)  Multi-Layer and                      Polygon Track (175.9mm,19.1mm)(175.9mm,20.85mm)  Bottom Layer   
+   Violation between Pad U105-2(175.9mm,19.1mm)  Multi-Layer and                      Polygon Track (175.9mm,19.1mm)(177.65mm,19.1mm)  Bottom Layer   
+   Violation between Pad U105-2(175.9mm,19.1mm)  Multi-Layer and                      Polygon Track (175.9mm,17.35mm)(175.9mm,19.1mm)  Bottom Layer   
+   Violation between Pad U105-2(175.9mm,19.1mm)  Multi-Layer and                      Polygon Track (174.15mm,19.1mm)(175.9mm,19.1mm)  Bottom Layer   
+   Violation between Pad C110-2(173.2926mm,13.6988mm)  Multi-Layer and                      Polygon Track (173.2926mm,13.6988mm)(173.2926mm,15.1988mm)  Bottom Layer   
+   Violation between Pad C110-2(173.2926mm,13.6988mm)  Multi-Layer and                      Polygon Track (173.2926mm,13.6988mm)(174.7926mm,13.6988mm)  Bottom Layer   
+   Violation between Pad C110-2(173.2926mm,13.6988mm)  Multi-Layer and                      Polygon Track (171.7926mm,13.6988mm)(173.2926mm,13.6988mm)  Bottom Layer   
+   Violation between Pad C110-2(173.2926mm,13.6988mm)  Multi-Layer and                      Polygon Track (173.2926mm,12.1988mm)(173.2926mm,13.6988mm)  Bottom Layer   
+   Violation between Pad B101-2(156mm,10.8mm)  Multi-Layer and                      Polygon Track (156mm,10.8mm)(156mm,13.05mm)  Bottom Layer   
+   Violation between Pad B101-2(156mm,10.8mm)  Multi-Layer and                      Polygon Track (156mm,10.8mm)(158.25mm,10.8mm)  Bottom Layer   
+   Violation between Pad B101-2(156mm,10.8mm)  Multi-Layer and                      Polygon Track (156mm,8.55mm)(156mm,10.8mm)  Bottom Layer   
+   Violation between Pad JP100-9(151.3mm,13.86mm)  Multi-Layer and                      Polygon Track (151.3mm,13.86mm)(151.3mm,14.86mm)  Bottom Layer   
+   Violation between Pad JP100-9(151.3mm,13.86mm)  Multi-Layer and                      Polygon Track (151.3mm,13.86mm)(152.3mm,13.86mm)  Bottom Layer   
+   Violation between Pad JP100-9(151.3mm,13.86mm)  Multi-Layer and                      Polygon Track (151.3mm,12.86mm)(151.3mm,13.86mm)  Bottom Layer   
+   Violation between Pad JP100-10(148.76mm,13.86mm)  Multi-Layer and                      Polygon Track (148.76mm,13.86mm)(148.76mm,14.86mm)  Bottom Layer   
+   Violation between Pad JP100-10(148.76mm,13.86mm)  Multi-Layer and                      Polygon Track (148.76mm,12.86mm)(148.76mm,13.86mm)  Bottom Layer   
+Rule Violations :397
 
 
-Violations Detected : 0
-Time Elapsed        : 00:00:16
+Violations Detected : 397
+Time Elapsed        : 00:00:24
