@@ -97,8 +97,8 @@ BRR1	include\stm8s.h	1852;"	member	struct:UART3_struct
 BRR2	include\stm8s.h	1647;"	member	struct:UART1_struct
 BRR2	include\stm8s.h	1745;"	member	struct:UART2_struct
 BRR2	include\stm8s.h	1853;"	member	struct:UART3_struct
-BTR1	include\stm8s.h	2070;"	member	struct:__anon1::__anon2::__anon8
-BTR2	include\stm8s.h	2071;"	member	struct:__anon1::__anon2::__anon8
+BTR1	include\stm8s.h	2070;"	member	struct:__anon2::__anon3::__anon9
+BTR2	include\stm8s.h	2071;"	member	struct:__anon2::__anon3::__anon9
 BUFSIZ	c:\program files\cosmic\cxstm8_32k\hstm8\stdio.h	26;"	macro
 BYTE_0	include\stm8s.h	2535;"	macro
 BYTE_1	include\stm8s.h	2536;"	macro
@@ -106,7 +106,7 @@ BYTE_2	include\stm8s.h	2537;"	macro
 BYTE_3	include\stm8s.h	2538;"	macro
 BitClr	include\stm8s.h	2556;"	macro
 BitSet	include\stm8s.h	2557;"	macro
-BitStatus	include\stm8s_type.h	71;"	typedef	typeref:enum:__anon11
+BitStatus	include\stm8s_type.h	71;"	typedef	typeref:enum:__anon12
 BitVal	include\stm8s.h	2558;"	macro
 CAN	include\stm8s.h	2402;"	macro
 CANCCR	include\stm8s.h	371;"	member	struct:CLK_struct
@@ -245,7 +245,7 @@ CAN_TSR_RQCP2	include\stm8s.h	2129;"	macro
 CAN_TSR_TXOK0	include\stm8s.h	2131;"	macro
 CAN_TSR_TXOK1	include\stm8s.h	2132;"	macro
 CAN_TSR_TXOK2	include\stm8s.h	2133;"	macro
-CAN_TypeDef	include\stm8s.h	2103;"	typedef	typeref:struct:__anon1
+CAN_TypeDef	include\stm8s.h	2103;"	typedef	typeref:struct:__anon2
 CCER1	include\stm8s.h	480;"	member	struct:TIM1_struct
 CCER1	include\stm8s.h	693;"	member	struct:TIM2_struct
 CCER1	include\stm8s.h	816;"	member	struct:TIM3_struct
@@ -300,6 +300,8 @@ CFG_GCR_RESET_VALUE	include\stm8s.h	2312;"	macro
 CFG_GCR_SWD	include\stm8s.h	2322;"	macro
 CFG_TypeDef	include\stm8s.h	2306;"	typedef	typeref:struct:CFG_struct
 CFG_struct	include\stm8s.h	2302;"	struct
+CHK_SCL	i2c.c	22;"	macro	file:
+CHK_SDA	i2c.c	20;"	macro	file:
 CKDIVR	include\stm8s.h	366;"	member	struct:CLK_struct
 CLK	include\stm8s.h	2405;"	macro
 CLK_BaseAddress	include\stm8s.h	2355;"	macro
@@ -421,7 +423,7 @@ CSR	include\stm8s.h	327;"	member	struct:BEEP_struct
 CSSR	include\stm8s.h	368;"	member	struct:CLK_struct
 ChgBit	include\stm8s.h	2527;"	macro
 ClrBit	include\stm8s.h	2525;"	macro
-Config	include\stm8s.h	2080;"	member	union:__anon1::__anon2	typeref:struct:__anon1::__anon2::__anon8
+Config	include\stm8s.h	2080;"	member	union:__anon2::__anon3	typeref:struct:__anon2::__anon3::__anon9
 DB0RH	include\stm8s.h	138;"	member	struct:ADC1_struct
 DB0RL	include\stm8s.h	139;"	member	struct:ADC1_struct
 DB1RH	include\stm8s.h	140;"	member	struct:ADC1_struct
@@ -443,8 +445,8 @@ DB8RL	include\stm8s.h	155;"	member	struct:ADC1_struct
 DB9RH	include\stm8s.h	156;"	member	struct:ADC1_struct
 DB9RL	include\stm8s.h	157;"	member	struct:ADC1_struct
 DDR	include\stm8s.h	112;"	member	struct:GPIO_struct
-DGR	include\stm8s.h	1949;"	member	struct:__anon1
-DISABLE	include\stm8s_type.h	74;"	enumerator	enum:__anon12
+DGR	include\stm8s.h	1949;"	member	struct:__anon2
+DISABLE	include\stm8s_type.h	74;"	enumerator	enum:__anon13
 DM	include\stm8s.h	2479;"	macro
 DM_BaseAddress	include\stm8s.h	2379;"	macro
 DR	include\stm8s.h	1200;"	member	struct:I2C_struct
@@ -466,11 +468,11 @@ EGR	include\stm8s.h	689;"	member	struct:TIM2_struct
 EGR	include\stm8s.h	813;"	member	struct:TIM3_struct
 EGR	include\stm8s.h	923;"	member	struct:TIM4_struct
 EGR	include\stm8s.h	985;"	member	struct:TIM5_struct
-EIER	include\stm8s.h	2067;"	member	struct:__anon1::__anon2::__anon8
-ENABLE	include\stm8s_type.h	75;"	enumerator	enum:__anon12
+EIER	include\stm8s.h	2067;"	member	struct:__anon2::__anon3::__anon9
+ENABLE	include\stm8s_type.h	75;"	enumerator	enum:__anon13
 EOF	c:\program files\cosmic\cxstm8_32k\hstm8\stdio.h	27;"	macro
-ERROR	include\stm8s_type.h	82;"	enumerator	enum:__anon13
-ESR	include\stm8s.h	2066;"	member	struct:__anon1::__anon2::__anon8
+ERROR	include\stm8s_type.h	82;"	enumerator	enum:__anon14
+ESR	include\stm8s.h	2066;"	member	struct:__anon2::__anon3::__anon9
 ETR	include\stm8s.h	471;"	member	struct:TIM1_struct
 EXTI	include\stm8s.h	2407;"	macro
 EXTI_BaseAddress	include\stm8s.h	2353;"	macro
@@ -484,61 +486,61 @@ EXTI_CR2_RESET_VALUE	include\stm8s.h	1349;"	macro
 EXTI_CR2_TLIS	include\stm8s.h	1364;"	macro
 EXTI_TypeDef	include\stm8s.h	1342;"	typedef	typeref:struct:EXTI_struct
 EXTI_struct	include\stm8s.h	1337;"	struct
-ErrorStatus	include\stm8s_type.h	85;"	typedef	typeref:enum:__anon13
-F0R1	include\stm8s.h	2000;"	member	struct:__anon1::__anon2::__anon5
-F0R2	include\stm8s.h	2001;"	member	struct:__anon1::__anon2::__anon5
-F0R3	include\stm8s.h	2002;"	member	struct:__anon1::__anon2::__anon5
-F0R4	include\stm8s.h	2003;"	member	struct:__anon1::__anon2::__anon5
-F0R5	include\stm8s.h	2004;"	member	struct:__anon1::__anon2::__anon5
-F0R6	include\stm8s.h	2005;"	member	struct:__anon1::__anon2::__anon5
-F0R7	include\stm8s.h	2006;"	member	struct:__anon1::__anon2::__anon5
-F0R8	include\stm8s.h	2007;"	member	struct:__anon1::__anon2::__anon5
-F1R1	include\stm8s.h	2009;"	member	struct:__anon1::__anon2::__anon5
-F1R2	include\stm8s.h	2010;"	member	struct:__anon1::__anon2::__anon5
-F1R3	include\stm8s.h	2011;"	member	struct:__anon1::__anon2::__anon5
-F1R4	include\stm8s.h	2012;"	member	struct:__anon1::__anon2::__anon5
-F1R5	include\stm8s.h	2013;"	member	struct:__anon1::__anon2::__anon5
-F1R6	include\stm8s.h	2014;"	member	struct:__anon1::__anon2::__anon5
-F1R7	include\stm8s.h	2015;"	member	struct:__anon1::__anon2::__anon5
-F1R8	include\stm8s.h	2016;"	member	struct:__anon1::__anon2::__anon5
-F2R1	include\stm8s.h	2022;"	member	struct:__anon1::__anon2::__anon6
-F2R2	include\stm8s.h	2023;"	member	struct:__anon1::__anon2::__anon6
-F2R3	include\stm8s.h	2024;"	member	struct:__anon1::__anon2::__anon6
-F2R4	include\stm8s.h	2025;"	member	struct:__anon1::__anon2::__anon6
-F2R5	include\stm8s.h	2026;"	member	struct:__anon1::__anon2::__anon6
-F2R6	include\stm8s.h	2027;"	member	struct:__anon1::__anon2::__anon6
-F2R7	include\stm8s.h	2028;"	member	struct:__anon1::__anon2::__anon6
-F2R8	include\stm8s.h	2029;"	member	struct:__anon1::__anon2::__anon6
-F3R1	include\stm8s.h	2031;"	member	struct:__anon1::__anon2::__anon6
-F3R2	include\stm8s.h	2032;"	member	struct:__anon1::__anon2::__anon6
-F3R3	include\stm8s.h	2033;"	member	struct:__anon1::__anon2::__anon6
-F3R4	include\stm8s.h	2034;"	member	struct:__anon1::__anon2::__anon6
-F3R5	include\stm8s.h	2035;"	member	struct:__anon1::__anon2::__anon6
-F3R6	include\stm8s.h	2036;"	member	struct:__anon1::__anon2::__anon6
-F3R7	include\stm8s.h	2037;"	member	struct:__anon1::__anon2::__anon6
-F3R8	include\stm8s.h	2038;"	member	struct:__anon1::__anon2::__anon6
-F4R1	include\stm8s.h	2044;"	member	struct:__anon1::__anon2::__anon7
-F4R2	include\stm8s.h	2045;"	member	struct:__anon1::__anon2::__anon7
-F4R3	include\stm8s.h	2046;"	member	struct:__anon1::__anon2::__anon7
-F4R4	include\stm8s.h	2047;"	member	struct:__anon1::__anon2::__anon7
-F4R5	include\stm8s.h	2048;"	member	struct:__anon1::__anon2::__anon7
-F4R6	include\stm8s.h	2049;"	member	struct:__anon1::__anon2::__anon7
-F4R7	include\stm8s.h	2050;"	member	struct:__anon1::__anon2::__anon7
-F4R8	include\stm8s.h	2051;"	member	struct:__anon1::__anon2::__anon7
-F5R1	include\stm8s.h	2053;"	member	struct:__anon1::__anon2::__anon7
-F5R2	include\stm8s.h	2054;"	member	struct:__anon1::__anon2::__anon7
-F5R3	include\stm8s.h	2055;"	member	struct:__anon1::__anon2::__anon7
-F5R4	include\stm8s.h	2056;"	member	struct:__anon1::__anon2::__anon7
-F5R5	include\stm8s.h	2057;"	member	struct:__anon1::__anon2::__anon7
-F5R6	include\stm8s.h	2058;"	member	struct:__anon1::__anon2::__anon7
-F5R7	include\stm8s.h	2059;"	member	struct:__anon1::__anon2::__anon7
-F5R8	include\stm8s.h	2060;"	member	struct:__anon1::__anon2::__anon7
-FALSE	include\stm8s_type.h	62;"	enumerator	enum:__anon10
+ErrorStatus	include\stm8s_type.h	85;"	typedef	typeref:enum:__anon14
+F0R1	include\stm8s.h	2000;"	member	struct:__anon2::__anon3::__anon6
+F0R2	include\stm8s.h	2001;"	member	struct:__anon2::__anon3::__anon6
+F0R3	include\stm8s.h	2002;"	member	struct:__anon2::__anon3::__anon6
+F0R4	include\stm8s.h	2003;"	member	struct:__anon2::__anon3::__anon6
+F0R5	include\stm8s.h	2004;"	member	struct:__anon2::__anon3::__anon6
+F0R6	include\stm8s.h	2005;"	member	struct:__anon2::__anon3::__anon6
+F0R7	include\stm8s.h	2006;"	member	struct:__anon2::__anon3::__anon6
+F0R8	include\stm8s.h	2007;"	member	struct:__anon2::__anon3::__anon6
+F1R1	include\stm8s.h	2009;"	member	struct:__anon2::__anon3::__anon6
+F1R2	include\stm8s.h	2010;"	member	struct:__anon2::__anon3::__anon6
+F1R3	include\stm8s.h	2011;"	member	struct:__anon2::__anon3::__anon6
+F1R4	include\stm8s.h	2012;"	member	struct:__anon2::__anon3::__anon6
+F1R5	include\stm8s.h	2013;"	member	struct:__anon2::__anon3::__anon6
+F1R6	include\stm8s.h	2014;"	member	struct:__anon2::__anon3::__anon6
+F1R7	include\stm8s.h	2015;"	member	struct:__anon2::__anon3::__anon6
+F1R8	include\stm8s.h	2016;"	member	struct:__anon2::__anon3::__anon6
+F2R1	include\stm8s.h	2022;"	member	struct:__anon2::__anon3::__anon7
+F2R2	include\stm8s.h	2023;"	member	struct:__anon2::__anon3::__anon7
+F2R3	include\stm8s.h	2024;"	member	struct:__anon2::__anon3::__anon7
+F2R4	include\stm8s.h	2025;"	member	struct:__anon2::__anon3::__anon7
+F2R5	include\stm8s.h	2026;"	member	struct:__anon2::__anon3::__anon7
+F2R6	include\stm8s.h	2027;"	member	struct:__anon2::__anon3::__anon7
+F2R7	include\stm8s.h	2028;"	member	struct:__anon2::__anon3::__anon7
+F2R8	include\stm8s.h	2029;"	member	struct:__anon2::__anon3::__anon7
+F3R1	include\stm8s.h	2031;"	member	struct:__anon2::__anon3::__anon7
+F3R2	include\stm8s.h	2032;"	member	struct:__anon2::__anon3::__anon7
+F3R3	include\stm8s.h	2033;"	member	struct:__anon2::__anon3::__anon7
+F3R4	include\stm8s.h	2034;"	member	struct:__anon2::__anon3::__anon7
+F3R5	include\stm8s.h	2035;"	member	struct:__anon2::__anon3::__anon7
+F3R6	include\stm8s.h	2036;"	member	struct:__anon2::__anon3::__anon7
+F3R7	include\stm8s.h	2037;"	member	struct:__anon2::__anon3::__anon7
+F3R8	include\stm8s.h	2038;"	member	struct:__anon2::__anon3::__anon7
+F4R1	include\stm8s.h	2044;"	member	struct:__anon2::__anon3::__anon8
+F4R2	include\stm8s.h	2045;"	member	struct:__anon2::__anon3::__anon8
+F4R3	include\stm8s.h	2046;"	member	struct:__anon2::__anon3::__anon8
+F4R4	include\stm8s.h	2047;"	member	struct:__anon2::__anon3::__anon8
+F4R5	include\stm8s.h	2048;"	member	struct:__anon2::__anon3::__anon8
+F4R6	include\stm8s.h	2049;"	member	struct:__anon2::__anon3::__anon8
+F4R7	include\stm8s.h	2050;"	member	struct:__anon2::__anon3::__anon8
+F4R8	include\stm8s.h	2051;"	member	struct:__anon2::__anon3::__anon8
+F5R1	include\stm8s.h	2053;"	member	struct:__anon2::__anon3::__anon8
+F5R2	include\stm8s.h	2054;"	member	struct:__anon2::__anon3::__anon8
+F5R3	include\stm8s.h	2055;"	member	struct:__anon2::__anon3::__anon8
+F5R4	include\stm8s.h	2056;"	member	struct:__anon2::__anon3::__anon8
+F5R5	include\stm8s.h	2057;"	member	struct:__anon2::__anon3::__anon8
+F5R6	include\stm8s.h	2058;"	member	struct:__anon2::__anon3::__anon8
+F5R7	include\stm8s.h	2059;"	member	struct:__anon2::__anon3::__anon8
+F5R8	include\stm8s.h	2060;"	member	struct:__anon2::__anon3::__anon8
+FALSE	include\stm8s_type.h	62;"	enumerator	enum:__anon11
 FAR	include\stm8s.h	66;"	macro
 FAR	include\stm8s.h	71;"	macro
-FCR1	include\stm8s.h	2075;"	member	struct:__anon1::__anon2::__anon8
-FCR2	include\stm8s.h	2076;"	member	struct:__anon1::__anon2::__anon8
-FCR3	include\stm8s.h	2077;"	member	struct:__anon1::__anon2::__anon8
+FCR1	include\stm8s.h	2075;"	member	struct:__anon2::__anon3::__anon9
+FCR2	include\stm8s.h	2076;"	member	struct:__anon2::__anon3::__anon9
+FCR3	include\stm8s.h	2077;"	member	struct:__anon2::__anon3::__anon9
 FLASH	include\stm8s.h	2409;"	macro
 FLASH_BaseAddress	include\stm8s.h	2351;"	macro
 FLASH_CR1_AHALT	include\stm8s.h	1414;"	macro
@@ -570,32 +572,32 @@ FLASH_PUKR_PUK	include\stm8s.h	1436;"	macro
 FLASH_PUKR_RESET_VALUE	include\stm8s.h	1402;"	macro
 FLASH_TypeDef	include\stm8s.h	1392;"	typedef	typeref:struct:FLASH_struct
 FLASH_struct	include\stm8s.h	1378;"	struct
-FMR1	include\stm8s.h	2073;"	member	struct:__anon1::__anon2::__anon8
-FMR2	include\stm8s.h	2074;"	member	struct:__anon1::__anon2::__anon8
+FMR1	include\stm8s.h	2073;"	member	struct:__anon2::__anon3::__anon9
+FMR2	include\stm8s.h	2074;"	member	struct:__anon2::__anon3::__anon9
 FPR	include\stm8s.h	1383;"	member	struct:FLASH_struct
-FR01	include\stm8s.h	1977;"	member	struct:__anon1::__anon2::__anon4
-FR02	include\stm8s.h	1978;"	member	struct:__anon1::__anon2::__anon4
-FR03	include\stm8s.h	1979;"	member	struct:__anon1::__anon2::__anon4
-FR04	include\stm8s.h	1980;"	member	struct:__anon1::__anon2::__anon4
-FR05	include\stm8s.h	1981;"	member	struct:__anon1::__anon2::__anon4
-FR06	include\stm8s.h	1982;"	member	struct:__anon1::__anon2::__anon4
-FR07	include\stm8s.h	1983;"	member	struct:__anon1::__anon2::__anon4
-FR08	include\stm8s.h	1984;"	member	struct:__anon1::__anon2::__anon4
-FR09	include\stm8s.h	1986;"	member	struct:__anon1::__anon2::__anon4
-FR10	include\stm8s.h	1987;"	member	struct:__anon1::__anon2::__anon4
-FR11	include\stm8s.h	1988;"	member	struct:__anon1::__anon2::__anon4
-FR12	include\stm8s.h	1989;"	member	struct:__anon1::__anon2::__anon4
-FR13	include\stm8s.h	1990;"	member	struct:__anon1::__anon2::__anon4
-FR14	include\stm8s.h	1991;"	member	struct:__anon1::__anon2::__anon4
-FR15	include\stm8s.h	1992;"	member	struct:__anon1::__anon2::__anon4
-FR16	include\stm8s.h	1993;"	member	struct:__anon1::__anon2::__anon4
+FR01	include\stm8s.h	1977;"	member	struct:__anon2::__anon3::__anon5
+FR02	include\stm8s.h	1978;"	member	struct:__anon2::__anon3::__anon5
+FR03	include\stm8s.h	1979;"	member	struct:__anon2::__anon3::__anon5
+FR04	include\stm8s.h	1980;"	member	struct:__anon2::__anon3::__anon5
+FR05	include\stm8s.h	1981;"	member	struct:__anon2::__anon3::__anon5
+FR06	include\stm8s.h	1982;"	member	struct:__anon2::__anon3::__anon5
+FR07	include\stm8s.h	1983;"	member	struct:__anon2::__anon3::__anon5
+FR08	include\stm8s.h	1984;"	member	struct:__anon2::__anon3::__anon5
+FR09	include\stm8s.h	1986;"	member	struct:__anon2::__anon3::__anon5
+FR10	include\stm8s.h	1987;"	member	struct:__anon2::__anon3::__anon5
+FR11	include\stm8s.h	1988;"	member	struct:__anon2::__anon3::__anon5
+FR12	include\stm8s.h	1989;"	member	struct:__anon2::__anon3::__anon5
+FR13	include\stm8s.h	1990;"	member	struct:__anon2::__anon3::__anon5
+FR14	include\stm8s.h	1991;"	member	struct:__anon2::__anon3::__anon5
+FR15	include\stm8s.h	1992;"	member	struct:__anon2::__anon3::__anon5
+FR16	include\stm8s.h	1993;"	member	struct:__anon2::__anon3::__anon5
 FREQR	include\stm8s.h	1196;"	member	struct:I2C_struct
-Filter	include\stm8s.h	1995;"	member	union:__anon1::__anon2	typeref:struct:__anon1::__anon2::__anon4
-Filter01	include\stm8s.h	2018;"	member	union:__anon1::__anon2	typeref:struct:__anon1::__anon2::__anon5
-Filter23	include\stm8s.h	2040;"	member	union:__anon1::__anon2	typeref:struct:__anon1::__anon2::__anon6
-Filter45	include\stm8s.h	2062;"	member	union:__anon1::__anon2	typeref:struct:__anon1::__anon2::__anon7
-FlagStatus	include\stm8s_type.h	71;"	typedef	typeref:enum:__anon11
-FunctionalState	include\stm8s_type.h	77;"	typedef	typeref:enum:__anon12
+Filter	include\stm8s.h	1995;"	member	union:__anon2::__anon3	typeref:struct:__anon2::__anon3::__anon5
+Filter01	include\stm8s.h	2018;"	member	union:__anon2::__anon3	typeref:struct:__anon2::__anon3::__anon6
+Filter23	include\stm8s.h	2040;"	member	union:__anon2::__anon3	typeref:struct:__anon2::__anon3::__anon7
+Filter45	include\stm8s.h	2062;"	member	union:__anon2::__anon3	typeref:struct:__anon2::__anon3::__anon8
+FlagStatus	include\stm8s_type.h	71;"	typedef	typeref:enum:__anon12
+FunctionalState	include\stm8s_type.h	77;"	typedef	typeref:enum:__anon13
 GCR	include\stm8s.h	2304;"	member	struct:CFG_struct
 GPIOA	include\stm8s.h	2413;"	macro
 GPIOA_BaseAddress	include\stm8s.h	2341;"	macro
@@ -626,6 +628,9 @@ GTR	include\stm8s.h	1752;"	member	struct:UART2_struct
 HSITRIMR	include\stm8s.h	372;"	member	struct:CLK_struct
 HTRH	include\stm8s.h	167;"	member	struct:ADC1_struct
 HTRL	include\stm8s.h	168;"	member	struct:ADC1_struct
+H_DEL	i2c.c	10;"	macro	file:
+H_SCL	i2c.c	12;"	macro	file:
+H_SDA	i2c.c	16;"	macro	file:
 I2C	include\stm8s.h	2440;"	macro
 I2C_BaseAddress	include\stm8s.h	2361;"	macro
 I2C_CCRH_CCR	include\stm8s.h	1286;"	macro
@@ -648,10 +653,14 @@ I2C_DR_DR	include\stm8s.h	1257;"	macro
 I2C_DR_RESET_VALUE	include\stm8s.h	1221;"	macro
 I2C_FREQR_FREQ	include\stm8s.h	1248;"	macro
 I2C_FREQR_RESET_VALUE	include\stm8s.h	1218;"	macro
+I2C_HWPROBLEM	include\i2c.h	15;"	enumerator	enum:__anon1
 I2C_ITR_ITBUFEN	include\stm8s.h	1278;"	macro
 I2C_ITR_ITERREN	include\stm8s.h	1280;"	macro
 I2C_ITR_ITEVTEN	include\stm8s.h	1279;"	macro
 I2C_ITR_RESET_VALUE	include\stm8s.h	1225;"	macro
+I2C_LINEBUSY	include\i2c.h	11;"	enumerator	enum:__anon1
+I2C_NACK	include\i2c.h	14;"	enumerator	enum:__anon1
+I2C_NOADDR	include\i2c.h	13;"	enumerator	enum:__anon1
 I2C_OARH_ADD	include\stm8s.h	1255;"	macro
 I2C_OARH_ADDCONF	include\stm8s.h	1254;"	macro
 I2C_OARH_ADDMODE	include\stm8s.h	1253;"	macro
@@ -659,6 +668,7 @@ I2C_OARH_RESET_VALUE	include\stm8s.h	1220;"	macro
 I2C_OARL_ADD	include\stm8s.h	1250;"	macro
 I2C_OARL_ADD0	include\stm8s.h	1251;"	macro
 I2C_OARL_RESET_VALUE	include\stm8s.h	1219;"	macro
+I2C_OK	include\i2c.h	10;"	enumerator	enum:__anon1
 I2C_SR1_ADD10	include\stm8s.h	1262;"	macro
 I2C_SR1_ADDR	include\stm8s.h	1264;"	macro
 I2C_SR1_BTF	include\stm8s.h	1263;"	macro
@@ -678,6 +688,7 @@ I2C_SR3_GENCALL	include\stm8s.h	1273;"	macro
 I2C_SR3_MSL	include\stm8s.h	1276;"	macro
 I2C_SR3_RESET_VALUE	include\stm8s.h	1224;"	macro
 I2C_SR3_TRA	include\stm8s.h	1274;"	macro
+I2C_TMOUT	include\i2c.h	12;"	enumerator	enum:__anon1
 I2C_TRISER_RESET_VALUE	include\stm8s.h	1228;"	macro
 I2C_TRISER_TRISE	include\stm8s.h	1288;"	macro
 I2C_TypeDef	include\stm8s.h	1210;"	typedef	typeref:struct:I2C_struct
@@ -687,7 +698,7 @@ ICKR	include\stm8s.h	360;"	member	struct:CLK_struct
 ICR	include\stm8s.h	1564;"	member	struct:SPI_struct
 IDR	include\stm8s.h	111;"	member	struct:GPIO_struct
 IER	include\stm8s.h	1125;"	member	struct:TIM6_struct
-IER	include\stm8s.h	1948;"	member	struct:__anon1
+IER	include\stm8s.h	1948;"	member	struct:__anon2
 IER	include\stm8s.h	472;"	member	struct:TIM1_struct
 IER	include\stm8s.h	686;"	member	struct:TIM2_struct
 IER	include\stm8s.h	810;"	member	struct:TIM3_struct
@@ -709,7 +720,7 @@ ITC_SPRX_RESET_VALUE	include\stm8s.h	1316;"	macro
 ITC_TypeDef	include\stm8s.h	1310;"	typedef	typeref:struct:ITC_struct
 ITC_struct	include\stm8s.h	1299;"	struct
 ITR	include\stm8s.h	1204;"	member	struct:I2C_struct
-ITStatus	include\stm8s_type.h	71;"	typedef	typeref:enum:__anon11
+ITStatus	include\stm8s_type.h	71;"	typedef	typeref:enum:__anon12
 IWDG	include\stm8s.h	2437;"	macro
 IWDG_BaseAddress	include\stm8s.h	2357;"	macro
 IWDG_PR_RESET_VALUE	include\stm8s.h	1485;"	macro
@@ -719,40 +730,42 @@ IWDG_struct	include\stm8s.h	1473;"	struct
 KR	include\stm8s.h	1475;"	member	struct:IWDG_struct
 LTRH	include\stm8s.h	169;"	member	struct:ADC1_struct
 LTRL	include\stm8s.h	170;"	member	struct:ADC1_struct
-MCR	include\stm8s.h	1943;"	member	struct:__anon1
-MCSR	include\stm8s.h	1956;"	member	struct:__anon1::__anon2::__anon3
-MDAR1	include\stm8s.h	1962;"	member	struct:__anon1::__anon2::__anon3
-MDAR1	include\stm8s.h	2090;"	member	struct:__anon1::__anon2::__anon9
-MDAR2	include\stm8s.h	1963;"	member	struct:__anon1::__anon2::__anon3
-MDAR2	include\stm8s.h	2091;"	member	struct:__anon1::__anon2::__anon9
-MDAR3	include\stm8s.h	1964;"	member	struct:__anon1::__anon2::__anon3
-MDAR3	include\stm8s.h	2092;"	member	struct:__anon1::__anon2::__anon9
-MDAR4	include\stm8s.h	1965;"	member	struct:__anon1::__anon2::__anon3
-MDAR4	include\stm8s.h	2093;"	member	struct:__anon1::__anon2::__anon9
-MDAR5	include\stm8s.h	1966;"	member	struct:__anon1::__anon2::__anon3
-MDAR5	include\stm8s.h	2094;"	member	struct:__anon1::__anon2::__anon9
-MDAR6	include\stm8s.h	1967;"	member	struct:__anon1::__anon2::__anon3
-MDAR6	include\stm8s.h	2095;"	member	struct:__anon1::__anon2::__anon9
-MDAR7	include\stm8s.h	1968;"	member	struct:__anon1::__anon2::__anon3
-MDAR7	include\stm8s.h	2096;"	member	struct:__anon1::__anon2::__anon9
-MDAR8	include\stm8s.h	1969;"	member	struct:__anon1::__anon2::__anon3
-MDAR8	include\stm8s.h	2097;"	member	struct:__anon1::__anon2::__anon9
-MDLCR	include\stm8s.h	1957;"	member	struct:__anon1::__anon2::__anon3
-MDLCR	include\stm8s.h	2085;"	member	struct:__anon1::__anon2::__anon9
-MFMI	include\stm8s.h	2084;"	member	struct:__anon1::__anon2::__anon9
-MIDR1	include\stm8s.h	1958;"	member	struct:__anon1::__anon2::__anon3
-MIDR1	include\stm8s.h	2086;"	member	struct:__anon1::__anon2::__anon9
-MIDR2	include\stm8s.h	1959;"	member	struct:__anon1::__anon2::__anon3
-MIDR2	include\stm8s.h	2087;"	member	struct:__anon1::__anon2::__anon9
-MIDR3	include\stm8s.h	1960;"	member	struct:__anon1::__anon2::__anon3
-MIDR3	include\stm8s.h	2088;"	member	struct:__anon1::__anon2::__anon9
-MIDR4	include\stm8s.h	1961;"	member	struct:__anon1::__anon2::__anon3
-MIDR4	include\stm8s.h	2089;"	member	struct:__anon1::__anon2::__anon9
-MSR	include\stm8s.h	1944;"	member	struct:__anon1
-MTSRH	include\stm8s.h	1971;"	member	struct:__anon1::__anon2::__anon3
-MTSRH	include\stm8s.h	2099;"	member	struct:__anon1::__anon2::__anon9
-MTSRL	include\stm8s.h	1970;"	member	struct:__anon1::__anon2::__anon3
-MTSRL	include\stm8s.h	2098;"	member	struct:__anon1::__anon2::__anon9
+L_SCL	i2c.c	14;"	macro	file:
+L_SDA	i2c.c	18;"	macro	file:
+MCR	include\stm8s.h	1943;"	member	struct:__anon2
+MCSR	include\stm8s.h	1956;"	member	struct:__anon2::__anon3::__anon4
+MDAR1	include\stm8s.h	1962;"	member	struct:__anon2::__anon3::__anon4
+MDAR1	include\stm8s.h	2090;"	member	struct:__anon2::__anon3::__anon10
+MDAR2	include\stm8s.h	1963;"	member	struct:__anon2::__anon3::__anon4
+MDAR2	include\stm8s.h	2091;"	member	struct:__anon2::__anon3::__anon10
+MDAR3	include\stm8s.h	1964;"	member	struct:__anon2::__anon3::__anon4
+MDAR3	include\stm8s.h	2092;"	member	struct:__anon2::__anon3::__anon10
+MDAR4	include\stm8s.h	1965;"	member	struct:__anon2::__anon3::__anon4
+MDAR4	include\stm8s.h	2093;"	member	struct:__anon2::__anon3::__anon10
+MDAR5	include\stm8s.h	1966;"	member	struct:__anon2::__anon3::__anon4
+MDAR5	include\stm8s.h	2094;"	member	struct:__anon2::__anon3::__anon10
+MDAR6	include\stm8s.h	1967;"	member	struct:__anon2::__anon3::__anon4
+MDAR6	include\stm8s.h	2095;"	member	struct:__anon2::__anon3::__anon10
+MDAR7	include\stm8s.h	1968;"	member	struct:__anon2::__anon3::__anon4
+MDAR7	include\stm8s.h	2096;"	member	struct:__anon2::__anon3::__anon10
+MDAR8	include\stm8s.h	1969;"	member	struct:__anon2::__anon3::__anon4
+MDAR8	include\stm8s.h	2097;"	member	struct:__anon2::__anon3::__anon10
+MDLCR	include\stm8s.h	1957;"	member	struct:__anon2::__anon3::__anon4
+MDLCR	include\stm8s.h	2085;"	member	struct:__anon2::__anon3::__anon10
+MFMI	include\stm8s.h	2084;"	member	struct:__anon2::__anon3::__anon10
+MIDR1	include\stm8s.h	1958;"	member	struct:__anon2::__anon3::__anon4
+MIDR1	include\stm8s.h	2086;"	member	struct:__anon2::__anon3::__anon10
+MIDR2	include\stm8s.h	1959;"	member	struct:__anon2::__anon3::__anon4
+MIDR2	include\stm8s.h	2087;"	member	struct:__anon2::__anon3::__anon10
+MIDR3	include\stm8s.h	1960;"	member	struct:__anon2::__anon3::__anon4
+MIDR3	include\stm8s.h	2088;"	member	struct:__anon2::__anon3::__anon10
+MIDR4	include\stm8s.h	1961;"	member	struct:__anon2::__anon3::__anon4
+MIDR4	include\stm8s.h	2089;"	member	struct:__anon2::__anon3::__anon10
+MSR	include\stm8s.h	1944;"	member	struct:__anon2
+MTSRH	include\stm8s.h	1971;"	member	struct:__anon2::__anon3::__anon4
+MTSRH	include\stm8s.h	2099;"	member	struct:__anon2::__anon3::__anon10
+MTSRL	include\stm8s.h	1970;"	member	struct:__anon2::__anon3::__anon4
+MTSRL	include\stm8s.h	2098;"	member	struct:__anon2::__anon3::__anon10
 MskBit	include\stm8s.h	2531;"	macro
 NCR2	include\stm8s.h	1382;"	member	struct:FLASH_struct
 NEAR	include\stm8s.h	67;"	macro
@@ -782,6 +795,7 @@ OPT7	include\stm8s.h	1463;"	member	struct:OPT_struct
 OPT_BaseAddress	include\stm8s.h	2340;"	macro
 OPT_TypeDef	include\stm8s.h	1466;"	typedef	typeref:struct:OPT_struct
 OPT_struct	include\stm8s.h	1448;"	struct
+PAUSE	i2c.c	8;"	macro	file:
 PCKENR1	include\stm8s.h	367;"	member	struct:CLK_struct
 PCKENR2	include\stm8s.h	370;"	member	struct:CLK_struct
 PR	include\stm8s.h	1476;"	member	struct:IWDG_struct
@@ -794,14 +808,15 @@ PSCR	include\stm8s.h	925;"	member	struct:TIM4_struct
 PSCR	include\stm8s.h	993;"	member	struct:TIM5_struct
 PSCRH	include\stm8s.h	484;"	member	struct:TIM1_struct
 PSCRL	include\stm8s.h	485;"	member	struct:TIM1_struct
-PSR	include\stm8s.h	1950;"	member	struct:__anon1
+PSR	include\stm8s.h	1950;"	member	struct:__anon2
 PUKR	include\stm8s.h	1388;"	member	struct:FLASH_struct
-Page	include\stm8s.h	2102;"	member	struct:__anon1	typeref:union:__anon1::__anon2
+Page	include\stm8s.h	2102;"	member	struct:__anon2	typeref:union:__anon2::__anon3
 PointerAttr	include\stm8s.h	78;"	macro
 PointerAttr	include\stm8s.h	80;"	macro
 PointerAttr_Far	include\stm8s.h	63;"	macro
+Q_DEL	i2c.c	11;"	macro	file:
 RCR	include\stm8s.h	488;"	member	struct:TIM1_struct
-RECR	include\stm8s.h	2069;"	member	struct:__anon1::__anon2::__anon8
+RECR	include\stm8s.h	2069;"	member	struct:__anon2::__anon3::__anon9
 RESERVED	include\stm8s.h	158;"	member	struct:ADC1_struct
 RESERVED	include\stm8s.h	1858;"	member	struct:UART3_struct
 RESERVED	include\stm8s.h	236;"	member	struct:ADC2_struct
@@ -817,8 +832,8 @@ RESERVED2	include\stm8s.h	1462;"	member	struct:OPT_struct
 RESERVED2	include\stm8s.h	684;"	member	struct:TIM2_struct
 RESERVED2	include\stm8s.h	919;"	member	struct:TIM4_struct
 RESERVED3	include\stm8s.h	1389;"	member	struct:FLASH_struct
-RESET	include\stm8s_type.h	68;"	enumerator	enum:__anon11
-RFR	include\stm8s.h	1947;"	member	struct:__anon1
+RESET	include\stm8s_type.h	68;"	enumerator	enum:__anon12
+RFR	include\stm8s.h	1947;"	member	struct:__anon2
 RLR	include\stm8s.h	1477;"	member	struct:IWDG_struct
 RST	include\stm8s.h	2434;"	macro
 RST_BaseAddress	include\stm8s.h	2354;"	macro
@@ -830,16 +845,16 @@ RST_SR_WWDGF	include\stm8s.h	1549;"	macro
 RST_TypeDef	include\stm8s.h	1539;"	typedef	typeref:struct:RST_struct
 RST_struct	include\stm8s.h	1535;"	struct
 RXCRCR	include\stm8s.h	1568;"	member	struct:SPI_struct
-Reserved1	include\stm8s.h	2072;"	member	struct:__anon1::__anon2::__anon8
-Reserved2	include\stm8s.h	2078;"	member	struct:__anon1::__anon2::__anon8
-RxFIFO	include\stm8s.h	2101;"	member	union:__anon1::__anon2	typeref:struct:__anon1::__anon2::__anon9
+Reserved1	include\stm8s.h	2072;"	member	struct:__anon2::__anon3::__anon9
+Reserved2	include\stm8s.h	2078;"	member	struct:__anon2::__anon3::__anon9
+RxFIFO	include\stm8s.h	2101;"	member	union:__anon2::__anon3	typeref:struct:__anon2::__anon3::__anon10
 S16_MAX	include\stm8s_type.h	91;"	macro
 S16_MIN	include\stm8s_type.h	92;"	macro
 S32_MAX	include\stm8s_type.h	94;"	macro
 S32_MIN	include\stm8s_type.h	95;"	macro
 S8_MAX	include\stm8s_type.h	88;"	macro
 S8_MIN	include\stm8s_type.h	89;"	macro
-SET	include\stm8s_type.h	69;"	enumerator	enum:__anon11
+SET	include\stm8s_type.h	69;"	enumerator	enum:__anon12
 SMCR	include\stm8s.h	1124;"	member	struct:TIM6_struct
 SMCR	include\stm8s.h	470;"	member	struct:TIM1_struct
 SMCR	include\stm8s.h	981;"	member	struct:TIM5_struct
@@ -898,7 +913,7 @@ SR2	include\stm8s.h	812;"	member	struct:TIM3_struct
 SR2	include\stm8s.h	984;"	member	struct:TIM5_struct
 SR3	include\stm8s.h	1203;"	member	struct:I2C_struct
 STM8S208	include\stm8s.h	45;"	macro
-SUCCESS	include\stm8s_type.h	83;"	enumerator	enum:__anon13
+SUCCESS	include\stm8s_type.h	83;"	enumerator	enum:__anon14
 SWCR	include\stm8s.h	365;"	member	struct:CLK_struct
 SWIM	include\stm8s.h	2477;"	macro
 SWIMCCR	include\stm8s.h	373;"	member	struct:CLK_struct
@@ -907,12 +922,16 @@ SWIM_TypeDef	include\stm8s.h	1635;"	typedef	typeref:struct:SWIM_struct
 SWIM_struct	include\stm8s.h	1630;"	struct
 SWR	include\stm8s.h	364;"	member	struct:CLK_struct
 SetBit	include\stm8s.h	2524;"	macro
+SoftStart	i2c.c	40;"	function
+SoftStart	include\i2c.h	4;"	prototype	signature:(void)
+SoftStop	i2c.c	49;"	function
+SoftStop	include\i2c.h	5;"	prototype	signature:(void)
 TBR	include\stm8s.h	287;"	member	struct:AWU_struct
 TDRH	include\stm8s.h	165;"	member	struct:ADC1_struct
 TDRH	include\stm8s.h	239;"	member	struct:ADC2_struct
 TDRL	include\stm8s.h	166;"	member	struct:ADC1_struct
 TDRL	include\stm8s.h	240;"	member	struct:ADC2_struct
-TECR	include\stm8s.h	2068;"	member	struct:__anon1::__anon2::__anon8
+TECR	include\stm8s.h	2068;"	member	struct:__anon2::__anon3::__anon9
 TIM1	include\stm8s.h	2454;"	macro
 TIM1_ARRH_ARR	include\stm8s.h	635;"	macro
 TIM1_ARRH_RESET_VALUE	include\stm8s.h	525;"	macro
@@ -1302,13 +1321,13 @@ TIM6_TypeDef	include\stm8s.h	1132;"	typedef	typeref:struct:TIM6_struct
 TIM6_struct	include\stm8s.h	1120;"	struct
 TINY	include\stm8s.h	68;"	macro
 TINY	include\stm8s.h	73;"	macro
-TPR	include\stm8s.h	1946;"	member	struct:__anon1
+TPR	include\stm8s.h	1946;"	member	struct:__anon2
 TRISER	include\stm8s.h	1207;"	member	struct:I2C_struct
-TRUE	include\stm8s_type.h	63;"	enumerator	enum:__anon10
-TSR	include\stm8s.h	1945;"	member	struct:__anon1
+TRUE	include\stm8s_type.h	63;"	enumerator	enum:__anon11
+TSR	include\stm8s.h	1945;"	member	struct:__anon2
 TXCRCR	include\stm8s.h	1569;"	member	struct:SPI_struct
 TX_BUFFER_SIZE	main.c	37;"	macro	file:
-TxMailbox	include\stm8s.h	1973;"	member	union:__anon1::__anon2	typeref:struct:__anon1::__anon2::__anon3
+TxMailbox	include\stm8s.h	1973;"	member	union:__anon2::__anon3	typeref:struct:__anon2::__anon3::__anon4
 U16_MAX	include\stm8s_type.h	90;"	macro
 U32_MAX	include\stm8s_type.h	93;"	macro
 U8_MAX	include\stm8s_type.h	87;"	macro
@@ -1514,6 +1533,8 @@ __STRING__	c:\program files\cosmic\cxstm8_32k\hstm8\string.h	6;"	macro
 __nop	main.h	1;"	macro
 _stext	stm8_interrupt_vector.c	21;"	prototype	file:
 _vectab	stm8_interrupt_vector.c	25;"	variable
+addr7r	i2c.c	6;"	variable
+addr7w	i2c.c	6;"	variable
 airSensorErrorStat	main.c	33;"	variable
 b100Hz	main.c	9;"	variable
 b10Hz	main.c	9;"	variable
@@ -1521,7 +1542,7 @@ b1Hz	main.c	9;"	variable
 b5Hz	main.c	9;"	variable
 bCONV	main.c	28;"	variable
 bOUT_FREE	main.c	41;"	variable
-bool	include\stm8s_type.h	65;"	typedef	typeref:enum:__anon10
+bool	include\stm8s_type.h	65;"	typedef	typeref:enum:__anon11
 buf	main.c	44;"	variable
 disableInterrupts	include\stm8s.h	2492;"	macro
 disableInterrupts	include\stm8s.h	2501;"	macro
@@ -1531,14 +1552,22 @@ ds18b20ErrorOffCnt	main.c	32;"	variable
 eepera	c:\program files\cosmic\cxstm8_32k\hstm8\string.h	35;"	macro
 enableInterrupts	include\stm8s.h	2491;"	macro
 enableInterrupts	include\stm8s.h	2500;"	macro
-enumDsErrorStat	main.h	7;"	typedef	typeref:enum:__anon14
-esHI	main.h	7;"	enumerator	enum:__anon14
-esLO	main.h	7;"	enumerator	enum:__anon14
-esNORM	main.h	7;"	enumerator	enum:__anon14
+enumDsErrorStat	main.h	7;"	typedef	typeref:enum:__anon15
+esHI	main.h	7;"	enumerator	enum:__anon15
+esLO	main.h	7;"	enumerator	enum:__anon15
+esNORM	main.h	7;"	enumerator	enum:__anon15
 getchar	c:\program files\cosmic\cxstm8_32k\hstm8\stdio.h	15;"	prototype	signature:(void)
 gets	c:\program files\cosmic\cxstm8_32k\hstm8\stdio.h	16;"	prototype	signature:(char *s)
 halt	include\stm8s.h	2498;"	macro
 halt	include\stm8s.h	2507;"	macro
+i2c_7bit_receive_onebyte	i2c.c	174;"	function	signature:(char *data, char wait)
+i2c_7bit_receive_twobyte	i2c.c	197;"	function	signature:(char *data, char wait)
+i2c_7bit_send	i2c.c	148;"	function	signature:(char *data, char datalen, char stop)
+i2c_7bit_send_onebyte	i2c.c	122;"	function	signature:(char data, char stop)
+i2c_set_addr7	i2c.c	35;"	function	signature:(char addr)
+i2c_setup	i2c.c	25;"	function
+i2c_setup	include\i2c.h	3;"	prototype	signature:(void)
+i2c_status	include\i2c.h	16;"	typedef	typeref:enum:__anon1
 interrupt_handler	stm8_interrupt_vector.c	9;"	member	struct:interrupt_vector	file:
 interrupt_handler_t	stm8_interrupt_vector.c	5;"	typedef	file:
 interrupt_instruction	stm8_interrupt_vector.c	8;"	member	struct:interrupt_vector	file:
@@ -1572,6 +1601,8 @@ scanf	c:\program files\cosmic\cxstm8_32k\hstm8\stdio.h	20;"	prototype	signature:
 sim	include\stm8s.h	2494;"	macro
 sim	include\stm8s.h	2503;"	macro
 size_t	c:\program files\cosmic\cxstm8_32k\hstm8\stdio.h	10;"	typedef
+softi2c_receive	i2c.c	91;"	function	signature:(char ack)
+softi2c_send	i2c.c	61;"	function	signature:(char data)
 sprintf	c:\program files\cosmic\cxstm8_32k\hstm8\stdio.h	22;"	prototype	signature:(char *s, char *format, ...)
 sscanf	c:\program files\cosmic\cxstm8_32k\hstm8\stdio.h	21;"	prototype	signature:(char *s, char *format, ...)
 strcat	c:\program files\cosmic\cxstm8_32k\hstm8\string.h	14;"	prototype	signature:(char *s1, char *s2)

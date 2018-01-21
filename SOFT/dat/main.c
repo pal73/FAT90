@@ -4,7 +4,7 @@
 #include <stdio.h>
 #include <string.h>
 #include <stdio.h>
-
+#include "i2c.h"
 
 @near bool b100Hz=0,b10Hz=0,b5Hz=0,b1Hz=0;
 @near static char t0_cnt0=0,t0_cnt1=0,t0_cnt2=0,t0_cnt3=0;
@@ -48,6 +48,10 @@ char* out_string2;
 int temperdeb =1234;
 
 
+//-----------------------------------------------
+enumSensorType sensor=sensOFF;
+
+char i2c_temp;
 
 //char* buf;
 //-----------------------------------------------
@@ -323,6 +327,32 @@ GPIOC->DDR|=(1<<6);
 GPIOC->CR1|=(1<<6);
 GPIOC->CR2|=(1<<6);
 
+
+
+
+
+{
+char i,cnt=0;
+
+i2c_setup();
+for(i=0;i<100;i++)
+	{
+	if(i2c_7bit_receive_onebyte(&i2c_temp)==I2C_OK)cnt++;
+	}
+if(cnt>70)sensor=sens1775;
+
+else
+	{
+	cnt=0;
+	for(i=0;i<100;i++)
+		{
+		if(wire1_polling()==1)cnt++;
+		}
+	if(cnt>70)sensor=sens18B20;	
+	}
+}
+
+
 t4_init();
 uart_init();
 enableInterrupts();
@@ -365,145 +395,163 @@ while (1)
 		{
 		b1Hz=0;
 		
-		if(!bCONV)
+		if(sensor==sens18B20)
 			{
-			char temp;
-			bCONV=1;
-			temp=wire1_polling();
-			if(temp==1)
+			
+			if(!bCONV)
 				{
-				wire1_send_byte(0xCC);
-				wire1_send_byte(0x44);
+				char temp;
+				bCONV=1;
+				temp=wire1_polling();
+				if(temp==1)
+					{
+					wire1_send_byte(0xCC);
+					wire1_send_byte(0x44);
+					
+					ds18b20ErrorHiCnt=0;
+					ds18b20ErrorLoCnt=0;
+					airSensorErrorStat=esNORM;		
+					}
+				else
+					{
+					if(temp==0)
+						{
+						if(ds18b20ErrorHiCnt<10)
+							{
+							ds18b20ErrorHiCnt++;
+							if(ds18b20ErrorHiCnt>=10)
+								{
+								airSensorErrorStat=esHI;	
+								}
+							}
+						ds18b20ErrorLoCnt=0;
+						//ds18b20ErrorOffCnt=0;			
+						}
+					if(temp==5)
+						{
+						if(ds18b20ErrorLoCnt<10)
+							{
+							ds18b20ErrorLoCnt++;
+							if(ds18b20ErrorLoCnt>=10)
+								{
+								airSensorErrorStat=esLO;	
+								}
+							}
+						ds18b20ErrorHiCnt=0;
+						//ds18b20ErrorOffCnt=0;			
+						}			
+					}
+				}
+			else 
+				{
+				char temp;
+				bCONV=0;
+				temp=wire1_polling();
+				if(temp==1)
+					{
+					wire1_send_byte(0xCC);
+					wire1_send_byte(0xBE);
+					wire1_in[0]=wire1_read_byte();
+					wire1_in[1]=wire1_read_byte();
+					wire1_in[2]=wire1_read_byte();
+					wire1_in[3]=wire1_read_byte();
+					wire1_in[4]=wire1_read_byte();
+					wire1_in[5]=wire1_read_byte();
+					wire1_in[6]=wire1_read_byte();
+					wire1_in[7]=wire1_read_byte();
+					wire1_in[8]=wire1_read_byte();
+					
+					ds18b20ErrorHiCnt=0;
+					ds18b20ErrorLoCnt=0;
+					airSensorErrorStat=esNORM;
+					}
+				else
+					{
+					if(temp==0)
+						{
+						if(ds18b20ErrorHiCnt<10)
+							{
+							ds18b20ErrorHiCnt++;
+							if(ds18b20ErrorHiCnt>=10)
+								{
+								airSensorErrorStat=esHI;	
+								}
+							}
+						ds18b20ErrorLoCnt=0;
+						//ds18b20ErrorOffCnt=0;			
+						}
+					if(temp==5)
+						{
+						if(ds18b20ErrorLoCnt<10)
+							{
+							ds18b20ErrorLoCnt++;
+							if(ds18b20ErrorLoCnt>=10)
+								{
+								airSensorErrorStat=esLO;	
+								}
+							}
+						ds18b20ErrorHiCnt=0;
+						//ds18b20ErrorOffCnt=0;			
+						}			
+					}
+				}
 				
-				ds18b20ErrorHiCnt=0;
-				ds18b20ErrorLoCnt=0;
-				airSensorErrorStat=esNORM;		
+			if(wire1_in[1]&0xf0)
+				{
+					//TODO отрицательна€ температура
 				}
 			else
 				{
-				if(temp==0)
-					{
-					if(ds18b20ErrorHiCnt<10)
-						{
-						ds18b20ErrorHiCnt++;
-						if(ds18b20ErrorHiCnt>=10)
-							{
-							airSensorErrorStat=esHI;	
-							}
-						}
-					ds18b20ErrorLoCnt=0;
-					//ds18b20ErrorOffCnt=0;			
-					}
-				if(temp==5)
-					{
-					if(ds18b20ErrorLoCnt<10)
-						{
-						ds18b20ErrorLoCnt++;
-						if(ds18b20ErrorLoCnt>=10)
-							{
-							airSensorErrorStat=esLO;	
-							}
-						}
-					ds18b20ErrorHiCnt=0;
-					//ds18b20ErrorOffCnt=0;			
-					}			
-				}
-			}
-		else 
-			{
-			char temp;
-			bCONV=0;
-			temp=wire1_polling();
-			if(temp==1)
-				{
-				wire1_send_byte(0xCC);
-				wire1_send_byte(0xBE);
-				wire1_in[0]=wire1_read_byte();
-				wire1_in[1]=wire1_read_byte();
-				wire1_in[2]=wire1_read_byte();
-				wire1_in[3]=wire1_read_byte();
-				wire1_in[4]=wire1_read_byte();
-				wire1_in[5]=wire1_read_byte();
-				wire1_in[6]=wire1_read_byte();
-				wire1_in[7]=wire1_read_byte();
-				wire1_in[8]=wire1_read_byte();
+				short temper_temp;
 				
-				ds18b20ErrorHiCnt=0;
-				ds18b20ErrorLoCnt=0;
-				airSensorErrorStat=esNORM;
+				temper_temp=(((short)wire1_in[1])<<8)+((short)wire1_in[0]);
+				temper_temp>>=4;
+				temper_temp&=0x00ff;
+				
+				temper=(short)temper_temp;
+				//temper=23;
 				}
+			temperCRC = (temper%10)+((temper/10)%10)+((temper/100)%10);
+			temperCRC*=-1;
+	//		out_string="temper=";
+	//		buf[0] = '0';
+	//		buf[1] = '\r';
+	//		buf[2] = '\n';
+	//		strcpy(buf, "first string");
+	//		//strcpy(buf, "string");
+	//		strcpy(out_string1, "abcdef");
+	//		strcpy(buf, out_string);
+	//		printf(buf);
+			//strcat(buf, У, second stringФ);
+			//sprintf(out_string1,out_string); 
+			//printf("mama");
+			//puts("mama");
+			//temperdeb=29;
+			//out_buff_preffiks="OK";
+			//sprintf(out_buff_digits,"%d\n",temper);
+			//out_buff=out_buff_preffiks+out_buff_digits;
+			//out_buff=strcat(out_buff_preffiks,out_buff_digits);
+			//out_buff="OK35";
+			//puts(out_buff_digits);
+			//putchar('m');
+			if(airSensorErrorStat==esHI) printf("ERRORHI\n");
+			else if(airSensorErrorStat==esLO) printf("ERRORLO\n");
+			else if(airSensorErrorStat==esNORM) printf("OK%dCRC%d\n",temper,temperCRC);
+			}
+		else if(sensor==sens1775)
+			{
+			i2c_setup();
+			i2c_7bit_send_onebyte(0, 1);
+			temper=i2c_7bit_receive_onebyte(&i2c_temp);
+			if(temper!=I2C_OK)printf("ERRORHI\n");
 			else
 				{
-				if(temp==0)
-					{
-					if(ds18b20ErrorHiCnt<10)
-						{
-						ds18b20ErrorHiCnt++;
-						if(ds18b20ErrorHiCnt>=10)
-							{
-							airSensorErrorStat=esHI;	
-							}
-						}
-					ds18b20ErrorLoCnt=0;
-					//ds18b20ErrorOffCnt=0;			
-					}
-				if(temp==5)
-					{
-					if(ds18b20ErrorLoCnt<10)
-						{
-						ds18b20ErrorLoCnt++;
-						if(ds18b20ErrorLoCnt>=10)
-							{
-							airSensorErrorStat=esLO;	
-							}
-						}
-					ds18b20ErrorHiCnt=0;
-					//ds18b20ErrorOffCnt=0;			
-					}			
+				temper=i2c_temp;
+				temperCRC = (temper%10)+((temper/10)%10)+((temper/100)%10);
+				temperCRC*=-1;
+				printf("OK%dCRC%d\n",temper,temperCRC);
 				}
 			}
-			
-		if(wire1_in[1]&0xf0)
-			{
-				//TODO отрицательна€ температура
-			}
-		else
-			{
-			short temper_temp;
-			
-			temper_temp=(((short)wire1_in[1])<<8)+((short)wire1_in[0]);
-			temper_temp>>=4;
-			temper_temp&=0x00ff;
-			
-			temper=(short)temper_temp;
-			//temper=23;
-			}
-		temperCRC = (temper%10)+((temper/10)%10)+((temper/100)%10);
-		temperCRC*=-1;
-/*		out_string="temper=";
-		buf[0] = '0';
-		buf[1] = '\r';
-		buf[2] = '\n';
-		strcpy(buf, "first string");
-		//strcpy(buf, "string");
-		strcpy(out_string1, "abcdef");
-		strcpy(buf, out_string);
-		printf(buf);
-		//strcat(buf, У, second stringФ);
-		//sprintf(out_string1,out_string);*/ 
-		//printf("mama");
-		//puts("mama");
-		//temperdeb=29;
-		//out_buff_preffiks="OK";
-		//sprintf(out_buff_digits,"%d\n",temper);
-		//out_buff=out_buff_preffiks+out_buff_digits;
-		//out_buff=strcat(out_buff_preffiks,out_buff_digits);
-		//out_buff="OK35";
-		//puts(out_buff_digits);
-		//putchar('m');
-		if(airSensorErrorStat==esHI) printf("ERRORHI\n");
-		else if(airSensorErrorStat==esLO) printf("ERRORLO\n");
-		else if(airSensorErrorStat==esNORM) printf("OK%dCRC%d\n",temper,temperCRC);
 		}     	     	      
 	};
 	
