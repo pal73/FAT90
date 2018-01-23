@@ -1247,7 +1247,7 @@ TIM4_PSCR_RESET_VALUE	include\stm8s.h	1067;"	macro
 TIM4_SR1_RESET_VALUE	include\stm8s.h	1064;"	macro
 TIM4_SR1_UIF	include\stm8s.h	1086;"	macro
 TIM4_TypeDef	include\stm8s.h	1056;"	typedef	typeref:struct:TIM4_struct
-TIM4_UPD_Interrupt	main.c	1762;"	function	signature:(void)
+TIM4_UPD_Interrupt	main.c	1769;"	function	signature:(void)
 TIM4_UPD_Interrupt	stm8_interrupt_vector.c	24;"	prototype	file:	signature:(void)
 TIM4_struct	include\stm8s.h	1042;"	struct
 TIM5	include\stm8s.h	2581;"	macro
@@ -1601,6 +1601,7 @@ abs	c:\program files\cosmic\cxstm8_32k\hstm8\stdlib.h	36;"	prototype	signature:(
 airSensorErrorStat	main.c	87;"	variable
 airSensorErrorStatOld	main.c	87;"	variable
 airSensorLineErrorDrv	main.c	304;"	function	signature:(void)
+aktualTemper	main.c	84;"	variable
 assert_failed	include\stm8s_conf.h	99;"	prototype	signature:(uint8_t* file, uint32_t line)
 assert_param	include\stm8s_conf.h	101;"	macro
 assert_param	include\stm8s_conf.h	97;"	macro
@@ -1658,7 +1659,7 @@ butU	main.h	85;"	macro
 butUD	main.h	87;"	macro
 butUD_	main.h	92;"	macro
 butU_	main.h	90;"	macro
-but_an	main.c	1048;"	function	signature:(void)
+but_an	main.c	1055;"	function	signature:(void)
 but_an	main.h	174;"	prototype	signature:(void)
 but_drv	lowlev.c	95;"	function	signature:(void)
 but_drv	lowlev.h	36;"	prototype	signature:(void)
@@ -1829,7 +1830,7 @@ led_set	lowlev.c	311;"	function	signature:(signed char led_num, signed char led_
 led_set	lowlev.h	64;"	prototype	signature:(signed char led_num, signed char led_stat)
 lenPDUSMS	modem.c	36;"	variable
 lsqrt	c:\program files\cosmic\cxstm8_32k\hstm8\stdlib.h	54;"	prototype	signature:(unsigned long)
-main	main.c	1825;"	function
+main	main.c	1832;"	function
 mainCnt	main.c	56;"	variable
 main_power_off_hndl_cnt	main.c	150;"	variable
 malloc	c:\program files\cosmic\cxstm8_32k\hstm8\stdlib.h	46;"	prototype	signature:(unsigned int size)
@@ -1976,21 +1977,20 @@ t0_cnt1	main.c	55;"	variable
 t0_cnt2	main.c	55;"	variable
 t0_cnt3	main.c	55;"	variable
 t0_cnt4	main.c	55;"	variable
-t4_init	main.c	1748;"	function	signature:(void)
+t4_init	main.c	1755;"	function	signature:(void)
 t4_init	main.h	178;"	prototype	signature:(void)
 taesHI	main.h	103;"	enumerator	enum:__anon23
 taesLHI	main.h	103;"	enumerator	enum:__anon23
 taesLLO	main.h	103;"	enumerator	enum:__anon23
 taesLO	main.h	103;"	enumerator	enum:__anon23
 taesNORM	main.h	103;"	enumerator	enum:__anon23
+targetTemper	main.c	85;"	variable
 tempRussianText	modem.c	39;"	variable
 tempStr	modem.c	49;"	variable
 tempUC	main.c	160;"	variable
 temperOfAir	main.c	83;"	variable
 temperOfWater	main.c	82;"	variable
-temperRegTo	main.c	85;"	variable
 temperRegToSheduler	main.c	86;"	variable
-temperToReg	main.c	84;"	variable
 text	modem.c	42;"	member	struct:__anon1	file:
 text2PDU	modem.c	541;"	function	signature:(char* text, char* adr)
 text2PDU	modem.h	57;"	prototype	signature:(char* text, char* adr)

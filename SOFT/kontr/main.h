@@ -98,8 +98,8 @@ extern enum_out_stat out_stat[3];
 //Температура
 extern signed char 	temperOfWater;
 extern signed char	temperOfAir;
-extern signed char 	temperToReg;
-extern signed char 	temperRegTo;
+extern signed char 	aktualTemper;
+extern signed char 	targetTemper;
 typedef enum {taesNORM=0x55,taesHI=1,taesLO=0,taesLHI=3,taesLLO=2} enumTemperOfAirErrorStat; 
 extern enumTemperOfAirErrorStat airSensorErrorStat,airSensorErrorStatOld;
 

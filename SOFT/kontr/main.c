@@ -81,8 +81,8 @@ enum_out_stat out_stat[3];
 //Температура
 signed char temperOfWater;
 signed char	temperOfAir;
-signed char temperToReg;
-signed char temperRegTo;
+signed char aktualTemper;
+signed char targetTemper;
 signed char temperRegToSheduler;
 enumTemperOfAirErrorStat airSensorErrorStat=taesNORM, airSensorErrorStatOld=taesNORM;
 
@@ -560,13 +560,13 @@ enableInterrupts();
 void power_necc_hndl(void)
 {
 
-if((temperToReg>=temperRegTo)||(temperOfWater>=90)||(mainCnt<3))
+if((aktualTemper>=targetTemper)||(temperOfWater>=90)||(mainCnt<3))
 	{
 	powerNecc=0;	
 	}
-else if(temperToReg<temperRegTo)
+else if(aktualTemper<targetTemper)
 	{
-	powerNeccDelta=temperRegTo-temperToReg;
+	powerNeccDelta=targetTemper-aktualTemper;
 	powerNecc=0;
 	if(powerNeccDelta>=2) powerNecc=1;
 	if(powerNeccDelta>=3) powerNecc=2;
@@ -587,18 +587,18 @@ if((wire1_in[1]&0xf0)==0)
 	}
 if(MODE_EE==1)
 	{
-	temperToReg=temperOfWater;
-	temperRegTo=NECC_TEMPER_WATER_EE;
+	aktualTemper=temperOfWater;
+	targetTemper=NECC_TEMPER_WATER_EE;
 	}
 else if(MODE_EE==2)
 	{
-	temperToReg=temperOfAir;
-	temperRegTo=NECC_TEMPER_AIR_EE;
+	aktualTemper=temperOfAir;
+	targetTemper=NECC_TEMPER_AIR_EE;
 	}
 else if(MODE_EE==3)
 	{
-	temperToReg=temperOfAir;
-	temperRegTo=temperRegToSheduler;
+	aktualTemper=temperOfAir;
+	targetTemper=temperRegToSheduler;
 	}
 }
 
@@ -619,23 +619,23 @@ if(ind==iMn)
 	//int2indII_slkuf(time_sec,0, 2, 0, 0, 0);
 	//else 		int2indII_slkuf(time_sec,0, 2, 1, 0, 0);
 	
-	if(temperToReg>=0)
+	if(aktualTemper>=0)
 		{
-		int2indI_slkuf(temperToReg,2, 2, 0, 1, 0);
+		int2indI_slkuf(aktualTemper,2, 2, 0, 1, 0);
 		ind_outB[1]=0b10011100;
 		}
 	else 
 		{
-		if(-temperToReg<10)
+		if(-aktualTemper<10)
 			{
 			ind_outB[3]=0b10111111;
-			int2indI_slkuf(-temperToReg,2, 1, 0, 1, 0);
+			int2indI_slkuf(-aktualTemper,2, 1, 0, 1, 0);
 			ind_outB[1]=0b10011100;
 			}
 		else
 			{
 			ind_outB[3]=0b10111111;
-			int2indI_slkuf(-temperToReg,1, 2, 0, 1, 0);
+			int2indI_slkuf(-aktualTemper,1, 2, 0, 1, 0);
 			}
 		}
 	
@@ -824,25 +824,32 @@ else if(ind==iDeb)
 	
 	if(sub_ind==0)
 		{
-		int2indI_slkuf(temperRegTo,1, 2, 0, 0, 0);
-		int2indII_slkuf(temperToReg,0, 2, 0, 0, 0);
+		int2indI_slkuf(targetTemper,1, 2, 0, 0, 0);
+		int2indII_slkuf(aktualTemper,0, 2, 0, 0, 0);
 		}
+	
 	else if(sub_ind==1)
+		{
+		int2indI_slkuf(temperOfWater,1, 2, 0, 0, 0);
+		int2indII_slkuf(temperOfAir,0, 2, 0, 0, 0);
+		}
+		
+	else if(sub_ind==2)
 		{
 		int2indI_slkuf(MAX_POWER_EE,1, 2, 0, 0, 0);
 		int2indII_slkuf(powerNeccDelta,2, 2, 0, 0, 0);
 		int2indII_slkuf(powerNecc,0, 2, 0, 0, 0);
 		}
-	else if(sub_ind==2)
+	else if(sub_ind==3)
 		{
-		int2indI_slkuf(temperToReg,2, 2, 0, 0, 0);	
+		int2indI_slkuf(aktualTemper,2, 2, 0, 0, 0);	
 		int2indI_slkuf(powerNecc,1, 1, 0, 0, 0);
 		int2indII_slkuf(out_stat[0],3, 1, 0, 0, 0);
 		int2indII_slkuf(out_stat[1],2, 1, 0, 0, 0);
 		int2indII_slkuf(out_stat[2],1, 1, 0, 0, 0);
 		int2indII_slkuf(fiksRandom,0, 1, 0, 0, 0);
 		}	
-	else if(sub_ind==3)
+	else if(sub_ind==4)
 		{
 		int2indI_slkuf(temperRegToSheduler,1, 2, 0, 0, 0);	
 		//int2indI_slkuf(powerNecc,1, 1, 0, 0, 0);
@@ -852,7 +859,7 @@ else if(ind==iDeb)
 		int2indII_slkuf(day_sheduler_time,0, 3, 0, 0, 0);
 		}	
 
-	else if(sub_ind==4)
+	else if(sub_ind==5)
 		{
 		int2indI_slkuf(modemDrvPDUSMSSendStepCnt,1, 3, 0, 0, 0);	
 		//int2indI_slkuf(powerNecc,1, 1, 0, 0, 0);
@@ -861,7 +868,7 @@ else if(ind==iDeb)
 		//int2indII_slkuf(out_stat[2],1, 1, 0, 0, 0);
 		int2indII_slkuf(4,3, 1, 0, 0, 1);
 		}
-	else if(sub_ind==5)
+	else if(sub_ind==6)
 		{
 		int2indI_slkuf(main_power_off_hndl_cnt,1, 3, 0, 0, 0);	
 		//int2indI_slkuf(powerNecc,1, 1, 0, 0, 0);
@@ -871,7 +878,7 @@ else if(ind==iDeb)
 		//int2indII_slkuf(4,3, 1, 0, 0, 1);
 		}
 
-	else if(sub_ind==6)
+	else if(sub_ind==7)
 		{
 		int2indI_slkuf(tx_counter1,1, 3, 0, 0, 0);	
 		//int2indI_slkuf(powerNecc,1, 1, 0, 0, 0);
@@ -910,7 +917,7 @@ else if(ind==iModem_deb)
 		}
 	else if(sub_ind==2)
 		{
-		int2indI_slkuf(temperToReg,2, 2, 0, 0, 0);	
+		int2indI_slkuf(aktualTemper,2, 2, 0, 0, 0);	
 		int2indI_slkuf(powerNecc,1, 1, 0, 0, 0);
 		int2indII_slkuf(out_stat[0],3, 1, 0, 0, 0);
 		int2indII_slkuf(out_stat[1],2, 1, 0, 0, 0);
@@ -955,27 +962,27 @@ else if(ind==iTemperSet)
 	if(bERR)led_on(7);
 	else if(bWARN)led_flash(7);
 
-	if(temperToReg>=0)
+	if(aktualTemper>=0)
 		{
-		int2indI_slkuf(temperToReg,2, 2, 0, 1, 0);
+		int2indI_slkuf(aktualTemper,2, 2, 0, 1, 0);
 		ind_outB[1]=0b10011100;
 		}
 	else 
 		{
-		if(-temperToReg<10)
+		if(-aktualTemper<10)
 			{
 			ind_outB[3]=0b10111111;
-			int2indI_slkuf(-temperToReg,2, 1, 0, 1, 0);
+			int2indI_slkuf(-aktualTemper,2, 1, 0, 1, 0);
 			ind_outB[1]=0b10011100;
 			}
 		else
 			{
 			ind_outB[3]=0b10111111;
-			int2indI_slkuf(-temperToReg,1, 2, 0, 1, 0);
+			int2indI_slkuf(-aktualTemper,1, 2, 0, 1, 0);
 			}
 		}
 
-	int2indII_slkuf(temperRegTo,1, 2, 0, 1, MODE_EE==3?0:1);
+	int2indII_slkuf(targetTemper,1, 2, 0, 1, MODE_EE==3?0:1);
 	if((bFL2)&&(MODE_EE!=3))	ind_outC[0]=0b11111111;
 	else 						ind_outC[0]=0b00111000;
 

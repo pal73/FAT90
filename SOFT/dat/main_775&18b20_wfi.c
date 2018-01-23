@@ -50,8 +50,7 @@ char* out_string;
 char* out_string1;
 char* out_string2;
 int temperdeb =1234;
-@eeprom char plazma_ee;
-char powerOffTimer;
+
 
 //-----------------------------------------------
 enumSensorType sensor=sensOFF;
@@ -288,7 +287,6 @@ if(++t0_cnt0>=125)
   t0_cnt0=0;
   b100Hz=1;
 
-
 	if(++t0_cnt1>=10)
 		{
 		t0_cnt1=0;
@@ -328,10 +326,9 @@ else
 	//bOUT_FREE=1;
 	UART1->CR2&= ~UART1_CR2_TIEN;
 	bWFI=1;
-	//watchdog_enable();
+	watchdog_enable();
 	//halt();
-	powerOffTimer=2;
-	//wfi();
+	wfi();
 	
 	}
 }
@@ -354,13 +351,10 @@ GPIOC->DDR|=(1<<6);
 GPIOC->CR1|=(1<<6);
 GPIOC->CR2|=(1<<6);
 
-FLASH_DUKR=0xae;
-FLASH_DUKR=0x56;
 
-plazma_ee++;
-if(plazma_ee>=80)plazma_ee=0;
 
-/*
+
+
 {
 char i,cnt=0;
 
@@ -380,56 +374,25 @@ else
 		}
 	if(cnt>70)sensor=sens1775;
 	}
-}*/
-sensor=sensOFF;
+}
+
 
 t4_init();
 uart_init();
 enableInterrupts();
-watchdog_enable();
+
 /*			if(ibatton_polling())
 				{
 				ibatton_send_byte(0xCC);
 				ibatton_send_byte(0x44);
 				}*/
-
-/*
-		temper=plazma_ee;
-		temperCRC = (temper%10)+((temper/10)%10)+((temper/100)%10);
-		temperCRC*=-1;
-		printf("OK%dCRC%d\n",temper,temperCRC);*/
-/*
-if(wire1_polling()==1)
-	{
-		
-	}*/
-
-			i2c_setup();
-			i2c_7bit_send_onebyte(0, 1);
-			temper=i2c_7bit_receive_onebyte(&i2c_temp);
-			if(temper!=I2C_OK)printf("ERRORHI\n");
-			else
-				{
-				temper=i2c_temp;
-				temperCRC = (temper%10)+((temper/10)%10)+((temper/100)%10);
-				temperCRC*=-1;
-				printf("OK%dCRC%d\n",temper,temperCRC);
-				}
-		
-		//halt();
-//while(1){};		
-
 while (1)
 	{
-//	if(bWFI==1)wfi();
+	if(bWFI==1)wfi();
 	if(b100Hz)
 		{
 		b100Hz=0;
-if(powerOffTimer)
-	{
-	powerOffTimer--;
-	if(!powerOffTimer)halt();
-	}		
+		
 		//GPIOC->DDR|=(1<<7);
 		//GPIOC->CR1|=(1<<7);
 		//GPIOC->CR2|=(1<<7);	
@@ -456,10 +419,7 @@ if(powerOffTimer)
 	if(b1Hz)
 		{
 		b1Hz=0;
-
-
-
-
+		
 		if(sensor==sens18B20)
 			{
 			

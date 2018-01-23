@@ -415,15 +415,15 @@ else
 			{
 			if(MODE_EE==1)
 				{
-				sprintf(tempRussianText,"Режим - по воде\nуставка %dгр.\nмакс.мощность %d",(int)temperRegTo,(int)MAX_POWER_EE);
+				sprintf(tempRussianText,"Режим - по воде\nуставка %dгр.\nмакс.мощность %d",(int)targetTemper,(int)MAX_POWER_EE);
 				}
 			if(MODE_EE==2)
 				{
-				sprintf(tempRussianText,"Режим - по воздуху\nуставка %dгр.\nмакс.мощность %d",(int)temperRegTo,(int)MAX_POWER_EE);
+				sprintf(tempRussianText,"Режим - по воздуху\nуставка %dгр.\nмакс.мощность %d",(int)targetTemper,(int)MAX_POWER_EE);
 				}
 			if(MODE_EE==3)
 				{
-				sprintf(tempRussianText,"Режим - по графику\nтекущая уставка %dгр.(воздух)\nмакс.мощность %d",(int)temperRegTo,(int)MAX_POWER_EE);
+				sprintf(tempRussianText,"Режим - по графику\nтекущая уставка %dгр.(воздух)\nмакс.мощность %d",(int)targetTemper,(int)MAX_POWER_EE);
 				}				
 
 			modem_send_sms('p',incommingNumber,tempRussianText);
