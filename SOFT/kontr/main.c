@@ -887,6 +887,80 @@ else if(ind==iDeb)
 		//int2indII_slkuf(out_stat[2],1, 1, 0, 0, 0);
 		//int2indII_slkuf(4,3, 1, 0, 0, 1);
 		}
+	else if(sub_ind==8)
+		{
+		//Физическая проверка индикации. Поочередное зажигание всех еденичных 
+		//элементов индикации
+		@near static short ind_check_cnt;
+		@near static short ind_check_cnt1;
+		if(++ind_check_cnt1>=5)
+			{
+			ind_check_cnt1=0;
+			if(++ind_check_cnt>=64)ind_check_cnt=0;
+			}
+		ind_outB[0]=0xff;
+		ind_outB[1]=0xff;
+		ind_outB[2]=0xff;
+		ind_outB[3]=0xff;
+		ind_outC[0]=0xff;
+		ind_outC[1]=0xff;
+		ind_outC[2]=0xff;
+		ind_outC[3]=0xff;
+		ind_outG[0]=0xff;
+		ind_outG[1]=0xff;
+		ind_outG[2]=0xff;
+		ind_outG[3]=0xff;
+		//ind_outB[3]=0xff;
+		if(ind_check_cnt<=7)
+			{
+			ind_outB[3]&=(~(1<<ind_check_cnt));	
+			}
+		else if(ind_check_cnt<=15)
+			{
+			ind_outB[2]&=(~(1<<(ind_check_cnt-8)));	
+			}
+		else if(ind_check_cnt<=23)
+			{
+			ind_outB[1]&=(~(1<<(ind_check_cnt-16)));	
+			}
+		else if(ind_check_cnt<=30)
+			{
+			ind_outC[3]&=(~(1<<(ind_check_cnt-23)));	
+			}	
+		else if(ind_check_cnt==31)
+			{
+			ind_outG[3]&=0xfe;	
+			}			
+		else if(ind_check_cnt<=38)
+			{
+			ind_outC[2]&=(~(1<<(ind_check_cnt-31)));	
+			}	
+		else if(ind_check_cnt==39)
+			{
+			ind_outG[2]&=0xfe;	
+			}			
+		else if(ind_check_cnt<=46)
+			{
+			ind_outC[1]&=(~(1<<(ind_check_cnt-39)));	
+			}	
+		else if(ind_check_cnt==47)
+			{
+			ind_outG[1]&=0xfe;	
+			}			
+		else if(ind_check_cnt<=54)
+			{
+			ind_outC[0]&=(~(1<<(ind_check_cnt-47)));	
+			}	
+		else if(ind_check_cnt==55)
+			{
+			ind_outG[0]&=0xfe;	
+			}
+		else if(ind_check_cnt<=64)
+			{	
+			led_mask_off(0x00);
+			led_on(ind_check_cnt-55);	
+			}
+		}		
 	}
 
 else if(ind==iModem_deb)
@@ -1100,7 +1174,7 @@ if(ind==iMn)
 
 	else if(but==butU_)
 		{
-		printf("AT + CPAS \r");	
+		//printf("AT + CPAS \r");	
 		}
 	}
 
