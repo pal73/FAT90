@@ -154,6 +154,10 @@ enumPowerStat powerStat=psOFF;
 @near short cbcVoltage;								//Напряжение батареи в милливольтах
 @near char bCBC_SELF;												//модем ответил CBC
 
+//-----------------------------------------------
+//Проверка звука
+@near char beepTestCnt;
+
 //^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 //отладка
 //char random_plazma;
@@ -162,6 +166,7 @@ unsigned char tempUC;
 bool bWATCHDOG_REFRESH=1;
 bool bDEB;
 //^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
 
 //-----------------------------------------------
 //Статус питающей сети
@@ -371,7 +376,7 @@ else if((waterSensorErrorStat==dsesNORM)&&(temperOfWater>=10)&&(temperOfWater<=8
 if(waterTemperAlarmCnt>14)
 	{
 	if(temperOfWater<3)waterTemperAlarm=wtaCOOL;
-	else if(temperOfWater>>90)waterTemperAlarm=wtaHEAT;
+	else if(temperOfWater>90)waterTemperAlarm=wtaHEAT;
 	}
 else if(waterTemperAlarmCnt<1)
 	{
@@ -410,7 +415,7 @@ waterTemperAlarmOld=waterTemperAlarm;
 void beep_drv(void)
 {
 GPIOG->DDR|=0b00000010;
-GPIOG->CR1&=0b11111101;
+GPIOG->CR1|=0b00000010;
 GPIOG->CR2&=0b11111101;
 
 
@@ -420,20 +425,25 @@ if(bERR)
 	if(++beep_drv_cnt>=15)beep_drv_cnt=0;
 	if(beep_drv_cnt<5)
 		{
-		GPIOG->ODR&=0b11111101;
+		GPIOG->ODR|=0b00000010;
 		}
-	else GPIOG->ODR|=0b00000010;
+	else GPIOG->ODR&=0b11111101;
 	}
 else if(bWARN)
 	{
 	if(++beep_drv_cnt>=100)beep_drv_cnt=0;
 	if((beep_drv_cnt<5)||((beep_drv_cnt>=15)&&(beep_drv_cnt<20))||((beep_drv_cnt>=30)&&(beep_drv_cnt<35)))
 		{
-		GPIOG->ODR&=0b11111101;
+		GPIOG->ODR|=0b00000010;
 		}
-	else GPIOG->ODR|=0b00000010;
+	else GPIOG->ODR&=0b11111101;
 	}
-else GPIOG->ODR|=0b00000010;
+else if(beepTestCnt)
+	{
+	beepTestCnt--;
+	GPIOG->ODR|=0b00000010;
+	}
+else GPIOG->ODR&=0b11111101;
 }
 
 //-----------------------------------------------
@@ -960,7 +970,20 @@ else if(ind==iDeb)
 			led_mask_off(0x00);
 			led_on(ind_check_cnt-55);	
 			}
-		}		
+		}
+	else if(sub_ind==9)
+		{
+		int2indI_slkuf(waterTemperAlarmCnt,1, 3, 0, 0, 0);
+		int2indII_slkuf(mainCnt,0, 2, 0, 0, 0);
+		int2indII_slkuf(temperOfWater,2, 2, 0, 0, 0);
+		}
+	else if(sub_ind==10)
+		{
+		int2indI_slkuf(waterTemperAlarm,1, 1, 0, 0, 0);
+		int2indI_slkuf(waterTemperAlarmOld,3, 1, 0, 0, 0);
+		int2indII_slkuf(mainCnt,0, 2, 0, 0, 0);
+		int2indII_slkuf(temperOfWater,2, 2, 0, 0, 0);
+		}
 	}
 
 else if(ind==iModem_deb)
@@ -1131,14 +1154,6 @@ void but_an(void)
 if(!n_but) return;
 n_but=0;
 
-if(but==butON)
-	{
-	if(outMode==omON)	outMode=omOFF;
-	else 				outMode=omON;
-	}
-
-
-
 if(ind==iMn)
 	{
 	if(but==butM_)
@@ -1176,6 +1191,11 @@ if(ind==iMn)
 		{
 		//printf("AT + CPAS \r");	
 		}
+	else if(but==butON)
+		{
+		if(outMode==omON)	outMode=omOFF;
+		else 				outMode=omON;
+		}		
 	}
 
 else if(ind==iTemperSet)
@@ -1379,20 +1399,26 @@ else if(ind==iSet_)
 			}	
 		else if(sub_ind==6)
 			{
-			signed char temp;
+			signed char temp,max_day;
 			temp=time_date;
-			
+			max_day=31;
+			if((time_month==4)||(time_month==6)||(time_month==9)||(time_month==11))max_day=30;
+			else if(time_month==2)
+				{
+				if((time_year%4)==0)max_day=29;
+				else max_day=28;
+				}
 			if((but==butU)||(but==butU_))
 				{
 				temp++;
-				gran_ring_char(&temp,1,31);
+				gran_ring_char(&temp,1,max_day);
 				_ds1307_write_byte(4,((temp/10)<<4)+(temp%10));
 				
 				}
 			if((but==butD)||(but==butD_))
 				{
 				temp--;
-				gran_ring_char(&temp,1,31);
+				gran_ring_char(&temp,1,max_day);
 				_ds1307_write_byte(4,((temp/10)<<4)+(temp%10));
 				}				
 			}				
@@ -1486,6 +1512,7 @@ else if(ind==iSetTable)
 		}
 	else if(but==butUD_)
 		{
+			/*
 		TABLE_TIME_EE[0][0]=3;
 		TABLE_TEMPER_EE[0][0]=20;	
 		TABLE_TIME_EE[0][1]=39;
@@ -1562,7 +1589,7 @@ else if(ind==iSetTable)
 		TABLE_TEMPER_EE[6][3]=22;	
 		TABLE_TIME_EE[6][4]=131;
 		TABLE_TEMPER_EE[6][4]=23;
-		
+		*/
 		}
 	else if(but==butM_)
 		{
@@ -1664,7 +1691,11 @@ else if(ind==iDeb)
 		//modemDrvSMSSendStepCnt=1;
 		
 		//modem_send_sms('p', "9139294352", "Мама1 \r\nМама2");
-		}		
+		}
+	else if(sub_ind==8)
+		{
+		beepTestCnt=10;
+		}
 	}
 	
 else if(ind==iModem_deb)
