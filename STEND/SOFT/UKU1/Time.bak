@@ -1,0 +1,56 @@
+/******************************************************************************/
+/* TIME.C: Time Functions for 100Hz Clock Tick                                */
+/******************************************************************************/
+/* This file is part of the uVision/ARM development tools.                    */
+/* Copyright (c) 2005-2006 Keil Software. All rights reserved.                */
+/* This software may only be used under the terms of a valid, current,        */
+/* end user licence from KEIL for a compatible version of KEIL software       */
+/* development tools. Nothing else gives you the right to use this software.  */
+/******************************************************************************/
+
+#include <LPC21XX.H>                           // LPC21XX Peripheral Registers
+#include "Timer.h"
+
+signed short main_10Hz_cnt=0;
+signed short main_1Hz_cnt=0;
+
+long volatile timeval;
+extern char flag;
+extern __irq void timer0_interrupt(void);
+extern __irq void timer1_interrupt(void); 
+/* Timer Counter 0 Interrupt executes each 10ms @ 60 MHz CPU Clock */
+__irq void tc0 (void) 
+{
+
+timeval++;
+if(timeval>=20)
+	{
+	timeval=0;
+	flag=1;
+	}
+T0IR = 1;                                    // Clear interrupt flag
+VICVectAddr = 0;                             // Acknowledge Interrupt
+}
+
+/* Setup the Timer Counter 0 Interrupt */
+void init_timer0 (void) 
+{
+T0MR0 = 600000;                              // 10mSec = 150.000-1 counts
+T0MCR = 3;                                   // Interrupt and Reset on MR0
+T0TCR = 1;                                   // Timer0 Enable
+VICVectAddr0 = (unsigned long)timer0_interrupt;           // set interrupt vector in 0
+VICVectCntl0 = 0x20 | 4;                     // use it for Timer 0 Interrupt
+VICIntEnable = 0x00000010;                   // Enable Timer0 Interrupt
+}
+
+
+/* Setup the Timer Counter 0 Interrupt */
+void init_timer1 (void) 
+{
+T1MR0 = 6000;                              // 10mSec = 150.000-1 counts
+T1MCR = 3;                                   // Interrupt and Reset on MR0
+T1TCR = 1;                                   // Timer0 Enable
+VICVectAddr1 = (unsigned long)timer1_interrupt;           // set interrupt vector in 0
+VICVectCntl1 = 0x20 | 5;                     // use it for Timer 0 Interrupt
+VICIntEnable = 0x00000020;                   // Enable Timer0 Interrupt
+}

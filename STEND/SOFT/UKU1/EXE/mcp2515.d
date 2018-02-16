@@ -1,0 +1,10 @@
+.\EXE\mcp2515.o: mcp2515.c
+.\EXE\mcp2515.o: 25lc640.h
+.\EXE\mcp2515.o: mcp2515.h
+.\EXE\mcp2515.o: C:\Keil\ARM\INC\NXP\LPC17xx\LPC17xx.H
+.\EXE\mcp2515.o: C:\Keil\ARM\RV31\INC\core_cm3.h
+.\EXE\mcp2515.o: C:\Keil\ARM\RV31\INC\stdint.h
+.\EXE\mcp2515.o: C:\Keil\ARM\INC\NXP\LPC17xx\system_LPC17xx.h
+.\EXE\mcp2515.o: main.h
+.\EXE\mcp2515.o: C:\Keil\ARM\RV31\INC\rtl.h
+.\EXE\mcp2515.o: full_can.h

@@ -1,0 +1,16 @@
+.\EXE\modbus.o: modbus.c
+.\EXE\modbus.o: C:\Keil\ARM\INC\NXP\LPC17xx\lpc17xx.h
+.\EXE\modbus.o: C:\Keil\ARM\RV31\INC\core_cm3.h
+.\EXE\modbus.o: C:\Keil\ARM\RV31\INC\stdint.h
+.\EXE\modbus.o: C:\Keil\ARM\INC\NXP\LPC17xx\system_LPC17xx.h
+.\EXE\modbus.o: modbus.h
+.\EXE\modbus.o: main.h
+.\EXE\modbus.o: C:\Keil\ARM\RV31\INC\rtl.h
+.\EXE\modbus.o: control.h
+.\EXE\modbus.o: C:\Keil\ARM\RV31\INC\string.h
+.\EXE\modbus.o: eeprom_map.h
+.\EXE\modbus.o: modbus_tcp.h
+.\EXE\modbus.o: 25lc640.h
+.\EXE\modbus.o: sc16is7xx.h
+.\EXE\modbus.o: uart0.h
+.\EXE\modbus.o: avar_hndl.h

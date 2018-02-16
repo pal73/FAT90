@@ -1,0 +1,164 @@
+#define MAX_NUM_OF_BAT	2
+#define MAX_NUM_OF_BPS	12
+//#define PAROL_ALL_ZERO
+
+//***********************************************
+//Состояние источников
+
+
+
+
+#define MASK(lengt) 		(0xffffffff>>(32-lengt))
+#define MASK_OFFSET(shift,lengt)	(MASK(lengt)<<shift)
+
+#define GET_REG( reg, shift, lengt) 		( (reg & MASK_OFFSET(shift,lengt)) >> shift)
+#define SET_REG( reg, val, shift, lengt)  	reg = ( (reg & ~MASK_OFFSET(shift,lengt)) | (val << shift) )
+//#define CHK_REG( reg, mask ) ( (reg) & (mask) == (mask) )
+
+
+
+#define delay_ms(x) {long xx; xx=(unsigned long)x * 12000UL; while(xx)xx--;}
+
+//*************************************************
+//сообщения
+#define MESS_DEEP	10
+
+#define 	MESS_ZERO 		0
+#define 	MESS_BAT1_OFF 		1
+#define 	MESS_BAT2_OFF		2
+#define 	MESS_ALL_SRC_OFF	3
+#define 	MESS_ALL_SRC_ON	4
+#define 	MESS_RELSAM_ON		5
+#define 	MESS_SRC1_OFF		6
+#define 	MESS_SRC2_OFF		7
+#define 	MESS_SRC3_OFF		8
+#define 	MESS_SRC4_OFF		9
+#define 	MESS_SRC5_OFF		10
+#define 	MESS_SRC6_OFF		11
+#define 	MESS_SRC7_OFF		12
+#define 	MESS_SRC8_OFF		13
+#define 	MESS_SRC9_OFF		14
+#define 	MESS_SRC10_OFF		15
+#define 	MESS_SRC11_OFF		16
+#define 	MESS_SRC12_OFF		17
+#define 	MESS_BAT_CONTROL	18
+#define 	MESS_SRC_CONTROL	19
+#define 	MESS_LOAD2_WAIT	9 
+#define 	MESS_PONG			100
+#define	MESS_SPA_UART_PONG	101 
+#define	MESS_SPA_BLOK_BPS1	102
+#define	MESS_SPA_BLOK_BPS2	103
+#define	MESS_SPA_LEAVE_BPS1	104
+#define	MESS_SPA_LEAVE_BPS2	105
+#define 	MESS_SRC_ON_OFF	150
+#define   _MESS_SRC_MASK_BLOK_2SEC		151
+#define   _MESS_SRC_MASK_UNBLOK		152
+#define 	_MESS_SRC_MASK_ON			153
+#define	_MESS_SRC_PWM				154
+#define	_MESS_U_NECC				155
+#define   _MESS_FAST_REG				156
+//#define   _MESS_U_AVT_GOOD			157
+
+#define 	MESS_BAT_ON_OFF	160
+#define   _MESS_BAT_MASK_BLOK_AFTER_2SEC		161
+#define	_MESS_BAT_MASK_ON					162
+#define	_MESS_BAT_MASK_OFF					163
+
+		
+//#define	MESS_SPA_UART_SRAM	200 
+//#define	MESS_SPA_UART_CMND	201 
+
+#define	MESS2UNECC_HNDL   					190
+#define  		PARAM_UNECC_SET				 	191
+#define	MESS2BAT_HNDL   					200
+//#define	MESS2BAT_HNDL1   					201
+#define		PARAM_BAT_ALL_OFF_AFTER_2SEC			201
+#define		PARAM_BAT_MASK_OFF_AFTER_2SEC			202
+//#define		PARAM_BAT_ON						202
+#define	MESS2BPS_HNDL   					205
+#define		PARAM_BPS_ALL_OFF_AFTER_2SEC			206
+#define		PARAM_BPS_MASK_OFF_AFTER_2SEC			207
+#define		PARAM_BPS_MASK_ON_OFF_AFTER_2SEC		208
+#define		PARAM_BPS_MASK_ON					209
+#define		PARAM_BPS_ALL_ON					210
+#define 	MESS2RELE_HNDL						210
+#define		PARAM_RELE_SAMOKALIBR_ENABLE			100
+#define		PARAM_RELE_AV						101
+#define		PARAM_RELE_AV_NET					102
+#define		PARAM_RELE_AV_BAT					103
+#define		PARAM_RELE_VENT					103
+#define	MESS2IND_HNDL						215
+#define		PARAM_SAMOKALIBR					216
+#define 		PARAM_U_AVT_GOOD					217
+#define	MESS2MATEMAT						220
+#define		PARAM_SAMOKALIBR					216
+#define	MESS2CNTRL_HNDL   					225
+#define		PARAM_CNTRL_STAT_PLUS				100
+#define		PARAM_CNTRL_STAT_MINUS				105
+#define		PARAM_CNTRL_STAT_STEP_DOWN			110
+#define 		PARAM_CNTRL_STAT_SET		    		229
+#define 		PARAM_CNTRL_STAT_FAST_REG		    	230	
+#define	MESS2KB_HNDL   					230
+#define		PARAM_CNTRL_IS_DOWN					231
+
+
+#define LCD_SIZE 200
+
+
+#define BIN__N(x) (x) | x>>3 | x>>6 | x>>9
+#define BIN__B(x) (x) & 0xf | (x)>>12 & 0xf0
+#define BIN8(v) (BIN__B(BIN__N(0x##v)))
+
+
+
+#define BAUD_RATE0 9600UL
+#define BAUD_RATE1 9600UL
+
+
+
+
+
+#ifndef PAROL_ALL_ZERO
+#define PAROL_KALIBR 873
+#define PAROL_SET 184
+#define PAROL_MODE 0 
+#define PAROL_ALLER 815 
+#define PAROL_BAT_IN 722 
+#define PAROL_BAT_OUT 722
+#define PAROL_KE 125
+#define PAROL_VZ 126
+#define PAROL_TST 999 
+#define PAROL_DEFAULT 295
+#define PAROL_AUSW 949
+#endif                
+
+#ifdef PAROL_ALL_ZERO
+#define PAROL_KALIBR 0
+#define PAROL_SET 0
+#define PAROL_MODE 0 
+#define PAROL_ALLER 0 
+#define PAROL_BAT_IN 0 
+#define PAROL_BAT_OUT 0
+#define PAROL_KE 0
+#define PAROL_VZ 0
+#define PAROL_TST 0
+#define PAROL_DEFAULT 0
+#define PAROL_AUSW 0
+#endif
+
+
+#define CNT_SRC_MAX	60
+
+//STOP
+  
+#define SHIFT_REL_BAT1	6
+#define SHIFT_REL_BAT2	4
+#define SHIFT_REL_AV	1
+#define SHIFT_REL_AV_NET	5
+#define SHIFT_REL_AV_BAT	3
+#define SHIFT_REL_VENT	2
+
+
+
+
+

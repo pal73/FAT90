@@ -1,0 +1,9 @@
+Output: Bill of Materials
+Type  : ReportComponents
+From  : Project [Free Documents]
+
+
+Files Generated   : 0
+Documents Printed : 0
+
+Finished Output Generation At 10:25:48 On 12.12.2017
