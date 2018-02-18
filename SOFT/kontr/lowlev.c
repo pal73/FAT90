@@ -29,18 +29,32 @@ GPIOE->DDR|=0b00101001;
 GPIOE->CR1&=0b11010110;
 GPIOE->CR2&=0b11010110;
 
-if(outMode==omOFF)
+if(optr_kontr_cnt)
 	{
-	GPIOE->ODR|=0b00101001;
+	optr_kontr_cnt--;
+	if(optr_stat&0x01)			GPIOE->ODR&=0b11111110;
+	else 						GPIOE->ODR|=0b00000001;
+	if(optr_stat&0x02)		GPIOE->ODR&=0b11110111;
+	else 						GPIOE->ODR|=0b00001000;
+	if(optr_stat&0x04)		GPIOE->ODR&=0b11011111;
+	else 						GPIOE->ODR|=0b00100000;
+
 	}
 else
 	{
-	if(out_stat[0]==osON)		GPIOE->ODR&=0b11111110;
-	else 						GPIOE->ODR|=0b00000001;
-	if(out_stat[1]==osON)		GPIOE->ODR&=0b11110111;
-	else 						GPIOE->ODR|=0b00001000;
-	if(out_stat[2]==osON)		GPIOE->ODR&=0b11011111;
-	else 						GPIOE->ODR|=0b00100000;
+	if(outMode==omOFF)
+		{
+		GPIOE->ODR|=0b00101001;
+		}
+	else
+		{
+		if(out_stat[0]==osON)		GPIOE->ODR&=0b11111110;
+		else 						GPIOE->ODR|=0b00000001;
+		if(out_stat[1]==osON)		GPIOE->ODR&=0b11110111;
+		else 						GPIOE->ODR|=0b00001000;
+		if(out_stat[2]==osON)		GPIOE->ODR&=0b11011111;
+		else 						GPIOE->ODR|=0b00100000;
+		}
 	}
 }
 /*

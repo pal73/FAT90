@@ -726,15 +726,12 @@ extern char cnt_of_slave;
 //***********************************************
 //Индикация
 typedef enum {
-	iMn_VD,
+	iMn,
 	iSet_VD,
-	#ifndef UKU_TELECORE2017
-	iMn_TELECORE2017,
-	#endif 
 	iSrv_sl,iNet,iNet3,iNetEM,
 	iSet,iSet_220_IPS_TERMOKOMPENSAT,iSet_220_V2,
 	iInv_set,
-	iMakb,
+	iOptr_kontr,
 	iBps,iBps_elteh,iS2,iSet_prl,iK_prl,iDnd,
 	iK, iK_220_IPS_TERMOKOMPENSAT,iK_220_IPS_TERMOKOMPENSAT_IB,iK_TELECORE,iK_VD,
 	iSpcprl,iSpc,k,Crash_0,Crash_1,iKednd,iAv_view_avt,iAKE,iSpc_termocompensat,
@@ -1026,43 +1023,6 @@ extern signed short BAT_LINK;
 extern signed short I_LOAD_MODE;		//способ измерения выходного тока - по шунту или как сумму токов источников
 
 
-//***********************************************
-//Состояние батарей
-typedef struct
-     {
-	char 		_cnt_to_block;
-	signed short	_Ub;
-     signed short	_Ubm;
-     signed short	_dUbm;
-	signed short	_Ib;
-	signed short	_Tb;
-	char 		_nd;
-	char 		_cnt_wrk;
-	char 		_wrk;
-	unsigned short _zar;
-	char 		_full_ver;
-	signed long 	_zar_cnt;
-	signed long 	_zar_cnt_ke;
-	unsigned short _Iintegr,_Iintegr_; 
-	signed short 	_u_old[8];
-	signed short	_u_old_cnt;
-	unsigned long 	_wrk_date[2];
-	char 		_rel_stat;
-	char			_av;
-	char			_time_cnt;
-	char 		_temper_stat;
-	//0бит - подогрев
-	//1бит - перегрев
-	signed short 	_sign_temper_cnt;
-	signed short 	_max_temper_cnt;
-	signed long 	_resurs_cnt;
-	signed short 	_cnt_as; 	//счетчик несимметрии, считает до 5 минут при выполнении условий несимметрии, когда досчитывает - пишет в журнал
-     //signed short   _max_cell_volt;
-	//signed short   _min_cell_volt;
-	} BAT_STAT; 
-extern BAT_STAT bat[2],bat_ips;
-extern signed short		bat_u_old_cnt;
-extern signed short 	Ib_ips_termokompensat;
 
 //#ifdef UKU_TELECORE2015
 typedef enum {bsOFF=0,bsCOMM_ON,bsOK} enum_batStat;
@@ -1126,85 +1086,8 @@ typedef struct
 	} BYPS_STAT; 
 extern BYPS_STAT byps;
 
-//***********************************************
-//Мониторы АКБ
-typedef struct
-     {
-	signed short	_U[5];
-	signed short	_Ub[5];
-	signed short	_T[5];
-	signed short	_T_nd[5];
-	signed short 	_cnt; 	
-	} MAKB_STAT; 
-extern MAKB_STAT makb[4];
 
-//***********************************************
-//Литиевые АКБ
-typedef struct
-     {
-	signed short	_max_cell_volt;
-	signed short	_min_cell_volt;
-	signed short	_max_cell_temp;
-	signed short	_min_cell_temp;
-	signed short	_tot_bat_volt;
-	signed short	_ch_curr;
-	signed short	_dsch_curr;
-	signed short	_rat_cap;
-	signed short	_s_o_h;
-	signed short	_s_o_c;
-	signed short	_c_c_l_v;
-	signed short	_r_b_t;
-	signed short	_b_p_ser_num;
-	signed short   _flags1;
-	signed short 	_flags2;
-	signed short 	_communication2lvlErrorStat; 	//флаг аварийности низовой связи с батареей, вычисляется в плате расширения
-	signed short	_communication2lvlErrorCnt;  	//счетчик аварийности низовой связи с батареей
-	signed short 	_cnt;
-	signed short 	_communicationFullErrorStat;	//флаг аварийности всего канала связи с батареей, 0 - норма, 1 - отсутствует связь с промежуточной платой, 2 - отсутствует связь промежуточной платы и батареи  	
-	signed short   _battIsOn;		//0 - отсутствует, 1 - присутствует
-	char 		_plazma[8];		//переменные для отладки
-	signed short 	_isOnCnt;
-	signed short	_s_o_c_abs;		//остаточный заряд в абсолютном выражении
-	signed short 	_s_o_c_percent; //остаточный заряд в процентном выражении
-	signed short	_plazma_ss;
-	signed short	_zar_percent;	//заряд батареи в процетах
-	signed char		_cell_temp_1;	//температура 1-го датчика батареи(ZTT)
-	signed char		_cell_temp_2;	//температура 2-го датчика батареи(ZTT)
-	signed char		_cell_temp_3;	//температура 3-го датчика батареи(ZTT)
-	signed char		_cell_temp_4;	//температура 4-го датчика батареи(ZTT)
-	signed char		_cell_temp_ambient;	//температура датчика окружающей среды батареи(ZTT)
-	signed char		_cell_temp_power;	//температура датчика силовой части батареи(ZTT)
-	//signed char 	_pack_volt_state;	//статус аварии по напряжениям батареи(ZTT)
-	//signed char 	_pack_temper_state;	//статус аварии по температурам батареи(ZTT)
-	//signed char 	_pack_alarm_state;	//статус аварий батареи(ZTT)
-	signed char		_charge_and_discharge_current_alarm_status;	 	//(ZTT)
-	signed char 	_battery_total_voltage_alarm_status;			//(ZTT)
-	signed char		_custom_alarm_quantity;							//(ZTT)
-	signed char		_balanced_event_code;							//(ZTT)
-	signed char 	_voltage_event_code;							//(ZTT)
-	signed char 	_temperature_event_code;						//(ZTT)
-	signed char		_current_event_code;							//(ZTT)
-	signed char		_fet_status_code;								//(ZTT)
-	signed short	_balanced_status_code;							//(ZTT)
-	signed char 	_system_status_code;							//(ZTT)
 
-	} LAKB_STAT; 
-extern LAKB_STAT lakb[3];
-extern char lakb_damp[1][42];
-extern char bLAKB_KONF_CH;
-extern char bLAKB_KONF_CH_old;
-extern char lakb_ison_mass[7];
-extern short lakb_mn_ind_cnt;
-extern char bLAKB_KONF_CH_EN;
-extern char bRS485ERR;
-extern short LBAT_STRUKT;
-extern char lakb_error_cnt;	//счетчик неправильного показания ннапряжения батареи
-extern short numOfPacks,numOfPacks_;
-extern short numOfCells, numOfTemperCells, baseOfData;
-extern short lakb_stat_comm_error;	//аварийность канала связи с литиевыми батареями. 0 означает исправность платы расширения и наличие связи со всеми литиевыми батареями
-extern short lakbNotErrorNum;		//колличество литиевых батарей с исправной связью
-extern short lakbKanErrorCnt;		//Счетчик аварийности канала связи с платой расширения
-extern short lakbKanErrorStat;		//Состояние аварийности канала связи с платой расширения
 
 
 
@@ -1213,62 +1096,6 @@ extern short lakbKanErrorStat;		//Состояние аварийности канала связи с платой ра
 extern char can_slot[12][16];
 extern char plazma_can_inv[3];
 
-//***********************************************
-//Состояние источников
-
-
-typedef struct
-    {
-    enum {dSRC=3,dINV=5,dNET_METR=7,dIBAT_METR=9,dMAKB=11}_device;
-	char _av;
-	//0бит - авария по перегреву
-	//1бит - авария по завышенному Uвых
-	//2бит - авария по заниженному Uвых
-	//3бит - авария по обрыву связи	
-	//4бит - ресурс вентилятора выработан    
- 	enum {bsOFF_AV_NET,bsAPV,bsWRK,bsRDY,bsBL,bsAV}_state;
-    char _cnt;
-     char _cnt_old;
-     char _cnt_more2;
-     char _buff[20]; 
-     //char _av_net;
-     //char _av_u_max;
-     //char _av_u_min;
-     //char _av_temper; 
-     signed _Uii; 
-     signed _Uin;
-     signed _Ii;
-     signed _Ti; 
-     char _flags_tu;
-	 signed _Uisum;
-     //char _flags_tu_old;
-     //char _is_ready;
-     //char _is_wrk;
-     //char _is_link;
-     //char _is_av;
-     signed _vol_u;
-     signed _vol_i;
-     char _is_on_cnt;
-     //int _ist_blok_host_cnt_; //блокирование источников извне(CAN или RS), если не 0 то источник заблокирован.
-     int _ist_blok_host_cnt;
-     short _blok_cnt; //блокирование источников 
-     char _flags_tm;
-	signed short _overload_av_cnt;     
-     signed short _temp_av_cnt;
-     signed short _umax_av_cnt;
-     signed short _umin_av_cnt;
-     signed _rotor;
-     signed  short _x_; 
-     char _adr_ee;
-	char _last_avar;
-	char _vent_resurs_temp[4];
-	unsigned short _vent_resurs;
-	signed short debug_info_to_uku0;
-	signed short debug_info_to_uku1;
-	signed short _avg;
-	signed short _cntrl_stat;
-     } BPS_STAT; 
-extern BPS_STAT bps[29];
 
 //***********************************************
 //Состояние инверторов
@@ -1489,11 +1316,10 @@ extern char ext_can_cnt;
 signed short abs_pal(signed short in);
 void ADC_IRQHandler(void);
 
-
 //-----------------------------------------------
-//Состояние контролируемых автоматов нагрузки 
-typedef enum  {avtOFF,avtON} enum_avt_stat;
-extern enum_avt_stat avt_stat[12],avt_stat_old[12]; 
+//Состояние оптронов передаваемое испытуемой плате
+typedef enum  {osOFF,osON} enum_optr_stat;
+extern enum_optr_stat optr_stat[3]; 
 
 //-----------------------------------------------
 //Показания АЦП на плате измерения тока батареи
@@ -1501,11 +1327,7 @@ extern signed long ibat_metr_buff_[2];
 extern short bIBAT_SMKLBR;
 extern char ibat_metr_cnt;
 
-//-----------------------------------------------
-//Управление низкоприоритетной нагрузкой
-extern signed short npn_tz_cnt;
-typedef enum {npnsOFF=0,npnsON} enum_npn_stat;
-extern enum_npn_stat npn_stat;
+
 
 extern char snmp_plazma;
 

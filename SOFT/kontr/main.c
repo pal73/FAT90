@@ -76,6 +76,8 @@ char led_ind_out1,led_ind_out2;
 //-----------------------------------------------
 //Управление выходом
 enum_out_stat out_stat[3];
+@near char optr_stat;
+@near char optr_kontr_cnt;
 
 //-----------------------------------------------
 //Температура
@@ -663,10 +665,11 @@ if(ind==iMn)
 			led_on(3);
 			}
 		}
-	if((outMode==omON)&&(out_stat[0]==osON))led_on(4);
-	if((outMode==omON)&&(out_stat[1]==osON))led_on(5);
-	if((outMode==omON)&&(out_stat[2]==osON))led_on(6);
-	
+	if(((outMode==omON)&&(out_stat[0]==osON))||((optr_kontr_cnt)&&(optr_stat&0x01)))led_on(4);
+	if(((outMode==omON)&&(out_stat[1]==osON))||((optr_kontr_cnt)&&(optr_stat&0x02)))led_on(5);
+	if(((outMode==omON)&&(out_stat[2]==osON))||((optr_kontr_cnt)&&(optr_stat&0x04)))led_on(6);
+
+
 	if(bERR)led_on(7);
 	else if(bWARN)led_flash(7);
 	
@@ -676,6 +679,7 @@ if(ind==iMn)
 	if(modemState==MS_LINKED_INITIALIZED)	led_on(8);
 	else 									led_off(8);
 	}
+	
 else if(ind==iDate_W)
 	{
 	if(sub_ind==0)
@@ -692,6 +696,7 @@ else if(ind==iDate_W)
 		int2indII_slkuf(time_day_of_week,0, 2, 0, 1, 0);		
 		}		
 	}
+	
 else if(ind==iSet)
 	{
 	int2indI_slkuf(sub_ind+1,1, 2, 0, 1, 1);
@@ -984,6 +989,11 @@ else if(ind==iDeb)
 		int2indII_slkuf(mainCnt,0, 2, 0, 0, 0);
 		int2indII_slkuf(temperOfWater,2, 2, 0, 0, 0);
 		}
+	else if(sub_ind==11)
+		{
+		int2indI_slkuf(optr_stat,1, 3, 0, 0, 0);
+		int2indII_slkuf(optr_kontr_cnt,0, 3, 0, 0, 0);
+		}		
 	}
 
 else if(ind==iModem_deb)

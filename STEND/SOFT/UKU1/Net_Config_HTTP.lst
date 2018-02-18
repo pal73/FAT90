@@ -1997,14 +1997,14 @@ S U16 const smtp_DefTout  = SMTP_DEFTOUT;
 N#endif
 N#if (SNMP_ENABLE)
 X#if (1)
-N U16 	 snmp_PortNum  = SNMP_PORTNUM;
-X U16 	 snmp_PortNum  = 161;
-N U16 	 snmp_TrapPort = SNMP_TRAPPORT;
-X U16 	 snmp_TrapPort = 162;
+N U16 const snmp_PortNum  = SNMP_PORTNUM;
+X U16 const snmp_PortNum  = 161;
+N U16 const snmp_TrapPort = SNMP_TRAPPORT;
+X U16 const snmp_TrapPort = 162;
 N U8  const snmp_TickItv  = TICK_INTERVAL / 5;
 X U8  const snmp_TickItv  = 10 / 5;
-N U8        snmp_Community[] = SNMP_COMMUNITY;
-X U8        snmp_Community[] = "public";
+N U8  const snmp_Community[] = SNMP_COMMUNITY;
+X U8  const snmp_Community[] = "public";
 N U8  const snmp_TrapIp[] = { SNMP_TRAPIP1, SNMP_TRAPIP2,
 X U8  const snmp_TrapIp[] = { 192, 168,
 N                             SNMP_TRAPIP3, SNMP_TRAPIP4 };

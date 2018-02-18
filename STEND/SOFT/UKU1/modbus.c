@@ -301,10 +301,10 @@ if(modbus_an_buffer[0]=='r')
 			if(modbus_an_buffer[3]=='d')
 				{
 				pvlk=4;
-				if(modbus_an_buffer[6]==crc_87(modbus_an_buffer,6))
+				if(modbus_an_buffer[6]==crc_87((char*)modbus_an_buffer,6))
 					{
 					pvlk=5;
-					if(modbus_an_buffer[7]==crc_95(modbus_an_buffer,6))
+					if(modbus_an_buffer[7]==crc_95((char*)modbus_an_buffer,6))
 						{
 						pvlk=6;	
 
@@ -365,10 +365,10 @@ if(modbus_an_buffer[0]=='w')
 				if(modbus_an_buffer[4]=='e')
 					{
 //					pvlk=5;
-					if(modbus_an_buffer[15]==crc_87(modbus_an_buffer,15))
+					if(modbus_an_buffer[15]==crc_87((char*)modbus_an_buffer,15))
 						{
 //						pvlk=6;
-						if(modbus_an_buffer[16]==crc_95(modbus_an_buffer,15))
+						if(modbus_an_buffer[16]==crc_95((char*)modbus_an_buffer,15))
 
 							{
 							unsigned short ptr;
@@ -1138,9 +1138,10 @@ signed char modbus_registers[500];
 //char modbus_tx_buff[200];
 unsigned short crc_temp;
 char i;
-short tempS;
+//short tempS;
 
 //tempS=(MODBUS_INPUT_REGS[0]);
+/*
 modbus_registers[0]=(signed char)(bps[0]._Uii>>8);			//Рег1	Выходное напряжение выпрямителя №1, 0.1В
 modbus_registers[1]=(signed char)(bps[0]._Uii);
 modbus_registers[2]=(signed char)(bps[0]._Ii>>8);			//Рег2	Выходной ток выпрямителя №1, 0.1А
@@ -1237,7 +1238,7 @@ modbus_registers[92]=(signed char)(bps[11]._Ti>>8);			//Рег47	Температура радиат
 modbus_registers[93]=(signed char)(bps[11]._Ti);
 modbus_registers[94]=(signed char)(bps[11]._av>>8);			//Рег48	Байт флагов выпрямителя №12, 0x01 - перегрев, 0x02 завышено Uвых, 0x04 занижено Uвых, 0x08 - отсутствует связь с выпрямителем
 modbus_registers[95]=(signed char)(bps[11]._av);
-
+*/
 															
 modbus_registers[98]=(signed char)	(out_U>>8);				//Рег50 Выходное напряжение системы
 modbus_registers[99]=(signed char)	(out_U);
@@ -1245,8 +1246,8 @@ modbus_registers[100]=(signed char)	(in_U>>8);				//Рег51	Входное напряжение сис
 modbus_registers[101]=(signed char)	(in_U);
 modbus_registers[102]=(signed char)	(vd_U>>8);				//Рег52	Напряжение вольтдобавки
 modbus_registers[103]=(signed char)	(vd_U);
-modbus_registers[104]=(signed char)	(Ib_ips_termokompensat>>8);		//Рег53	Выходной ток
-modbus_registers[105]=(signed char)	(Ib_ips_termokompensat);
+//modbus_registers[104]=(signed char)	(Ib_ips_termokompensat>>8);		//Рег53	Выходной ток
+//modbus_registers[105]=(signed char)	(Ib_ips_termokompensat);
 
 modbus_registers[106]=(signed char)	(t_ext[0]>>8);				//Рег54	 Температура системы
 modbus_registers[107]=(signed char)	(t_ext[0]);
@@ -1263,69 +1264,7 @@ modbus_registers[109]=(signed char)	(avar_vd_stat);			// Бит 0 - авария одного и
 
 
 
- /*
-modbus_registers[106]=(signed char)(bps_U>>8);				//Рег54   	напряжение выпрямителей, 0.1В
-modbus_registers[107]=(signed char)(bps_U);
-tempS=0;
-if(speedChIsOn) tempS=1;
-modbus_registers[108]=(signed char)(tempS>>8);					//Рег55   	Ускоренный заряд включенность, (1 - вкл, 0 - Выкл)
-modbus_registers[109]=(signed char)(tempS);
-tempS=0;
-if(spc_stat==spcVZ) tempS=1;
-modbus_registers[110]=(signed char)(tempS>>8);					//Рег56   	Выравнивающий заряд включенность, (1 - вкл, 0 - Выкл)
-modbus_registers[111]=(signed char)(tempS);
-modbus_registers[112]=(signed char)(uout_av>>8);					//Рег57   Контроль выходного напряжения, (0 - норма, 1 - завышено, 2 - занижено)
-modbus_registers[113]=(signed char)(uout_av);
 
-tempS=0;													 //Рег60	Регистр флагов состояния системы
-if(bat_ips._av)			tempS|=(1<<0);						 // Бит 0	Авария батареи
-if(avar_stat&0x0001)   	tempS|=(1<<1);						 //	Бит 1	Авария питающей сети 
-if(avar_stat&(1<<(3+0)))tempS|=(1<<2);						 //	Бит 2	Авария выпрямителя №1
-if(avar_stat&(1<<(3+1)))tempS|=(1<<3);						 //	Бит 3	Авария выпрямителя №2
-if(avar_stat&(1<<(3+2)))tempS|=(1<<4);						 //	Бит 4	Авария выпрямителя №2
-modbus_registers[118]=(signed char)(tempS>>8);
-modbus_registers[119]=(signed char)(tempS);
-
-tempS=t_ext[0];
-if(ND_EXT[0])tempS=-1000;
-modbus_registers[400]=(signed char)(tempS>>8);				//Рег201	Внешний датчик температуры №1
-modbus_registers[401]=(signed char)(tempS);
-tempS=t_ext[1];
-if(ND_EXT[1])tempS=-1000;
-modbus_registers[402]=(signed char)(tempS>>8);				//Рег202	Внешний датчик температуры №2
-modbus_registers[403]=(signed char)(tempS);
-tempS=t_ext[2];
-if(ND_EXT[2])tempS=-1000;
-modbus_registers[404]=(signed char)(tempS>>8);				//Рег203	Внешний датчик температуры №3
-modbus_registers[405]=(signed char)(tempS);
-/*tempS=t_ext[3];
-if(ND_EXT[3])tempS=-1000;
-modbus_registers[406]=(signed char)(tempS>>8);				//Рег204	Внешний датчик температуры №4
-modbus_registers[407]=(signed char)(tempS);   */
-/*
-tempS=0;
-if(sk_stat[0]==ssON) tempS|=0x0001;
-if(sk_av_stat[0]==sasON) tempS|=0x0002;
-modbus_registers[420]=(signed char)(tempS>>8);				//Рег211	Состояние  сухого контакта №1, (нулевой бит - физическое состояние, 1 - замкнут, 0 - разомкнут, первый бит - аварийность, 1 - авария, 0 - норма)
-modbus_registers[421]=(signed char)(tempS);
-tempS=0;
-if(sk_stat[1]==ssON) tempS|=0x0001;
-if(sk_av_stat[1]==sasON) tempS|=0x0002;
-modbus_registers[422]=(signed char)(tempS>>8);				//Рег212	Состояние  сухого контакта №1, (нулевой бит - физическое состояние, 1 - замкнут, 0 - разомкнут, первый бит - аварийность, 1 - авария, 0 - норма)
-modbus_registers[423]=(signed char)(tempS);
-tempS=0;
-if(sk_stat[2]==ssON) tempS|=0x0001;
-if(sk_av_stat[2]==sasON) tempS|=0x0002;
-modbus_registers[424]=(signed char)(tempS>>8);				//Рег213	Состояние  сухого контакта №1, (нулевой бит - физическое состояние, 1 - замкнут, 0 - разомкнут, первый бит - аварийность, 1 - авария, 0 - норма)
-modbus_registers[425]=(signed char)(tempS);
-tempS=0;
-if(sk_stat[3]==ssON) tempS|=0x0001;
-if(sk_av_stat[3]==sasON) tempS|=0x0002;
-modbus_registers[426]=(signed char)(tempS>>8);				//Рег214	Состояние  сухого контакта №1, (нулевой бит - физическое состояние, 1 - замкнут, 0 - разомкнут, первый бит - аварийность, 1 - авария, 0 - норма)
-modbus_registers[427]=(signed char)(tempS);
-
-//modbus_registers[
-  */
 
 if(prot==MODBUS_RTU_PROT)
 	{
@@ -1353,7 +1292,7 @@ if(prot==MODBUS_RTU_PROT)
 else if(prot==MODBUS_TCP_PROT)
 	{
 	mem_copy((signed char*)modbus_tx_buff,(signed char*)&modbus_registers[(reg_adr-1)*2],reg_quantity*2);
-	modbus_tcp_out_ptr=(signed char*)modbus_tx_buff;
+	modbus_tcp_out_ptr=(char*)modbus_tx_buff;
 	}
 }
 

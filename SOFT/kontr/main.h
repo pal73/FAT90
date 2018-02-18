@@ -79,6 +79,8 @@ extern char led_ind_out1,led_ind_out2;
 //”правление выходом
 typedef enum {osOFF,osON}enum_out_stat;
 extern enum_out_stat out_stat[3];
+@near extern char optr_stat;
+@near extern char optr_kontr_cnt;
 
 #define butON	254
 #define butM	253

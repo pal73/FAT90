@@ -10,7 +10,7 @@
 
  
 
-#line 1 "C:\\Keil\\ARM\\RV31\\INC\\Net_Config.h"
+#line 1 "C:\\Keil\\\\ARM\\RV31\\INC\\Net_Config.h"
 
 
 
@@ -25,7 +25,7 @@
 
 
 
-#line 1 "C:\\Keil\\ARM\\RV31\\INC\\RTL.h"
+#line 1 "C:\\Keil\\\\ARM\\RV31\\INC\\RTL.h"
 
 
 
@@ -45,7 +45,7 @@
  
 
 
-#line 27 "C:\\Keil\\ARM\\RV31\\INC\\RTL.h"
+#line 27 "C:\\Keil\\\\ARM\\RV31\\INC\\RTL.h"
 
 
 
@@ -67,9 +67,7 @@ typedef unsigned long long U64;
 typedef unsigned char   BIT;
 typedef unsigned int    BOOL;
 
-#line 54 "C:\\Keil\\ARM\\RV31\\INC\\RTL.h"
-
-#line 66 "C:\\Keil\\ARM\\RV31\\INC\\RTL.h"
+#line 54 "C:\\Keil\\\\ARM\\RV31\\INC\\RTL.h"
 
 
 
@@ -116,7 +114,7 @@ typedef U32 OS_RESULT;
 
 
 
-#line 194 "C:\\Keil\\ARM\\RV31\\INC\\RTL.h"
+#line 182 "C:\\Keil\\\\ARM\\RV31\\INC\\RTL.h"
 
 
 
@@ -133,7 +131,7 @@ extern OS_RESULT rt_tsk_prio   (OS_TID task_id, U8 new_prio);
 extern OS_TID    rt_tsk_create (void (*task)(void), U8 priority, void *stk, void *argv);
 extern OS_RESULT rt_tsk_delete (OS_TID task_id);
 
-#line 230 "C:\\Keil\\ARM\\RV31\\INC\\RTL.h"
+#line 218 "C:\\Keil\\\\ARM\\RV31\\INC\\RTL.h"
 
 extern void      _os_sys_init(U32 p, void (*task)(void), U32 prio_stksz,
                                      void *stk)                        __svc_indirect(0);
@@ -313,10 +311,10 @@ extern int fdefrag (const char *drive);
 
 
  
-#line 415 "C:\\Keil\\ARM\\RV31\\INC\\RTL.h"
+#line 403 "C:\\Keil\\\\ARM\\RV31\\INC\\RTL.h"
 
  
-#line 428 "C:\\Keil\\ARM\\RV31\\INC\\RTL.h"
+#line 416 "C:\\Keil\\\\ARM\\RV31\\INC\\RTL.h"
 
  
 
@@ -325,7 +323,7 @@ extern int fdefrag (const char *drive);
 
 
  
-#line 442 "C:\\Keil\\ARM\\RV31\\INC\\RTL.h"
+#line 430 "C:\\Keil\\\\ARM\\RV31\\INC\\RTL.h"
 
  
 
@@ -375,7 +373,6 @@ extern void dhcp_disable (void);
 extern BOOL igmp_join (U8 *group_ip);
 extern BOOL igmp_leave (U8 *group_ip);
 extern BOOL snmp_trap (U8 *manager_ip, U8 gen_trap, U8 spec_trap, U16 *obj_list);
-extern BOOL snmp_set_community (const char *community);
 
 
 
@@ -386,7 +383,7 @@ extern BOOL snmp_set_community (const char *community);
   
 
  
-#line 16 "C:\\Keil\\ARM\\RV31\\INC\\Net_Config.h"
+#line 16 "C:\\Keil\\\\ARM\\RV31\\INC\\Net_Config.h"
 
  
 
@@ -409,7 +406,7 @@ extern BOOL snmp_set_community (const char *community);
 
 
  
-#line 50 "C:\\Keil\\ARM\\RV31\\INC\\Net_Config.h"
+#line 50 "C:\\Keil\\\\ARM\\RV31\\INC\\Net_Config.h"
 
  
 
@@ -418,7 +415,7 @@ extern BOOL snmp_set_community (const char *community);
 
 
  
-#line 73 "C:\\Keil\\ARM\\RV31\\INC\\Net_Config.h"
+#line 73 "C:\\Keil\\\\ARM\\RV31\\INC\\Net_Config.h"
 
  
 
@@ -713,7 +710,7 @@ extern U16  ftp_fread (void *file, U8 *buf, U16 len);
 extern U16  ftp_fwrite (void *file, U8 *buf, U16 len);
 extern BOOL ftp_fdelete (U8 *fname);
 extern BOOL ftp_frename (U8 *fname, U8 *newn);
-extern U16  ftp_ffind (U8 code, U8 *buf, U8 *mask, U16 len);
+extern U16  ftp_ffind (U8 *buf, U8 *mask, U16 len);
 
  
 extern void init_dhcp (void);
@@ -1553,7 +1550,7 @@ void sys_error (ERROR_CODE code) {
 
 
 
-#line 1 "C:\\Keil\\ARM\\RV31\\INC\\Net_lib.c"
+#line 1 "C:\\Keil\\\\ARM\\RV31\\INC\\Net_lib.c"
 
 
 
@@ -1576,213 +1573,3 @@ void sys_error (ERROR_CODE code) {
 
 
 
-
-
-
-
-
-
-
-
- 
-LOCALM const nlocalm[3] = {
-  
-
- {{192,168,1,108},
-   
-  {192,168,1,254},
-   
-  {255,255,255,0},
-   
-  {194,25,2,129},
-   
-  {194,25,2,130}},
-
-
-
-  
-#line 59 "C:\\Keil\\ARM\\RV31\\INC\\Net_lib.c"
- {{0,0,0,0},{0,0,0,0},{0,0,0,0},{0,0,0,0},{0,0,0,0}},
-
-  
-#line 73 "C:\\Keil\\ARM\\RV31\\INC\\Net_lib.c"
- {{0,0,0,0},{0,0,0,0},{0,0,0,0},{0,0,0,0},{0,0,0,0}},
-
-};
-U8 const netif_cfg = (1<<5   | 1<<4 | 1<<3 |
-                      0<<2 | 0<<1 | 1);
-
- 
-U32       Mem_Pool[2596];
-U32 const MPool_Size     = sizeof (Mem_Pool);
-U16 const tick_rate      = (1000 / 10);
-U8        lhost_name[16] = "SPA-UKU202";
-
- 
-
- ARP_INFO  arp_table[10];
- U8        own_hw_adr[6] = {0x01,0x02,0x03,0x04,0x00,0x00};
- U16 const arp_TabSize   = 10;
- U16 const arp_TimeOut   = 150;
- U8  const arp_MaxRetry  = 4;
- U8  const arp_Resend    = 2;
-#line 120 "C:\\Keil\\ARM\\RV31\\INC\\Net_lib.c"
- UDP_INFO  udp_socket[5];
- U8  const udp_NumSocks  = 5;
-
-
- TCP_INFO  tcp_socket[3+1];
- U8  const tcp_NumSocks  = 3;
- U8  const tcp_MaxRetry  = 5;
- U16 const tcp_RetryTout = 4 * (1000 / 10);
- U16 const tcp_2MSSTout  = (200 + 10 - 1) / 10;
- U16 const tcp_SynRetryTout = 2 * (1000 / 10);
- U16 const tcp_InitRetryTout= 1 * (1000 / 10);
- U16 const tcp_DefTout   = 20;
- U8  const tcp_ConRetry  = 7;
-#line 174 "C:\\Keil\\ARM\\RV31\\INC\\Net_lib.c"
- U16 	 snmp_PortNum  = 161;
- U16 	 snmp_TrapPort = 162;
- U8  const snmp_TickItv  = 10 / 5;
- U8        snmp_Community[] = "public";
- U8  const snmp_TrapIp[] = { 192, 168,
-                             1, 9 };
-
-
-
-
- 
-
-
- 
-
-void init_system (void) {
-   
-
-
-  init_eth_link ();
-#line 201 "C:\\Keil\\ARM\\RV31\\INC\\Net_lib.c"
-
-
-
-
-
-  init_udp ();
-
-
-  init_tcp ();
-#line 229 "C:\\Keil\\ARM\\RV31\\INC\\Net_lib.c"
-  arp_notify ();
-#line 238 "C:\\Keil\\ARM\\RV31\\INC\\Net_lib.c"
-  init_snmp ();
-
-}
-
-
- 
-
-void run_system (void) {
-   
-
-
-  run_eth_link ();
-#line 257 "C:\\Keil\\ARM\\RV31\\INC\\Net_lib.c"
-
-
-
-
-
-  tcp_poll_sockets ();
-#line 286 "C:\\Keil\\ARM\\RV31\\INC\\Net_lib.c"
-  run_snmp_agent ();
-
-}
-
-
- 
-
-#line 299 "C:\\Keil\\ARM\\RV31\\INC\\Net_lib.c"
-
-
- 
-
-
-void process_hl_udp (OS_FRAME *frame) {
-   
-  process_udp (frame);
-}
-
-
-
- 
-
-
-void process_hl_tcp (OS_FRAME *frame) {
-   
-  process_tcp (frame);
-}
-
-
-
- 
-
-BOOL dispatch_frame (OS_FRAME *frame, U8 netif) {
-   
-
-switch (netif) {
-
-    case 0:
-      return (eth_send_frame (frame));
-#line 339 "C:\\Keil\\ARM\\RV31\\INC\\Net_lib.c"
-  }
-  return (0);
-}
-
-
- 
-
-
-
-
-
-
-
-
- 
-
-#line 362 "C:\\Keil\\ARM\\RV31\\INC\\Net_lib.c"
-
-
- 
-
-#line 373 "C:\\Keil\\ARM\\RV31\\INC\\Net_lib.c"
-
-
- 
-
-
-BOOL igmp_is_member (U8 *ipadr) {
-   
-  ipadr = ipadr;
-  return (0);
-}
-
-
-
-
-
-
-
- 
-
-#line 689 "C:\\Keil\\ARM\\RV31\\INC\\Net_lib.c"
-
-
-
-
- 
-#line 801 "Net_Config_HTTP.c"
-
-
-
- 

@@ -205,7 +205,6 @@ for (i=0;i<len+3;i++)
 //-----------------------------------------------
 void uart_out_adr_block (unsigned long adress,char *ptr, char len)
 {
-unsigned char UOB[100]={0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0};
 char /*i,*/temp11,t=0;
 unsigned i11;
 
@@ -263,21 +262,7 @@ net_U=2100;
 net_F=501;
 */
 
-rs232_data_out_buff[0]=avar_stat;
-rs232_data_out_buff[1]=spc_stat;
-rs232_data_out_buff[2]=load_U;
-rs232_data_out_buff[3]=load_I;
-rs232_data_out_buff[4]=net_U;
-rs232_data_out_buff[5]=net_F;
-rs232_data_out_buff[6]=t_ext[0];
-rs232_data_out_buff[7]=bps[0]._Uii;
-rs232_data_out_buff[8]=bps[0]._Ii;
-rs232_data_out_buff[9]=bps[0]._Ti;
-rs232_data_out_buff[10]=bps[0]._av;
-rs232_data_out_buff[11]=bps[1]._Uii;
-rs232_data_out_buff[12]=bps[1]._Ii;
-rs232_data_out_buff[13]=bps[1]._Ti;
-rs232_data_out_buff[14]=bps[1]._av; 
+
 
 /*
 
@@ -300,62 +285,12 @@ uart_out_adr0 ((char*)rs232_data_out_buff,30);
 //-----------------------------------------------
 void rs232_data_out(void)
 {
-short rs232_data_out_buff[30];
 
-rs232_data_out_buff[0]=avar_stat;
-rs232_data_out_buff[1]=spc_stat;
-rs232_data_out_buff[2]=load_U;
-rs232_data_out_buff[3]=load_I;
-rs232_data_out_buff[4]=net_Ua;
-rs232_data_out_buff[5]=net_Ub;
-rs232_data_out_buff[6]=net_Uc;
-rs232_data_out_buff[7]=net_F3;
-rs232_data_out_buff[8]=t_ext[0];
-rs232_data_out_buff[9]=bps[0]._Uii;
-rs232_data_out_buff[10]=bps[0]._Ii;
-rs232_data_out_buff[11]=bps[0]._Ti;
-rs232_data_out_buff[12]=bps[0]._av;
-rs232_data_out_buff[13]=bps[1]._Uii;
-rs232_data_out_buff[14]=bps[1]._Ii;
-rs232_data_out_buff[15]=bps[1]._Ti;
-rs232_data_out_buff[16]=bps[1]._av;
-
-uart_out_adr0 ((char*)rs232_data_out_buff, 34);
 }
 
 //-----------------------------------------------
 void rs232_data_out_tki(void)
 {
-short rs232_data_out_buff[30];
-
-rs232_data_out_buff[0]=avar_stat;
-rs232_data_out_buff[1]=spc_stat;
-rs232_data_out_buff[2]=load_U;
-rs232_data_out_buff[3]=load_I;
-rs232_data_out_buff[4]=net_Ua;
-rs232_data_out_buff[5]=net_Ub;
-rs232_data_out_buff[6]=net_Uc;
-rs232_data_out_buff[7]=net_F3;
-rs232_data_out_buff[8]=t_ext[0];
-rs232_data_out_buff[9]=bps[0]._Uii;
-rs232_data_out_buff[10]=bps[0]._Ii;
-rs232_data_out_buff[11]=bps[0]._Ti;
-rs232_data_out_buff[12]=bps[0]._av;
-rs232_data_out_buff[13]=bps[1]._Uii;
-rs232_data_out_buff[14]=bps[1]._Ii;
-rs232_data_out_buff[15]=bps[1]._Ti;
-rs232_data_out_buff[16]=bps[1]._av;
-rs232_data_out_buff[17]=bps[2]._Uii;
-rs232_data_out_buff[18]=bps[2]._Ii;
-rs232_data_out_buff[19]=bps[2]._Ti;
-rs232_data_out_buff[20]=bps[2]._av;
-rs232_data_out_buff[21]=bps[3]._Uii;
-rs232_data_out_buff[22]=bps[3]._Ii;
-rs232_data_out_buff[23]=bps[3]._Ti;
-rs232_data_out_buff[24]=bps[3]._av;
-rs232_data_out_buff[25]=Ib_ips_termokompensat;
-
-uart_out_adr0 ((char*)rs232_data_out_buff, 52);
 }
 
 /*
@@ -562,24 +497,6 @@ else if ( IIRValue == IIR_RDA )	/* Receive Data Available */
 
 	if(data==0x0d)
 		{
-		if(BAT_TYPE==2)
-			{
-			if(sacredSunRequestPhase==0)	mem_copy (liBatteryInBuff, bat_drv_rx_buff,  bat_drv_rx_cnt);
-			else if(sacredSunRequestPhase==1)	mem_copy (&liBatteryInBuff[150], bat_drv_rx_buff,  bat_drv_rx_cnt);
-			sacredSunSilentCnt=0;
-			}
-		else if (BAT_TYPE==3)
-			{
-			numOfPacks_=((ascii2halFhex(bat_drv_rx_buff[15]))<<4)+((ascii2halFhex(bat_drv_rx_buff[16])));
-			if(numOfPacks_)numOfPacks_--;
-		   	if(numOfPacks_<0)numOfPacks_=0;
-			if(numOfPacks_>NUMBAT)numOfPacks_=0;
-			zTTSilentCnt[numOfPacks_]=50;
-
-			if(zTTRequestPhase==0)	mem_copy (liBatteryInBuff, bat_drv_rx_buff,  bat_drv_rx_cnt);
-			else if(zTTRequestPhase==1)	mem_copy (&liBatteryInBuff[150], bat_drv_rx_buff,  bat_drv_rx_cnt);
-			//zTTSilentCnt=0;
-			}
 		}
 
 	}

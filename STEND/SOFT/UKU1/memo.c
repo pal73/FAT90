@@ -9,7 +9,7 @@
 //-----------------------------------------------
 void memo_read (void)
 {
-char i;
+//char i;
 //Ktsrc[0]=lc640_read_int(KTSRC1);
 
 //Ktsrc[1]=lc640_read_int(KTSRC2);
@@ -292,14 +292,8 @@ RELE_SET_MASK[1]=lc640_read_int(EE_RELE_SET_MASK1);
 RELE_SET_MASK[2]=lc640_read_int(EE_RELE_SET_MASK2);
 RELE_SET_MASK[3]=lc640_read_int(EE_RELE_SET_MASK3);
 
-for(i=0;i<64;i++)
-	{
-	snmp_location[i]=lc640_read(EE_LOCATION+i);
-	}
-for(i=0;i<10;i++)
-	{
-	snmp_community[i]=lc640_read(EE_COMMUNITY+(i*2));
-	}
+
+
 
 __ee_vz_cnt=lc640_read_int(EE_VZ_CNT);
 __ee_spc_stat=lc640_read_int(EE_SPC_STAT);

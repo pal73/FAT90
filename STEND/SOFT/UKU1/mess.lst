@@ -1243,11 +1243,11 @@ S#define SHIFT_REL_VENT		9
 N#endif
 N
 N#ifdef UKU_220_IPS_TERMOKOMPENSAT
-S#define SHIFT_REL_BAT1	     8
-S#define SHIFT_REL_BAT2	     6
-S#define SHIFT_REL_AV_NET		25
-S#define SHIFT_REL_AV_BPS	     5
-S#define SHIFT_REL_AV_BAT	     4
+N#define SHIFT_REL_BAT1	     8
+N#define SHIFT_REL_BAT2	     6
+N#define SHIFT_REL_AV_NET		25
+N#define SHIFT_REL_AV_BPS	     5
+N#define SHIFT_REL_AV_BAT	     4
 N#endif
 N
 N#ifdef UKU_220_V2

@@ -1,6 +1,8 @@
 #include "stm8s.h"
 #include "main.h"
 #include "uart3.h"
+#include "ds1307.h"
+#include "lowlev.h"
 #include <string.h>
 #include <stdlib.h>
 
@@ -61,6 +63,8 @@ if (rx_status3 & (UART3_SR_RXNE))
 //-----------------------------------------------
 void uart3_in_an (void)
 {
+int tempIN[6],tempCRC;
+
 	disableInterrupts();
 if(bRXIN3)
 	{
@@ -84,6 +88,51 @@ if(bRXIN3)
 	else if(strstr(uart3_an_buffer,"ERRORHI"))
 		{
 		airSensorErrorStat=taesHI;
+		}
+	else if(strstr(uart3_an_buffer,"OPTR"))
+		{
+		ptr1=strstr(uart3_an_buffer,"OPTR");	
+		ptr2=strstr(uart3_an_buffer,"CRC");
+		memcpy(digi,ptr1+4,ptr2-ptr1-4);
+		tempIN[0]=(int)atoi(digi);
+		//memcpy(digi,ptr2+4,ptr2-ptr1-4);
+		
+		//TODO проверку контрольной суммы
+		optr_stat=(char)tempIN[0];
+		optr_kontr_cnt=50;
+		}
+	else if(strstr(uart3_an_buffer,"DATA"))
+		{
+		signed char temp;	
+		ptr1=strstr(uart3_an_buffer,"DATA");	
+		ptr2=strstr(uart3_an_buffer,"CRC");
+		memcpy(digi,ptr1+4,2);
+		temp=(char)atoi(digi);
+		gran_char(&temp,0,99);
+		_ds1307_write_byte(6,((temp/10)<<4)+(temp%10));
+		memcpy(digi,ptr1+6,2);
+		temp=(char)atoi(digi);
+		gran_ring_char(&temp,1,12);
+		_ds1307_write_byte(5,((temp/10)<<4)+(temp%10));	
+		memcpy(digi,ptr1+8,2);
+		temp=(char)atoi(digi);
+		gran_ring_char(&temp,1,31);
+		_ds1307_write_byte(4,((temp/10)<<4)+(temp%10));
+		memcpy(digi,ptr1+10,2);
+		temp=(char)atoi(digi);
+		gran_ring_char(&temp,1,7);
+		_ds1307_write_byte(3,temp&0x07);
+		memcpy(digi,ptr1+12,2);
+		temp=(char)atoi(digi);
+		gran_ring_char(&temp,0,23);
+		_ds1307_write_byte(2,(((temp/10)<<4)+(temp%10))&0b10111111);		
+		memcpy(digi,ptr1+14,2);
+		temp=(char)atoi(digi);
+		gran_ring_char(&temp,0,59);
+		_ds1307_write_byte(1,((temp/10)<<4)+(temp%10));		
+		//TODO проверку контрольной суммы
+		optr_stat=(char)tempIN[0];
+		optr_kontr_cnt=50;
 		}		
 	}
 	enableInterrupts();

@@ -67,6 +67,7 @@ static char bcnt;
 bcnt++; 
 if(bcnt>9)bcnt=0;
 //bU_BAT2REL_AV_BAT=0;
+/*
 if((avar_ind_stat)||(ips_bat_av_stat))beep_init(0x33333333,'R');
 
 
@@ -97,7 +98,7 @@ else
 	{
 	beep_init(0x00000000,'S');
 	bSILENT=0;
-	} 
+	}  */
 
 
 //if(!avar_ind_stat)beep_init(0x00000000,'R');
@@ -125,12 +126,6 @@ else if(bIbr) beep_init(0x00000001,'R');
 
 
 
-bU_BAT2REL_AV_BAT=0;
-#ifdef UKU206_220
-if  (((bat[0]._Ub<(USIGN*10))&&(BAT_IS_ON[0]==bisON))) 
-	{
-	bU_BAT2REL_AV_BAT=1;
-	}
-#endif
+
 
 }

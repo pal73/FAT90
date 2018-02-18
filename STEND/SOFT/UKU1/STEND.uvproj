@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no" ?>
 <Project xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="project_proj.xsd">
 
-  <SchemaVersion>1.1</SchemaVersion>
+  <SchemaVersion>1.0</SchemaVersion>
 
   <Header>### uVision Project, (C) Keil Software</Header>
 
@@ -29,7 +29,6 @@
           <SLE66CMisc></SLE66CMisc>
           <SLE66AMisc></SLE66AMisc>
           <SLE66LinkerMisc></SLE66LinkerMisc>
-          <SFDFile></SFDFile>
           <UseEnv>0</UseEnv>
           <BinPath></BinPath>
           <IncludePath></IncludePath>
@@ -344,7 +343,7 @@
             <uThumb>0</uThumb>
             <VariousControls>
               <MiscControls></MiscControls>
-              <Define>UKU2071x</Define>
+              <Define>UKU_VD, UKU_220_IPS_TERMOKOMPENSAT, UKU2071x</Define>
               <Undefine></Undefine>
               <IncludePath></IncludePath>
             </VariousControls>
@@ -419,11 +418,6 @@
               <FileType>2</FileType>
               <FilePath>.\startup_LPC17xx.s</FilePath>
             </File>
-            <File>
-              <FileName>Net_Config_HTTP.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>.\Net_Config_HTTP.c</FilePath>
-            </File>
           </Files>
         </Group>
         <Group>
@@ -455,11 +449,6 @@
               <FilePath>.\gran.c</FilePath>
             </File>
             <File>
-              <FileName>avar_hndl.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>.\avar_hndl.c</FilePath>
-            </File>
-            <File>
               <FileName>eeprom_map.c</FileName>
               <FileType>1</FileType>
               <FilePath>.\eeprom_map.c</FilePath>
@@ -483,16 +472,6 @@
               <FileName>graphic.c</FileName>
               <FileType>1</FileType>
               <FilePath>.\graphic.c</FilePath>
-            </File>
-            <File>
-              <FileName>snmp_data_file.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>.\snmp_data_file.c</FilePath>
-            </File>
-            <File>
-              <FileName>SNMP_MIB.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>.\SNMP_MIB.c</FilePath>
             </File>
           </Files>
         </Group>
@@ -589,132 +568,9 @@
           <GroupName>Connecting</GroupName>
           <Files>
             <File>
-              <FileName>full_can.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>.\full_can.c</FilePath>
-            </File>
-            <File>
-              <FileName>uart0.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>.\uart0.c</FilePath>
-            </File>
-            <File>
-              <FileName>modbus.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>.\modbus.c</FilePath>
-            </File>
-            <File>
-              <FileName>uart2.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>.\uart2.c</FilePath>
-              <FileOption>
-                <CommonProperty>
-                  <UseCPPCompiler>2</UseCPPCompiler>
-                  <RVCTCodeConst>0</RVCTCodeConst>
-                  <RVCTZI>0</RVCTZI>
-                  <RVCTOtherData>0</RVCTOtherData>
-                  <ModuleSelection>0</ModuleSelection>
-                  <IncludeInBuild>0</IncludeInBuild>
-                  <AlwaysBuild>0</AlwaysBuild>
-                  <GenerateAssemblyFile>2</GenerateAssemblyFile>
-                  <AssembleAssemblyFile>2</AssembleAssemblyFile>
-                  <PublicsOnly>2</PublicsOnly>
-                  <StopOnExitCode>11</StopOnExitCode>
-                  <CustomArgument></CustomArgument>
-                  <IncludeLibraryModules></IncludeLibraryModules>
-                </CommonProperty>
-                <FileArmAds>
-                  <Cads>
-                    <interw>2</interw>
-                    <Optim>0</Optim>
-                    <oTime>2</oTime>
-                    <SplitLS>2</SplitLS>
-                    <OneElfS>2</OneElfS>
-                    <Strict>2</Strict>
-                    <EnumInt>2</EnumInt>
-                    <PlainCh>2</PlainCh>
-                    <Ropi>2</Ropi>
-                    <Rwpi>2</Rwpi>
-                    <wLevel>0</wLevel>
-                    <uThumb>2</uThumb>
-                    <VariousControls>
-                      <MiscControls></MiscControls>
-                      <Define></Define>
-                      <Undefine></Undefine>
-                      <IncludePath></IncludePath>
-                    </VariousControls>
-                  </Cads>
-                </FileArmAds>
-              </FileOption>
-            </File>
-            <File>
-              <FileName>bat_driver.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>.\bat_driver.c</FilePath>
-            </File>
-            <File>
-              <FileName>mcp2515.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>.\mcp2515.c</FilePath>
-              <FileOption>
-                <CommonProperty>
-                  <UseCPPCompiler>2</UseCPPCompiler>
-                  <RVCTCodeConst>0</RVCTCodeConst>
-                  <RVCTZI>0</RVCTZI>
-                  <RVCTOtherData>0</RVCTOtherData>
-                  <ModuleSelection>0</ModuleSelection>
-                  <IncludeInBuild>2</IncludeInBuild>
-                  <AlwaysBuild>2</AlwaysBuild>
-                  <GenerateAssemblyFile>2</GenerateAssemblyFile>
-                  <AssembleAssemblyFile>2</AssembleAssemblyFile>
-                  <PublicsOnly>2</PublicsOnly>
-                  <StopOnExitCode>11</StopOnExitCode>
-                  <CustomArgument></CustomArgument>
-                  <IncludeLibraryModules></IncludeLibraryModules>
-                </CommonProperty>
-                <FileArmAds>
-                  <Cads>
-                    <interw>2</interw>
-                    <Optim>0</Optim>
-                    <oTime>2</oTime>
-                    <SplitLS>2</SplitLS>
-                    <OneElfS>2</OneElfS>
-                    <Strict>2</Strict>
-                    <EnumInt>2</EnumInt>
-                    <PlainCh>2</PlainCh>
-                    <Ropi>2</Ropi>
-                    <Rwpi>2</Rwpi>
-                    <wLevel>0</wLevel>
-                    <uThumb>2</uThumb>
-                    <VariousControls>
-                      <MiscControls></MiscControls>
-                      <Define></Define>
-                      <Undefine></Undefine>
-                      <IncludePath></IncludePath>
-                    </VariousControls>
-                  </Cads>
-                </FileArmAds>
-              </FileOption>
-            </File>
-            <File>
-              <FileName>sacred_sun.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>.\sacred_sun.c</FilePath>
-            </File>
-            <File>
               <FileName>sc16is7xx.c</FileName>
               <FileType>1</FileType>
               <FilePath>.\sc16is7xx.c</FilePath>
-            </File>
-            <File>
-              <FileName>ztt.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>.\ztt.c</FilePath>
-            </File>
-            <File>
-              <FileName>MODBUS_TCP.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>.\MODBUS_TCP.c</FilePath>
             </File>
           </Files>
         </Group>
@@ -723,18 +579,6 @@
         </Group>
         <Group>
           <GroupName>Library</GroupName>
-          <Files>
-            <File>
-              <FileName>EMAC_LPC17xx.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>C:\Keil\ARM\Boards\Keil\MCB1700\RL\TCPnet\Library\EMAC_LPC17xx.c</FilePath>
-            </File>
-            <File>
-              <FileName>TCP_CM3.lib</FileName>
-              <FileType>4</FileType>
-              <FilePath>C:\Keil\ARM\RV31\LIB\TCP_CM3.lib</FilePath>
-            </File>
-          </Files>
         </Group>
       </Groups>
     </Target>

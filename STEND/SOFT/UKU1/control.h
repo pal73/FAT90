@@ -13,7 +13,6 @@ extern char num_necc_up,num_necc_down;
 extern unsigned char sh_cnt0,b1Hz_sh;
 
 
-extern short cntrl_stat_blok_cnt,cntrl_stat_blok_cnt_,cntrl_stat_blok_cnt_plus[2],cntrl_stat_blok_cnt_minus[2];
 
 //***********************************************
 //АЦП 
@@ -56,15 +55,13 @@ void adc_drv_(void);
 void avg_hndl(void);
 //void bp_on(char in);
 //void bp_off(char in);
-void rele_hndl(void);
+void rele_drv(void);
 void bps_hndl(void);
 void bps_drv(char in);
 void bat_hndl(void);
 void bat_drv(char in);
 void u_necc_hndl(void);
-void cntrl_hndl(void);
 void zar_drv(void);
-void num_necc_hndl(void);
 void ke_start(char in);
 void zar_drv(void);
 void vent_hndl(void);
@@ -93,21 +90,7 @@ extern short __ee_spc_stat;
 extern short __ee_spc_bat;
 extern short __ee_spc_phase;
 
-//***********************************************
-//Управление ШИМом
-extern signed short cntrl_stat;
-extern signed short cntrl_stat_old;
-extern signed short cntrl_stat_new;
-extern signed short Ibmax;
-extern unsigned char unh_cnt0,unh_cnt1,b1Hz_unh;
-extern unsigned char	ch_cnt0,b1Hz_ch,i,iiii;
-extern unsigned char	ch_cnt1,b1_30Hz_ch;
-extern unsigned char	ch_cnt2,b1_10Hz_ch;
-extern unsigned short IZMAX_;
-extern unsigned short IZMAX_70;
-extern unsigned short IZMAX_130;
-extern unsigned short Ubpsmax;
-extern unsigned short cntrl_stat_blck_cnt;
+
 
 extern short plazma_sk;
 extern char	plazma_inv[4];

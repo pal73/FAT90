@@ -11,7 +11,7 @@ void beep_init(long zvuk,char fl);
 void beep_hndl(void);
 #line 2 "beep.c"
 #line 1 "main.h"
-#line 1 "C:\\Keil\\ARM\\RV31\\INC\\rtl.h"
+#line 1 "C:\\Keil\\\\ARM\\RV31\\INC\\rtl.h"
 
 
 
@@ -31,7 +31,7 @@ void beep_hndl(void);
  
 
 
-#line 27 "C:\\Keil\\ARM\\RV31\\INC\\rtl.h"
+#line 27 "C:\\Keil\\\\ARM\\RV31\\INC\\rtl.h"
 
 
 
@@ -53,9 +53,7 @@ typedef unsigned long long U64;
 typedef unsigned char   BIT;
 typedef unsigned int    BOOL;
 
-#line 54 "C:\\Keil\\ARM\\RV31\\INC\\rtl.h"
-
-#line 66 "C:\\Keil\\ARM\\RV31\\INC\\rtl.h"
+#line 54 "C:\\Keil\\\\ARM\\RV31\\INC\\rtl.h"
 
 
 
@@ -102,7 +100,7 @@ typedef U32 OS_RESULT;
 
 
 
-#line 194 "C:\\Keil\\ARM\\RV31\\INC\\rtl.h"
+#line 182 "C:\\Keil\\\\ARM\\RV31\\INC\\rtl.h"
 
 
 
@@ -119,7 +117,7 @@ extern OS_RESULT rt_tsk_prio   (OS_TID task_id, U8 new_prio);
 extern OS_TID    rt_tsk_create (void (*task)(void), U8 priority, void *stk, void *argv);
 extern OS_RESULT rt_tsk_delete (OS_TID task_id);
 
-#line 230 "C:\\Keil\\ARM\\RV31\\INC\\rtl.h"
+#line 218 "C:\\Keil\\\\ARM\\RV31\\INC\\rtl.h"
 
 extern void      _os_sys_init(U32 p, void (*task)(void), U32 prio_stksz,
                                      void *stk)                        __svc_indirect(0);
@@ -299,10 +297,10 @@ extern int fdefrag (const char *drive);
 
 
  
-#line 415 "C:\\Keil\\ARM\\RV31\\INC\\rtl.h"
+#line 403 "C:\\Keil\\\\ARM\\RV31\\INC\\rtl.h"
 
  
-#line 428 "C:\\Keil\\ARM\\RV31\\INC\\rtl.h"
+#line 416 "C:\\Keil\\\\ARM\\RV31\\INC\\rtl.h"
 
  
 
@@ -311,7 +309,7 @@ extern int fdefrag (const char *drive);
 
 
  
-#line 442 "C:\\Keil\\ARM\\RV31\\INC\\rtl.h"
+#line 430 "C:\\Keil\\\\ARM\\RV31\\INC\\rtl.h"
 
  
 
@@ -361,7 +359,6 @@ extern void dhcp_disable (void);
 extern BOOL igmp_join (U8 *group_ip);
 extern BOOL igmp_leave (U8 *group_ip);
 extern BOOL snmp_trap (U8 *manager_ip, U8 gen_trap, U8 spec_trap, U16 *obj_list);
-extern BOOL snmp_set_community (const char *community);
 
 
 
@@ -633,15 +630,12 @@ extern char cnt_of_slave;
 
 
 typedef enum {
-	iMn_VD,
+	iMn,
 	iSet_VD,
-
-	iMn_TELECORE2017,
-
 	iSrv_sl,iNet,iNet3,iNetEM,
 	iSet,iSet_220_IPS_TERMOKOMPENSAT,iSet_220_V2,
 	iInv_set,
-	iMakb,
+	iOptr_kontr,
 	iBps,iBps_elteh,iS2,iSet_prl,iK_prl,iDnd,
 	iK, iK_220_IPS_TERMOKOMPENSAT,iK_220_IPS_TERMOKOMPENSAT_IB,iK_TELECORE,iK_VD,
 	iSpcprl,iSpc,k,Crash_0,Crash_1,iKednd,iAv_view_avt,iAKE,iSpc_termocompensat,
@@ -935,43 +929,6 @@ extern signed short I_LOAD_MODE;
 
 
 
-typedef struct
-     {
-	char 		_cnt_to_block;
-	signed short	_Ub;
-     signed short	_Ubm;
-     signed short	_dUbm;
-	signed short	_Ib;
-	signed short	_Tb;
-	char 		_nd;
-	char 		_cnt_wrk;
-	char 		_wrk;
-	unsigned short _zar;
-	char 		_full_ver;
-	signed long 	_zar_cnt;
-	signed long 	_zar_cnt_ke;
-	unsigned short _Iintegr,_Iintegr_; 
-	signed short 	_u_old[8];
-	signed short	_u_old_cnt;
-	unsigned long 	_wrk_date[2];
-	char 		_rel_stat;
-	char			_av;
-	char			_time_cnt;
-	char 		_temper_stat;
-	
-	
-	signed short 	_sign_temper_cnt;
-	signed short 	_max_temper_cnt;
-	signed long 	_resurs_cnt;
-	signed short 	_cnt_as; 	
-     
-	
-	} BAT_STAT; 
-extern BAT_STAT bat[2],bat_ips;
-extern signed short		bat_u_old_cnt;
-extern signed short 	Ib_ips_termokompensat;
-
-
 typedef enum {bsOFF=0,bsCOMM_ON,bsOK} enum_batStat;
 
 
@@ -1035,83 +992,6 @@ extern BYPS_STAT byps;
 
 
 
-typedef struct
-     {
-	signed short	_U[5];
-	signed short	_Ub[5];
-	signed short	_T[5];
-	signed short	_T_nd[5];
-	signed short 	_cnt; 	
-	} MAKB_STAT; 
-extern MAKB_STAT makb[4];
-
-
-
-typedef struct
-     {
-	signed short	_max_cell_volt;
-	signed short	_min_cell_volt;
-	signed short	_max_cell_temp;
-	signed short	_min_cell_temp;
-	signed short	_tot_bat_volt;
-	signed short	_ch_curr;
-	signed short	_dsch_curr;
-	signed short	_rat_cap;
-	signed short	_s_o_h;
-	signed short	_s_o_c;
-	signed short	_c_c_l_v;
-	signed short	_r_b_t;
-	signed short	_b_p_ser_num;
-	signed short   _flags1;
-	signed short 	_flags2;
-	signed short 	_communication2lvlErrorStat; 	
-	signed short	_communication2lvlErrorCnt;  	
-	signed short 	_cnt;
-	signed short 	_communicationFullErrorStat;	
-	signed short   _battIsOn;		
-	char 		_plazma[8];		
-	signed short 	_isOnCnt;
-	signed short	_s_o_c_abs;		
-	signed short 	_s_o_c_percent; 
-	signed short	_plazma_ss;
-	signed short	_zar_percent;	
-	signed char		_cell_temp_1;	
-	signed char		_cell_temp_2;	
-	signed char		_cell_temp_3;	
-	signed char		_cell_temp_4;	
-	signed char		_cell_temp_ambient;	
-	signed char		_cell_temp_power;	
-	
-	
-	
-	signed char		_charge_and_discharge_current_alarm_status;	 	
-	signed char 	_battery_total_voltage_alarm_status;			
-	signed char		_custom_alarm_quantity;							
-	signed char		_balanced_event_code;							
-	signed char 	_voltage_event_code;							
-	signed char 	_temperature_event_code;						
-	signed char		_current_event_code;							
-	signed char		_fet_status_code;								
-	signed short	_balanced_status_code;							
-	signed char 	_system_status_code;							
-
-	} LAKB_STAT; 
-extern LAKB_STAT lakb[3];
-extern char lakb_damp[1][42];
-extern char bLAKB_KONF_CH;
-extern char bLAKB_KONF_CH_old;
-extern char lakb_ison_mass[7];
-extern short lakb_mn_ind_cnt;
-extern char bLAKB_KONF_CH_EN;
-extern char bRS485ERR;
-extern short LBAT_STRUKT;
-extern char lakb_error_cnt;	
-extern short numOfPacks,numOfPacks_;
-extern short numOfCells, numOfTemperCells, baseOfData;
-extern short lakb_stat_comm_error;	
-extern short lakbNotErrorNum;		
-extern short lakbKanErrorCnt;		
-extern short lakbKanErrorStat;		
 
 
 
@@ -1120,62 +1000,6 @@ extern short lakbKanErrorStat;
 extern char can_slot[12][16];
 extern char plazma_can_inv[3];
 
-
-
-
-
-typedef struct
-    {
-    enum {dSRC=3,dINV=5,dNET_METR=7,dIBAT_METR=9,dMAKB=11}_device;
-	char _av;
-	
-	
-	
-	
-	
- 	enum {bsOFF_AV_NET,bsAPV,bsWRK,bsRDY,bsBL,bsAV}_state;
-    char _cnt;
-     char _cnt_old;
-     char _cnt_more2;
-     char _buff[20]; 
-     
-     
-     
-     
-     signed _Uii; 
-     signed _Uin;
-     signed _Ii;
-     signed _Ti; 
-     char _flags_tu;
-	 signed _Uisum;
-     
-     
-     
-     
-     
-     signed _vol_u;
-     signed _vol_i;
-     char _is_on_cnt;
-     
-     int _ist_blok_host_cnt;
-     short _blok_cnt; 
-     char _flags_tm;
-	signed short _overload_av_cnt;     
-     signed short _temp_av_cnt;
-     signed short _umax_av_cnt;
-     signed short _umin_av_cnt;
-     signed _rotor;
-     signed  short _x_; 
-     char _adr_ee;
-	char _last_avar;
-	char _vent_resurs_temp[4];
-	unsigned short _vent_resurs;
-	signed short debug_info_to_uku0;
-	signed short debug_info_to_uku1;
-	signed short _avg;
-	signed short _cntrl_stat;
-     } BPS_STAT; 
-extern BPS_STAT bps[29];
 
 
 
@@ -1354,11 +1178,11 @@ extern enum_av_tbox_stat av_tbox_stat;
 extern signed short av_tbox_cnt;
 extern char tbatdisable_cmnd,tloaddisable_cmnd;
 extern short tbatdisable_cnt,tloaddisable_cnt;
-#line 1458 "main.h"
+#line 1285 "main.h"
 
-#line 1469 "main.h"
+#line 1296 "main.h"
 
-#line 1485 "main.h"
+#line 1312 "main.h"
 
 extern char ext_can_cnt;
 
@@ -1368,9 +1192,8 @@ void ADC_IRQHandler(void);
 
 
 
-
-typedef enum  {avtOFF,avtON} enum_avt_stat;
-extern enum_avt_stat avt_stat[12],avt_stat_old[12]; 
+typedef enum  {osOFF,osON} enum_optr_stat;
+extern enum_optr_stat optr_stat[3]; 
 
 
 
@@ -1379,10 +1202,6 @@ extern short bIBAT_SMKLBR;
 extern char ibat_metr_cnt;
 
 
-
-extern signed short npn_tz_cnt;
-typedef enum {npnsOFF=0,npnsON} enum_npn_stat;
-extern enum_npn_stat npn_stat;
 
 extern char snmp_plazma;
 
@@ -1402,7 +1221,7 @@ extern short can_plazma;
 
 
 
-#line 1539 "main.h"
+#line 1361 "main.h"
 
 
 
@@ -1593,7 +1412,9 @@ typedef enum IRQn
 
 
 
-#line 1 "C:\\Keil\\ARM\\RV31\\INC\\core_cm3.h"
+#line 1 "C:\\Keil\\\\ARM\\RV31\\INC\\core_cm3.h"
+ 
+
 
 
 
@@ -1651,21 +1472,6 @@ typedef enum IRQn
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
  
 
  
@@ -1678,9 +1484,7 @@ typedef enum IRQn
  
 
 
-#line 1 "C:\\Keil\\ARM\\RV31\\INC\\stdint.h"
- 
- 
+
 
 
 
@@ -1696,7 +1500,27 @@ typedef enum IRQn
 
 
 
-#line 25 "C:\\Keil\\ARM\\RV31\\INC\\stdint.h"
+
+
+#line 1 "C:\\Keil\\\\ARM\\RV31\\INC\\stdint.h"
+ 
+ 
+
+
+
+
+
+ 
+
+
+
+
+
+
+
+
+
+#line 25 "C:\\Keil\\\\ARM\\RV31\\INC\\stdint.h"
 
 
 
@@ -1861,7 +1685,7 @@ typedef unsigned       __int64 uintmax_t;
 
 
 
-#line 196 "C:\\Keil\\ARM\\RV31\\INC\\stdint.h"
+#line 196 "C:\\Keil\\\\ARM\\RV31\\INC\\stdint.h"
 
      
 
@@ -1894,14 +1718,14 @@ typedef unsigned       __int64 uintmax_t;
 
 
 
-#line 260 "C:\\Keil\\ARM\\RV31\\INC\\stdint.h"
+#line 260 "C:\\Keil\\\\ARM\\RV31\\INC\\stdint.h"
 
 
 
  
 
 
-#line 86 "C:\\Keil\\ARM\\RV31\\INC\\core_cm3.h"
+#line 91 "C:\\Keil\\\\ARM\\RV31\\INC\\core_cm3.h"
 
 
 
@@ -1914,14 +1738,6 @@ typedef unsigned       __int64 uintmax_t;
 
 
 
-
-
-
-
-
- 
-
-#line 112 "C:\\Keil\\ARM\\RV31\\INC\\core_cm3.h"
 
 
 
@@ -1929,15 +1745,16 @@ typedef unsigned       __int64 uintmax_t;
 
  
 
+#line 117 "C:\\Keil\\\\ARM\\RV31\\INC\\core_cm3.h"
+
+
+
+
 
  
 
 
-
-
-
  
-
 
 
 
@@ -1947,19 +1764,23 @@ typedef unsigned       __int64 uintmax_t;
 typedef struct
 {
   volatile uint32_t ISER[8];                       
-       uint32_t RESERVED0[24];
+       uint32_t RESERVED0[24];                                   
   volatile uint32_t ICER[8];                       
-       uint32_t RSERVED1[24];
+       uint32_t RSERVED1[24];                                    
   volatile uint32_t ISPR[8];                       
-       uint32_t RESERVED2[24];
+       uint32_t RESERVED2[24];                                   
   volatile uint32_t ICPR[8];                       
-       uint32_t RESERVED3[24];
+       uint32_t RESERVED3[24];                                   
   volatile uint32_t IABR[8];                       
-       uint32_t RESERVED4[56];
+       uint32_t RESERVED4[56];                                   
   volatile uint8_t  IP[240];                       
-       uint32_t RESERVED5[644];
+       uint32_t RESERVED5[644];                                  
   volatile  uint32_t STIR;                          
-}  NVIC_Type;
+}  NVIC_Type;                                               
+   
+
+
+
 
 
  
@@ -1984,7 +1805,192 @@ typedef struct
   volatile const  uint32_t ADR;                           
   volatile const  uint32_t MMFR[4];                       
   volatile const  uint32_t ISAR[5];                       
-} SCB_Type;
+} SCB_Type;                                                
+
+ 
+
+
+
+
+
+
+
+
+
+
+
+
+ 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ 
+
+
+
+
+
+
+ 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ 
+
+
+
+
+
+
+
+
+
+ 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                                     
+
+
+
+
+
+
+
+
+
+ 
+
+
+
+
+
+
+
+
+
+ 
+
+
+
+
+
+
+
+
+
+ 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+   
+
+
+
 
 
  
@@ -1996,6 +2002,41 @@ typedef struct
   volatile const  uint32_t CALIB;                         
 } SysTick_Type;
 
+ 
+
+
+
+
+
+
+
+
+
+
+
+
+ 
+
+
+
+ 
+
+
+
+ 
+
+
+
+
+
+
+
+
+   
+
+
+
+
 
  
 typedef struct
@@ -2006,33 +2047,88 @@ typedef struct
     volatile  uint16_t   u16;                       
     volatile  uint32_t   u32;                       
   }  PORT [32];                                
-       uint32_t RESERVED0[864];
+       uint32_t RESERVED0[864];                                 
   volatile uint32_t TER;                           
-       uint32_t RESERVED1[15];
+       uint32_t RESERVED1[15];                                  
   volatile uint32_t TPR;                           
-       uint32_t RESERVED2[15];
+       uint32_t RESERVED2[15];                                  
   volatile uint32_t TCR;                           
-       uint32_t RESERVED3[29];
+       uint32_t RESERVED3[29];                                  
   volatile uint32_t IWR;                           
   volatile uint32_t IRR;                           
   volatile uint32_t IMCR;                          
-       uint32_t RESERVED4[43];
+       uint32_t RESERVED4[43];                                  
   volatile uint32_t LAR;                           
   volatile uint32_t LSR;                           
-       uint32_t RESERVED5[6];
+       uint32_t RESERVED5[6];                                   
   volatile const  uint32_t PID4;                          
-  volatile const  uint32_t PID5;
-  volatile const  uint32_t PID6;
-  volatile const  uint32_t PID7;
-  volatile const  uint32_t PID0;
-  volatile const  uint32_t PID1;
-  volatile const  uint32_t PID2;
-  volatile const  uint32_t PID3;
-  volatile const  uint32_t CID0;
-  volatile const  uint32_t CID1;
-  volatile const  uint32_t CID2;
-  volatile const  uint32_t CID3;
-} ITM_Type;
+  volatile const  uint32_t PID5;                          
+  volatile const  uint32_t PID6;                          
+  volatile const  uint32_t PID7;                          
+  volatile const  uint32_t PID0;                          
+  volatile const  uint32_t PID1;                          
+  volatile const  uint32_t PID2;                          
+  volatile const  uint32_t PID3;                          
+  volatile const  uint32_t CID0;                          
+  volatile const  uint32_t CID1;                          
+  volatile const  uint32_t CID2;                          
+  volatile const  uint32_t CID3;                          
+} ITM_Type;                                                
+
+ 
+
+
+
+ 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ 
+
+
+
+ 
+
+
+
+ 
+
+
+
+ 
+
+
+
+
+
+
+
+
+   
+
+
+
 
 
  
@@ -2047,9 +2143,27 @@ typedef struct
 
 } InterruptType_Type;
 
+ 
+
+
 
  
 
+
+
+
+
+
+
+
+   
+
+
+
+
+
+
+ 
 typedef struct
 {
   volatile const  uint32_t TYPE;                          
@@ -2063,7 +2177,74 @@ typedef struct
   volatile uint32_t RASR_A2;                       
   volatile uint32_t RBAR_A3;                       
   volatile uint32_t RASR_A3;                       
-} MPU_Type;
+} MPU_Type;                                                
+
+ 
+
+
+
+
+
+
+
+
+
+ 
+
+
+
+
+
+
+
+
+
+ 
+
+
+
+ 
+
+
+
+
+
+
+
+
+
+ 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+   
+
+
+
 
 
 
@@ -2076,21 +2257,6 @@ typedef struct
   volatile uint32_t DEMCR;                         
 } CoreDebug_Type;
 
-
- 
-#line 274 "C:\\Keil\\ARM\\RV31\\INC\\core_cm3.h"
-
-#line 281 "C:\\Keil\\ARM\\RV31\\INC\\core_cm3.h"
-
-
-
-
-
-
-
-
-
-
  
 
 
@@ -2098,7 +2264,107 @@ typedef struct
 
 
 
-#line 311 "C:\\Keil\\ARM\\RV31\\INC\\core_cm3.h"
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ 
+
+
+
+
+
+
+ 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+   
+
+
+ 
+#line 721 "C:\\Keil\\\\ARM\\RV31\\INC\\core_cm3.h"
+
+#line 728 "C:\\Keil\\\\ARM\\RV31\\INC\\core_cm3.h"
+
+
+
+
+
+
+   
+
+
+
+
+ 
+
+
+
+
+
+#line 758 "C:\\Keil\\\\ARM\\RV31\\INC\\core_cm3.h"
 
 
  
@@ -2109,14 +2375,13 @@ typedef struct
 
 
 
-#line 336 "C:\\Keil\\ARM\\RV31\\INC\\core_cm3.h"
+#line 783 "C:\\Keil\\\\ARM\\RV31\\INC\\core_cm3.h"
 
 
  
  
  
  
-
 
 
 
@@ -2135,7 +2400,6 @@ extern uint32_t __get_PSP(void);
 
 
 
-
  
 extern void __set_PSP(uint32_t topOfProcStack);
 
@@ -2146,10 +2410,8 @@ extern void __set_PSP(uint32_t topOfProcStack);
 
 
 
-
  
 extern uint32_t __get_MSP(void);
-
 
 
 
@@ -2182,18 +2444,13 @@ extern uint32_t __REV16(uint16_t value);
 extern int32_t __REVSH(int16_t value);
 
 
-#line 502 "C:\\Keil\\ARM\\RV31\\INC\\core_cm3.h"
-
-
-
-
+#line 933 "C:\\Keil\\\\ARM\\RV31\\INC\\core_cm3.h"
 
 
 
 
 
  
-
 
 
 
@@ -2215,15 +2472,12 @@ static __inline uint32_t  __get_BASEPRI(void)
 
 
 
-
  
 static __inline void __set_BASEPRI(uint32_t basePri)
 {
   register uint32_t __regBasePri         __asm("basepri");
-  __regBasePri = (basePri & 0x1ff);
+  __regBasePri = (basePri & 0xff);
 }
-
-
 
 
 
@@ -2244,14 +2498,12 @@ static __inline uint32_t __get_PRIMASK(void)
 
 
 
-
  
 static __inline void __set_PRIMASK(uint32_t priMask)
 {
   register uint32_t __regPriMask         __asm("primask");
   __regPriMask = (priMask);
 }
-
 
 
 
@@ -2272,14 +2524,12 @@ static __inline uint32_t __get_FAULTMASK(void)
 
 
 
-
  
 static __inline void __set_FAULTMASK(uint32_t faultMask)
 {
   register uint32_t __regFaultMask       __asm("faultmask");
   __regFaultMask = (faultMask & 1);
 }
-
 
 
 
@@ -2300,7 +2550,6 @@ static __inline uint32_t __get_CONTROL(void)
 
 
 
-
  
 static __inline void __set_CONTROL(uint32_t control)
 {
@@ -2312,13 +2561,18 @@ static __inline void __set_CONTROL(uint32_t control)
 
 
 
-#line 1044 "C:\\Keil\\ARM\\RV31\\INC\\core_cm3.h"
+#line 1445 "C:\\Keil\\\\ARM\\RV31\\INC\\core_cm3.h"
+
+
+
+
 
 
 
  
+ 
 
-
+ 
 
 
 
@@ -2336,12 +2590,13 @@ static __inline void NVIC_SetPriorityGrouping(uint32_t PriorityGroup)
   uint32_t reg_value;
   uint32_t PriorityGroupTmp = (PriorityGroup & 0x07);                          
   
-  reg_value  = ((SCB_Type *) ((0xE000E000) + 0x0D00))->AIRCR;                                                     
-  reg_value &= ~((0xFFFFU << 16) | (0x0F << 8));                               
-  reg_value  = ((reg_value | (0x5FA << 16) | (PriorityGroupTmp << 8)));   
-  ((SCB_Type *) ((0xE000E000) + 0x0D00))->AIRCR = reg_value;
+  reg_value  =  ((SCB_Type *) ((0xE000E000) + 0x0D00))->AIRCR;                                                    
+  reg_value &= ~((0xFFFFul << 16) | (7ul << 8));              
+  reg_value  =  (reg_value                       |
+                (0x5FA << 16) | 
+                (PriorityGroupTmp << 8));                                      
+  ((SCB_Type *) ((0xE000E000) + 0x0D00))->AIRCR =  reg_value;
 }
-
 
 
 
@@ -2353,9 +2608,8 @@ static __inline void NVIC_SetPriorityGrouping(uint32_t PriorityGroup)
  
 static __inline uint32_t NVIC_GetPriorityGrouping(void)
 {
-  return ((((SCB_Type *) ((0xE000E000) + 0x0D00))->AIRCR >> 8) & 0x07);                                           
+  return ((((SCB_Type *) ((0xE000E000) + 0x0D00))->AIRCR & (7ul << 8)) >> 8);    
 }
-
 
 
 
@@ -2369,7 +2623,6 @@ static __inline void NVIC_EnableIRQ(IRQn_Type IRQn)
 {
   ((NVIC_Type *) ((0xE000E000) + 0x0100))->ISER[((uint32_t)(IRQn) >> 5)] = (1 << ((uint32_t)(IRQn) & 0x1F));  
 }
-
 
 
 
@@ -2405,13 +2658,11 @@ static __inline uint32_t NVIC_GetPendingIRQ(IRQn_Type IRQn)
 
 
 
-
  
 static __inline void NVIC_SetPendingIRQ(IRQn_Type IRQn)
 {
   ((NVIC_Type *) ((0xE000E000) + 0x0100))->ISPR[((uint32_t)(IRQn) >> 5)] = (1 << ((uint32_t)(IRQn) & 0x1F));  
 }
-
 
 
 
@@ -2439,7 +2690,6 @@ static __inline uint32_t NVIC_GetActive(IRQn_Type IRQn)
 {
   return((uint32_t)((((NVIC_Type *) ((0xE000E000) + 0x0100))->IABR[(uint32_t)(IRQn) >> 5] & (1 << ((uint32_t)(IRQn) & 0x1F)))?1:0));  
 }
-
 
 
 
@@ -2503,7 +2753,7 @@ static __inline uint32_t NVIC_GetPriority(IRQn_Type IRQn)
  
 static __inline uint32_t NVIC_EncodePriority (uint32_t PriorityGroup, uint32_t PreemptPriority, uint32_t SubPriority)
 {
-  uint32_t PriorityGroupTmp = (PriorityGroup & 0x07);                          
+  uint32_t PriorityGroupTmp = (PriorityGroup & 0x07);           
   uint32_t PreemptPriorityBits;
   uint32_t SubPriorityBits;
 
@@ -2531,11 +2781,10 @@ static __inline uint32_t NVIC_EncodePriority (uint32_t PriorityGroup, uint32_t P
 
 
 
-
  
 static __inline void NVIC_DecodePriority (uint32_t Priority, uint32_t PriorityGroup, uint32_t* pPreemptPriority, uint32_t* pSubPriority)
 {
-  uint32_t PriorityGroupTmp = (PriorityGroup & 0x07);                          
+  uint32_t PriorityGroupTmp = (PriorityGroup & 0x07);           
   uint32_t PreemptPriorityBits;
   uint32_t SubPriorityBits;
 
@@ -2552,12 +2801,6 @@ static __inline void NVIC_DecodePriority (uint32_t Priority, uint32_t PriorityGr
 
 
 
- 
-
-
-
-
-
 
 
 
@@ -2570,13 +2813,15 @@ static __inline void NVIC_DecodePriority (uint32_t Priority, uint32_t PriorityGr
  
 static __inline uint32_t SysTick_Config(uint32_t ticks)
 { 
-  if (ticks > ((1<<24) -1))  return (1);                                              
-
-  ((SysTick_Type *) ((0xE000E000) + 0x0010))->LOAD  =  (ticks & ((1<<24) -1)) - 1;                                       
-  NVIC_SetPriority (SysTick_IRQn, (1<<5) - 1);                             
-  ((SysTick_Type *) ((0xE000E000) + 0x0010))->VAL   =  (0x00);                                                               
-  ((SysTick_Type *) ((0xE000E000) + 0x0010))->CTRL = (1 << 2) | (1<<0) | (1<<1);  
-  return (0);                                                                             
+  if (ticks > (0xFFFFFFul << 0))  return (1);             
+                                                               
+  ((SysTick_Type *) ((0xE000E000) + 0x0010))->LOAD  = (ticks & (0xFFFFFFul << 0)) - 1;       
+  NVIC_SetPriority (SysTick_IRQn, (1<<5) - 1);   
+  ((SysTick_Type *) ((0xE000E000) + 0x0010))->VAL   = 0;                                           
+  ((SysTick_Type *) ((0xE000E000) + 0x0010))->CTRL  = (1ul << 2) | 
+                   (1ul << 1)   | 
+                   (1ul << 0);                     
+  return (0);                                                   
 }
 
 
@@ -2584,11 +2829,7 @@ static __inline uint32_t SysTick_Config(uint32_t ticks)
 
 
 
-
  
-
-
-
 
 
 
@@ -2597,13 +2838,29 @@ static __inline uint32_t SysTick_Config(uint32_t ticks)
  
 static __inline void NVIC_SystemReset(void)
 {
-  ((SCB_Type *) ((0xE000E000) + 0x0D00))->AIRCR  = ((0x5FA << 16) | (((SCB_Type *) ((0xE000E000) + 0x0D00))->AIRCR & (0x700)) | (1<<2));  
-  __dsb(0);                                                                                            
-  while(1);                                                                             
+  ((SCB_Type *) ((0xE000E000) + 0x0D00))->AIRCR  = ((0x5FA << 16)      | 
+                 (((SCB_Type *) ((0xE000E000) + 0x0D00))->AIRCR & (7ul << 8)) | 
+                 (1ul << 2));                    
+  __dsb(0);                                                                    
+  while(1);                                                     
 }
+
+   
+
 
 
  
+
+
+
+
+
+
+ 
+ 
+
+extern volatile int ITM_RxBuffer;                     
+
 
 
 
@@ -2618,11 +2875,9 @@ static __inline void NVIC_SystemReset(void)
  
 static __inline uint32_t ITM_SendChar (uint32_t ch)
 {
-  if (ch == '\n') ITM_SendChar('\r');
-  
-  if ((((CoreDebug_Type *) (0xE000EDF0))->DEMCR & (1 << 24))  &&
-      (((ITM_Type *) (0xE0000000))->TCR & 1)                  &&
-      (((ITM_Type *) (0xE0000000))->TER & (1UL << 0))  ) 
+  if ((((CoreDebug_Type *) (0xE000EDF0))->DEMCR & (1ul << 24))  &&       
+      (((ITM_Type *) (0xE0000000))->TCR & (1ul << 0))                  &&       
+      (((ITM_Type *) (0xE0000000))->TER & (1ul << 0)        )                    )      
   {
     while (((ITM_Type *) (0xE0000000))->PORT[0].u32 == 0);
     ((ITM_Type *) (0xE0000000))->PORT[0].u8 = (uint8_t) ch;
@@ -2633,6 +2888,50 @@ static __inline uint32_t ITM_SendChar (uint32_t ch)
 
 
 
+
+
+
+
+
+
+ 
+static __inline int ITM_ReceiveChar (void) {
+  int ch = -1;                                
+
+  if (ITM_RxBuffer != 0x5AA55AA5) {
+    ch = ITM_RxBuffer;
+    ITM_RxBuffer = 0x5AA55AA5;        
+  }
+  
+  return (ch); 
+}
+
+
+
+
+
+
+
+
+
+ 
+static __inline int ITM_CheckChar (void) {
+
+  if (ITM_RxBuffer == 0x5AA55AA5) {
+    return (0);                                  
+  } else {
+    return (1);                                  
+  }
+}
+
+   
+
+
+
+
+
+
+   
 
 
 
@@ -3652,37 +3951,38 @@ static char bcnt;
 bcnt++; 
 if(bcnt>9)bcnt=0;
 
-if((avar_ind_stat)||(ips_bat_av_stat))beep_init(0x33333333,'R');
 
 
-else if ( (((bat[0]._Ub<(USIGN*10))&&(BAT_IS_ON[0]==bisON))||((bat[1]._Ub<(USIGN*10))&&(BAT_IS_ON[1]==bisON)))) 
-	{
-	if(!bSILENT)
-		{
-		beep_init(0x01010101,'R');
-		mess_send(210,114,1,5);
-		}
-
-	
-	}
-
-else if ( (((bat[0]._Ib<(-IKB))&&(BAT_IS_ON[0]==bisON))||((bat[1]._Ib<(-IKB))&&(BAT_IS_ON[1]==bisON)))) 
-	{
-	if(!bSILENT)beep_init(0x00010001,'R');
-	
-	}
-
-else if ( ((bat[0]._temper_stat&0x03)||(bat[1]._temper_stat&0x03)) )
-	{
-	if(!bSILENT) beep_init(0x00000005,'R');
-	}
 
 
-else 
-	{
-	beep_init(0x00000000,'S');
-	bSILENT=0;
-	} 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ 
 
 
 
@@ -3710,7 +4010,6 @@ else
 
 
 
-bU_BAT2REL_AV_BAT=0;
-#line 135 "beep.c"
+
 
 }

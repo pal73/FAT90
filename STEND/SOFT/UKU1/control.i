@@ -44,7 +44,6 @@ extern char num_necc_up,num_necc_down;
 extern unsigned char sh_cnt0,b1Hz_sh;
 
 
-extern short cntrl_stat_blok_cnt,cntrl_stat_blok_cnt_,cntrl_stat_blok_cnt_plus[2],cntrl_stat_blok_cnt_minus[2];
 
 
 
@@ -87,15 +86,13 @@ void adc_drv_(void);
 void avg_hndl(void);
 
 
-void rele_hndl(void);
+void rele_drv(void);
 void bps_hndl(void);
 void bps_drv(char in);
 void bat_hndl(void);
 void bat_drv(char in);
 void u_necc_hndl(void);
-void cntrl_hndl(void);
 void zar_drv(void);
-void num_necc_hndl(void);
 void ke_start(char in);
 void zar_drv(void);
 void vent_hndl(void);
@@ -125,20 +122,6 @@ extern short __ee_spc_bat;
 extern short __ee_spc_phase;
 
 
-
-extern signed short cntrl_stat;
-extern signed short cntrl_stat_old;
-extern signed short cntrl_stat_new;
-extern signed short Ibmax;
-extern unsigned char unh_cnt0,unh_cnt1,b1Hz_unh;
-extern unsigned char	ch_cnt0,b1Hz_ch,i,iiii;
-extern unsigned char	ch_cnt1,b1_30Hz_ch;
-extern unsigned char	ch_cnt2,b1_10Hz_ch;
-extern unsigned short IZMAX_;
-extern unsigned short IZMAX_70;
-extern unsigned short IZMAX_130;
-extern unsigned short Ubpsmax;
-extern unsigned short cntrl_stat_blck_cnt;
 
 extern short plazma_sk;
 extern char	plazma_inv[4];
@@ -460,41 +443,9 @@ extern const unsigned short ADR_SK_RS_EN[4];
 extern const unsigned short ADR_EE_RELE_SET_MASK[4];
 
 #line 7 "control.c"
-#line 1 "avar_hndl.h"
 
-
-
-
-extern unsigned avar_stat;	 	
-extern unsigned avar_ind_stat; 	
-extern unsigned avar_stat_old;
-extern unsigned avar_stat_new,avar_stat_offed;
-
-
-
-
-
-
-
-
-
-void avar_hndl(void);
-void avar_unet_hndl(char in);
-void avar_uout_hndl(char in);
-void reload_hndl(void);
-void avar_bps_hndl(char bps, char v, char in);
-void avar_bat_hndl(char bat, char in);
-void avar_bat_as_hndl(char b, char in);
-void ke_mem_hndl(char b,unsigned short in);
-void vz_mem_hndl(unsigned short in);
-void wrk_mem_hndl(char b);
-void avar_bat_ips_hndl(char in);
-
-
-
-#line 8 "control.c"
 #line 1 "main.h"
-#line 1 "C:\\Keil\\ARM\\RV31\\INC\\rtl.h"
+#line 1 "C:\\Keil\\\\ARM\\RV31\\INC\\rtl.h"
 
 
 
@@ -514,7 +465,7 @@ void avar_bat_ips_hndl(char in);
  
 
 
-#line 27 "C:\\Keil\\ARM\\RV31\\INC\\rtl.h"
+#line 27 "C:\\Keil\\\\ARM\\RV31\\INC\\rtl.h"
 
 
 
@@ -536,9 +487,7 @@ typedef unsigned long long U64;
 typedef unsigned char   BIT;
 typedef unsigned int    BOOL;
 
-#line 54 "C:\\Keil\\ARM\\RV31\\INC\\rtl.h"
-
-#line 66 "C:\\Keil\\ARM\\RV31\\INC\\rtl.h"
+#line 54 "C:\\Keil\\\\ARM\\RV31\\INC\\rtl.h"
 
 
 
@@ -585,7 +534,7 @@ typedef U32 OS_RESULT;
 
 
 
-#line 194 "C:\\Keil\\ARM\\RV31\\INC\\rtl.h"
+#line 182 "C:\\Keil\\\\ARM\\RV31\\INC\\rtl.h"
 
 
 
@@ -602,7 +551,7 @@ extern OS_RESULT rt_tsk_prio   (OS_TID task_id, U8 new_prio);
 extern OS_TID    rt_tsk_create (void (*task)(void), U8 priority, void *stk, void *argv);
 extern OS_RESULT rt_tsk_delete (OS_TID task_id);
 
-#line 230 "C:\\Keil\\ARM\\RV31\\INC\\rtl.h"
+#line 218 "C:\\Keil\\\\ARM\\RV31\\INC\\rtl.h"
 
 extern void      _os_sys_init(U32 p, void (*task)(void), U32 prio_stksz,
                                      void *stk)                        __svc_indirect(0);
@@ -782,10 +731,10 @@ extern int fdefrag (const char *drive);
 
 
  
-#line 415 "C:\\Keil\\ARM\\RV31\\INC\\rtl.h"
+#line 403 "C:\\Keil\\\\ARM\\RV31\\INC\\rtl.h"
 
  
-#line 428 "C:\\Keil\\ARM\\RV31\\INC\\rtl.h"
+#line 416 "C:\\Keil\\\\ARM\\RV31\\INC\\rtl.h"
 
  
 
@@ -794,7 +743,7 @@ extern int fdefrag (const char *drive);
 
 
  
-#line 442 "C:\\Keil\\ARM\\RV31\\INC\\rtl.h"
+#line 430 "C:\\Keil\\\\ARM\\RV31\\INC\\rtl.h"
 
  
 
@@ -844,7 +793,6 @@ extern void dhcp_disable (void);
 extern BOOL igmp_join (U8 *group_ip);
 extern BOOL igmp_leave (U8 *group_ip);
 extern BOOL snmp_trap (U8 *manager_ip, U8 gen_trap, U8 spec_trap, U16 *obj_list);
-extern BOOL snmp_set_community (const char *community);
 
 
 
@@ -1116,15 +1064,12 @@ extern char cnt_of_slave;
 
 
 typedef enum {
-	iMn_VD,
+	iMn,
 	iSet_VD,
-
-	iMn_TELECORE2017,
-
 	iSrv_sl,iNet,iNet3,iNetEM,
 	iSet,iSet_220_IPS_TERMOKOMPENSAT,iSet_220_V2,
 	iInv_set,
-	iMakb,
+	iOptr_kontr,
 	iBps,iBps_elteh,iS2,iSet_prl,iK_prl,iDnd,
 	iK, iK_220_IPS_TERMOKOMPENSAT,iK_220_IPS_TERMOKOMPENSAT_IB,iK_TELECORE,iK_VD,
 	iSpcprl,iSpc,k,Crash_0,Crash_1,iKednd,iAv_view_avt,iAKE,iSpc_termocompensat,
@@ -1418,43 +1363,6 @@ extern signed short I_LOAD_MODE;
 
 
 
-typedef struct
-     {
-	char 		_cnt_to_block;
-	signed short	_Ub;
-     signed short	_Ubm;
-     signed short	_dUbm;
-	signed short	_Ib;
-	signed short	_Tb;
-	char 		_nd;
-	char 		_cnt_wrk;
-	char 		_wrk;
-	unsigned short _zar;
-	char 		_full_ver;
-	signed long 	_zar_cnt;
-	signed long 	_zar_cnt_ke;
-	unsigned short _Iintegr,_Iintegr_; 
-	signed short 	_u_old[8];
-	signed short	_u_old_cnt;
-	unsigned long 	_wrk_date[2];
-	char 		_rel_stat;
-	char			_av;
-	char			_time_cnt;
-	char 		_temper_stat;
-	
-	
-	signed short 	_sign_temper_cnt;
-	signed short 	_max_temper_cnt;
-	signed long 	_resurs_cnt;
-	signed short 	_cnt_as; 	
-     
-	
-	} BAT_STAT; 
-extern BAT_STAT bat[2],bat_ips;
-extern signed short		bat_u_old_cnt;
-extern signed short 	Ib_ips_termokompensat;
-
-
 typedef enum {bsOFF=0,bsCOMM_ON,bsOK} enum_batStat;
 
 
@@ -1518,83 +1426,6 @@ extern BYPS_STAT byps;
 
 
 
-typedef struct
-     {
-	signed short	_U[5];
-	signed short	_Ub[5];
-	signed short	_T[5];
-	signed short	_T_nd[5];
-	signed short 	_cnt; 	
-	} MAKB_STAT; 
-extern MAKB_STAT makb[4];
-
-
-
-typedef struct
-     {
-	signed short	_max_cell_volt;
-	signed short	_min_cell_volt;
-	signed short	_max_cell_temp;
-	signed short	_min_cell_temp;
-	signed short	_tot_bat_volt;
-	signed short	_ch_curr;
-	signed short	_dsch_curr;
-	signed short	_rat_cap;
-	signed short	_s_o_h;
-	signed short	_s_o_c;
-	signed short	_c_c_l_v;
-	signed short	_r_b_t;
-	signed short	_b_p_ser_num;
-	signed short   _flags1;
-	signed short 	_flags2;
-	signed short 	_communication2lvlErrorStat; 	
-	signed short	_communication2lvlErrorCnt;  	
-	signed short 	_cnt;
-	signed short 	_communicationFullErrorStat;	
-	signed short   _battIsOn;		
-	char 		_plazma[8];		
-	signed short 	_isOnCnt;
-	signed short	_s_o_c_abs;		
-	signed short 	_s_o_c_percent; 
-	signed short	_plazma_ss;
-	signed short	_zar_percent;	
-	signed char		_cell_temp_1;	
-	signed char		_cell_temp_2;	
-	signed char		_cell_temp_3;	
-	signed char		_cell_temp_4;	
-	signed char		_cell_temp_ambient;	
-	signed char		_cell_temp_power;	
-	
-	
-	
-	signed char		_charge_and_discharge_current_alarm_status;	 	
-	signed char 	_battery_total_voltage_alarm_status;			
-	signed char		_custom_alarm_quantity;							
-	signed char		_balanced_event_code;							
-	signed char 	_voltage_event_code;							
-	signed char 	_temperature_event_code;						
-	signed char		_current_event_code;							
-	signed char		_fet_status_code;								
-	signed short	_balanced_status_code;							
-	signed char 	_system_status_code;							
-
-	} LAKB_STAT; 
-extern LAKB_STAT lakb[3];
-extern char lakb_damp[1][42];
-extern char bLAKB_KONF_CH;
-extern char bLAKB_KONF_CH_old;
-extern char lakb_ison_mass[7];
-extern short lakb_mn_ind_cnt;
-extern char bLAKB_KONF_CH_EN;
-extern char bRS485ERR;
-extern short LBAT_STRUKT;
-extern char lakb_error_cnt;	
-extern short numOfPacks,numOfPacks_;
-extern short numOfCells, numOfTemperCells, baseOfData;
-extern short lakb_stat_comm_error;	
-extern short lakbNotErrorNum;		
-extern short lakbKanErrorCnt;		
-extern short lakbKanErrorStat;		
 
 
 
@@ -1603,62 +1434,6 @@ extern short lakbKanErrorStat;
 extern char can_slot[12][16];
 extern char plazma_can_inv[3];
 
-
-
-
-
-typedef struct
-    {
-    enum {dSRC=3,dINV=5,dNET_METR=7,dIBAT_METR=9,dMAKB=11}_device;
-	char _av;
-	
-	
-	
-	
-	
- 	enum {bsOFF_AV_NET,bsAPV,bsWRK,bsRDY,bsBL,bsAV}_state;
-    char _cnt;
-     char _cnt_old;
-     char _cnt_more2;
-     char _buff[20]; 
-     
-     
-     
-     
-     signed _Uii; 
-     signed _Uin;
-     signed _Ii;
-     signed _Ti; 
-     char _flags_tu;
-	 signed _Uisum;
-     
-     
-     
-     
-     
-     signed _vol_u;
-     signed _vol_i;
-     char _is_on_cnt;
-     
-     int _ist_blok_host_cnt;
-     short _blok_cnt; 
-     char _flags_tm;
-	signed short _overload_av_cnt;     
-     signed short _temp_av_cnt;
-     signed short _umax_av_cnt;
-     signed short _umin_av_cnt;
-     signed _rotor;
-     signed  short _x_; 
-     char _adr_ee;
-	char _last_avar;
-	char _vent_resurs_temp[4];
-	unsigned short _vent_resurs;
-	signed short debug_info_to_uku0;
-	signed short debug_info_to_uku1;
-	signed short _avg;
-	signed short _cntrl_stat;
-     } BPS_STAT; 
-extern BPS_STAT bps[29];
 
 
 
@@ -1837,11 +1612,11 @@ extern enum_av_tbox_stat av_tbox_stat;
 extern signed short av_tbox_cnt;
 extern char tbatdisable_cmnd,tloaddisable_cmnd;
 extern short tbatdisable_cnt,tloaddisable_cnt;
-#line 1458 "main.h"
+#line 1285 "main.h"
 
-#line 1469 "main.h"
+#line 1296 "main.h"
 
-#line 1485 "main.h"
+#line 1312 "main.h"
 
 extern char ext_can_cnt;
 
@@ -1851,9 +1626,8 @@ void ADC_IRQHandler(void);
 
 
 
-
-typedef enum  {avtOFF,avtON} enum_avt_stat;
-extern enum_avt_stat avt_stat[12],avt_stat_old[12]; 
+typedef enum  {osOFF,osON} enum_optr_stat;
+extern enum_optr_stat optr_stat[3]; 
 
 
 
@@ -1862,10 +1636,6 @@ extern short bIBAT_SMKLBR;
 extern char ibat_metr_cnt;
 
 
-
-extern signed short npn_tz_cnt;
-typedef enum {npnsOFF=0,npnsON} enum_npn_stat;
-extern enum_npn_stat npn_stat;
 
 extern char snmp_plazma;
 
@@ -1885,7 +1655,7 @@ extern short can_plazma;
 
 
 
-#line 1539 "main.h"
+#line 1361 "main.h"
 
 
 
@@ -1991,284 +1761,7 @@ void beep_drv(void);
 void beep_init(long zvuk,char fl);
 void beep_hndl(void);
 #line 10 "control.c"
-#line 1 "snmp_data_file.h"
-extern char snmp_community[10];
 
-
-extern signed short snmp_device_code;
-extern signed 	   snmp_sernum;
-extern signed short snmp_sernum_lsb;
-extern signed short snmp_sernum_msb;
-extern char 	   snmp_location[100];
-extern signed short snmp_numofbat;
-extern signed short snmp_numofbps;
-extern signed short snmp_numofinv;
-extern signed short snmp_numofavt;
-extern signed short snmp_numofdt;
-extern signed short snmp_numofsk;
-extern signed short snmp_numofevents;
-
-
-extern signed short snmp_mains_power_voltage;
-extern signed short snmp_mains_power_frequency;
-extern signed short snmp_mains_power_status;
-extern signed short snmp_mains_power_alarm;
-extern signed short snmp_mains_power_voltage_phaseA;
-extern signed short snmp_mains_power_voltage_phaseB;
-extern signed short snmp_mains_power_voltage_phaseC;
-
-
-extern signed short snmp_load_voltage;
-extern signed short snmp_load_current;
-
-
-extern signed short snmp_bps_number[8];
-extern signed short snmp_bps_voltage[8];
-extern signed short snmp_bps_current[8];
-extern signed short snmp_bps_temperature[8];
-extern signed short snmp_bps_stat[8];
-
-
-extern signed short snmp_inv_number[3];
-extern signed short snmp_inv_voltage[3];
-extern signed short snmp_inv_current[3];
-extern signed short snmp_inv_temperature[3];
-extern signed short snmp_inv_stat[3];
-
-
-extern signed short snmp_bat_number[2];
-extern signed short snmp_bat_voltage[2];
-extern signed short snmp_bat_part_voltage[2];
-extern signed short snmp_bat_current[2];
-extern signed short snmp_bat_temperature[2];
-extern signed short snmp_bat_capacity[2];
-extern signed short snmp_bat_charge[2];
-extern signed short snmp_bat_status[2];
-
-
-extern signed short snmp_makb_number[4];
-extern signed short snmp_makb_connect_status[4];
-extern signed short snmp_makb_voltage0[4];
-extern signed short snmp_makb_voltage1[4];
-extern signed short snmp_makb_voltage2[4];
-extern signed short snmp_makb_voltage3[4];
-extern signed short snmp_makb_voltage4[4];
-extern signed short snmp_makb_temper0[4];
-extern signed short snmp_makb_temper1[4];
-extern signed short snmp_makb_temper2[4];
-extern signed short snmp_makb_temper3[4];
-extern signed short snmp_makb_temper4[4];
-extern signed short snmp_makb_temper0_stat[4];
-extern signed short snmp_makb_temper1_stat[4];
-extern signed short snmp_makb_temper2_stat[4];
-extern signed short snmp_makb_temper3_stat[4];
-extern signed short snmp_makb_temper4_stat[4];
-extern signed short snmp_bat_voltage[2];
-extern signed short snmp_bat_current[2];
-extern signed short snmp_bat_temperature[2];
-extern signed short snmp_bat_capacity[2];
-extern signed short snmp_bat_charge[2];
-extern signed short snmp_bat_status[2]; 
-
-
-
-extern signed short snmp_spc_stat;
-extern char snmp_spc_trap_message[100];
-extern signed short snmp_spc_trap_value_0,snmp_spc_trap_value_1,snmp_spc_trap_value_2;
-
-
-extern signed short snmp_energy_vvod_phase_a;
-extern signed short snmp_energy_vvod_phase_b;
-extern signed short snmp_energy_vvod_phase_c;
-extern signed short snmp_energy_pes_phase_a;
-extern signed short snmp_energy_pes_phase_b;
-extern signed short snmp_energy_pes_phase_c;
-extern signed short snmp_energy_input_voltage;
-
-
-extern signed long snmp_energy_total_energy;
-extern signed short snmp_energy_current_energy;
-
-
-extern signed char snmp_sk_number[4];
-extern signed char snmp_sk_aktiv[4];
-extern signed char snmp_sk_alarm_aktiv[4];
-extern signed char snmp_sk_alarm[4];
-extern char snmp_sk_name[4][20];
-
-
-extern signed char snmp_dt_number[3];
-extern signed short snmp_dt_temper[3];
-extern signed char snmp_dt_error[3];
-
-
-extern signed char snmp_avt_number[12];
-extern signed char snmp_avt_stat[12];
-
-
-extern signed short snmp_command;
-extern signed short snmp_command_parametr;
-
-
-extern char snmp_log[64][128];
-
-
-extern signed short snmp_main_bps;
-extern signed short snmp_zv_en;
-extern signed short snmp_alarm_auto_disable;
-extern signed short snmp_bat_test_time;
-extern signed short snmp_u_max;
-extern signed short snmp_u_min;
-extern signed short snmp_u_0_grad;
-extern signed short snmp_u_20_grad;
-extern signed short snmp_u_sign;
-extern signed short snmp_u_min_power;
-extern signed short snmp_u_withouth_bat;
-extern signed short snmp_control_current;
-extern signed short snmp_max_charge_current;
-extern signed short snmp_max_current;
-extern signed short snmp_min_current;
-extern signed short snmp_uvz;
-extern signed short snmp_max_current_koef;
-extern signed short snmp_max_current_koef;
-extern signed short snmp_up_charge_koef;
-extern signed short snmp_powerup_psu_timeout;
-extern signed short snmp_max_temperature;
-extern signed short snmp_tsign_bat; 
-extern signed short snmp_tmax_bat;
-extern signed short snmp_tsign_bps;
-extern signed short snmp_tmax_bps;
-extern signed short snmp_bat_part_alarm;
-extern signed short snmp_power_cnt_adress;
-
-
-extern signed short snmp_klimat_box_temper;
-extern signed short snmp_klimat_settings_box_alarm;
-extern signed short snmp_klimat_settings_vent_on;
-extern signed short snmp_klimat_settings_vent_off;
-extern signed short snmp_klimat_settings_warm_on;
-extern signed short snmp_klimat_settings_warm_off;
-extern signed short snmp_klimat_settings_load_on;
-extern signed short snmp_klimat_settings_load_off;
-extern signed short snmp_klimat_settings_batt_on;
-extern signed short snmp_klimat_settings_batt_off;
-
-
-extern signed short snmp_dt_ext;
-extern signed short snmp_dt_msan;
-extern signed short snmp_dt_epu;
-
-
-extern short snmp_lakb_number[7];				
-extern short snmp_lakb_voltage[7];				
-extern short snmp_lakb_max_cell_voltage[7];		
-extern short snmp_lakb_min_cell_voltage[7];		
-extern short snmp_lakb_max_cell_temperature[7];	
-extern short snmp_lakb_min_cell_temperature[7];	
-extern short snmp_lakb_ch_curr[7];				
-extern short snmp_lakb_dsch_curr[7];			
-extern short snmp_lakb_rat_cap[7];				
-extern short snmp_lakb_soh[7];				
-extern short snmp_lakb_soc[7];				
-extern short snmp_lakb_cclv[7];  				
-extern short snmp_lakb_rbt[7];				
-extern short snmp_lakb_flags1[7];				
-extern short snmp_lakb_flags2[7];				
-extern char snmp_lakb_damp1[3][150];				
-extern char snmp_lakb_damp2[100];				
-extern signed char	snmp_lakb_cell_temperature_1[3];		
-extern signed char	snmp_lakb_cell_temperature_2[3];		
-extern signed char	snmp_lakb_cell_temperature_3[3];		
-extern signed char	snmp_lakb_cell_temperature_4[3];		
-extern signed char	snmp_lakb_cell_temperature_ambient[3];	
-extern signed char	snmp_lakb_cell_temperature_power[3];	
-
-
-extern signed char	snmp_warm_sign;				
-extern signed char	snmp_cool_sign;				
-extern signed char	snmp_warm_on_temper;		
-extern signed char	snmp_warm_off_temper;		
-extern signed char	snmp_warm_q;				
-extern signed char	snmp_cool_100_temper;		
-extern signed char	snmp_cool_80_temper;		
-extern signed char	snmp_cool_60_temper;		
-extern signed char	snmp_cool_40_temper;		
-extern signed char	snmp_cool_20_temper;		
-extern signed char	snmp_cool_100_dtemper;		
-extern signed char	snmp_cool_80_dtemper;		
-extern signed char	snmp_cool_60_dtemper;		
-extern signed char	snmp_cool_40_dtemper;		
-extern signed char	snmp_cool_20_dtemper;		
-extern signed char 	snmp_warm_stat;				
-  
-
-void snmp_data (void);
-void snmp_sernum_write (int mode); 
-void snmp_location_write (int mode);
-void snmp_command_execute (int mode);
-void event2snmp(char num);
-void snmp_main_bps_write (int mode);
-void snmp_zv_on_write (int mode);
-void snmp_alarm_auto_disable_write (int mode);
-void snmp_bat_test_time_write (int mode);
-void snmp_u_max_write (int mode);
-void snmp_u_min_write (int mode);
-void snmp_u_0_grad_write (int mode);
-void snmp_u_20_grad_write (int mode);
-void snmp_u_sign_write (int mode);
-void snmp_u_min_power_write (int mode);
-void snmp_u_withouth_bat_write (int mode);
-void snmp_control_current_write (int mode);
-void snmp_max_charge_current_write (int mode);
-void snmp_max_current_write (int mode);
-void snmp_min_current_write (int mode);
-void snmp_up_charge_koef_write (int mode);
-void snmp_powerup_psu_timeout_write (int mode);
-void snmp_max_temperature_write (int mode);
-void event2snmp(char num);
-void snmp_trap_send(char* str, signed short in0, signed short in1, signed short in2);
-void snmp_alarm_aktiv_write1(int mode);
-void snmp_alarm_aktiv_write2(int mode);
-void snmp_alarm_aktiv_write3(int mode);
-void snmp_alarm_aktiv_write4(int mode);
-void snmp_klimat_settings_box_alarm_write(int mode);
-void snmp_klimat_settings_vent_on_write(int mode);
-void snmp_klimat_settings_vent_off_write(int mode);
-void snmp_klimat_settings_warm_on_write(int mode);
-void snmp_klimat_settings_warm_off_write(int mode);
-void snmp_klimat_settings_load_on_write(int mode);
-void snmp_klimat_settings_load_off_write(int mode);
-void snmp_klimat_settings_batt_on_write(int mode);
-void snmp_klimat_settings_batt_off_write(int mode);
-void snmp_tsign_bat_write(int mode);
-void snmp_tmax_bat_write(int mode);
-void snmp_tsign_bps_write(int mode);
-void snmp_tmax_bps_write(int mode);
-void snmp_bat_part_alarm_write(int mode);
-void snmp_power_cnt_adress_write(int mode);
-void snmp_uvz_write(int mode);
-void snmp_warm_sign_write(int mode);
-void snmp_cool_sign_write(int mode);
-void snmp_warm_on_temper_write(int mode);
-void snmp_warm_off_temper_write(int mode);
-void snmp_warm_q_write(int mode);
-void snmp_cool_100_temper_write(int mode);
-void snmp_cool_80_temper_write(int mode);
-void snmp_cool_60_temper_write(int mode);
-void snmp_cool_40_temper_write(int mode);
-void snmp_cool_20_temper_write(int mode);
-void snmp_cool_100_dtemper_write(int mode);
-void snmp_cool_80_dtemper_write(int mode);
-void snmp_cool_60_dtemper_write(int mode);
-void snmp_cool_40_dtemper_write(int mode);
-void snmp_cool_20_dtemper_write(int mode);
-
-
-
-
-
- 
-#line 11 "control.c"
 #line 1 "sacred_sun.h"
 
 extern char portForSacredSunBatteryIsInitiated;
@@ -2281,7 +1774,7 @@ void sacred_san_bat_hndl(void);
 short ascii2halFhex(char in);
 #line 12 "control.c"
 #line 1 "sc16is7xx.h"
-#line 1 "C:\\Keil\\ARM\\RV31\\INC\\stdint.h"
+#line 1 "C:\\Keil\\\\ARM\\RV31\\INC\\stdint.h"
  
  
 
@@ -2299,7 +1792,7 @@ short ascii2halFhex(char in);
 
 
 
-#line 25 "C:\\Keil\\ARM\\RV31\\INC\\stdint.h"
+#line 25 "C:\\Keil\\\\ARM\\RV31\\INC\\stdint.h"
 
 
 
@@ -2464,7 +1957,7 @@ typedef unsigned       __int64 uintmax_t;
 
 
 
-#line 196 "C:\\Keil\\ARM\\RV31\\INC\\stdint.h"
+#line 196 "C:\\Keil\\\\ARM\\RV31\\INC\\stdint.h"
 
      
 
@@ -2497,7 +1990,7 @@ typedef unsigned       __int64 uintmax_t;
 
 
 
-#line 260 "C:\\Keil\\ARM\\RV31\\INC\\stdint.h"
+#line 260 "C:\\Keil\\\\ARM\\RV31\\INC\\stdint.h"
 
 
 
@@ -2541,64 +2034,8 @@ void putchar_sc16is700(char out_byte);
 void sc16is700_uart_hndl(void);
 
 #line 13 "control.c"
-#line 1 "modbus.h"
-
-extern unsigned char modbus_buf[20];
-extern short modbus_crc16;
-extern char modbus_timeout_cnt;
-extern char bMODBUS_TIMEOUT;
-extern unsigned char modbus_rx_buffer[30];	
-extern unsigned char modbus_an_buffer[30];	
-extern unsigned char modbus_rx_buffer_ptr;	
-extern unsigned char modbus_rx_counter;		
-
-extern short modbus_plazma;				
-extern short modbus_plazma1;				
-extern short modbus_plazma2;				
-extern short modbus_plazma3;				
-
-extern unsigned short modbus_rx_arg0;		
-extern unsigned short modbus_rx_arg1;		
-extern unsigned short modbus_rx_arg2;		
-extern unsigned short modbus_rx_arg3;		
-
-extern char modbus_tx_buff[100];
 
 
-
-unsigned short CRC16_2(char* buf, short len);
-
-
-
-
-
-void modbus_hold_registers_transmit(unsigned char adr,unsigned char func,unsigned short reg_adr,unsigned short reg_quantity, char prot);
-
-void modbus_input_registers_transmit(unsigned char adr,unsigned char func,unsigned short reg_adr,unsigned short reg_quantity, char prot);
-
-
-
-
-
-#line 14 "control.c"
-#line 1 "modbus_tcp.h"
-
-extern char plazma_modbus_tcp[20];
-
-U16 tcp_callback (U8 soc, U8 evt, U8 *ptr, U16 par);
-
-extern char modbus_tcp_func;
-extern char modbus_tcp_unit;
-extern short modbus_tcp_rx_arg0;
-extern short modbus_tcp_rx_arg1;
-
-
-
-extern char* modbus_tcp_out_ptr;
-
-U16 tcp_callback (U8 soc, U8 evt, U8 *ptr, U16 par);
-
-#line 15 "control.c"
 #line 1 "C:\\Keil\\ARM\\INC\\NXP\\LPC17xx\\LPC17xx.h"
 
 
@@ -2695,7 +2132,9 @@ typedef enum IRQn
 
 
 
-#line 1 "C:\\Keil\\ARM\\RV31\\INC\\core_cm3.h"
+#line 1 "C:\\Keil\\\\ARM\\RV31\\INC\\core_cm3.h"
+ 
+
 
 
 
@@ -2753,6 +2192,39 @@ typedef enum IRQn
 
 
 
+ 
+
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+
+
+
+
+
+
+
+
+ 
+
+
+
+
+
+
+
+
+
+
+
+#line 91 "C:\\Keil\\\\ARM\\RV31\\INC\\core_cm3.h"
+
+
 
 
 
@@ -2770,37 +2242,7 @@ typedef enum IRQn
 
  
 
- 
- 
- 
- 
- 
- 
- 
- 
-
-
-#line 86 "C:\\Keil\\ARM\\RV31\\INC\\core_cm3.h"
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
- 
-
-#line 112 "C:\\Keil\\ARM\\RV31\\INC\\core_cm3.h"
+#line 117 "C:\\Keil\\\\ARM\\RV31\\INC\\core_cm3.h"
 
 
 
@@ -2810,13 +2252,6 @@ typedef enum IRQn
 
 
  
-
-
-
-
-
- 
-
 
 
 
@@ -2826,19 +2261,23 @@ typedef enum IRQn
 typedef struct
 {
   volatile uint32_t ISER[8];                       
-       uint32_t RESERVED0[24];
+       uint32_t RESERVED0[24];                                   
   volatile uint32_t ICER[8];                       
-       uint32_t RSERVED1[24];
+       uint32_t RSERVED1[24];                                    
   volatile uint32_t ISPR[8];                       
-       uint32_t RESERVED2[24];
+       uint32_t RESERVED2[24];                                   
   volatile uint32_t ICPR[8];                       
-       uint32_t RESERVED3[24];
+       uint32_t RESERVED3[24];                                   
   volatile uint32_t IABR[8];                       
-       uint32_t RESERVED4[56];
+       uint32_t RESERVED4[56];                                   
   volatile uint8_t  IP[240];                       
-       uint32_t RESERVED5[644];
+       uint32_t RESERVED5[644];                                  
   volatile  uint32_t STIR;                          
-}  NVIC_Type;
+}  NVIC_Type;                                               
+   
+
+
+
 
 
  
@@ -2863,7 +2302,192 @@ typedef struct
   volatile const  uint32_t ADR;                           
   volatile const  uint32_t MMFR[4];                       
   volatile const  uint32_t ISAR[5];                       
-} SCB_Type;
+} SCB_Type;                                                
+
+ 
+
+
+
+
+
+
+
+
+
+
+
+
+ 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ 
+
+
+
+
+
+
+ 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ 
+
+
+
+
+
+
+
+
+
+ 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                                     
+
+
+
+
+
+
+
+
+
+ 
+
+
+
+
+
+
+
+
+
+ 
+
+
+
+
+
+
+
+
+
+ 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+   
+
+
+
 
 
  
@@ -2875,6 +2499,41 @@ typedef struct
   volatile const  uint32_t CALIB;                         
 } SysTick_Type;
 
+ 
+
+
+
+
+
+
+
+
+
+
+
+
+ 
+
+
+
+ 
+
+
+
+ 
+
+
+
+
+
+
+
+
+   
+
+
+
+
 
  
 typedef struct
@@ -2885,33 +2544,88 @@ typedef struct
     volatile  uint16_t   u16;                       
     volatile  uint32_t   u32;                       
   }  PORT [32];                                
-       uint32_t RESERVED0[864];
+       uint32_t RESERVED0[864];                                 
   volatile uint32_t TER;                           
-       uint32_t RESERVED1[15];
+       uint32_t RESERVED1[15];                                  
   volatile uint32_t TPR;                           
-       uint32_t RESERVED2[15];
+       uint32_t RESERVED2[15];                                  
   volatile uint32_t TCR;                           
-       uint32_t RESERVED3[29];
+       uint32_t RESERVED3[29];                                  
   volatile uint32_t IWR;                           
   volatile uint32_t IRR;                           
   volatile uint32_t IMCR;                          
-       uint32_t RESERVED4[43];
+       uint32_t RESERVED4[43];                                  
   volatile uint32_t LAR;                           
   volatile uint32_t LSR;                           
-       uint32_t RESERVED5[6];
+       uint32_t RESERVED5[6];                                   
   volatile const  uint32_t PID4;                          
-  volatile const  uint32_t PID5;
-  volatile const  uint32_t PID6;
-  volatile const  uint32_t PID7;
-  volatile const  uint32_t PID0;
-  volatile const  uint32_t PID1;
-  volatile const  uint32_t PID2;
-  volatile const  uint32_t PID3;
-  volatile const  uint32_t CID0;
-  volatile const  uint32_t CID1;
-  volatile const  uint32_t CID2;
-  volatile const  uint32_t CID3;
-} ITM_Type;
+  volatile const  uint32_t PID5;                          
+  volatile const  uint32_t PID6;                          
+  volatile const  uint32_t PID7;                          
+  volatile const  uint32_t PID0;                          
+  volatile const  uint32_t PID1;                          
+  volatile const  uint32_t PID2;                          
+  volatile const  uint32_t PID3;                          
+  volatile const  uint32_t CID0;                          
+  volatile const  uint32_t CID1;                          
+  volatile const  uint32_t CID2;                          
+  volatile const  uint32_t CID3;                          
+} ITM_Type;                                                
+
+ 
+
+
+
+ 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ 
+
+
+
+ 
+
+
+
+ 
+
+
+
+ 
+
+
+
+
+
+
+
+
+   
+
+
+
 
 
  
@@ -2926,9 +2640,27 @@ typedef struct
 
 } InterruptType_Type;
 
+ 
+
+
 
  
 
+
+
+
+
+
+
+
+   
+
+
+
+
+
+
+ 
 typedef struct
 {
   volatile const  uint32_t TYPE;                          
@@ -2942,7 +2674,74 @@ typedef struct
   volatile uint32_t RASR_A2;                       
   volatile uint32_t RBAR_A3;                       
   volatile uint32_t RASR_A3;                       
-} MPU_Type;
+} MPU_Type;                                                
+
+ 
+
+
+
+
+
+
+
+
+
+ 
+
+
+
+
+
+
+
+
+
+ 
+
+
+
+ 
+
+
+
+
+
+
+
+
+
+ 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+   
+
+
+
 
 
 
@@ -2955,21 +2754,6 @@ typedef struct
   volatile uint32_t DEMCR;                         
 } CoreDebug_Type;
 
-
- 
-#line 274 "C:\\Keil\\ARM\\RV31\\INC\\core_cm3.h"
-
-#line 281 "C:\\Keil\\ARM\\RV31\\INC\\core_cm3.h"
-
-
-
-
-
-
-
-
-
-
  
 
 
@@ -2977,7 +2761,107 @@ typedef struct
 
 
 
-#line 311 "C:\\Keil\\ARM\\RV31\\INC\\core_cm3.h"
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ 
+
+
+
+
+
+
+ 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+   
+
+
+ 
+#line 721 "C:\\Keil\\\\ARM\\RV31\\INC\\core_cm3.h"
+
+#line 728 "C:\\Keil\\\\ARM\\RV31\\INC\\core_cm3.h"
+
+
+
+
+
+
+   
+
+
+
+
+ 
+
+
+
+
+
+#line 758 "C:\\Keil\\\\ARM\\RV31\\INC\\core_cm3.h"
 
 
  
@@ -2988,14 +2872,13 @@ typedef struct
 
 
 
-#line 336 "C:\\Keil\\ARM\\RV31\\INC\\core_cm3.h"
+#line 783 "C:\\Keil\\\\ARM\\RV31\\INC\\core_cm3.h"
 
 
  
  
  
  
-
 
 
 
@@ -3014,7 +2897,6 @@ extern uint32_t __get_PSP(void);
 
 
 
-
  
 extern void __set_PSP(uint32_t topOfProcStack);
 
@@ -3025,10 +2907,8 @@ extern void __set_PSP(uint32_t topOfProcStack);
 
 
 
-
  
 extern uint32_t __get_MSP(void);
-
 
 
 
@@ -3061,18 +2941,13 @@ extern uint32_t __REV16(uint16_t value);
 extern int32_t __REVSH(int16_t value);
 
 
-#line 502 "C:\\Keil\\ARM\\RV31\\INC\\core_cm3.h"
-
-
-
-
+#line 933 "C:\\Keil\\\\ARM\\RV31\\INC\\core_cm3.h"
 
 
 
 
 
  
-
 
 
 
@@ -3094,15 +2969,12 @@ static __inline uint32_t  __get_BASEPRI(void)
 
 
 
-
  
 static __inline void __set_BASEPRI(uint32_t basePri)
 {
   register uint32_t __regBasePri         __asm("basepri");
-  __regBasePri = (basePri & 0x1ff);
+  __regBasePri = (basePri & 0xff);
 }
-
-
 
 
 
@@ -3123,14 +2995,12 @@ static __inline uint32_t __get_PRIMASK(void)
 
 
 
-
  
 static __inline void __set_PRIMASK(uint32_t priMask)
 {
   register uint32_t __regPriMask         __asm("primask");
   __regPriMask = (priMask);
 }
-
 
 
 
@@ -3151,14 +3021,12 @@ static __inline uint32_t __get_FAULTMASK(void)
 
 
 
-
  
 static __inline void __set_FAULTMASK(uint32_t faultMask)
 {
   register uint32_t __regFaultMask       __asm("faultmask");
   __regFaultMask = (faultMask & 1);
 }
-
 
 
 
@@ -3179,7 +3047,6 @@ static __inline uint32_t __get_CONTROL(void)
 
 
 
-
  
 static __inline void __set_CONTROL(uint32_t control)
 {
@@ -3191,13 +3058,18 @@ static __inline void __set_CONTROL(uint32_t control)
 
 
 
-#line 1044 "C:\\Keil\\ARM\\RV31\\INC\\core_cm3.h"
+#line 1445 "C:\\Keil\\\\ARM\\RV31\\INC\\core_cm3.h"
+
+
+
+
 
 
 
  
+ 
 
-
+ 
 
 
 
@@ -3215,12 +3087,13 @@ static __inline void NVIC_SetPriorityGrouping(uint32_t PriorityGroup)
   uint32_t reg_value;
   uint32_t PriorityGroupTmp = (PriorityGroup & 0x07);                          
   
-  reg_value  = ((SCB_Type *) ((0xE000E000) + 0x0D00))->AIRCR;                                                     
-  reg_value &= ~((0xFFFFU << 16) | (0x0F << 8));                               
-  reg_value  = ((reg_value | (0x5FA << 16) | (PriorityGroupTmp << 8)));   
-  ((SCB_Type *) ((0xE000E000) + 0x0D00))->AIRCR = reg_value;
+  reg_value  =  ((SCB_Type *) ((0xE000E000) + 0x0D00))->AIRCR;                                                    
+  reg_value &= ~((0xFFFFul << 16) | (7ul << 8));              
+  reg_value  =  (reg_value                       |
+                (0x5FA << 16) | 
+                (PriorityGroupTmp << 8));                                      
+  ((SCB_Type *) ((0xE000E000) + 0x0D00))->AIRCR =  reg_value;
 }
-
 
 
 
@@ -3232,9 +3105,8 @@ static __inline void NVIC_SetPriorityGrouping(uint32_t PriorityGroup)
  
 static __inline uint32_t NVIC_GetPriorityGrouping(void)
 {
-  return ((((SCB_Type *) ((0xE000E000) + 0x0D00))->AIRCR >> 8) & 0x07);                                           
+  return ((((SCB_Type *) ((0xE000E000) + 0x0D00))->AIRCR & (7ul << 8)) >> 8);    
 }
-
 
 
 
@@ -3248,7 +3120,6 @@ static __inline void NVIC_EnableIRQ(IRQn_Type IRQn)
 {
   ((NVIC_Type *) ((0xE000E000) + 0x0100))->ISER[((uint32_t)(IRQn) >> 5)] = (1 << ((uint32_t)(IRQn) & 0x1F));  
 }
-
 
 
 
@@ -3284,13 +3155,11 @@ static __inline uint32_t NVIC_GetPendingIRQ(IRQn_Type IRQn)
 
 
 
-
  
 static __inline void NVIC_SetPendingIRQ(IRQn_Type IRQn)
 {
   ((NVIC_Type *) ((0xE000E000) + 0x0100))->ISPR[((uint32_t)(IRQn) >> 5)] = (1 << ((uint32_t)(IRQn) & 0x1F));  
 }
-
 
 
 
@@ -3318,7 +3187,6 @@ static __inline uint32_t NVIC_GetActive(IRQn_Type IRQn)
 {
   return((uint32_t)((((NVIC_Type *) ((0xE000E000) + 0x0100))->IABR[(uint32_t)(IRQn) >> 5] & (1 << ((uint32_t)(IRQn) & 0x1F)))?1:0));  
 }
-
 
 
 
@@ -3382,7 +3250,7 @@ static __inline uint32_t NVIC_GetPriority(IRQn_Type IRQn)
  
 static __inline uint32_t NVIC_EncodePriority (uint32_t PriorityGroup, uint32_t PreemptPriority, uint32_t SubPriority)
 {
-  uint32_t PriorityGroupTmp = (PriorityGroup & 0x07);                          
+  uint32_t PriorityGroupTmp = (PriorityGroup & 0x07);           
   uint32_t PreemptPriorityBits;
   uint32_t SubPriorityBits;
 
@@ -3410,11 +3278,10 @@ static __inline uint32_t NVIC_EncodePriority (uint32_t PriorityGroup, uint32_t P
 
 
 
-
  
 static __inline void NVIC_DecodePriority (uint32_t Priority, uint32_t PriorityGroup, uint32_t* pPreemptPriority, uint32_t* pSubPriority)
 {
-  uint32_t PriorityGroupTmp = (PriorityGroup & 0x07);                          
+  uint32_t PriorityGroupTmp = (PriorityGroup & 0x07);           
   uint32_t PreemptPriorityBits;
   uint32_t SubPriorityBits;
 
@@ -3431,12 +3298,6 @@ static __inline void NVIC_DecodePriority (uint32_t Priority, uint32_t PriorityGr
 
 
 
- 
-
-
-
-
-
 
 
 
@@ -3449,13 +3310,15 @@ static __inline void NVIC_DecodePriority (uint32_t Priority, uint32_t PriorityGr
  
 static __inline uint32_t SysTick_Config(uint32_t ticks)
 { 
-  if (ticks > ((1<<24) -1))  return (1);                                              
-
-  ((SysTick_Type *) ((0xE000E000) + 0x0010))->LOAD  =  (ticks & ((1<<24) -1)) - 1;                                       
-  NVIC_SetPriority (SysTick_IRQn, (1<<5) - 1);                             
-  ((SysTick_Type *) ((0xE000E000) + 0x0010))->VAL   =  (0x00);                                                               
-  ((SysTick_Type *) ((0xE000E000) + 0x0010))->CTRL = (1 << 2) | (1<<0) | (1<<1);  
-  return (0);                                                                             
+  if (ticks > (0xFFFFFFul << 0))  return (1);             
+                                                               
+  ((SysTick_Type *) ((0xE000E000) + 0x0010))->LOAD  = (ticks & (0xFFFFFFul << 0)) - 1;       
+  NVIC_SetPriority (SysTick_IRQn, (1<<5) - 1);   
+  ((SysTick_Type *) ((0xE000E000) + 0x0010))->VAL   = 0;                                           
+  ((SysTick_Type *) ((0xE000E000) + 0x0010))->CTRL  = (1ul << 2) | 
+                   (1ul << 1)   | 
+                   (1ul << 0);                     
+  return (0);                                                   
 }
 
 
@@ -3463,11 +3326,7 @@ static __inline uint32_t SysTick_Config(uint32_t ticks)
 
 
 
-
  
-
-
-
 
 
 
@@ -3476,13 +3335,29 @@ static __inline uint32_t SysTick_Config(uint32_t ticks)
  
 static __inline void NVIC_SystemReset(void)
 {
-  ((SCB_Type *) ((0xE000E000) + 0x0D00))->AIRCR  = ((0x5FA << 16) | (((SCB_Type *) ((0xE000E000) + 0x0D00))->AIRCR & (0x700)) | (1<<2));  
-  __dsb(0);                                                                                            
-  while(1);                                                                             
+  ((SCB_Type *) ((0xE000E000) + 0x0D00))->AIRCR  = ((0x5FA << 16)      | 
+                 (((SCB_Type *) ((0xE000E000) + 0x0D00))->AIRCR & (7ul << 8)) | 
+                 (1ul << 2));                    
+  __dsb(0);                                                                    
+  while(1);                                                     
 }
+
+   
+
 
 
  
+
+
+
+
+
+
+ 
+ 
+
+extern volatile int ITM_RxBuffer;                     
+
 
 
 
@@ -3497,11 +3372,9 @@ static __inline void NVIC_SystemReset(void)
  
 static __inline uint32_t ITM_SendChar (uint32_t ch)
 {
-  if (ch == '\n') ITM_SendChar('\r');
-  
-  if ((((CoreDebug_Type *) (0xE000EDF0))->DEMCR & (1 << 24))  &&
-      (((ITM_Type *) (0xE0000000))->TCR & 1)                  &&
-      (((ITM_Type *) (0xE0000000))->TER & (1UL << 0))  ) 
+  if ((((CoreDebug_Type *) (0xE000EDF0))->DEMCR & (1ul << 24))  &&       
+      (((ITM_Type *) (0xE0000000))->TCR & (1ul << 0))                  &&       
+      (((ITM_Type *) (0xE0000000))->TER & (1ul << 0)        )                    )      
   {
     while (((ITM_Type *) (0xE0000000))->PORT[0].u32 == 0);
     ((ITM_Type *) (0xE0000000))->PORT[0].u8 = (uint8_t) ch;
@@ -3512,6 +3385,50 @@ static __inline uint32_t ITM_SendChar (uint32_t ch)
 
 
 
+
+
+
+
+
+
+ 
+static __inline int ITM_ReceiveChar (void) {
+  int ch = -1;                                
+
+  if (ITM_RxBuffer != 0x5AA55AA5) {
+    ch = ITM_RxBuffer;
+    ITM_RxBuffer = 0x5AA55AA5;        
+  }
+  
+  return (ch); 
+}
+
+
+
+
+
+
+
+
+
+ 
+static __inline int ITM_CheckChar (void) {
+
+  if (ITM_RxBuffer == 0x5AA55AA5) {
+    return (0);                                  
+  } else {
+    return (1);                                  
+  }
+}
+
+   
+
+
+
+
+
+
+   
 
 
 
@@ -4473,7 +4390,7 @@ enum_adc_stat adc_stat=asCH;
 unsigned short net_buff[32],net_buff_,net_metr_buff_[3];
 char net_buff_cnt;
 short ADWR,period_cnt,non_zero_cnt;
-char rele_stat;
+char rele_stat=1;
 char bRELE_OUT;
 signed short adc_self_ch_buff[3],adc_self_ch_disp[3];
 long main_power_buffer[8],main_power_buffer_;
@@ -4517,23 +4434,6 @@ extern char cntrl_plazma;
 signed char vent_stat=0;
 
 
-
-signed short cntrl_stat=1200;
-signed short cntrl_stat_old=1200;
-signed short cntrl_stat_new;
-signed short Ibmax;
-unsigned char unh_cnt0,unh_cnt1,b1Hz_unh;
-unsigned char	ch_cnt0,b1Hz_ch,i,iiii;
-unsigned char	ch_cnt1,b1_30Hz_ch;
-unsigned char	ch_cnt2,b1_10Hz_ch;
-unsigned short IZMAX_;
-unsigned short IZMAX_70;
-unsigned short IZMAX_130;
-unsigned short Ubpsmax;
-unsigned short cntrl_stat_blck_cnt;
-signed short cntrl_stat_buff[32];
-signed short cntrl_stat_buff_;
-char cntrl_stat_buff_ptr;
 
 
 
@@ -4664,8 +4564,8 @@ if(samokalibr_cnt>=1785U)
 
 if(samokalibr_cnt==1799U)
 	{
-	if((Kibat0[0]!=ad7705_buff_[0])&&(abs(bat[0]._Ib/10)<IZMAX)) lc640_write_int(ADR_KI0BAT[0],ad7705_buff_[0]);
-	if((Kibat0[1]!=ad7705_buff_[1])&&(abs(bat[0]._Ib/10)<IZMAX)) lc640_write_int(ADR_KI0BAT[1],ad7705_buff_[1]);
+	if((Kibat0[0]!=ad7705_buff_[0])) lc640_write_int(ADR_KI0BAT[0],ad7705_buff_[0]);
+	if((Kibat0[1]!=ad7705_buff_[1])) lc640_write_int(ADR_KI0BAT[1],ad7705_buff_[1]);
 	
 	}	 	
 }
@@ -4683,143 +4583,31 @@ void matemat(void)
 {
 
 signed long temp_SL ;
-char  i;
 
 
-#line 298 "control.c"
+#line 280 "control.c"
 
-#line 306 "control.c"
+#line 288 "control.c"
 
-#line 314 "control.c"
+#line 296 "control.c"
 
-#line 376 "control.c"
+#line 358 "control.c"
 
-#line 384 "control.c"
+#line 366 "control.c"
 
-#line 392 "control.c"
-
-
-#line 426 "control.c"
+#line 374 "control.c"
 
 
-#line 465 "control.c"
-
-#line 561 "control.c"
-
-#line 569 "control.c"
-
-#line 577 "control.c"
+#line 408 "control.c"
 
 
-temp_SL=(signed long)adc_buff_[0];
-temp_SL*=Kubat[0];
-temp_SL/=2000L;
-bat[0]._Ub=(signed short)temp_SL;
+#line 447 "control.c"
 
-#line 591 "control.c"
+#line 455 "control.c"
 
-#line 599 "control.c"
-
-temp_SL=(signed long)adc_buff_[4];
-temp_SL*=Kubatm[0];
-temp_SL/=700L;
-bat[0]._Ubm=(signed short)temp_SL;
-
-#line 611 "control.c"
-
-temp_SL=(signed long)adc_buff_[12];
-temp_SL*=Kubat[1];
-temp_SL/=2000L;
-bat[1]._Ub=(signed short)temp_SL;
-
-#line 623 "control.c"
-
-#line 630 "control.c"
-
-temp_SL=(signed long)adc_buff_[1];
-temp_SL*=Kubatm[1];
-temp_SL/=700L;
-bat[1]._Ubm=(signed short)temp_SL;
-#line 641 "control.c"
-
-#line 648 "control.c"
+#line 463 "control.c"
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
- 
-
-
-
-if(!mess_find_unvol(220))
-	{
-	temp_SL=(signed long)ad7705_buff_[0];
-	temp_SL-=(signed long)Kibat0[0];
-	temp_SL*=(signed long)Kibat1[0];
-	if((AUSW_MAIN==24120)||(AUSW_MAIN==24210))temp_SL/=300L;
-	else if((AUSW_MAIN==22010)||(AUSW_MAIN==22035)||(AUSW_MAIN==22033))temp_SL/=2000L;
-	else temp_SL/=1000L;
-
-
-
-
-	
-	
-	
-	
-	bat[0]._Ib=(signed short)temp_SL;
-
-	temp_SL=(signed long)ad7705_buff_[1];
-	temp_SL-=(signed long)Kibat0[1];
-	temp_SL*=(signed long)Kibat1[1];
-	if((AUSW_MAIN==24120)||(AUSW_MAIN==24210))temp_SL/=300L;
-	else if((AUSW_MAIN==22010)||(AUSW_MAIN==22035)||(AUSW_MAIN==22033))temp_SL/=2000L;
-	else temp_SL/=1000L;
-	bat[1]._Ib=(signed short)temp_SL;
-	}
-
-
-
-
-
-
-
-#line 713 "control.c"
-if((adc_buff_[6]>800)&&(adc_buff_[6]<3800))bat[0]._nd=0;
-else bat[0]._nd=1;
-temp_SL=(signed long)adc_buff_[6];
-temp_SL*=Ktbat[0];
-temp_SL/=20000L;
-temp_SL-=273L;
-bat[0]._Tb=(signed short)temp_SL;
-
-
-#line 731 "control.c"
-if((adc_buff_[7]>800)&&(adc_buff_[7]<3800))bat[1]._nd=0;
-else bat[1]._nd=1;
-temp_SL=(signed long)adc_buff_[7];
-temp_SL*=Ktbat[1];
-temp_SL/=20000L;
-temp_SL-=273L;
-bat[1]._Tb=(signed short)temp_SL;
-
-
-#line 812 "control.c"
 
 
 
@@ -4828,14 +4616,39 @@ temp_SL*=Kuload;
 temp_SL/=2000L;
 load_U=(signed short)temp_SL;
 
-#line 827 "control.c"
+#line 480 "control.c"
 
-#line 835 "control.c"
-
-#line 879 "control.c"
+#line 488 "control.c"
 
 
-#line 891 "control.c"
+
+temp_SL=(signed long)adc_buff_[1];
+temp_SL*=Kuout;
+temp_SL/=500L;
+out_U=(signed short)temp_SL;
+
+
+
+temp_SL=(signed long)adc_buff_[2];
+temp_SL*=Kuvd;
+temp_SL/=500L;
+vd_U=(signed short)temp_SL;
+
+
+in_U=out_U-vd_U;
+
+
+temp_SL=(signed long)adc_buff_[2];
+temp_SL*=Kubps;
+if(AUSW_MAIN==22010)temp_SL/=400L;
+else temp_SL/=500L;
+bps_U=(signed short)temp_SL;
+
+
+
+
+
+#line 527 "control.c"
 
 if((adc_buff_[5]>800)&&(adc_buff_[5]<3800))ND_EXT[0]=0;
 else ND_EXT[0]=1;
@@ -4854,66 +4667,26 @@ t_ext[0]=(signed short)temp_SL;
  
 
 
-#line 930 "control.c"
-
-
-#line 944 "control.c"
+#line 566 "control.c"
 
 
 
 
-if((adc_buff_[6]>800)&&(adc_buff_[6]<3800))ND_EXT[1]=0;
-else ND_EXT[1]=1;
+
+if((adc_buff_[6]>800)&&(adc_buff_[6]<3800))ND_EXT[0]=0;
+else ND_EXT[0]=1;
 temp_SL=(signed long)adc_buff_[6];
-temp_SL*=Ktext[1];
+temp_SL*=Ktext[0];
 temp_SL/=20000L;
 temp_SL-=273L;
-t_ext[1]=(signed short)temp_SL;
+t_ext[0]=(signed short)temp_SL;
+sys_T=t_ext[0];
+#line 603 "control.c"
 
 
-if((adc_buff_[3]>800)&&(adc_buff_[3]<3800))ND_EXT[2]=0;
-else ND_EXT[2]=1;
-temp_SL=(signed long)adc_buff_[3];
-temp_SL*=Ktext[2];
-temp_SL/=20000L;
-temp_SL-=273L;
-t_ext[2]=(signed short)temp_SL;
+#line 627 "control.c"
 
-
-
-
-if(!bIBAT_SMKLBR)
-	{
-	signed long temp_SL;
-	temp_SL=(signed long)ibat_metr_buff_[0];
-	temp_SL-=(signed long)ibat_metr_buff_[1];
-	temp_SL*=(signed long)Kibat1[0];
-	temp_SL/=2000L;
-	
-	Ib_ips_termokompensat =(signed short)temp_SL;
-	out_I=Ib_ips_termokompensat;
-	}
-
-if(I_LOAD_MODE==0)
-	{
-	temp_SL=0;
-	for(i=0;i<NUMIST;i++)
-		{
-		temp_SL+=(signed long)bps[i]._Ii;
-		}
-	Ib_ips_termokompensat=(signed short)temp_SL/10;
-	out_I=Ib_ips_termokompensat;
-	}
-
-
-bat[0]._Ub=load_U;
-
-
-
-
-#line 1019 "control.c"
-
-#line 1042 "control.c"
+#line 650 "control.c"
 
 
 temp_SL=(signed long)adc_buff_ext_[0];
@@ -5151,11 +4924,7 @@ else if((ibt._nd[0]==1) &&  (ibt._nd[1]==1))
 
 
 
-if((BAT_IS_ON[0]==bisON)&&(bat[0]._Ub>200)) Ibmax=bat[0]._Ib;
-if((BAT_IS_ON[1]==bisON)&&(bat[1]._Ub>200)&&(bat[1]._Ib>bat[0]._Ib)) Ibmax=bat[1]._Ib;
-
-
-#line 1295 "control.c"
+#line 899 "control.c"
 
 
 
@@ -5165,104 +4934,18 @@ if((BAT_IS_ON[1]==bisON)&&(bat[1]._Ub>200)&&(bat[1]._Ib>bat[0]._Ib)) Ibmax=bat[1
 
 
 
-
-
-
-for(i=0;i<NUMIST;i++)
-	{
-	if(bps[i]._cnt<25)
-     	{
-     	bps[i]._Ii=bps[i]._buff[0]+(bps[i]._buff[1]*256);
-     	bps[i]._Uin=bps[i]._buff[2]+(bps[i]._buff[3]*256);
-     	bps[i]._Uii=bps[i]._buff[4]+(bps[i]._buff[5]*256);
-     	bps[i]._Ti=(signed)(bps[i]._buff[6]);
-     	bps[i]._adr_ee=bps[i]._buff[7];
-     	bps[i]._flags_tm=bps[i]._buff[8];
-	    
-		bps[i]._Uisum=bps[i]._buff[10]+(bps[i]._buff[11]*256); 
-		bps[i].debug_info_to_uku0=bps[i]._buff[12]+(bps[i]._buff[13]*256); 
-		bps[i].debug_info_to_uku1=bps[i]._buff[14]+(bps[i]._buff[15]*256);    
-     	} 
-	else 
-     	{
-     	bps[i]._Uii=0; 
-     	bps[i]._Ii=0;
-     	bps[i]._Uin=0;
-     	bps[i]._Ti=0;
-     	bps[i]._flags_tm=0; 
-	     
-		bps[i]._Uisum=0; 
-		bps[i].debug_info_to_uku0=bps[i]._buff[12]+(bps[i]._buff[13]*256); 
-		bps[i].debug_info_to_uku1=bps[i]._buff[14]+(bps[i]._buff[15]*256);    
-     	}
-     
-     }
 
 load_I=0;
-#line 1348 "control.c"
-load_I=-(bat[0]._Ib/10)-(bat[1]._Ib/10);
-
 Isumm=0;
 
-for(i=0;i<NUMIST;i++)
-     {
-     if(bps[i]._cnt<5)Isumm+=bps[i]._Ii;
-     }  
-     
-load_I=load_I+Isumm;
-if(load_I<0)load_I=0;
-
-#line 1374 "control.c"
 
 
 
-#line 1406 "control.c"
-
-
-if (NUMINV)
-	{
-	for(i=0;i<NUMINV;i++)
-		{
-		if(bps[i+20]._cnt<25)
-     		{
-     		inv[i]._Ii=bps[i+20]._buff[0]+(bps[i+20]._buff[1]*256);
-     		inv[i]._Pio=bps[i+20]._buff[2]+(bps[i+20]._buff[3]*256);
-     		inv[i]._Uio=bps[i+20]._buff[4]+(bps[i+20]._buff[5]*256);
-     		inv[i]._Ti=(signed)(bps[i+20]._buff[6]);
-     		inv[i]._flags_tm=bps[i+20]._buff[7];
-     		inv[i]._Uin=bps[i+20]._buff[8]+(bps[i+20]._buff[9]*256);
-     		inv[i]._Uil=bps[i+20]._buff[10]+(bps[i+20]._buff[11]*256);
-			inv[i]._cnt=0;
-			inv[i]._Uoutmin=bps[i+20]._buff[12]; 
-			inv[i]._Uoutmax=bps[i+20]._buff[13]; 
-			inv[i]._Pnom=bps[i+20]._buff[14]; 
-			inv[i]._net_contr_en=bps[i+20]._buff[15];
-			inv[i]._pwm_en=bps[i+20]._buff[16];  
-			inv[i]._phase_mode=bps[i+20]._buff[17];  
-     		} 
-		else 
-     		{
-      		inv[i]._Ii=0;
-			inv[i]._Pio=0;
-			inv[i]._Uio=0;
-     		inv[i]._Ti=0;
-     		inv[i]._flags_tm=0; 
-     		inv[i]._Uil=0;
-     		inv[i]._Uin=0;
-			inv[i]._cnt=25; 
-			inv[i]._Uoutmin=0; 
-			inv[i]._Uoutmax=0; 
-			inv[i]._Pnom=0; 
-			inv[i]._net_contr_en=0;
-			inv[i]._pwm_en=0;   
-			   
-     		}
-     	}
-   	}
+#line 944 "control.c"
 
 
 
-#line 1495 "control.c"
+#line 991 "control.c"
 
 
 
@@ -5385,7 +5068,7 @@ if(adc_ch_net)
 		}
 	if((adc_net_buff_cnt&0x03ff)==0)
 		{
-#line 1623 "control.c"
+#line 1119 "control.c"
 		net_buff_=(short)((main_power_buffer[adc_net_buff_cnt>>10])>>8);
 
 
@@ -5738,44 +5421,18 @@ else
 
 
 
-
-void avg_hndl(void)
-{ 
-
-
-avg_hndl_end:
-__nop();  
-}
-
-
-void u_out_reg_hndl(void)
-{ 
-
-}
-
-
-
-
-
-
-
-
-
-
-
-
- 
-
-void rele_av_hndl(void)
+void rele_drv(void)
 {
+((LPC_GPIO_TypeDef *) ((0x2009C000UL) + 0x00000) )->FIODIR|=(1UL<<8);
 
-}
-
-
-void rele_hndl(void)
-{
-
-
+if(rele_stat)
+	{
+	((LPC_GPIO_TypeDef *) ((0x2009C000UL) + 0x00000) )->FIOPIN|=(1UL<<8);
+	}
+else 
+	{
+	((LPC_GPIO_TypeDef *) ((0x2009C000UL) + 0x00000) )->FIOPIN&=~(1UL<<8);
+	}
 }
 
 
@@ -5789,32 +5446,6 @@ void bps_hndl(void)
 
 
 
-
-
-void powerAntiAliasingHndl(void)
-{
-if((power_summary_tempo/10UL)==(power_summary_tempo_old/10UL))
-	{
-	if(powerSummaryCnt<15)powerSummaryCnt++;
-	if(powerSummaryCnt>=10)
-		{
-		power_summary=power_summary_tempo;
-		}
-	}
-else powerSummaryCnt=0;
-power_summary_tempo_old=power_summary_tempo;
-
-if((power_current_tempo/10UL)==(power_current_tempo_old/10UL))
-	{
-	if(powerCurrentCnt<15)powerCurrentCnt++;
-	if(powerCurrentCnt>=10)
-		{
-		power_current=power_current_tempo;
-		}
-	}
-else powerCurrentCnt=0;
-power_current_tempo_old=power_current_tempo;
-}
 
 
 
@@ -5840,340 +5471,14 @@ else if(ipsBlckSrc==2)
 }
 
 
-void bps_drv(char in)
-{
-char temp;
-
-if (bps[in]._device!=dSRC) return;
-temp=bps[in]._flags_tm;
-if(temp&(1<<1))
-	{
-	if(bps[in]._temp_av_cnt<1200) 
-		{
-		bps[in]._temp_av_cnt++;
-		if(bps[in]._temp_av_cnt>=1200)
-			{
-			bps[in]._temp_av_cnt=1200;
-		   	if(!(bps[in]._av&(1<<0)))avar_bps_hndl(in,0,1);
-			}
-		}
-	}
-
-else if(!(temp&(1<<1)))
-	{
-	if(bps[in]._temp_av_cnt) 
-		{
-		bps[in]._temp_av_cnt--;
-		if(!bps[in]._temp_av_cnt)
-			{
-			if(bps[in]._av&(1<<0))avar_bps_hndl(in,0,0);
-			}
-		} 	
-
-	}
-
-if((temp&(1<<3)))
-	{
-	if(bps[in]._umax_av_cnt<10) 
-		{
-		bps[in]._umax_av_cnt++;
-		if(bps[in]._umax_av_cnt>=10)
-			{ 
-			bps[in]._umax_av_cnt=10;
-			if(!(bps[in]._av&(1<<1)))avar_bps_hndl(in,1,1);
-		  	
-
-
-
-
-
-
- 
-						
-			}
-		} 
-	}		
-else if(!(temp&(1<<3)))
-	{
-	if(bps[in]._umax_av_cnt>0) 
-		{
-		bps[in]._umax_av_cnt--;
-		if(bps[in]._umax_av_cnt==0)
-			{
-			bps[in]._umax_av_cnt=0;
-			avar_bps_hndl(in,1,0);
-	 
-	
-	 
-			}
-		}
-	else if(bps[in]._umax_av_cnt<0) bps[in]._umax_av_cnt=0;		 
-	}
-
-if(temp&(1<<4))
-	{
-	if(bps[in]._umin_av_cnt<10) 
-		{
-		bps[in]._umin_av_cnt++;
-		if(bps[in]._umin_av_cnt>=10)
-			{ 
-			bps[in]._umin_av_cnt=10;
-			if(!(bps[in]._av&(1<<2)))avar_bps_hndl(in,2,1);
-		  	
-
-
-
-
-
-
- 				
-			}
-		} 
-	}	
-	
-else if(!(temp&(1<<4)))
-	{
-	if(bps[in]._umin_av_cnt) 
-		{
-		bps[in]._umin_av_cnt--;
-		if(bps[in]._umin_av_cnt==0)
-			{
-			bps[in]._umin_av_cnt=0;
-			avar_bps_hndl(in,2,0);
-		
-		
-		
-			}
-		}
-	else if(bps[in]._umin_av_cnt>10)bps[in]._umin_av_cnt--;	 
-	}
-
-
-
-if (bps[in]._av&0x0f)					bps[in]._state=bsAV;
-else if ( (net_av) && (bps[in]._cnt>20)
- )				bps[in]._state=bsOFF_AV_NET;
-else if (bps[in]._flags_tm&(((0x100000) | 0x100000>>3 | 0x100000>>6 | 0x100000>>9) & 0xf | ((0x100000) | 0x100000>>3 | 0x100000>>6 | 0x100000>>9)>>12 & 0xf0))	bps[in]._state=bsRDY;
-else if (bps[in]._cnt<20)				bps[in]._state=bsWRK;
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-     
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-  
-
-
-if(bps[in]._cnt>=10) bps[in]._flags_tu|=(((0x10000000) | 0x10000000>>3 | 0x10000000>>6 | 0x10000000>>9) & 0xf | ((0x10000000) | 0x10000000>>3 | 0x10000000>>6 | 0x10000000>>9)>>12 & 0xf0);
-else bps[in]._flags_tu&=(((0x1111111) | 0x1111111>>3 | 0x1111111>>6 | 0x1111111>>9) & 0xf | ((0x1111111) | 0x1111111>>3 | 0x1111111>>6 | 0x1111111>>9)>>12 & 0xf0);
-	
-bps[in]._vol_u=cntrl_stat+bps[in]._x_;	
-bps[in]._vol_i=2000; 
-}
-
-
-void avt_hndl(void)
-{
-char i;
-for(i=0;i<12;i++)
-	{
-	if(eb2_data_short[6]&(1<<i))
-		{
-		avt_stat[i]=avtON;
-		}
-	else avt_stat[i]=avtOFF;
-	}
-
-if((avt_stat_old[0]!=avt_stat[0])&&(NUMAVT>=1))
-	{
-	if(avt_stat[0]==avtON) 	snmp_trap_send("Avtomat #1 is ON ",11,1,1);
-	else 				snmp_trap_send("Avtomat #1 is OFF",11,1,0);
-	}
-if((avt_stat_old[1]!=avt_stat[1])&&(NUMAVT>=2))
-	{
-	if(avt_stat[1]==avtON) 	snmp_trap_send("Avtomat #2 is ON ",11,2,1);
-	else 				snmp_trap_send("Avtomat #2 is OFF",11,2,0);
-	}
-if((avt_stat_old[2]!=avt_stat[2])&&(NUMAVT>=3))
-	{
-	if(avt_stat[2]==avtON) 	snmp_trap_send("Avtomat #3 is ON ",11,3,1);
-	else 				snmp_trap_send("Avtomat #3 is OFF",11,3,0);
-	}
-if((avt_stat_old[3]!=avt_stat[3])&&(NUMAVT>=4))
-	{
-	if(avt_stat[3]==avtON) 	snmp_trap_send("Avtomat #4 is ON ",11,4,1);
-	else 				snmp_trap_send("Avtomat #4 is OFF",11,4,0);
-	}
-if((avt_stat_old[4]!=avt_stat[4])&&(NUMAVT>=5))
-	{
-	if(avt_stat[4]==avtON) 	snmp_trap_send("Avtomat #5 is ON ",11,5,1);
-	else 				snmp_trap_send("Avtomat #5 is OFF",11,5,0);
-	}
-if((avt_stat_old[5]!=avt_stat[5])&&(NUMAVT>=6))
-	{
-	if(avt_stat[5]==avtON) 	snmp_trap_send("Avtomat #6 is ON ",11,6,1);
-	else 				snmp_trap_send("Avtomat #6 is OFF",11,6,0);
-	}
-if((avt_stat_old[6]!=avt_stat[6])&&(NUMAVT>=7))
-	{
-	if(avt_stat[6]==avtON) 	snmp_trap_send("Avtomat #7 is ON ",11,7,1);
-	else 				snmp_trap_send("Avtomat #7 is OFF",11,7,0);
-	}
-if((avt_stat_old[7]!=avt_stat[7])&&(NUMAVT>=8))
-	{
-	if(avt_stat[7]==avtON) 	snmp_trap_send("Avtomat #8 is ON ",11,8,1);
-	else 				snmp_trap_send("Avtomat #8 is OFF",11,8,0);
-	}
-if((avt_stat_old[8]!=avt_stat[8])&&(NUMAVT>=9))
-	{
-	if(avt_stat[8]==avtON) 	snmp_trap_send("Avtomat #9 is ON ",11,9,1);
-	else 				snmp_trap_send("Avtomat #9 is OFF",11,9,0);
-	}
-
-for(i=0;i<12;i++)
-	{
-	avt_stat_old[i]=avt_stat[i];
-	}
-}
-
 
 void bat_hndl(void)
 {
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
- 
-
-if(mess_find_unvol(200))
-	{ 
-	char i;
-	
-	if(mess_data[0]==201)
-		{
-		for(i=0;i<2;i++)
-			{
-			if(bat[i]._cnt_to_block<50)bat[i]._cnt_to_block++;
-			}
-		}
-
-	else if(mess_data[0]==202)
-		{
-		for(i=0;i<2;i++)
-			{
-			if(mess_data[1]&(1<<i))
-				{
-				if(bat[i]._cnt_to_block<50) bat[i]._cnt_to_block++;
-				}
-			else bat[i]._cnt_to_block=0;
-			}
-		}
-	else 
-	 	{
-		for(i=0;i<2;i++)
-			{
-			bat[i]._cnt_to_block=0;
-			}
-
-		}
-	for(i=0;i<2;i++)
-		{
-		if(bat[i]._cnt_to_block>20)bat[i]._rel_stat=1;
-		else bat[i]._rel_stat=0;
-		}
-
-	}
-
-else 
-	{
-	char i;
-	for(i=0;i<2;i++)
-		{
-		bat[i]._cnt_to_block=0;
-		bat[i]._rel_stat=0;
-		}
-
-	}
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
- 
 }
 
-#line 2595 "control.c"
+#line 1601 "control.c"
 
-#line 2768 "control.c"
+#line 1774 "control.c"
 
 
 
@@ -6243,7 +5548,7 @@ if(main_vent_pos<=1)mixer_vent_stat=mvsON;
 else mixer_vent_stat=mvsOFF;
 
 
-#line 2854 "control.c"
+#line 1860 "control.c"
 
 if((TBATDISABLE>=50) && (TBATDISABLE<=90))
 	{
@@ -6300,306 +5605,19 @@ else
 }
 
 
-#line 3043 "control.c"
-
-
-
-
-void overload_hndl(void)
-{
-
-if(main_1Hz_cnt<30)return;
-
-if((out_U<UOUT)&&((UOUT-out_U)>50))
-	{
-	if(overloadHndlCnt<(TZAS*10))
-		{
-		overloadHndlCnt++;
-		if(overloadHndlCnt==(TZAS*10))
-			{
-			avar_overload_hndl(1);
-			}
-		}
-	}
-else if(out_U>(UOUT-20))
-	{
-	if(overloadHndlCnt)
-		{
-		overloadHndlCnt--;
-		if(overloadHndlCnt==0)
-			{
-			avar_overload_hndl(0);
-			}
-		}
-	}
-
-}
-
-
-void u_avar_hndl(void)
-{
-
-if(main_1Hz_cnt<10)return;
-
-if(out_U>UOUTMAX)
-	{
-	if(uAvarHndlOutUMaxCnt<(10*TZAS))
-		{
-		uAvarHndlOutUMaxCnt++;
-		if(uAvarHndlOutUMaxCnt>=(10*TZAS))
-			{
-			avar_u_out_hndl(1,out_U);
-			}
-		}
-	else uAvarHndlOutUMaxCnt=(10*TZAS);
-	}
-else 
-	{
-	if(uAvarHndlOutUMaxCnt>0)
-		{
-		uAvarHndlOutUMaxCnt--;
-		if(uAvarHndlOutUMaxCnt==0)
-			{
-			avar_u_out_hndl(0,out_U);
-			}
-		}
-	else uAvarHndlOutUMaxCnt=0;
-	}
-
-if(out_U<UOUTMIN)
-	{
-	if(uAvarHndlOutUMinCnt<(10*TZAS))
-		{
-		uAvarHndlOutUMinCnt++;
-		if(uAvarHndlOutUMinCnt>=(10*TZAS))
-			{
-			avar_u_out_hndl(2,out_U);
-			}
-		}
-	else uAvarHndlOutUMinCnt=(10*TZAS);
-	}
-else 
-	{
-	if(uAvarHndlOutUMinCnt>0)
-		{
-		uAvarHndlOutUMinCnt--;
-		if(uAvarHndlOutUMinCnt==0)
-			{
-			avar_u_out_hndl(0,out_U);
-			}
-		}
-	else uAvarHndlOutUMinCnt=0;
-	}
-
-if(in_U>UINMAX)
-	{
-	if(uAvarHndlInUMaxCnt<(10*TZAS))
-		{
-		uAvarHndlInUMaxCnt++;
-		if(uAvarHndlInUMaxCnt>=(10*TZAS))
-			{
-			avar_u_in_hndl(1,in_U);
-			}
-		}
-	else uAvarHndlInUMaxCnt=(10*TZAS);
-	}
-else 
-	{
-	if(uAvarHndlInUMaxCnt>0)
-		{
-		uAvarHndlInUMaxCnt--;
-		if(uAvarHndlInUMaxCnt==0)
-			{
-			avar_u_in_hndl(0,in_U);
-			}
-		}
-	else uAvarHndlInUMaxCnt=0;
-	}
-
-if(in_U<UINMIN)
-	{
-	if(uAvarHndlInUMinCnt<(10*TZAS))
-		{
-		uAvarHndlInUMinCnt++;
-		if(uAvarHndlInUMinCnt>=(10*TZAS))
-			{
-			avar_u_in_hndl(2,in_U);
-			}
-		}
-	else uAvarHndlInUMinCnt=(10*TZAS);
-	}
-else 
-	{
-	if(uAvarHndlInUMinCnt>0)
-		{
-		uAvarHndlInUMinCnt--;
-		if(uAvarHndlInUMinCnt==0)
-			{
-			avar_u_in_hndl(0,in_U);
-			}
-		}
-	else uAvarHndlInUMinCnt=0;
-	}
-}
-
-
-void t_sys_avar_hndl(void)
-{
-
-if(main_1Hz_cnt<10)return;
-
-if(sys_T>TSYSMAX)
-	{
-	if(sysTAvarHndlCnt<(10*TZAS))
-		{
-		sysTAvarHndlCnt++;
-		if(sysTAvarHndlCnt>=(10*TZAS))
-			{
-			avar_sys_t_hndl(1,sys_T);
-			}
-		}
-	else sysTAvarHndlCnt=(10*TZAS);
-	}
-else 
-	{
-	if(sysTAvarHndlCnt>0)
-		{
-		sysTAvarHndlCnt--;
-		if(sysTAvarHndlCnt==0)
-			{
-			avar_sys_t_hndl(0,sys_T);
-			}
-		}
-	else sysTAvarHndlCnt=0;
-	}
-}
-
-
-void num_necc_hndl(void)
-{
-
-static short num_necc_block_cnt;
-if(num_necc_block_cnt) num_necc_block_cnt--;
-
-Isumm_=Isumm;
-
-if(bat[0]._Ib<0) Isumm_+=(abs(bat[0]._Ib))/10;
-if(bat[1]._Ib<0) Isumm_+=(abs(bat[1]._Ib))/10;
-
-num_necc_up=(Isumm_/((signed short)IMAX))+1;
-
-
-
-num_necc_down=(Isumm_/((signed short)IMIN))+1;
-
-if(num_necc_up>num_necc)
-	{
-	num_necc=num_necc_up;
-	num_necc_block_cnt=60;
-	}
-else if(num_necc_down<num_necc)
-	{
-	if(!num_necc_block_cnt)
-		{
-		num_necc=num_necc_down;
-		num_necc_block_cnt=60;
-		}
-	}
-
-  num_necc=NUMIST;
+#line 2049 "control.c"
 
 
 
 
 
-num_necc=NUMIST;
 
-gran(&num_necc,1,NUMIST);
-
-}
-
-
-
-void cntrl_hndl(void)
-{
-
-IZMAX_=IZMAX;
-
-
-
-if(speedChIsOn)IZMAX_=speedChrgCurr;
-
-if(cntrl_stat_blok_cnt)cntrl_stat_blok_cnt--;
-if(cntrl_stat_blok_cnt_)cntrl_stat_blok_cnt_--;
-
-if((bat[0]._temper_stat&0x03)||(bat[1]._temper_stat&0x03))IZMAX_=IZMAX/10;
-
-
-#line 3289 "control.c"
-
-
-if(mess_find_unvol(225))
-	{
-	if(mess_data[0]==100)
-		{
-		cntrl_stat=cntrl_stat_old+mess_data[1];
-		}
-	else if(mess_data[0]==105)
-		{
-		cntrl_stat=cntrl_stat_old-mess_data[1];
-		}
-	else if(mess_data[0]==110)
-		{
-		static char cntrlStatIsDownCnt;
-		cntrl_stat--;
-
-		if((cntrl_stat<=30)||(load_U<USIGN))
-			{
-			if(++cntrlStatIsDownCnt==250)mess_send(230,231,0,10);
-			}
-		else 
-			{
-			cntrlStatIsDownCnt=0;
-			}
-
-		}
-	else if(mess_data[0]==229)
-		{
-		cntrl_stat=mess_data[1];
-		}
-
-	else if(mess_data[0]==230)
-		{
-#line 3337 "control.c"
-	 	}
-	}
-
-#line 3458 "control.c"
-
-iiii=0;
-for(i=0;i<NUMIST;i++)
-     {
-     if(bps[i]._cnt<30)iiii=1;
-
-	 bps[i]._cntrl_stat=cntrl_stat+bps[i]._x_;
-	 if(bps[i]._flags_tu&0x01) bps[i]._cntrl_stat=0;
-     }
-
-if(iiii==0)
-     {
-     cntrl_stat=1200;	
-     cntrl_stat_old=1200;
-     cntrl_stat_new=1200;
-     }
-gran(&cntrl_stat,10,2010); 
-b1Hz_ch=0;
-}
 
 
 
 void ext_drv(void)
 {
-char i;
+
 }
 
 
@@ -6639,11 +5657,6 @@ void speedChargeStartStop(void)
 }
 
 
-void	numOfForvardBps_hndl(void)			
-{
-
-}
-
 
 void	numOfForvardBps_init(void)			
 {									
@@ -6663,9 +5676,4 @@ void vent_hndl(void)
 
 }
 
-
-void vd_is_work_hndl(void)
-{
-
-}
 
