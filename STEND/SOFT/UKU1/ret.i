@@ -627,15 +627,15 @@ extern char cnt_of_slave;
 
 
 typedef enum {
-	iMn,
-	iSet_VD,
-	iSrv_sl,iNet,iNet3,iNetEM,
+	iMn,iWater_sensor_kontr,iWater_sensor_kontr_ret,iSet_T,iSet_T_ret,
+	iAir_sensor_kontr,iAir_sensor_kontr_ret,
+	iSrv_sl,iNetEM,
 	iSet,iSet_220_IPS_TERMOKOMPENSAT,iSet_220_V2,
 	iInv_set,
 	iOptr_kontr,
-	iBps,iBps_elteh,iS2,iSet_prl,iK_prl,iDnd,
+	iS2,iSet_prl,iK_prl,iDnd,
 	iK, iK_220_IPS_TERMOKOMPENSAT,iK_220_IPS_TERMOKOMPENSAT_IB,iK_TELECORE,iK_VD,
-	iSpcprl,iSpc,k,Crash_0,Crash_1,iKednd,iAv_view_avt,iAKE,iSpc_termocompensat,
+	iSpcprl,iSpc,k,Crash_0,Crash_1,iKednd,iAKE,iSpc_termocompensat,
 	iLoad,iAVAR,
 	iStr,iStr_VD,
 	iVrs,iPrltst,iApv,
@@ -643,8 +643,7 @@ typedef enum {
 	iK_makb_sel,iK_makb,iK_out,
 	iTst_220_IPS_TERMOKOMPENSAT,iTst_VD,
 	iTst_klbr,iTst_BPS1,iTst_BPS2,iTst_BPS12,iDebug,
-	iDef_220_IPS_TERMOKOMPENSAT,
-	iSet_st_prl,iK_pdp,iSet_T,
+	iSet_st_prl,iK_pdp,
 	iDeb,
 	iPrl_bat_in_out,iPrl_bat_in_sel,iPdp1,iJAv_sel,iJAv_net_sel,iJAv_net,iJAv_src1,
 	iTst_bps, iAusw,iAusw_prl,iAusw_set,
@@ -656,7 +655,7 @@ typedef enum {
 	iExt_set,iExt_set_3U,
 	iExt_dt,
 	iExt_sk,iExt_sk_3U,
-	iExt_ddv,iExt_ddi,iExt_dud,iExt_dp,iSM,iLog,iLog_,iBatLog,iKlimat,iKlimat_kontur,iKlimat_TELECORE,
+	iExt_ddv,iExt_ddi,iExt_dud,iExt_dp,iSM,iKlimat,iKlimat_kontur,iKlimat_TELECORE,
 	iEnerg3,iEnerg,
 	iVent,
 	iK_power_net3,
@@ -1175,11 +1174,11 @@ extern enum_av_tbox_stat av_tbox_stat;
 extern signed short av_tbox_cnt;
 extern char tbatdisable_cmnd,tloaddisable_cmnd;
 extern short tbatdisable_cnt,tloaddisable_cnt;
-#line 1285 "main.h"
+#line 1284 "main.h"
 
-#line 1296 "main.h"
+#line 1295 "main.h"
 
-#line 1312 "main.h"
+#line 1311 "main.h"
 
 extern char ext_can_cnt;
 
@@ -1218,7 +1217,7 @@ extern short can_plazma;
 
 
 
-#line 1361 "main.h"
+#line 1360 "main.h"
 
 
 
@@ -1323,7 +1322,7 @@ extern int retcnt,retcntsec;
 extern unsigned char f0,fc0,f1,fc1;
 extern short ret_duty;
 
-void ret_ind(char r_i,char r_s,int r_c);
+void ret_ind(char r_i,char r_s);
 void ret_ind_hndl(void);
 void ret_ind_sec(char r_i,int r_c);
 void ret_ind_sec_hndl(void);
@@ -1386,18 +1385,18 @@ void community2lcd(char* in,
 
 #line 5 "ret.c"
 
-char retind,retsub,retindsec;
+char ret_step,retsub,retindsec;
 int retcnt,retcntsec;
 unsigned char f0,fc0,f1,fc1;
 short ret_duty;
 
 
 
-void ret_ind(char r_i,char r_s,int r_c)
+void ret_ind(char r_c,char r_s)
 {
 retcnt=r_c;
-retind=r_i;
-retsub=r_s;
+ret_step=r_s;
+
 }    
 
 
@@ -1407,15 +1406,9 @@ if(retcnt)
 	{
 	if((--retcnt)==0)
 		{
- 		a_ind . i=(i_enum)retind;
-   		a_ind . s_i=retsub;
-   		a_ind . i_s=a_ind . s_i;
-   		f0=0;
-   		fc0=0;
-   		f1=0;
-   		fc1=0;
-	 	}
-     }
+		tree_down(ret_step,0);
+        }
+    }
 }  
 
 

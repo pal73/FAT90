@@ -134,7 +134,42 @@ if(bRXIN3)
 		optr_stat=(char)tempIN[0];
 		optr_kontr_cnt=50;
 		}		
-	}
+		
+else if(strstr(uart3_an_buffer,"WATER"))
+		{
+		if(ind!=iWater)
+			{
+			tree_up(iWater,0,0,0);
+			}
+		}	
+else if(strstr(uart3_an_buffer,"WAT_RET"))
+		{
+		if(ind==iWater)
+			{
+			tree_down(0,0);
+			}
+		}				
+		
+else if(strstr(uart3_an_buffer,"AIR"))
+		{
+		if(ind!=iAir)
+			{
+			tree_up(iAir,0,0,0);
+			}
+		}				
+else if(strstr(uart3_an_buffer,"AI_RET"))
+		{
+		if(ind==iAir)
+			{
+			tree_down(0,0);
+			}
+		}	
+
+else if(strstr(uart3_an_buffer,"TIMESTART"))
+		{
+		_ds1307_write_byte(0,0);
+		}	
+	}	
 	enableInterrupts();
 }
 

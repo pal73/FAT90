@@ -3,18 +3,18 @@
 #include "ret.h"
 #include "common_func.h"
 
-char retind,retsub,retindsec;
+char ret_step,retsub,retindsec;
 int retcnt,retcntsec;
 unsigned char f0,fc0,f1,fc1;
 short ret_duty;
 
 
 //-----------------------------------------------
-void ret_ind(char r_i,char r_s,int r_c)
+void ret_ind(char r_c,char r_s)
 {
 retcnt=r_c;
-retind=r_i;
-retsub=r_s;
+ret_step=r_s;
+//retsub=r_s;
 }    
 
 //-----------------------------------------------
@@ -24,15 +24,9 @@ if(retcnt)
 	{
 	if((--retcnt)==0)
 		{
- 		ind=(i_enum)retind;
-   		sub_ind=retsub;
-   		index_set=sub_ind;
-   		f0=0;
-   		fc0=0;
-   		f1=0;
-   		fc1=0;
-	 	}
-     }
+		tree_down(ret_step,0);
+        }
+    }
 }  
 
 

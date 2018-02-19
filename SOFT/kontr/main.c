@@ -1122,6 +1122,23 @@ else if(ind==iAfterReset)
 	int2indI_slkuf(mainCnt, 1, 3, 0, 0, 0);
 	}	
 
+else if(ind==iWater)
+	{
+	led_mask_off(0x00);
+
+	int2indI_slkuf(temperOfWater,1, 3, 0, 0, 0);
+	//int2indII_slkuf(4567,0, 4, 0, 0, 0);
+	}
+
+else if(ind==iAir)
+	{
+	led_mask_off(0x00);
+
+	int2indI_slkuf(temperOfAir,1, 3, 0, 0, 0);
+	//int2indII_slkuf(4567,0, 4, 0, 0, 0);
+	}
+
+
 if(powerStat==psOFF)
 	{
 	led_set(1,0);

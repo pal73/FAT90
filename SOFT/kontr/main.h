@@ -51,7 +51,8 @@ extern const char DIGISYM[30];
 typedef enum 
 	{
 	iMn,iSet,iSet_,iSetT,iDate_W,iSetTable,iSetTable_,iDeb,iTemperSet,iDefSet,
-	iModem_deb,iMn_number,iAfterReset
+	iModem_deb,iMn_number,iAfterReset,
+	iWater, iAir
 	} ind_enum;
 	
 typedef struct  
