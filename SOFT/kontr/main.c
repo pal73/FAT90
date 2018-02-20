@@ -160,6 +160,11 @@ enumPowerStat powerStat=psOFF;
 //Проверка звука
 @near char beepTestCnt;
 
+//-----------------------------------------------
+//Проверка индикации
+@near short ind_check_cnt;
+@near short ind_check_cnt1;
+
 //^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 //отладка
 //char random_plazma;
@@ -1137,7 +1142,81 @@ else if(ind==iAir)
 	int2indI_slkuf(temperOfAir,1, 3, 0, 0, 0);
 	//int2indII_slkuf(4567,0, 4, 0, 0, 0);
 	}
-
+	
+else if(ind==iInterf)
+	{
+	//Физическая проверка индикации. Поочередное зажигание всех еденичных 
+	//элементов индикации
+	@near static short ind_check_cnt;
+	@near static short ind_check_cnt1;
+	if(++ind_check_cnt1>=5)
+		{
+		ind_check_cnt1=0;
+		if(++ind_check_cnt>=64)ind_check_cnt=0;
+		}
+	ind_outB[0]=0xff;
+	ind_outB[1]=0xff;
+	ind_outB[2]=0xff;
+	ind_outB[3]=0xff;
+	ind_outC[0]=0xff;
+	ind_outC[1]=0xff;
+	ind_outC[2]=0xff;
+	ind_outC[3]=0xff;
+	ind_outG[0]=0xff;
+	ind_outG[1]=0xff;
+	ind_outG[2]=0xff;
+	ind_outG[3]=0xff;
+	//ind_outB[3]=0xff;
+	if(ind_check_cnt<=7)
+		{
+		ind_outB[3]&=(~(1<<ind_check_cnt));	
+		}
+	else if(ind_check_cnt<=15)
+		{
+		ind_outB[2]&=(~(1<<(ind_check_cnt-8)));	
+		}
+	else if(ind_check_cnt<=23)
+		{
+		ind_outB[1]&=(~(1<<(ind_check_cnt-16)));	
+		}
+	else if(ind_check_cnt<=30)
+		{
+		ind_outC[3]&=(~(1<<(ind_check_cnt-23)));	
+		}	
+	else if(ind_check_cnt==31)
+		{
+		ind_outG[3]&=0xfe;	
+		}			
+	else if(ind_check_cnt<=38)
+		{
+		ind_outC[2]&=(~(1<<(ind_check_cnt-31)));	
+		}	
+	else if(ind_check_cnt==39)
+		{
+		ind_outG[2]&=0xfe;	
+		}			
+	else if(ind_check_cnt<=46)
+		{
+		ind_outC[1]&=(~(1<<(ind_check_cnt-39)));	
+		}	
+	else if(ind_check_cnt==47)
+		{
+		ind_outG[1]&=0xfe;	
+		}			
+	else if(ind_check_cnt<=54)
+		{
+		ind_outC[0]&=(~(1<<(ind_check_cnt-47)));	
+		}	
+	else if(ind_check_cnt==55)
+		{
+		ind_outG[0]&=0xfe;	
+		}
+	else if(ind_check_cnt<=64)
+		{	
+		led_mask_off(0x00);
+		led_on(ind_check_cnt-55);	
+		}
+	}
 
 if(powerStat==psOFF)
 	{
@@ -1222,6 +1301,7 @@ if(ind==iMn)
 		{
 		if(outMode==omON)	outMode=omOFF;
 		else 				outMode=omON;
+		HUMAN_SET_EE=1;
 		}		
 	}
 
@@ -1240,12 +1320,14 @@ else if(ind==iTemperSet)
 			NECC_TEMPER_WATER_EE++;
 			gran_char(&NECC_TEMPER_WATER_EE,5,85);
 			speed=1;
+			HUMAN_SET_EE=1;
 			}
 		if((but==butD)||(but==butD_))
 			{
 			NECC_TEMPER_WATER_EE--;
 			gran_char(&NECC_TEMPER_WATER_EE,5,85);
 			speed=1;
+			HUMAN_SET_EE=1;
 			}				
 		}
 	else if(MODE_EE==2)
@@ -1256,12 +1338,14 @@ else if(ind==iTemperSet)
 			NECC_TEMPER_AIR_EE++;
 			gran_char(&NECC_TEMPER_AIR_EE,5,35);
 			speed=1;
+			HUMAN_SET_EE=1;
 			}
 		if((but==butD)||(but==butD_))
 			{
 			NECC_TEMPER_AIR_EE--;
 			gran_char(&NECC_TEMPER_AIR_EE,5,35);
 			speed=1;
+			HUMAN_SET_EE=1;
 			}				
 		}		
 	}
@@ -1333,11 +1417,13 @@ else if(ind==iSet_)
 				{
 				MODE_EE++;
 				gran_char(&MODE_EE,1,3);
+				HUMAN_SET_EE=1;
 				}
 			if((but==butD)||(but==butD_))
 				{
 				MODE_EE--;
 				gran_char(&MODE_EE,1,3);
+				HUMAN_SET_EE=1;
 				}				
 			}
 		else if(sub_ind==1)
@@ -1347,12 +1433,14 @@ else if(ind==iSet_)
 				NECC_TEMPER_WATER_EE++;
 				gran_char(&NECC_TEMPER_WATER_EE,5,85);
 				speed=1;
+				HUMAN_SET_EE=1;
 				}
 			if((but==butD)||(but==butD_))
 				{
 				NECC_TEMPER_WATER_EE--;
 				gran_char(&NECC_TEMPER_WATER_EE,5,85);
 				speed=1;
+				HUMAN_SET_EE=1;
 				}				
 			}			
 		else if(sub_ind==2)
@@ -1362,12 +1450,14 @@ else if(ind==iSet_)
 				NECC_TEMPER_AIR_EE++;
 				gran_char(&NECC_TEMPER_AIR_EE,5,35);
 				speed=1;
+				HUMAN_SET_EE=1;
 				}
 			if((but==butD)||(but==butD_))
 				{
 				NECC_TEMPER_AIR_EE--;
 				gran_char(&NECC_TEMPER_AIR_EE,5,35);
 				speed=1;
+				HUMAN_SET_EE=1;
 				}				
 			}			
 		
@@ -1378,12 +1468,14 @@ else if(ind==iSet_)
 				MAX_POWER_EE++;
 				gran_char(&MAX_POWER_EE,1,3);
 				speed=1;
+				HUMAN_SET_EE=1;
 				}
 			if((but==butD)||(but==butD_))
 				{
 				MAX_POWER_EE--;
 				gran_char(&MAX_POWER_EE,1,3);
 				speed=1;
+				HUMAN_SET_EE=1;
 				}				
 			}	
 		else if(sub_ind==4)
@@ -1653,6 +1745,7 @@ else if(ind==iSetTable_)
 			if(tempUC<TABLE_TIME_EE_MIN[num_of_set])tempUC=TABLE_TIME_EE_MIN[num_of_set];
 			if(TABLE_TIME_EE[num_of_day][num_of_set]!=tempUC)TABLE_TIME_EE[num_of_day][num_of_set]=tempUC;
 			speed=1;
+			HUMAN_SET_EE=1;
 			}
 		if((but==butD)||(but==butD_))
 			{
@@ -1662,6 +1755,7 @@ else if(ind==iSetTable_)
 			if(tempUC<TABLE_TIME_EE_MIN[num_of_set])tempUC=TABLE_TIME_EE_MIN[num_of_set];
 			if(TABLE_TIME_EE[num_of_day][num_of_set]!=tempUC)TABLE_TIME_EE[num_of_day][num_of_set]=tempUC;
 			speed=1;
+			HUMAN_SET_EE=1;
 			}				
 		}
 	else if(sub_ind1==1)
@@ -1773,6 +1867,7 @@ else if(ind==iModem_deb)
 		//memcpy(AUTH_NUMBER_1,"xxxxxxxxxx",10);
 		//memcpy(AUTH_NUMBER_2,"xxxxxxxxxx",10);
 		//memcpy(AUTH_NUMBER_3,"xxxxxxxxxx",10);
+		HUMAN_SET_EE=1;
 		}
 	else if(but==butU_)
 		{
@@ -1781,6 +1876,7 @@ else if(ind==iModem_deb)
 		//memcpy(AUTH_NUMBER_1,"9134863890",10);
 		//memcpy(AUTH_NUMBER_2,"9237328354",10);
 		//memcpy(AUTH_NUMBER_3,"xxxxxxxxxx",10);
+		HUMAN_SET_EE=1;
 		}	
 	else if(but==butUD_)
 		{
@@ -1789,6 +1885,7 @@ else if(ind==iModem_deb)
 		memcpy(AUTH_NUMBER_1,"9134863890",10);
 		memcpy(AUTH_NUMBER_2,"9237328354",10);
 		memcpy(AUTH_NUMBER_3,"11234567890",10);
+		HUMAN_SET_EE=1;
 		}			
 	}
 	
@@ -1880,8 +1977,15 @@ else if(ind==iDefSet)
 		
 		tree_down(0,0);
 		ret_ind(0,0);
+		HUMAN_SET_EE=1;
 		}
 	}	
+	
+else if(ind==iInterf)
+	{
+	beepTestCnt=10;
+	ind_check_cnt=0;
+	}
 }
 //-----------------------------------------------
 void t4_init(void)

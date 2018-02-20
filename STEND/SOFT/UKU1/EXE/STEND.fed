@@ -1,4 +1,4 @@
-;#<FEEDBACK># ARM Linker, 4.1 [Build 481]: Last Updated: Tue Feb 20 01:32:35 2018
+;#<FEEDBACK># ARM Linker, 4.1 [Build 644]: Last Updated: Tue Feb 20 17:07:41 2018
 ;VERSION 0.2
 ;FILE 25lc640.o
 lc640_read <= USED 0
@@ -21,6 +21,7 @@ int2lcd_m <= USED 0
 int2lcd_mm <= USED 0
 int2lcdhyx <= USED 0
 ip2lcd <= USED 0
+long2lcd_mmm <= USED 0
 ptr_carry <= USED 0
 ;FILE control.o
 adc_drv6 <= USED 0
@@ -58,6 +59,7 @@ ltstrobe <= USED 0
 status <= USED 0
 ;FILE main.o
 def_ips_set <= USED 0
+parol_init <= USED 0
 timer0_interrupt <= USED 0
 ;FILE memo.o
 ;FILE mess.o

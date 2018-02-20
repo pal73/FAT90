@@ -55,7 +55,7 @@ void lcd_off(void);
 void lcd_out(char* adr);
 
 #line 19 "main.c"
-#line 1 "C:\\Keil\\\\ARM\\RV31\\INC\\rtl.h"
+#line 1 "C:\\Keil\\ARM\\RV31\\INC\\rtl.h"
 
 
 
@@ -75,7 +75,7 @@ void lcd_out(char* adr);
  
 
 
-#line 27 "C:\\Keil\\\\ARM\\RV31\\INC\\rtl.h"
+#line 27 "C:\\Keil\\ARM\\RV31\\INC\\rtl.h"
 
 
 
@@ -97,7 +97,9 @@ typedef unsigned long long U64;
 typedef unsigned char   BIT;
 typedef unsigned int    BOOL;
 
-#line 54 "C:\\Keil\\\\ARM\\RV31\\INC\\rtl.h"
+#line 54 "C:\\Keil\\ARM\\RV31\\INC\\rtl.h"
+
+#line 66 "C:\\Keil\\ARM\\RV31\\INC\\rtl.h"
 
 
 
@@ -144,7 +146,7 @@ typedef U32 OS_RESULT;
 
 
 
-#line 182 "C:\\Keil\\\\ARM\\RV31\\INC\\rtl.h"
+#line 194 "C:\\Keil\\ARM\\RV31\\INC\\rtl.h"
 
 
 
@@ -161,7 +163,7 @@ extern OS_RESULT rt_tsk_prio   (OS_TID task_id, U8 new_prio);
 extern OS_TID    rt_tsk_create (void (*task)(void), U8 priority, void *stk, void *argv);
 extern OS_RESULT rt_tsk_delete (OS_TID task_id);
 
-#line 218 "C:\\Keil\\\\ARM\\RV31\\INC\\rtl.h"
+#line 230 "C:\\Keil\\ARM\\RV31\\INC\\rtl.h"
 
 extern void      _os_sys_init(U32 p, void (*task)(void), U32 prio_stksz,
                                      void *stk)                        __svc_indirect(0);
@@ -341,10 +343,10 @@ extern int fdefrag (const char *drive);
 
 
  
-#line 403 "C:\\Keil\\\\ARM\\RV31\\INC\\rtl.h"
+#line 415 "C:\\Keil\\ARM\\RV31\\INC\\rtl.h"
 
  
-#line 416 "C:\\Keil\\\\ARM\\RV31\\INC\\rtl.h"
+#line 428 "C:\\Keil\\ARM\\RV31\\INC\\rtl.h"
 
  
 
@@ -353,7 +355,7 @@ extern int fdefrag (const char *drive);
 
 
  
-#line 430 "C:\\Keil\\\\ARM\\RV31\\INC\\rtl.h"
+#line 442 "C:\\Keil\\ARM\\RV31\\INC\\rtl.h"
 
  
 
@@ -403,6 +405,7 @@ extern void dhcp_disable (void);
 extern BOOL igmp_join (U8 *group_ip);
 extern BOOL igmp_leave (U8 *group_ip);
 extern BOOL snmp_trap (U8 *manager_ip, U8 gen_trap, U8 spec_trap, U16 *obj_list);
+extern BOOL snmp_set_community (const char *community);
 
 
 
@@ -426,7 +429,7 @@ extern BOOL snmp_trap (U8 *manager_ip, U8 gen_trap, U8 spec_trap, U16 *obj_list)
 
 
  
-#line 1 "C:\\Keil\\\\ARM\\RV31\\INC\\stdint.h"
+#line 1 "C:\\Keil\\ARM\\RV31\\INC\\stdint.h"
  
  
 
@@ -444,7 +447,7 @@ extern BOOL snmp_trap (U8 *manager_ip, U8 gen_trap, U8 spec_trap, U16 *obj_list)
 
 
 
-#line 25 "C:\\Keil\\\\ARM\\RV31\\INC\\stdint.h"
+#line 25 "C:\\Keil\\ARM\\RV31\\INC\\stdint.h"
 
 
 
@@ -609,7 +612,7 @@ typedef unsigned       __int64 uintmax_t;
 
 
 
-#line 196 "C:\\Keil\\\\ARM\\RV31\\INC\\stdint.h"
+#line 196 "C:\\Keil\\ARM\\RV31\\INC\\stdint.h"
 
      
 
@@ -642,7 +645,7 @@ typedef unsigned       __int64 uintmax_t;
 
 
 
-#line 260 "C:\\Keil\\\\ARM\\RV31\\INC\\stdint.h"
+#line 260 "C:\\Keil\\ARM\\RV31\\INC\\stdint.h"
 
 
 
@@ -935,20 +938,14 @@ extern char cnt_of_slave;
 typedef enum {
 	iMn,iWater_sensor_kontr,iWater_sensor_kontr_ret,iSet_T,iSet_T_ret,
 	iAir_sensor_kontr,iAir_sensor_kontr_ret,
-	iSrv_sl,iNetEM,
-	iSet,iSet_220_IPS_TERMOKOMPENSAT,iSet_220_V2,
-	iInv_set,
-	iOptr_kontr,
+	iInterf_kontr,iInterf_kontr_ret,
+	iOptr_kontr, iProbesms, iDefset,iPowerdown,
 	iS2,iSet_prl,iK_prl,iDnd,
 	iK, iK_220_IPS_TERMOKOMPENSAT,iK_220_IPS_TERMOKOMPENSAT_IB,iK_TELECORE,iK_VD,
 	iSpcprl,iSpc,k,Crash_0,Crash_1,iKednd,iAKE,iSpc_termocompensat,
 	iLoad,iAVAR,
-	iStr,iStr_VD,
 	iVrs,iPrltst,iApv,
 	iK_bps,iK_bps_sel,iK_bat_ips_termokompensat_ib,iK_bat_TELECORE,iK_bat_sel,iK_bat_sel_TELECORE,iK_load,iK_net,iK_net3,
-	iK_makb_sel,iK_makb,iK_out,
-	iTst_220_IPS_TERMOKOMPENSAT,iTst_VD,
-	iTst_klbr,iTst_BPS1,iTst_BPS2,iTst_BPS12,iDebug,
 	iSet_st_prl,iK_pdp,
 	iDeb,
 	iPrl_bat_in_out,iPrl_bat_in_sel,iPdp1,iJAv_sel,iJAv_net_sel,iJAv_net,iJAv_src1,
@@ -961,7 +958,7 @@ typedef enum {
 	iExt_set,iExt_set_3U,
 	iExt_dt,
 	iExt_sk,iExt_sk_3U,
-	iExt_ddv,iExt_ddi,iExt_dud,iExt_dp,iSM,iKlimat,iKlimat_kontur,iKlimat_TELECORE,
+	iExt_ddv,iExt_ddi,iExt_dud,iSM,iKlimat,iKlimat_kontur,iKlimat_TELECORE,
 	iEnerg3,iEnerg,
 	iVent,
 	iK_power_net3,
@@ -1480,11 +1477,11 @@ extern enum_av_tbox_stat av_tbox_stat;
 extern signed short av_tbox_cnt;
 extern char tbatdisable_cmnd,tloaddisable_cmnd;
 extern short tbatdisable_cnt,tloaddisable_cnt;
-#line 1284 "main.h"
+#line 1278 "main.h"
 
-#line 1295 "main.h"
+#line 1289 "main.h"
 
-#line 1311 "main.h"
+#line 1305 "main.h"
 
 extern char ext_can_cnt;
 
@@ -1523,7 +1520,7 @@ extern short can_plazma;
 
 
 
-#line 1360 "main.h"
+#line 1354 "main.h"
 
 
 
@@ -2514,7 +2511,7 @@ void sc16is700_uart_hndl(void);
 
 #line 52 "main.c"
 
-#line 1 "C:\\Keil\\\\ARM\\RV31\\INC\\stdio.h"
+#line 1 "C:\\Keil\\ARM\\RV31\\INC\\stdio.h"
  
  
  
@@ -2540,7 +2537,7 @@ void sc16is700_uart_hndl(void);
 
 
 
-#line 34 "C:\\Keil\\\\ARM\\RV31\\INC\\stdio.h"
+#line 34 "C:\\Keil\\ARM\\RV31\\INC\\stdio.h"
 
 
   
@@ -2607,7 +2604,7 @@ typedef struct __FILE FILE;
 extern FILE __stdin, __stdout, __stderr;
 extern FILE *__aeabi_stdin, *__aeabi_stdout, *__aeabi_stderr;
 
-#line 125 "C:\\Keil\\\\ARM\\RV31\\INC\\stdio.h"
+#line 125 "C:\\Keil\\ARM\\RV31\\INC\\stdio.h"
     
 
     
@@ -3356,7 +3353,7 @@ extern __declspec(__nothrow) void __use_no_semihosting(void);
 
 
 
-#line 944 "C:\\Keil\\\\ARM\\RV31\\INC\\stdio.h"
+#line 944 "C:\\Keil\\ARM\\RV31\\INC\\stdio.h"
 
 
 
@@ -3864,47 +3861,7 @@ typedef enum IRQn
 
 
 
-#line 1 "C:\\Keil\\\\ARM\\RV31\\INC\\core_cm3.h"
- 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
- 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+#line 1 "C:\\Keil\\ARM\\RV31\\INC\\core_cm3.h"
 
 
 
@@ -3926,6 +3883,59 @@ typedef enum IRQn
 
  
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ 
+
  
  
  
@@ -3936,25 +3946,7 @@ typedef enum IRQn
  
 
 
-
-
-
-
-
-
- 
-
-
-
-
-
-
-
-
-
-
-
-#line 91 "C:\\Keil\\\\ARM\\RV31\\INC\\core_cm3.h"
+#line 86 "C:\\Keil\\ARM\\RV31\\INC\\core_cm3.h"
 
 
 
@@ -3974,7 +3966,7 @@ typedef enum IRQn
 
  
 
-#line 117 "C:\\Keil\\\\ARM\\RV31\\INC\\core_cm3.h"
+#line 112 "C:\\Keil\\ARM\\RV31\\INC\\core_cm3.h"
 
 
 
@@ -3984,6 +3976,13 @@ typedef enum IRQn
 
 
  
+
+
+
+
+
+ 
+
 
 
 
@@ -3993,23 +3992,19 @@ typedef enum IRQn
 typedef struct
 {
   volatile uint32_t ISER[8];                       
-       uint32_t RESERVED0[24];                                   
+       uint32_t RESERVED0[24];
   volatile uint32_t ICER[8];                       
-       uint32_t RSERVED1[24];                                    
+       uint32_t RSERVED1[24];
   volatile uint32_t ISPR[8];                       
-       uint32_t RESERVED2[24];                                   
+       uint32_t RESERVED2[24];
   volatile uint32_t ICPR[8];                       
-       uint32_t RESERVED3[24];                                   
+       uint32_t RESERVED3[24];
   volatile uint32_t IABR[8];                       
-       uint32_t RESERVED4[56];                                   
+       uint32_t RESERVED4[56];
   volatile uint8_t  IP[240];                       
-       uint32_t RESERVED5[644];                                  
+       uint32_t RESERVED5[644];
   volatile  uint32_t STIR;                          
-}  NVIC_Type;                                               
-   
-
-
-
+}  NVIC_Type;
 
 
  
@@ -4034,192 +4029,7 @@ typedef struct
   volatile const  uint32_t ADR;                           
   volatile const  uint32_t MMFR[4];                       
   volatile const  uint32_t ISAR[5];                       
-} SCB_Type;                                                
-
- 
-
-
-
-
-
-
-
-
-
-
-
-
- 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
- 
-
-
-
-
-
-
- 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
- 
-
-
-
-
-
-
-
-
-
- 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
- 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-                                     
-
-
-
-
-
-
-
-
-
- 
-
-
-
-
-
-
-
-
-
- 
-
-
-
-
-
-
-
-
-
- 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-   
-
-
-
+} SCB_Type;
 
 
  
@@ -4231,41 +4041,6 @@ typedef struct
   volatile const  uint32_t CALIB;                         
 } SysTick_Type;
 
- 
-
-
-
-
-
-
-
-
-
-
-
-
- 
-
-
-
- 
-
-
-
- 
-
-
-
-
-
-
-
-
-   
-
-
-
-
 
  
 typedef struct
@@ -4276,88 +4051,33 @@ typedef struct
     volatile  uint16_t   u16;                       
     volatile  uint32_t   u32;                       
   }  PORT [32];                                
-       uint32_t RESERVED0[864];                                 
+       uint32_t RESERVED0[864];
   volatile uint32_t TER;                           
-       uint32_t RESERVED1[15];                                  
+       uint32_t RESERVED1[15];
   volatile uint32_t TPR;                           
-       uint32_t RESERVED2[15];                                  
+       uint32_t RESERVED2[15];
   volatile uint32_t TCR;                           
-       uint32_t RESERVED3[29];                                  
+       uint32_t RESERVED3[29];
   volatile uint32_t IWR;                           
   volatile uint32_t IRR;                           
   volatile uint32_t IMCR;                          
-       uint32_t RESERVED4[43];                                  
+       uint32_t RESERVED4[43];
   volatile uint32_t LAR;                           
   volatile uint32_t LSR;                           
-       uint32_t RESERVED5[6];                                   
+       uint32_t RESERVED5[6];
   volatile const  uint32_t PID4;                          
-  volatile const  uint32_t PID5;                          
-  volatile const  uint32_t PID6;                          
-  volatile const  uint32_t PID7;                          
-  volatile const  uint32_t PID0;                          
-  volatile const  uint32_t PID1;                          
-  volatile const  uint32_t PID2;                          
-  volatile const  uint32_t PID3;                          
-  volatile const  uint32_t CID0;                          
-  volatile const  uint32_t CID1;                          
-  volatile const  uint32_t CID2;                          
-  volatile const  uint32_t CID3;                          
-} ITM_Type;                                                
-
- 
-
-
-
- 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
- 
-
-
-
- 
-
-
-
- 
-
-
-
- 
-
-
-
-
-
-
-
-
-   
-
-
-
+  volatile const  uint32_t PID5;
+  volatile const  uint32_t PID6;
+  volatile const  uint32_t PID7;
+  volatile const  uint32_t PID0;
+  volatile const  uint32_t PID1;
+  volatile const  uint32_t PID2;
+  volatile const  uint32_t PID3;
+  volatile const  uint32_t CID0;
+  volatile const  uint32_t CID1;
+  volatile const  uint32_t CID2;
+  volatile const  uint32_t CID3;
+} ITM_Type;
 
 
  
@@ -4372,27 +4092,9 @@ typedef struct
 
 } InterruptType_Type;
 
- 
-
-
 
  
 
-
-
-
-
-
-
-
-   
-
-
-
-
-
-
- 
 typedef struct
 {
   volatile const  uint32_t TYPE;                          
@@ -4406,74 +4108,7 @@ typedef struct
   volatile uint32_t RASR_A2;                       
   volatile uint32_t RBAR_A3;                       
   volatile uint32_t RASR_A3;                       
-} MPU_Type;                                                
-
- 
-
-
-
-
-
-
-
-
-
- 
-
-
-
-
-
-
-
-
-
- 
-
-
-
- 
-
-
-
-
-
-
-
-
-
- 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-   
-
-
-
+} MPU_Type;
 
 
 
@@ -4486,33 +4121,11 @@ typedef struct
   volatile uint32_t DEMCR;                         
 } CoreDebug_Type;
 
+
  
+#line 274 "C:\\Keil\\ARM\\RV31\\INC\\core_cm3.h"
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+#line 281 "C:\\Keil\\ARM\\RV31\\INC\\core_cm3.h"
 
 
 
@@ -4530,70 +4143,7 @@ typedef struct
 
 
 
- 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-   
-
-
- 
-#line 721 "C:\\Keil\\\\ARM\\RV31\\INC\\core_cm3.h"
-
-#line 728 "C:\\Keil\\\\ARM\\RV31\\INC\\core_cm3.h"
-
-
-
-
-
-
-   
-
-
-
-
- 
-
-
-
-
-
-#line 758 "C:\\Keil\\\\ARM\\RV31\\INC\\core_cm3.h"
+#line 311 "C:\\Keil\\ARM\\RV31\\INC\\core_cm3.h"
 
 
  
@@ -4604,13 +4154,14 @@ typedef struct
 
 
 
-#line 783 "C:\\Keil\\\\ARM\\RV31\\INC\\core_cm3.h"
+#line 336 "C:\\Keil\\ARM\\RV31\\INC\\core_cm3.h"
 
 
  
  
  
  
+
 
 
 
@@ -4629,6 +4180,7 @@ extern uint32_t __get_PSP(void);
 
 
 
+
  
 extern void __set_PSP(uint32_t topOfProcStack);
 
@@ -4639,8 +4191,10 @@ extern void __set_PSP(uint32_t topOfProcStack);
 
 
 
+
  
 extern uint32_t __get_MSP(void);
+
 
 
 
@@ -4673,13 +4227,18 @@ extern uint32_t __REV16(uint16_t value);
 extern int32_t __REVSH(int16_t value);
 
 
-#line 933 "C:\\Keil\\\\ARM\\RV31\\INC\\core_cm3.h"
+#line 502 "C:\\Keil\\ARM\\RV31\\INC\\core_cm3.h"
+
+
+
+
 
 
 
 
 
  
+
 
 
 
@@ -4701,12 +4260,15 @@ static __inline uint32_t  __get_BASEPRI(void)
 
 
 
+
  
 static __inline void __set_BASEPRI(uint32_t basePri)
 {
   register uint32_t __regBasePri         __asm("basepri");
-  __regBasePri = (basePri & 0xff);
+  __regBasePri = (basePri & 0x1ff);
 }
+
+
 
 
 
@@ -4727,12 +4289,14 @@ static __inline uint32_t __get_PRIMASK(void)
 
 
 
+
  
 static __inline void __set_PRIMASK(uint32_t priMask)
 {
   register uint32_t __regPriMask         __asm("primask");
   __regPriMask = (priMask);
 }
+
 
 
 
@@ -4753,12 +4317,14 @@ static __inline uint32_t __get_FAULTMASK(void)
 
 
 
+
  
 static __inline void __set_FAULTMASK(uint32_t faultMask)
 {
   register uint32_t __regFaultMask       __asm("faultmask");
   __regFaultMask = (faultMask & 1);
 }
+
 
 
 
@@ -4779,6 +4345,7 @@ static __inline uint32_t __get_CONTROL(void)
 
 
 
+
  
 static __inline void __set_CONTROL(uint32_t control)
 {
@@ -4790,18 +4357,13 @@ static __inline void __set_CONTROL(uint32_t control)
 
 
 
-#line 1445 "C:\\Keil\\\\ARM\\RV31\\INC\\core_cm3.h"
-
-
-
-
+#line 1044 "C:\\Keil\\ARM\\RV31\\INC\\core_cm3.h"
 
 
 
  
- 
 
- 
+
 
 
 
@@ -4819,13 +4381,12 @@ static __inline void NVIC_SetPriorityGrouping(uint32_t PriorityGroup)
   uint32_t reg_value;
   uint32_t PriorityGroupTmp = (PriorityGroup & 0x07);                          
   
-  reg_value  =  ((SCB_Type *) ((0xE000E000) + 0x0D00))->AIRCR;                                                    
-  reg_value &= ~((0xFFFFul << 16) | (7ul << 8));              
-  reg_value  =  (reg_value                       |
-                (0x5FA << 16) | 
-                (PriorityGroupTmp << 8));                                      
-  ((SCB_Type *) ((0xE000E000) + 0x0D00))->AIRCR =  reg_value;
+  reg_value  = ((SCB_Type *) ((0xE000E000) + 0x0D00))->AIRCR;                                                     
+  reg_value &= ~((0xFFFFU << 16) | (0x0F << 8));                               
+  reg_value  = ((reg_value | (0x5FA << 16) | (PriorityGroupTmp << 8)));   
+  ((SCB_Type *) ((0xE000E000) + 0x0D00))->AIRCR = reg_value;
 }
+
 
 
 
@@ -4837,8 +4398,9 @@ static __inline void NVIC_SetPriorityGrouping(uint32_t PriorityGroup)
  
 static __inline uint32_t NVIC_GetPriorityGrouping(void)
 {
-  return ((((SCB_Type *) ((0xE000E000) + 0x0D00))->AIRCR & (7ul << 8)) >> 8);    
+  return ((((SCB_Type *) ((0xE000E000) + 0x0D00))->AIRCR >> 8) & 0x07);                                           
 }
+
 
 
 
@@ -4852,6 +4414,7 @@ static __inline void NVIC_EnableIRQ(IRQn_Type IRQn)
 {
   ((NVIC_Type *) ((0xE000E000) + 0x0100))->ISER[((uint32_t)(IRQn) >> 5)] = (1 << ((uint32_t)(IRQn) & 0x1F));  
 }
+
 
 
 
@@ -4887,11 +4450,13 @@ static __inline uint32_t NVIC_GetPendingIRQ(IRQn_Type IRQn)
 
 
 
+
  
 static __inline void NVIC_SetPendingIRQ(IRQn_Type IRQn)
 {
   ((NVIC_Type *) ((0xE000E000) + 0x0100))->ISPR[((uint32_t)(IRQn) >> 5)] = (1 << ((uint32_t)(IRQn) & 0x1F));  
 }
+
 
 
 
@@ -4919,6 +4484,7 @@ static __inline uint32_t NVIC_GetActive(IRQn_Type IRQn)
 {
   return((uint32_t)((((NVIC_Type *) ((0xE000E000) + 0x0100))->IABR[(uint32_t)(IRQn) >> 5] & (1 << ((uint32_t)(IRQn) & 0x1F)))?1:0));  
 }
+
 
 
 
@@ -4982,7 +4548,7 @@ static __inline uint32_t NVIC_GetPriority(IRQn_Type IRQn)
  
 static __inline uint32_t NVIC_EncodePriority (uint32_t PriorityGroup, uint32_t PreemptPriority, uint32_t SubPriority)
 {
-  uint32_t PriorityGroupTmp = (PriorityGroup & 0x07);           
+  uint32_t PriorityGroupTmp = (PriorityGroup & 0x07);                          
   uint32_t PreemptPriorityBits;
   uint32_t SubPriorityBits;
 
@@ -5010,10 +4576,11 @@ static __inline uint32_t NVIC_EncodePriority (uint32_t PriorityGroup, uint32_t P
 
 
 
+
  
 static __inline void NVIC_DecodePriority (uint32_t Priority, uint32_t PriorityGroup, uint32_t* pPreemptPriority, uint32_t* pSubPriority)
 {
-  uint32_t PriorityGroupTmp = (PriorityGroup & 0x07);           
+  uint32_t PriorityGroupTmp = (PriorityGroup & 0x07);                          
   uint32_t PreemptPriorityBits;
   uint32_t SubPriorityBits;
 
@@ -5030,6 +4597,12 @@ static __inline void NVIC_DecodePriority (uint32_t Priority, uint32_t PriorityGr
 
 
 
+ 
+
+
+
+
+
 
 
 
@@ -5042,15 +4615,13 @@ static __inline void NVIC_DecodePriority (uint32_t Priority, uint32_t PriorityGr
  
 static __inline uint32_t SysTick_Config(uint32_t ticks)
 { 
-  if (ticks > (0xFFFFFFul << 0))  return (1);             
-                                                               
-  ((SysTick_Type *) ((0xE000E000) + 0x0010))->LOAD  = (ticks & (0xFFFFFFul << 0)) - 1;       
-  NVIC_SetPriority (SysTick_IRQn, (1<<5) - 1);   
-  ((SysTick_Type *) ((0xE000E000) + 0x0010))->VAL   = 0;                                           
-  ((SysTick_Type *) ((0xE000E000) + 0x0010))->CTRL  = (1ul << 2) | 
-                   (1ul << 1)   | 
-                   (1ul << 0);                     
-  return (0);                                                   
+  if (ticks > ((1<<24) -1))  return (1);                                              
+
+  ((SysTick_Type *) ((0xE000E000) + 0x0010))->LOAD  =  (ticks & ((1<<24) -1)) - 1;                                       
+  NVIC_SetPriority (SysTick_IRQn, (1<<5) - 1);                             
+  ((SysTick_Type *) ((0xE000E000) + 0x0010))->VAL   =  (0x00);                                                               
+  ((SysTick_Type *) ((0xE000E000) + 0x0010))->CTRL = (1 << 2) | (1<<0) | (1<<1);  
+  return (0);                                                                             
 }
 
 
@@ -5058,7 +4629,11 @@ static __inline uint32_t SysTick_Config(uint32_t ticks)
 
 
 
+
  
+
+
+
 
 
 
@@ -5067,29 +4642,13 @@ static __inline uint32_t SysTick_Config(uint32_t ticks)
  
 static __inline void NVIC_SystemReset(void)
 {
-  ((SCB_Type *) ((0xE000E000) + 0x0D00))->AIRCR  = ((0x5FA << 16)      | 
-                 (((SCB_Type *) ((0xE000E000) + 0x0D00))->AIRCR & (7ul << 8)) | 
-                 (1ul << 2));                    
-  __dsb(0);                                                                    
-  while(1);                                                     
+  ((SCB_Type *) ((0xE000E000) + 0x0D00))->AIRCR  = ((0x5FA << 16) | (((SCB_Type *) ((0xE000E000) + 0x0D00))->AIRCR & (0x700)) | (1<<2));  
+  __dsb(0);                                                                                            
+  while(1);                                                                             
 }
 
-   
-
-
 
  
-
-
-
-
-
-
- 
- 
-
-extern volatile int ITM_RxBuffer;                     
-
 
 
 
@@ -5104,9 +4663,11 @@ extern volatile int ITM_RxBuffer;
  
 static __inline uint32_t ITM_SendChar (uint32_t ch)
 {
-  if ((((CoreDebug_Type *) (0xE000EDF0))->DEMCR & (1ul << 24))  &&       
-      (((ITM_Type *) (0xE0000000))->TCR & (1ul << 0))                  &&       
-      (((ITM_Type *) (0xE0000000))->TER & (1ul << 0)        )                    )      
+  if (ch == '\n') ITM_SendChar('\r');
+  
+  if ((((CoreDebug_Type *) (0xE000EDF0))->DEMCR & (1 << 24))  &&
+      (((ITM_Type *) (0xE0000000))->TCR & 1)                  &&
+      (((ITM_Type *) (0xE0000000))->TER & (1UL << 0))  ) 
   {
     while (((ITM_Type *) (0xE0000000))->PORT[0].u32 == 0);
     ((ITM_Type *) (0xE0000000))->PORT[0].u8 = (uint8_t) ch;
@@ -5117,50 +4678,6 @@ static __inline uint32_t ITM_SendChar (uint32_t ch)
 
 
 
-
-
-
-
-
-
- 
-static __inline int ITM_ReceiveChar (void) {
-  int ch = -1;                                
-
-  if (ITM_RxBuffer != 0x5AA55AA5) {
-    ch = ITM_RxBuffer;
-    ITM_RxBuffer = 0x5AA55AA5;        
-  }
-  
-  return (ch); 
-}
-
-
-
-
-
-
-
-
-
- 
-static __inline int ITM_CheckChar (void) {
-
-  if (ITM_RxBuffer == 0x5AA55AA5) {
-    return (0);                                  
-  } else {
-    return (1);                                  
-  }
-}
-
-   
-
-
-
-
-
-
-   
 
 
 
@@ -6350,14 +5867,15 @@ void rtc_init (void)
 }
 
 
-static void timer_poll () 
-{
-if (((SysTick_Type *) ((0xE000E000) + 0x0010))->CTRL & 0x10000) 
-     {
-     timer_tick ();
-     tick = 1;
-     }
-}
+
+
+
+
+
+
+
+
+ 
 
 
 
@@ -6541,6 +6059,20 @@ else if(a_ind . i==iAir_sensor_kontr_ret)
 
 	printf("AI_RET\n");
 	}
+else if(a_ind . i==iInterf_kontr)
+	{
+	printf("INTER\n");
+
+	}
+else if(a_ind . i==iInterf_kontr_ret)
+	{
+	printf("INTE_RET\n");
+	}
+else if(a_ind . i==iProbesms)
+	{
+	printf("PROBESMS\n");
+	}
+
 }
 
 
@@ -6849,7 +6381,7 @@ void bitmap_hndl(void)
 {
 short x,ii,i;
 unsigned int ptr_bitmap;
-static char ptr_cnt,ptr_cnt1,ptr_cnt2,ptr_cnt3,ptr_cnt4;
+
 
 for(ii=0;ii<488;ii++)
 	{
@@ -6879,16 +6411,16 @@ void ind_hndl(void)
 {			  
 
 const char* ptrs[60];
-const char* sub_ptrs[50];
-static char sub_cnt,sub_cnt1;
-char i,sub_cnt_max;
-char ii_;				  
-static char ii_cnt,cnt_ind_bat;
+ 
+
+
+
+
 
 
 	   
-sub_cnt_max=5;
-i=0;
+
+
 
 
 
@@ -6916,94 +6448,96 @@ i=0;
 
  
 
-if(ips_bat_av_stat)
-	{
-	sub_ptrs[i++]=	"  Авария батареи    ";
-	sub_cnt_max++;	
-	}
-
-if(uout_av)
-	{
-	sub_ptrs[i++]=	"   Авария Uвых!!!   ";
-	sub_cnt_max++;	
-	}
 
 
 
 
-if(overloadAvar)
-	{
-	sub_ptrs[i++]=	" Перегрузка по току!";
-	sub_cnt_max++;	
-	}
 
-if(sysTAvar)
-	{
-	sub_ptrs[i++]=	" Перегрев системы!  ";
-	sub_cnt_max++;	
-	}
 
-if(uOutAvar==1)
-	{
-	sub_ptrs[i++]=	"   Завышено Uвых.!  ";
-	sub_cnt_max++;	
-	}
 
-if(uOutAvar==2)
-	{
-	sub_ptrs[i++]=	"   Занижено Uвых.!  ";
-	sub_cnt_max++;	
-	}
 
-if(uInAvar==1)
-	{
-	sub_ptrs[i++]=	"   Завышено Uвх.!   ";
-	sub_cnt_max++;	
-	}
 
-if(uInAvar==2)
-	{
-	sub_ptrs[i++]=	"   Занижено Uвх.!   ";
-	sub_cnt_max++;	
-	}
 
-cnt_of_slave=NUMIST+NUMINV;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
 
  
 
-  
-
-
-sub_cnt1++;	
-if(sub_cnt1>=20)
-	{
-	sub_cnt1=0;
-	sub_cnt++;
-	if(sub_cnt>=sub_cnt_max)
-		{
-		sub_cnt=0;
-		}
-	}
 
 
 
 
 
-
-else if(a_ind . i==iMn)
+ if(a_ind . i==iMn)
 	{
 	ptrs[0]	=			" 0%:0^:0& 0</>  /0{ ";
 	ptrs[1]=			"                    ";	
 	ptrs[2]=			" Полная проверка    ";
-    ptrs[3]=			" Контроль оптронов  ";
-	ptrs[4]=			" Установка времени  ";
-	ptrs[5]=			" Датчик воздуха     ";
-	ptrs[6]=			" Датчик воды        ";	
-	ptrs[7]=			" Пробная смс        ";	
-	ptrs[8]=			" Заводские установки";						
+	ptrs[3]=			" Контроль интерфейса";
+    ptrs[4]=			" Контроль оптронов  ";
+	ptrs[5]=			" Установка времени  ";
+	ptrs[6]=			" Датчик воздуха     ";
+	ptrs[7]=			" Датчик воды        ";	
+	ptrs[8]=			" Пробная смс        ";
+	ptrs[8]=			" Тест выключения    ";
+	ptrs[9]=			" Заводские установки";						
 	
 	
 
@@ -7041,6 +6575,14 @@ else if(a_ind . i==iMn)
  		
 	}
 
+else if(a_ind . i==iInterf_kontr)
+	{
+	bgnd_par(	" ПРОВЕРКА ИНДИКАЦИИ ",
+				"      КНОПОК        ",
+				"      БИППЕРА       ",
+				" Выход              "); 
+	pointer_set(3);
+	} 
 
 
 else if(a_ind . i==iOptr_kontr)
@@ -7320,98 +6862,6 @@ else if(a_ind . i==iPrl_bat_in_sel)
 	}
 
 
-else if(a_ind . i==iSet)
-	{
-     ptrs[0]=		" Стандартные        ";
-	ptrs[1]=		" Время и дата       ";
-     ptrs[2]=		" Структура          ";
-	ptrs[3]=		" Климатконтроль     ";
-	ptrs[4]=		" Выход              ";
-     ptrs[5]=		" Мнемоника         y";
-	ptrs[6]=		" Зв.сигн.   (       ";
-	ptrs[7]=		" Отключение сигнала ";
-	ptrs[8]=		"  аварии    )       ";
-	ptrs[9]=		" АПВ источников     ";
-	ptrs[10]=		" Паралл.работа z    ";
-	ptrs[11]=		" T проверки   цепи  ";
-     ptrs[12]=		" батареи     qмин.  ";
-     ptrs[13]=		" Umax=       !В     ";
-     ptrs[14]=		" Umin=       ZВ     ";
-     ptrs[15]=		" Uб0°=       @В     ";
-     ptrs[16]=		" Uб20°=      #В     ";
-     ptrs[17]=		" Uсигн=      ^В     ";
-     ptrs[18]=		" Umin.сети=  &В     ";
-	ptrs[19]=		" U0б=        >В     ";
-	ptrs[20]=		" Iбк.=       jА     ";
-     ptrs[21]=		" Iз.мах.=    JА     ";
-     ptrs[22]=		" Imax =      ]A     ";
-     ptrs[23]=		" Imin =      {A     ";
-     ptrs[24]=		" Uвыр.зар.=   [В    ";
-     ptrs[25]=		" Tз.вкл.а.с. !с     ";
-	ptrs[26]=		" tи.max=     $°C    ";
-	ptrs[27]=		" tи.сигн=    z°C    ";
-	ptrs[28]=		" tбат.max=   b°C    ";
-	ptrs[29]=		" tбат.сигн=  X°C    ";
-     ptrs[30]=		" Внешние датчики    ";
-	ptrs[31]=		" Ethernet           ";
-     ptrs[32]=      " Адрес счетчика    +";
-     ptrs[33]=      " Контроль ср.точки  ";
-     ptrs[34]=      " батареи         Q% ";
-	ptrs[35]=      " Серийный N        w";
-     ptrs[36]=		" Выход              ";
-     ptrs[37]=		" Калибровки         "; 
-     ptrs[38]=		"                    ";        
-	
-	if((a_ind . s_i-a_ind . i_s)>2)a_ind . i_s=a_ind . s_i-2;
-	else if(a_ind . s_i<a_ind . i_s)a_ind . i_s=a_ind . s_i;
-	bgnd_par("     УСТАНОВКИ      ",
-			ptrs[a_ind . i_s],ptrs[a_ind . i_s+1],ptrs[a_ind . i_s+2]);
-
-	pointer_set(1);	
-	
-	if(a_ind . i_s<19)
-	     {
-	     if(ZV_ON)sub_bgnd("ВКЛ.",'(',0);
-	     else sub_bgnd("ВЫК.",'(',0);
-	     if(AV_OFF_AVT)sub_bgnd("автом.",')',0);
-	     else sub_bgnd("ручн.",')',0);
-
-
-	     if(MNEMO_ON==mnON)
-	     	{
-	     	sub_bgnd("через yс.",'y',-8);
-	     	int2lcd(MNEMO_TIME,'y',0);
-	     	}
-	     else sub_bgnd("выкл.",'y',-4);
-	     int2lcd(UMAX,'!',1);
-	     
-	     
-	     
-	     int2lcd(USIGN,'^',0);
-	     int2lcd(UMN,'&',0);
-	     int2lcd(U0B,'>',1);
-	     } 
-	int2lcd(TMAX,'$',0);
-	int2lcd(IKB,'j',2);
-
-	int2lcd(IMAX,']',1);
-	int2lcd(IMIN,'{',1);
-	int2lcd(IZMAX,'J',1); 
-	int2lcd(TZAS,'!',0);
-	int2lcd(TBAT,'q',0);
-	int2lcd(TSIGN,'z',0); 
-	int2lcd(TBATMAX,'b',0); 
-	int2lcd(TBATSIGN,'X',0);
-     int2lcd(POWER_CNT_ADRESS,'+',0);
-     if(UBM_AV)
-          {
-          int2lcd(UBM_AV,'Q',0);
-          } 
-     else sub_bgnd("ВЫКЛ.",'Q',-2);
-
-
-	long2lcd_mmm(AUSW_MAIN_NUMBER,'w',0);
-	}
 
 
 else if(a_ind . i==iSet_T)
@@ -7456,87 +6906,11 @@ else if(a_ind . i==iSet_T)
 		   
 	}  
 
-else if((a_ind . i==iSet_T_ret)||(a_ind . i==iAir_sensor_kontr_ret)||(a_ind . i==iWater_sensor_kontr_ret))
+else if((a_ind . i==iSet_T_ret)||(a_ind . i==iAir_sensor_kontr_ret)||(a_ind . i==iWater_sensor_kontr_ret)||(a_ind . i==iInterf_kontr_ret))
 	{
 	bgnd_par(sm_,sm_,sm_,sm_);	 
 		   
 	}  
-
-else if(a_ind . i==iStr)
-	{
-	ptrs[0]=" Батарей           @";
-	ptrs[1]=" Источников        !";
-	ptrs[2]=" Инверторов        ^";	
-	ptrs[3]=" Контролируемых     ";
-	ptrs[4]=" автоматов         $";
-	ptrs[5]=" Выход              ";
-
-	if(a_ind . s_i<a_ind . i_s) a_ind . i_s=a_ind . s_i;
-	else if((a_ind . s_i-a_ind . i_s)>2) a_ind . i_s=a_ind . s_i-2;
-	bgnd_par("      СТРУКТУРА     ",ptrs[a_ind . i_s],ptrs[a_ind . i_s+1],ptrs[a_ind . i_s+2]);
-	
-	pointer_set(1);
-
-	int2lcd(NUMBAT,'@',0);		
-	int2lcd(NUMIST,'!',0);
-	int2lcd(NUMAVT,'$',0);	 
-	int2lcd(NUMINV,'^',0);
-	int2lcd(NUMDT,'#',0);
-	int2lcd(NUMSK,'$',0);
-	}    
-
-else if(a_ind . i==iStr_VD)
-	{
-	ptrs[0]=" Источников        !";
-	ptrs[1]=" Датчиков темпер.  #";
-
-
-	ptrs[2]=" Выход              ";
-	
-	if(a_ind . s_i<a_ind . i_s) a_ind . i_s=a_ind . s_i;
-	else if((a_ind . s_i-a_ind . i_s)>2) a_ind . i_s=a_ind . s_i-2;
-	bgnd_par("      СТРУКТУРА     ",ptrs[a_ind . i_s],ptrs[a_ind . i_s+1],ptrs[a_ind . i_s+2]);
-	
-	pointer_set(1);
-
-	int2lcd(NUMIST,'!',0); 
-	int2lcd(NUMDT,'#',0);
-	int2lcd(NUMMAKB,'%',0);
-	int2lcd(NUMSK,'$',0);
-	}    
-
-
-
-else if (a_ind . i==iExt_dp)
-	{ 
-	ptrs[0]=" состояние - @      ";
-	ptrs[1]=" аварийное          ";
-	ptrs[2]=" состояние - #      ";
-	ptrs[3]=" Реле            [  ";
-     ptrs[4]=" Дисплей         (  ";
-	ptrs[5]=sm_exit;
-	
-	if(a_ind . s_i<a_ind . i_s) a_ind . i_s=a_ind . s_i;
-	else if((a_ind . s_i-a_ind . i_s)>2) a_ind . i_s=a_ind . s_i-2;
-     bgnd_par("ДАТЧИК ПЕРЕВОРАЧИВ. ",ptrs[a_ind . i_s],ptrs[a_ind . i_s+1],ptrs[a_ind . i_s+2]);
-	
-	pointer_set(1);
-
-	if(sk_stat[3]==ssON)sub_bgnd("замкнут",'@',0);
-	else sub_bgnd("разомк.",'@',0);
-	if(!SK_SIGN[3])sub_bgnd("замкнут",'#',0);
-	else sub_bgnd("незамк.",'#',0);
-	if(!SK_REL_EN[3])sub_bgnd("вкл.",'[',-2);
-	else sub_bgnd("выкл.",'[',-2);
-	if(!SK_LCD_EN[3])sub_bgnd("вкл.",'(',-2);
-	else sub_bgnd("выкл.",'(',-2);
-
-
-    
-
-
- 
-	}
 
 else if(a_ind . i==iK)
 	{
@@ -7754,29 +7128,6 @@ else if(a_ind . i==iK_load)
 	else int2lcd(load_U,'@',1);
      }
 
-else if(a_ind . i==iK_out)
-	{
-	ptrs[0]=" Uвыпр. =     @В    ";
-    ptrs[1]=" Uшины  =     #В    ";
-	ptrs[2]=" Выход              ";
-	ptrs[3]="                    ";
-	
-	if((a_ind . s_i-a_ind . i_s)>1)a_ind . i_s=a_ind . s_i-1;
-	else if(a_ind . s_i<a_ind . i_s)a_ind . i_s=a_ind . s_i;
-	bgnd_par(	"КАЛИБРОВКА ВЫХОДНЫХ ",
-				"     ПАРАМЕТРОВ     ",
-				ptrs[a_ind . i_s],
-				ptrs[a_ind . i_s+1]);
-
-	pointer_set(2);
-	
-	if((bps_U)>1000)int2lcd(bps_U/10,'@',0);	
-	else int2lcd(bps_U,'@',1);
-
-	if((out_U)>1000)int2lcd(out_U/10,'#',0);	
-	else int2lcd(out_U,'#',1);
-    }
-
 else if(a_ind . i==iK_t_ext)
 	{
 	ptrs[0]=  	" tвнеш.возд.    !°С ";
@@ -7879,7 +7230,6 @@ else if(a_ind . i==iK_power_net3)
 	
 	
      }
-
 
 
 			
@@ -8261,7 +7611,7 @@ if(a_ind . i==iDeb)
      		    	"    !     $         ",
      		    	"    @     %         ",
      		    	"            ^       ");
-#line 2725 "main.c"
+#line 2558 "main.c"
     	}
 
 
@@ -8405,139 +7755,6 @@ if(a_ind . i==iDeb)
      }
 
 
-
-
-
-else if(a_ind . i==iTst_VD)
-	{
-	ptrs[0]=						" Реле аварии        ";
-    ptrs[1]=						" 1                 !";
-    ptrs[2]=						" Реле аварии        ";
-    ptrs[3]=						" 2                 @";
-    ptrs[4]=						" Реле аварии        ";
-    ptrs[5]=						" 3                 #";
-	ptrs[6]=						" Реле аварии        ";
-    ptrs[7]=						" 4                 $";
-	ptrs[8]=						" БПС N1             ";
-    ptrs[9]=						" БПС N2             ";
-    ptrs[10]=						" БПС N3             ";
-	ptrs[11]=						" БПС N4             ";
-    ptrs[12]=						" БПС N5             ";
-    ptrs[13]=						" БПС N6             ";
-	ptrs[14]=						" БПС N7             ";
-    ptrs[15]=						" БПС N8             ";
-    ptrs[16]=						" БПС N9             ";               
-	ptrs[17]=						" БПС N10            ";
-    ptrs[18]=						" БПС N11            ";
-    ptrs[19]=						" БПС N12            ";               
-	ptrs[8+NUMIST]=					" Выход              ";
-	ptrs[9+NUMIST]=					" Проверка WDT(внутр)";
-	ptrs[10+NUMIST]=				" Проверка WDT(внешн)";
-
-	if((a_ind . s_i-a_ind . i_s)>2)a_ind . i_s=a_ind . s_i-2;
-	else if(a_ind . s_i<a_ind . i_s)a_ind . i_s=a_ind . s_i;
-	bgnd_par("        ТЕСТ        ",ptrs[a_ind . i_s],ptrs[a_ind . i_s+1],ptrs[a_ind . i_s+2]);
-	pointer_set(1);
-
-
- 
-
-	
-	
-
-	if(tst_state[0]==tst1) sub_bgnd("ВКЛ.",'!',-3);
-	if(tst_state[0]==tst2) sub_bgnd("ВЫКЛ.",'!',-4);
-	else sub_bgnd("РАБОЧ.",'!',-5);
-
-	if(tst_state[1]==tst1) sub_bgnd("ВКЛ.",'@',-3);
-	if(tst_state[1]==tst2) sub_bgnd("ВЫКЛ.",'@',-4);
-	else sub_bgnd("РАБОЧ.",'@',-5);
-
-	if(tst_state[2]==tst1) sub_bgnd("ВКЛ.",'#',-3);
-	if(tst_state[2]==tst2) sub_bgnd("ВЫКЛ.",'#',-4);
-	else sub_bgnd("РАБОЧ.",'#',-5);
-
-	if(tst_state[3]==tst1) sub_bgnd("ВКЛ.",'$',-3);
-	if(tst_state[3]==tst2) sub_bgnd("ВЫКЛ.",'$',-4);
-	else sub_bgnd("РАБОЧ.",'$',-5);
-	
-	if(a_ind . s_i==0)
-		{
-		if(tst_state[0]==tst1)mess_send(210,101,1,5);
-		else if(tst_state[0]==tst2)mess_send(210,101,0,5);
-		}
-	else if(a_ind . s_i==2)
-		{
-		if(tst_state[1]==tst1)mess_send(210,102,1,5);
-		else if(tst_state[1]==tst2)mess_send(210,102,0,5);
-		}	
-	else if(a_ind . s_i==4)
-		{
-		if(tst_state[2]==tst1)mess_send(210,103,1,5);
-		else if(tst_state[2]==tst2)mess_send(210,103,0,5);
-		}
-	else if(a_ind . s_i==6)
-		{
-		if(tst_state[3]==tst1)mess_send(210,104,1,5);
-		else if(tst_state[3]==tst2)mess_send(210,104,0,5);
-		}
-	}
-
-
-
-else if(a_ind . i==iNpn_set)
-	{
-	ptrs[0]=				" Вывод          !   ";
-	if(NPN_OUT==npnoOFF)
-		{
-		ptrs[1]=			" Выход              ";
-		ptrs[2]=			"                    ";
-		simax=1;
-		}
-	else 
-		{
-
-
-
-
-
-
-
-
-
-
-
-
-
-
- 
-
-			ptrs[1]=		" Uоткл.н.п.н.    $В ";
-			ptrs[2]=		" Uвкл.н.п.н.     %В ";
-			ptrs[3]=		" Tз.н.п.н.       #с.";
-			ptrs[4]=		" Выход              ";
-			simax=4;
-		}
-
-
-	if((a_ind . s_i-a_ind . i_s)>2)a_ind . i_s=a_ind . s_i-2;
-	else if(a_ind . s_i<a_ind . i_s)a_ind . i_s=a_ind . s_i;
-	bgnd_par(				" Отключение Н.П.Н.  ",
-							ptrs[a_ind . i_s],
-							ptrs[a_ind . i_s+1],
-							ptrs[a_ind . i_s+2]);
-	pointer_set(1);
-	
-	if(NPN_OUT==npnoRELEVENT) sub_bgnd("Реле вент-ра",'!',-8);
-	else if(NPN_OUT==npnoRELEAVBAT2) sub_bgnd("Реле АВ.БАТ2",'!',-8);
-	else sub_bgnd("Выкл.",'!',-1);
-
-
-	int2lcd(TZNPN,'#',0);
-	int2lcd(UONPN,'$',1);
-	int2lcd(UVNPN,'%',1);
-
-	}
 
 
 
@@ -8764,12 +7981,12 @@ else if (a_ind . i==iIps_Curr_Avg_Set)
 }							    
 
 
-#line 3233 "main.c"
+#line 2933 "main.c"
 
 
 
 
-#line 3256 "main.c"
+#line 2956 "main.c"
 
 
 
@@ -8856,8 +8073,8 @@ but_s=but_n;
 void but_an(void)
 {
 signed short temp_SS;
-signed short deep,i,cap,ptr;
-char av_head[4];
+
+
 if(!n_but)return;
 
 
@@ -9023,13 +8240,13 @@ else if(a_ind . i==iMn)
 	if(but==251)
 		{
 		a_ind . s_i++;
-		gran_char(&a_ind . s_i,0,4);
+		gran_char(&a_ind . s_i,0,9);
 		}
 		
 	else if(but==253)
 		{
 		a_ind . s_i--;
-		gran_char(&a_ind . s_i,0,4);
+		gran_char(&a_ind . s_i,0,9);
 		}	
 
 	else if(but==239)
@@ -9062,25 +8279,49 @@ else if(a_ind . i==iMn)
 			}
 		else if(a_ind . s_i==1)
 			{
-			tree_up(iOptr_kontr,0,0,0);
+			tree_up(iInterf_kontr,0,0,0);
 			}
 		else if(a_ind . s_i==2)
 			{
-			tree_up(iSet_T,0,0,0);
+			tree_up(iOptr_kontr,0,0,0);
 			}
 		else if(a_ind . s_i==3)
 			{
-			tree_up(iAir_sensor_kontr,0,0,0);
+			tree_up(iSet_T,0,0,0);
 			}
 		else if(a_ind . s_i==4)
 			{
+			tree_up(iAir_sensor_kontr,0,0,0);
+			}
+		else if(a_ind . s_i==5)
+			{
 			tree_up(iWater_sensor_kontr,0,0,0);
 			}
+		else if(a_ind . s_i==7)
+			{
+			tree_up(iProbesms,0,0,0);
+			}
+		else if(a_ind . s_i==7)
+			{
+			tree_up(iPowerdown,0,0,0);
+			}
+		else if(a_ind . s_i==8)
+			{
+			tree_up(iDefset,0,0,0);
+			}
+
  		}
 
     }
 
-
+else if(a_ind . i==iInterf_kontr)
+	{
+	if (but==254)
+	    {
+		tree_up(iInterf_kontr_ret,0,0,0);
+		ret_ind(20,1);
+	    }
+	}
 
 else if(a_ind . i==iOptr_kontr)
 	{
@@ -9313,7 +8554,7 @@ else if((a_ind . i==iPrl_bat_in_out)||(a_ind . i==iSet_prl)||(a_ind . i==iK_prl)
 				{
 				tree_down(0,0);
 
-				tree_up(iTst_VD,0,0,0);
+			
 				
 				tst_state[0]=tstOFF;
 				tst_state[1]=tstOFF;
@@ -9344,418 +8585,7 @@ else if((a_ind . i==iPrl_bat_in_out)||(a_ind . i==iSet_prl)||(a_ind . i==iK_prl)
 
 
 
-else if(a_ind . i==iSet)
-	{
-	ret(1000);
-	if(but==251)
-		{
-		a_ind . s_i++;
-		if(a_ind . s_i==7)a_ind . i_s=6;
-		if(a_ind . s_i==8)a_ind . s_i=9;
-		if(a_ind . s_i==11)a_ind . i_s=10;
-		if(a_ind . s_i==12)a_ind . s_i=13;
-          if(a_ind . s_i==32)
-               {
-               a_ind . i_s=31;
-               }
-          if(a_ind . s_i==34)
-               {
-               a_ind . s_i=35;
-               
-               }
-		
-		gran_char(&a_ind . s_i,0,37);
-		}
-	else if(but==253)
-		{
-		a_ind . s_i--;
-		if(a_ind . s_i==8)a_ind . s_i=7;
-		if(a_ind . s_i==12)a_ind . s_i=9;
-          if(a_ind . s_i==33)
-               {
-               a_ind . s_i=32;
-		     
-               }
-		gran_char(&a_ind . s_i,0,37);
-		}
-	else if(but==123)
-		{
-		a_ind . s_i=35;
-		}
-		
-	else if(a_ind . s_i==0)
-	     {
-	     if(but==254)
-	          {
-#line 3885 "main.c"
-	          ret(1000);
-	          default_temp=10;
-	          }
 
-
-	     }	
-	
-     else if(a_ind . s_i==1)
-		{
-		if(but==254)
-		     {
-		     tree_up(iSet_T,0,0,0);
-		     ret(1000);
-		     phase=0;
-		     }
-		}	
-					 
-     else if(a_ind . s_i==2)
-		{
-		if(but==254)
-		     {
-#line 3931 "main.c"
-
-
-
-
-
-
-
-
-
-		     }
-		}	
-	
-	else if(a_ind . s_i==3)
-	     {
-		if(but==254)
-		     {		
-			tree_up(iKlimat,0,0,0);
-			}
-	     }
-
-	else if(a_ind . s_i==5)
-	     {
-	     if(but==239)MNEMO_TIME++;
-	     else if(but==111)MNEMO_TIME+=10;
-	     else if(but==247)MNEMO_TIME--;
-	     else if(but==119)MNEMO_TIME-=10;
-
-	     if(((MNEMO_TIME<5)||(MNEMO_TIME>60))&&(MNEMO_ON!=mnOFF))lc640_write_int(0x10+100+72,mnOFF);	
-	     if(((MNEMO_TIME>=5)&&(MNEMO_TIME<=60))&&(MNEMO_ON!=mnON))lc640_write_int(0x10+100+72,mnON);
-	     gran((signed short*)&MNEMO_TIME,4,61);
-	     lc640_write_int(0x10+100+74,MNEMO_TIME);
-	     speed=1;
-	     }
-				     		
-	else if(a_ind . s_i==6)
-	     {
-		if(ZV_ON)ZV_ON=0;
-		else ZV_ON=1;
-	     lc640_write_int(0x10+100+18,ZV_ON);
-	     speed=1;
-	     }	
-	
-	else if(a_ind . s_i==7)
-	     {
-		if(AV_OFF_AVT)AV_OFF_AVT=0;
-		else AV_OFF_AVT=1;
-	     lc640_write_int(0x10+100+12,AV_OFF_AVT);
-	     speed=1;
-	     }	
-
-	else if(a_ind . s_i==9)
-	     {
-	     if(but==254)
-	          {
-	          tree_up(iApv,0,0,0);
-	          ret(1000);
-	          }
-	     }	
-
-	else if(a_ind . s_i==10)
-	     {
-
-
-
-	     speed=1;
-	     }
-
-	else if(a_ind . s_i==11)
-	     {
-	     if(but==239)TBAT++;
-	     else if(but==111)TBAT+=10;
-	     else if(but==247)TBAT--;
-	     else if(but==119)TBAT-=10;
-	     gran(&TBAT,5,60);
-	     lc640_write_int(0x10+100+78,TBAT);
-	     speed=1;
-	     }	
-	                    	     	
-	else if(a_ind . s_i==13)
-	     {
-	     if(but==239)UMAX++;
-	     else if(but==111)UMAX+=10;
-	     else if(but==247)UMAX--;
-	     else if(but==119)UMAX-=10;
-
-
-
-	     gran(&UMAX,10,1000);
-
-	     lc640_write_int(0x10+100+4,UMAX);
-	     speed=1;
-	     }
-	else if(a_ind . s_i==14)
-	     {
-
-
-
-
- 
-
-
-
-
-
-
- 
-	     }	     
-	else if(a_ind . s_i==15)
-	     {
-	     
-
-
-
-
-
- 
-	     }
-	     
-	else if(a_ind . s_i==16)
-	     {
-
-
-
-
-
-
- 
-	     }	
-
-	else if(a_ind . s_i==17)
-	     {
-	     if(but==239)USIGN++;
-	     else if(but==111)USIGN+=10;
-	     else if(but==247)USIGN--;
-	     else if(but==119)USIGN-=10;
-		gran(&USIGN,40,100);
-	     lc640_write_int(0x10+100+14,USIGN);
-	     speed=1;
-	     }	
-	else if(a_ind . s_i==18)
-	     {
-	     if(but==239)UMN++;
-	     else if(but==111)UMN+=10;
-	     else if(but==247)UMN--;
-	     else if(but==119)UMN-=10;
-	     gran(&UMN,1,220);
-	     lc640_write_int(0x10+100+16,UMN);
-	     speed=1;
-	     }	
-
-	else if(a_ind . s_i==19)
-	     {
-	     if(but==239)U0B++;
-	     else if(but==111)U0B+=10;
-	     else if(but==247)U0B--;
-	     else if(but==119)U0B-=10;
-		gran(&U0B,400,800);
-	     lc640_write_int(0x10+100+32,U0B);
-	     speed=1;
-	     }	
-	     
-	else if(a_ind . s_i==20)
-	     {
-	     if(but==239)IKB++;
-	     else if(but==111)IKB+=10;
-	     else if(but==247)IKB--;
-	     else if(but==119)IKB-=10;
-	     gran(&IKB,1,500);
-	     lc640_write_int(0x10+100+20,IKB);
-	     speed=1;
-	     }		
-            
-	else if(a_ind . s_i==21)
-	     {
-	     if(but==239)IZMAX++;
-	     else if(but==111)IZMAX+=10;
-	     else if(but==247)IZMAX--;
-	     else if(but==119)IZMAX-=10;
-		gran(&IZMAX,10,1000);
-	     lc640_write_int(0x10+100+30,IZMAX);
-	     speed=1;
-	     }   
-
-	else if(a_ind . s_i==22)
-	     {
-	     if(but==239)IMAX++;
-	     else if(but==111)IMAX+=10;
-	     else if(but==247)IMAX--;
-	     else if(but==119)IMAX-=10;
-		gran(&IMAX,10,1000);
-	     lc640_write_int(0x10+100+24,IMAX);
-	     speed=1;
-	     }		
-	     
-	else if(a_ind . s_i==23)
-	     {
-	     if(but==239)IMIN++;
-	     else if(but==111)IMIN+=10;
-	     else if(but==247)IMIN--;
-	     else if(but==119)IMIN-=10;
-	     gran(&IMIN,40,IMAX-10);
-	     lc640_write_int(0x10+100+26,IMIN);
-	     speed=1;
-	     }
-	
-	else if(a_ind . s_i==24)
-	     {
-
-
-
-
- 
-	     }
-	     
-	else if(a_ind . s_i==25)
-		{
-		if ((but==239)||(but==111))TZAS++;
-		if ((but==247)||(but==119))TZAS--;
-		gran(&TZAS,0,3);
-		lc640_write_int(0x10+100+34,TZAS);
-		speed=1; 
-		}	
-			       	        
-	else if(a_ind . s_i==26)
-	     {
-	     if(but==239)TMAX++;
-	     else if(but==111)TMAX+=2;
-	     else if(but==247)TMAX--;
-	     else if(but==119)TMAX-=2;
-	     gran(&TMAX,10,100);
-	     lc640_write_int(0x10+100+10,TMAX);
-	     speed=1;
-	     }	
-	
-	else if(a_ind . s_i==27)
-	     {
-	     if(but==239)TSIGN++;
-	     else if(but==111)TSIGN+=2;
-	     else if(but==247)TSIGN--;
-	     else if(but==119)TSIGN-=2;
-	     gran(&TSIGN,10,100);
-	     lc640_write_int(0x10+100+82,TSIGN);
-	     speed=1;
-	     }	     
-	else if(a_ind . s_i==28)
-	     {
-	     if(but==239)TBATMAX++;
-	     else if(but==111)TBATMAX+=2;
-	     else if(but==247)TBATMAX--;
-	     else if(but==119)TBATMAX-=2;
-	     gran(&TBATMAX,10,100);
-	     lc640_write_int(0x10+100+88,TBATMAX);
-	     speed=1;
-	     }	
-	
-	else if(a_ind . s_i==29)
-	     {
-	     if(but==239)TBATSIGN++;
-	     else if(but==111)TBATSIGN+=2;
-	     else if(but==247)TBATSIGN--;
-	     else if(but==119)TBATSIGN-=2;
-	     gran(&TBATSIGN,10,100);
-	     lc640_write_int(0x10+100+90,TBATSIGN);
-	     speed=1;
-	     }	
-     	     	     		     	     
-    else if(a_ind . s_i==30)
-		{
-		if(but==254)
-		     {
-		     tree_up(iExt_set,0,0,0);
-		     ret(1000);
-		     }
-		}
-
-    else if(a_ind . s_i==31)
-		{
-		if(but==254)
-		     {
-		     tree_up(iLan_set,0,0,0);
-		     ret(1000);
-		     }
-		}
-	else if(a_ind . s_i==32)
-	     {
-	     if(but==239)POWER_CNT_ADRESS++;
-	     else if(but==111)POWER_CNT_ADRESS+=10;
-	     else if(but==247)POWER_CNT_ADRESS--;
-	     else if(but==119)POWER_CNT_ADRESS-=10;
-	     gran(&POWER_CNT_ADRESS,0,10000);
-	     lc640_write_int(0x10+500+94,POWER_CNT_ADRESS);
-	     speed=1;
-	     } 
-	else if(a_ind . s_i==33)
-	     {
-	     if(but==239)UBM_AV++;
-	     else if(but==111)UBM_AV++;
-	     else if(but==247)UBM_AV--;
-	     else if(but==119)UBM_AV--;
-	     gran(&UBM_AV,0,50);
-	     lc640_write_int(0x10+500+96,UBM_AV);
-	     speed=1;
-	     }
-
-	else if(a_ind . s_i==34)
-	     {
-	     if(but==239)AUSW_MAIN_NUMBER++;
-	     else if(but==111)AUSW_MAIN_NUMBER+=20;
-	     else if(but==247)AUSW_MAIN_NUMBER--;
-	     else if(but==119)AUSW_MAIN_NUMBER-=20;
-		else if(but==118)AUSW_MAIN_NUMBER=15000;
-		if(AUSW_MAIN_NUMBER<13000)AUSW_MAIN_NUMBER=100000;
-		if(AUSW_MAIN_NUMBER>100000)AUSW_MAIN_NUMBER=13000;
-	     lc640_write_int(0x10+100+226,(short)(AUSW_MAIN_NUMBER&0x0000ffffUL));
-		lc640_write_int(0x10+100+226+2,(short)((AUSW_MAIN_NUMBER&0xffff0000UL)>>16UL));
-	     speed=1;
-	     }                    		
- 
-     else if((a_ind . s_i==36) || (a_ind . s_i==4))
-		{
-		if(but==254)
-		     {
-		     tree_down(0,0);
-		     ret(0);
-		     }
-		}
-				
-	else if(a_ind . s_i==37)
-		{
-		if(but==254)
-		     {		
-			tree_up(iK_prl,0,0,0);
-			parol_init();
-			ret(50);
-			}						
-		}
-		
-
-
-
-
-
-
-
- 	
-     }
 
 else if(a_ind . i==iSet_T)
 	{
@@ -10394,181 +9224,7 @@ else if(a_ind . i==iAv_view)
  	}
 
 
-		
-else if(a_ind . i==iTst_VD)
-	{
-	ret(1000);
-	if(but==251)
-		{
-		a_ind . s_i++;
-		gran_char(&a_ind . s_i,0,10+NUMIST);
-		phase=0;
-		tst_state[0]=tstOFF;
-		tst_state[1]=tstOFF;
-		tst_state[2]=tstOFF;
-		tst_state[3]=tstOFF;
-		tst_state[4]=tstOFF;
-		tst_state[5]=tstOFF;
-		tst_state[6]=tstOFF;
-		tst_state[7]=tstOFF;
-		tst_state[8]=tstOFF;
 
-		if(a_ind . s_i==1)
-			{
-			a_ind . s_i=2;
-			a_ind . i_s=1;
-			}
-		if(a_ind . s_i==3)
-			{
-			a_ind . s_i=4;
-			a_ind . i_s=3;
-			}
-		if(a_ind . s_i==5)
-			{
-			a_ind . s_i=6;
-			a_ind . i_s=5;
-			}
-		if(a_ind . s_i==7)
-			{
-			a_ind . s_i=8;
-			a_ind . i_s=7;
-			}
-		}
-
-	else if(but==253)
-		{
-		a_ind . s_i--;
-		gran_char(&a_ind . s_i,0,10+NUMIST);
-		phase=0;
-		tst_state[0]=tstOFF;
-		tst_state[1]=tstOFF;
-		tst_state[2]=tstOFF;
-		tst_state[3]=tstOFF;
-		tst_state[4]=tstOFF;
-		tst_state[5]=tstOFF;
-		tst_state[6]=tstOFF;
-		tst_state[7]=tstOFF;
-		tst_state[8]=tstOFF;
-		
-		if(a_ind . s_i==7)
-			{
-			a_ind . s_i=6;
-			a_ind . i_s=4;
-			} 
-		if(a_ind . s_i==5)
-			{
-			a_ind . s_i=4;
-			a_ind . i_s=5;
-			} 
-		if(a_ind . s_i==3)
-			{
-			a_ind . s_i=2;
-			
-			}
-		if(a_ind . s_i==1)
-			{
-			a_ind . s_i=0;
-			
-			}
-		}
-
-	else if(a_ind . s_i==0)
-		{
-		if((but==254)||(but==239))
-			{
-			if(tst_state[0]==tstOFF) tst_state[0]=tst1;
-			else if(tst_state[0]==tst1) tst_state[0]=tst2;
-			else tst_state[0]=tstOFF; 
-			}
-		else if(but==247)
-			{
-			if(tst_state[0]==tst2) tst_state[0]=tst1;
-			else if(tst_state[0]==tstOFF) tst_state[0]=tst2;
-			else tst_state[0]=tstOFF; 
-			}
-		}
-		
-	else if(a_ind . s_i==2)
-		{
-		if((but==254)||(but==239))
-			{
-			if(tst_state[1]==tstOFF) tst_state[1]=tst1;
-			else if(tst_state[1]==tst1) tst_state[1]=tst2;
-			else tst_state[1]=tstOFF;
-			}
-		else if(but==247)
-			{
-			if(tst_state[1]==tst2) tst_state[1]=tst1;
-			else if(tst_state[1]==tstOFF) tst_state[1]=tst2;
-			else tst_state[1]=tstOFF;
-			}
-		}
-			
-	else if(a_ind . s_i==4)
-		{
-		if((but==254)||(but==239))
-			{
-			if(tst_state[2]==tstOFF) tst_state[2]=tst1;
-			else if(tst_state[2]==tst1) tst_state[2]=tst2;
-			else tst_state[2]=tstOFF;
-			}
-		else if(but==247)
-			{
-			if(tst_state[2]==tst2) tst_state[2]=tst1;
-			else if(tst_state[2]==tstOFF) tst_state[2]=tst2;
-			else tst_state[2]=tstOFF;
-			}
-		}
-
-	else if(a_ind . s_i==6)
-		{
-		if((but==254)||(but==239))
-			{
-			if(tst_state[3]==tstOFF) tst_state[3]=tst1;
-			else if(tst_state[3]==tst1) tst_state[3]=tst2;
-			else tst_state[3]=tstOFF;
-			}
-		else if(but==247)
-			{
-			if(tst_state[3]==tst2) tst_state[3]=tst1;
-			else if(tst_state[3]==tstOFF) tst_state[3]=tst2;
-			else tst_state[3]=tstOFF;
-			}
-		}
-	else if((a_ind . s_i>=8)&&(a_ind . s_i<(8+NUMIST))&&(NUMIST)&&((but==254)))	
-		{
-		tree_up(iTst_bps,0,0,a_ind . s_i-8);
-		
-		tst_state[5]=tst1;
-		tst_state[6]=tstOFF;
-		}											
-
-	else if(a_ind . s_i==(8+NUMIST))
-		{
-		if(but==254)
-			{
-			tree_down(0,0);
-			ret(0);
-			}
-		}
-	else if(a_ind . s_i==(9+NUMIST))
-		{
-		if(but==254)
-			{
-			bRESET_INT_WDT=1;
-			}
-		}
-	else if(a_ind . s_i==(10+NUMIST))
-		{
-		if(but==254)
-			{
-			bRESET_EXT_WDT=1;
-			}
-		}					
-	}
-#line 5333 "main.c"
-
-#line 5543 "main.c"
 
 
 else if(a_ind . i==iTst_bps)
@@ -10894,7 +9550,7 @@ else if(a_ind . i==iKlimat_kontur)
 			}
 		}
 	}
-#line 6248 "main.c"
+#line 4899 "main.c"
 else if(a_ind . i==iNpn_set)
 	{
 	ret(1000);
@@ -11524,7 +10180,7 @@ int main (void)
 {
 char ind_reset_cnt=0;
 
-char mac_adr[6] = { 0x00,0x73,0x04,50,60,70 };
+
 
 
 
@@ -11769,7 +10425,7 @@ while (1)
 
 	if(b10Hz)
 		{
-		char i;
+
 
 
 		b10Hz=0;

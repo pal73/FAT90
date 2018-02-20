@@ -588,29 +588,3 @@
                           EXPORTAS ||area_number.8||, ||.data||
                   cnt_ad7705_vis_wrk
 000000  0000              DCB      0x00,0x00
-
-;*** Start embedded assembler ***
-
-#line 1 "ad7705.c"
-	AREA ||.emb_text||, CODE, READONLY
-	THUMB
-	EXPORT |__asm___8_ad7705_c_e03ed727____REV16|
-#line 112 "C:\\Keil\\ARM\\CMSIS\\Include\\core_cmInstr.h"
-|__asm___8_ad7705_c_e03ed727____REV16| PROC
-#line 113
-
- rev16 r0, r0
- bx lr
-	ENDP
-	AREA ||.emb_text||, CODE, READONLY
-	THUMB
-	EXPORT |__asm___8_ad7705_c_e03ed727____REVSH|
-#line 130
-|__asm___8_ad7705_c_e03ed727____REVSH| PROC
-#line 131
-
- revsh r0, r0
- bx lr
-	ENDP
-
-;*** End   embedded assembler ***

@@ -11,10 +11,13 @@ typedef enum {paNORM,paALARM} 	enumPowerAlarm;
 typedef enum {omOFF,omON} 		enumOutMode;
 @eeprom extern enumOutMode		outMode;				//Термостат включен-выключен
 @eeprom extern signed short		HUMAN_SET_EE; 			//подпись человека (0x1234)
+@eeprom extern unsigned char 		TABLE_TIME_EE[7][5];	//таблица временных меток для семи дней недели, временная метка 
+
 @eeprom extern signed char	  	NECC_TEMPER_AIR_EE; 	//температура поддержания воздуха
 @eeprom extern signed char		NECC_TEMPER_WATER_EE;	//температура поддержания воды
 @eeprom extern signed char 		MODE_EE;				//режим работы устройства (1 - по воде, 2 - по воздуху, 3 - по графику) 
 @eeprom extern signed char 		MAX_POWER_EE;			//максимальная мощность нагревания 
+@eeprom extern signed char 		TABLE_TEMPER_EE[7][5];	//таблица температурных меток для семи дней недели, температурная метка  выражается в 
 @eeprom extern char				AUTH_NUMBER_2[10];		//Ячейка для хранения номера второго авторизованого телефона
 @eeprom extern char				AUTH_NUMBER_3[10];		//Ячейка для хранения номера третьего авторизованого телефона
 @eeprom extern char				AUTH_NUMBER_FLAGS;		//Ячейка флагов обозначающих наличие установленных телефонных номеров
@@ -52,7 +55,7 @@ typedef enum
 	{
 	iMn,iSet,iSet_,iSetT,iDate_W,iSetTable,iSetTable_,iDeb,iTemperSet,iDefSet,
 	iModem_deb,iMn_number,iAfterReset,
-	iWater, iAir
+	iWater, iAir, iInterf
 	} ind_enum;
 	
 typedef struct  
@@ -171,6 +174,10 @@ extern @near char bCBC_SELF;												//модем ответил CBC
 //Проверка звука
 extern @near char beepTestCnt;
 
+//-----------------------------------------------
+//Проверка индикации
+extern @near short ind_check_cnt;
+extern @near short ind_check_cnt1;
 //^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 //отладка
 //extern char random_plazma;

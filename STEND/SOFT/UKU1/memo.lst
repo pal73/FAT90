@@ -1809,27 +1809,17 @@ N
 N//***********************************************
 N//Индикация
 Ntypedef enum {
-N	iMn_VD,
-N	iSet_VD,
-N	#ifndef UKU_TELECORE2017
-N	iMn_TELECORE2017,
-N	#endif 
-N	iSrv_sl,iNet,iNet3,iNetEM,
-N	iSet,iSet_220_IPS_TERMOKOMPENSAT,iSet_220_V2,
-N	iInv_set,
-N	iMakb,
-N	iBps,iBps_elteh,iS2,iSet_prl,iK_prl,iDnd,
+N	iMn,iWater_sensor_kontr,iWater_sensor_kontr_ret,iSet_T,iSet_T_ret,
+N	iAir_sensor_kontr,iAir_sensor_kontr_ret,
+N	iInterf_kontr,iInterf_kontr_ret,
+N	iOptr_kontr, iProbesms, iDefset,iPowerdown,
+N	iS2,iSet_prl,iK_prl,iDnd,
 N	iK, iK_220_IPS_TERMOKOMPENSAT,iK_220_IPS_TERMOKOMPENSAT_IB,iK_TELECORE,iK_VD,
-N	iSpcprl,iSpc,k,Crash_0,Crash_1,iKednd,iAv_view_avt,iAKE,iSpc_termocompensat,
+N	iSpcprl,iSpc,k,Crash_0,Crash_1,iKednd,iAKE,iSpc_termocompensat,
 N	iLoad,iAVAR,
-N	iStr,iStr_VD,
 N	iVrs,iPrltst,iApv,
 N	iK_bps,iK_bps_sel,iK_bat_ips_termokompensat_ib,iK_bat_TELECORE,iK_bat_sel,iK_bat_sel_TELECORE,iK_load,iK_net,iK_net3,
-N	iK_makb_sel,iK_makb,iK_out,
-N	iTst_220_IPS_TERMOKOMPENSAT,iTst_VD,
-N	iTst_klbr,iTst_BPS1,iTst_BPS2,iTst_BPS12,iDebug,
-N	iDef_220_IPS_TERMOKOMPENSAT,
-N	iSet_st_prl,iK_pdp,iSet_T,
+N	iSet_st_prl,iK_pdp,
 N	iDeb,
 N	iPrl_bat_in_out,iPrl_bat_in_sel,iPdp1,iJAv_sel,iJAv_net_sel,iJAv_net,iJAv_src1,
 N	iTst_bps,/*iJAv_bat,iJAv_bat_sel,*/iAusw,iAusw_prl,iAusw_set,
@@ -1841,7 +1831,7 @@ N	iK_power_net,
 N	iExt_set,iExt_set_3U,
 N	iExt_dt,
 N	iExt_sk,iExt_sk_3U,
-N	iExt_ddv,iExt_ddi,iExt_dud,iExt_dp,iSM,iLog,iLog_,iBatLog,iKlimat,iKlimat_kontur,iKlimat_TELECORE,
+N	iExt_ddv,iExt_ddi,iExt_dud,iSM,iKlimat,iKlimat_kontur,iKlimat_TELECORE,
 N	iEnerg3,iEnerg,
 N	iVent,
 N	iK_power_net3,
@@ -2110,43 +2100,6 @@ Nextern signed short BAT_LINK;
 Nextern signed short I_LOAD_MODE;		//способ измерения выходного тока - по шунту или как сумму токов источников
 N
 N
-N//***********************************************
-N//Состояние батарей
-Ntypedef struct
-N     {
-N	char 		_cnt_to_block;
-N	signed short	_Ub;
-N     signed short	_Ubm;
-N     signed short	_dUbm;
-N	signed short	_Ib;
-N	signed short	_Tb;
-N	char 		_nd;
-N	char 		_cnt_wrk;
-N	char 		_wrk;
-N	unsigned short _zar;
-N	char 		_full_ver;
-N	signed long 	_zar_cnt;
-N	signed long 	_zar_cnt_ke;
-N	unsigned short _Iintegr,_Iintegr_; 
-N	signed short 	_u_old[8];
-N	signed short	_u_old_cnt;
-N	unsigned long 	_wrk_date[2];
-N	char 		_rel_stat;
-N	char			_av;
-N	char			_time_cnt;
-N	char 		_temper_stat;
-N	//0бит - подогрев
-N	//1бит - перегрев
-N	signed short 	_sign_temper_cnt;
-N	signed short 	_max_temper_cnt;
-N	signed long 	_resurs_cnt;
-N	signed short 	_cnt_as; 	//счетчик несимметрии, считает до 5 минут при выполнении условий несимметрии, когда досчитывает - пишет в журнал
-N     //signed short   _max_cell_volt;
-N	//signed short   _min_cell_volt;
-N	} BAT_STAT; 
-Nextern BAT_STAT bat[2],bat_ips;
-Nextern signed short		bat_u_old_cnt;
-Nextern signed short 	Ib_ips_termokompensat;
 N
 N//#ifdef UKU_TELECORE2015
 Ntypedef enum {bsOFF=0,bsCOMM_ON,bsOK} enum_batStat;
@@ -2210,85 +2163,8 @@ N	char 		_adress;
 N	} BYPS_STAT; 
 Nextern BYPS_STAT byps;
 N
-N//***********************************************
-N//Мониторы АКБ
-Ntypedef struct
-N     {
-N	signed short	_U[5];
-N	signed short	_Ub[5];
-N	signed short	_T[5];
-N	signed short	_T_nd[5];
-N	signed short 	_cnt; 	
-N	} MAKB_STAT; 
-Nextern MAKB_STAT makb[4];
 N
-N//***********************************************
-N//Литиевые АКБ
-Ntypedef struct
-N     {
-N	signed short	_max_cell_volt;
-N	signed short	_min_cell_volt;
-N	signed short	_max_cell_temp;
-N	signed short	_min_cell_temp;
-N	signed short	_tot_bat_volt;
-N	signed short	_ch_curr;
-N	signed short	_dsch_curr;
-N	signed short	_rat_cap;
-N	signed short	_s_o_h;
-N	signed short	_s_o_c;
-N	signed short	_c_c_l_v;
-N	signed short	_r_b_t;
-N	signed short	_b_p_ser_num;
-N	signed short   _flags1;
-N	signed short 	_flags2;
-N	signed short 	_communication2lvlErrorStat; 	//флаг аварийности низовой связи с батареей, вычисляется в плате расширения
-N	signed short	_communication2lvlErrorCnt;  	//счетчик аварийности низовой связи с батареей
-N	signed short 	_cnt;
-N	signed short 	_communicationFullErrorStat;	//флаг аварийности всего канала связи с батареей, 0 - норма, 1 - отсутствует связь с промежуточной платой, 2 - отсутствует связь промежуточной платы и батареи  	
-N	signed short   _battIsOn;		//0 - отсутствует, 1 - присутствует
-N	char 		_plazma[8];		//переменные для отладки
-N	signed short 	_isOnCnt;
-N	signed short	_s_o_c_abs;		//остаточный заряд в абсолютном выражении
-N	signed short 	_s_o_c_percent; //остаточный заряд в процентном выражении
-N	signed short	_plazma_ss;
-N	signed short	_zar_percent;	//заряд батареи в процетах
-N	signed char		_cell_temp_1;	//температура 1-го датчика батареи(ZTT)
-N	signed char		_cell_temp_2;	//температура 2-го датчика батареи(ZTT)
-N	signed char		_cell_temp_3;	//температура 3-го датчика батареи(ZTT)
-N	signed char		_cell_temp_4;	//температура 4-го датчика батареи(ZTT)
-N	signed char		_cell_temp_ambient;	//температура датчика окружающей среды батареи(ZTT)
-N	signed char		_cell_temp_power;	//температура датчика силовой части батареи(ZTT)
-N	//signed char 	_pack_volt_state;	//статус аварии по напряжениям батареи(ZTT)
-N	//signed char 	_pack_temper_state;	//статус аварии по температурам батареи(ZTT)
-N	//signed char 	_pack_alarm_state;	//статус аварий батареи(ZTT)
-N	signed char		_charge_and_discharge_current_alarm_status;	 	//(ZTT)
-N	signed char 	_battery_total_voltage_alarm_status;			//(ZTT)
-N	signed char		_custom_alarm_quantity;							//(ZTT)
-N	signed char		_balanced_event_code;							//(ZTT)
-N	signed char 	_voltage_event_code;							//(ZTT)
-N	signed char 	_temperature_event_code;						//(ZTT)
-N	signed char		_current_event_code;							//(ZTT)
-N	signed char		_fet_status_code;								//(ZTT)
-N	signed short	_balanced_status_code;							//(ZTT)
-N	signed char 	_system_status_code;							//(ZTT)
 N
-N	} LAKB_STAT; 
-Nextern LAKB_STAT lakb[3];
-Nextern char lakb_damp[1][42];
-Nextern char bLAKB_KONF_CH;
-Nextern char bLAKB_KONF_CH_old;
-Nextern char lakb_ison_mass[7];
-Nextern short lakb_mn_ind_cnt;
-Nextern char bLAKB_KONF_CH_EN;
-Nextern char bRS485ERR;
-Nextern short LBAT_STRUKT;
-Nextern char lakb_error_cnt;	//счетчик неправильного показания ннапряжения батареи
-Nextern short numOfPacks,numOfPacks_;
-Nextern short numOfCells, numOfTemperCells, baseOfData;
-Nextern short lakb_stat_comm_error;	//аварийность канала связи с литиевыми батареями. 0 означает исправность платы расширения и наличие связи со всеми литиевыми батареями
-Nextern short lakbNotErrorNum;		//колличество литиевых батарей с исправной связью
-Nextern short lakbKanErrorCnt;		//Счетчик аварийности канала связи с платой расширения
-Nextern short lakbKanErrorStat;		//Состояние аварийности канала связи с платой расширения
 N
 N
 N
@@ -2297,62 +2173,6 @@ N//Телеметрия по внутренней шине
 Nextern char can_slot[12][16];
 Nextern char plazma_can_inv[3];
 N
-N//***********************************************
-N//Состояние источников
-N
-N
-Ntypedef struct
-N    {
-N    enum {dSRC=3,dINV=5,dNET_METR=7,dIBAT_METR=9,dMAKB=11}_device;
-N	char _av;
-N	//0бит - авария по перегреву
-N	//1бит - авария по завышенному Uвых
-N	//2бит - авария по заниженному Uвых
-N	//3бит - авария по обрыву связи	
-N	//4бит - ресурс вентилятора выработан    
-N 	enum {bsOFF_AV_NET,bsAPV,bsWRK,bsRDY,bsBL,bsAV}_state;
-N    char _cnt;
-N     char _cnt_old;
-N     char _cnt_more2;
-N     char _buff[20]; 
-N     //char _av_net;
-N     //char _av_u_max;
-N     //char _av_u_min;
-N     //char _av_temper; 
-N     signed _Uii; 
-N     signed _Uin;
-N     signed _Ii;
-N     signed _Ti; 
-N     char _flags_tu;
-N	 signed _Uisum;
-N     //char _flags_tu_old;
-N     //char _is_ready;
-N     //char _is_wrk;
-N     //char _is_link;
-N     //char _is_av;
-N     signed _vol_u;
-N     signed _vol_i;
-N     char _is_on_cnt;
-N     //int _ist_blok_host_cnt_; //блокирование источников извне(CAN или RS), если не 0 то источник заблокирован.
-N     int _ist_blok_host_cnt;
-N     short _blok_cnt; //блокирование источников 
-N     char _flags_tm;
-N	signed short _overload_av_cnt;     
-N     signed short _temp_av_cnt;
-N     signed short _umax_av_cnt;
-N     signed short _umin_av_cnt;
-N     signed _rotor;
-N     signed  short _x_; 
-N     char _adr_ee;
-N	char _last_avar;
-N	char _vent_resurs_temp[4];
-N	unsigned short _vent_resurs;
-N	signed short debug_info_to_uku0;
-N	signed short debug_info_to_uku1;
-N	signed short _avg;
-N	signed short _cntrl_stat;
-N     } BPS_STAT; 
-Nextern BPS_STAT bps[29];
 N
 N//***********************************************
 N//Состояние инверторов
@@ -2573,11 +2393,10 @@ N
 Nsigned short abs_pal(signed short in);
 Nvoid ADC_IRQHandler(void);
 N
-N
 N//-----------------------------------------------
-N//Состояние контролируемых автоматов нагрузки 
-Ntypedef enum  {avtOFF,avtON} enum_avt_stat;
-Nextern enum_avt_stat avt_stat[12],avt_stat_old[12]; 
+N//Состояние оптронов передаваемое испытуемой плате
+Ntypedef enum  {osOFF,osON} enum_optr_stat;
+Nextern enum_optr_stat optr_stat[3]; 
 N
 N//-----------------------------------------------
 N//Показания АЦП на плате измерения тока батареи
@@ -2585,11 +2404,7 @@ Nextern signed long ibat_metr_buff_[2];
 Nextern short bIBAT_SMKLBR;
 Nextern char ibat_metr_cnt;
 N
-N//-----------------------------------------------
-N//Управление низкоприоритетной нагрузкой
-Nextern signed short npn_tz_cnt;
-Ntypedef enum {npnsOFF=0,npnsON} enum_npn_stat;
-Nextern enum_npn_stat npn_stat;
+N
 N
 Nextern char snmp_plazma;
 N
@@ -3010,7 +2825,6 @@ Nextern char num_necc_up,num_necc_down;
 Nextern unsigned char sh_cnt0,b1Hz_sh;
 N
 N
-Nextern short cntrl_stat_blok_cnt,cntrl_stat_blok_cnt_,cntrl_stat_blok_cnt_plus[2],cntrl_stat_blok_cnt_minus[2];
 N
 N//***********************************************
 N//АЦП 
@@ -3053,15 +2867,13 @@ Nvoid adc_drv_(void);
 Nvoid avg_hndl(void);
 N//void bp_on(char in);
 N//void bp_off(char in);
-Nvoid rele_hndl(void);
+Nvoid rele_drv(void);
 Nvoid bps_hndl(void);
 Nvoid bps_drv(char in);
 Nvoid bat_hndl(void);
 Nvoid bat_drv(char in);
 Nvoid u_necc_hndl(void);
-Nvoid cntrl_hndl(void);
 Nvoid zar_drv(void);
-Nvoid num_necc_hndl(void);
 Nvoid ke_start(char in);
 Nvoid zar_drv(void);
 Nvoid vent_hndl(void);
@@ -3090,21 +2902,7 @@ Nextern short __ee_spc_stat;
 Nextern short __ee_spc_bat;
 Nextern short __ee_spc_phase;
 N
-N//***********************************************
-N//Управление ШИМом
-Nextern signed short cntrl_stat;
-Nextern signed short cntrl_stat_old;
-Nextern signed short cntrl_stat_new;
-Nextern signed short Ibmax;
-Nextern unsigned char unh_cnt0,unh_cnt1,b1Hz_unh;
-Nextern unsigned char	ch_cnt0,b1Hz_ch,i,iiii;
-Nextern unsigned char	ch_cnt1,b1_30Hz_ch;
-Nextern unsigned char	ch_cnt2,b1_10Hz_ch;
-Nextern unsigned short IZMAX_;
-Nextern unsigned short IZMAX_70;
-Nextern unsigned short IZMAX_130;
-Nextern unsigned short Ubpsmax;
-Nextern unsigned short cntrl_stat_blck_cnt;
+N
 N
 Nextern short plazma_sk;
 Nextern char	plazma_inv[4];
@@ -3165,7 +2963,7 @@ N
 N//-----------------------------------------------
 Nvoid memo_read (void)
 N{
-Nchar i;
+N//char i;
 N//Ktsrc[0]=lc640_read_int(KTSRC1);
 N
 N//Ktsrc[1]=lc640_read_int(KTSRC2);
@@ -3674,16 +3472,8 @@ XRELE_SET_MASK[2]=lc640_read_int(0x10+100+220);
 NRELE_SET_MASK[3]=lc640_read_int(EE_RELE_SET_MASK3);
 XRELE_SET_MASK[3]=lc640_read_int(0x10+100+222);
 N
-Nfor(i=0;i<64;i++)
-N	{
-N	snmp_location[i]=lc640_read(EE_LOCATION+i);
-X	snmp_location[i]=lc640_read(0x10+500+200+200+i);
-N	}
-Nfor(i=0;i<10;i++)
-N	{
-N	snmp_community[i]=lc640_read(EE_COMMUNITY+(i*2));
-X	snmp_community[i]=lc640_read(0x10+500+200+270+(i*2));
-N	}
+N
+N
 N
 N__ee_vz_cnt=lc640_read_int(EE_VZ_CNT);
 X__ee_vz_cnt=lc640_read_int(0x10+480+2);

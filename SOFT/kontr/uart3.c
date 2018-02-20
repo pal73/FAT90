@@ -5,6 +5,7 @@
 #include "lowlev.h"
 #include <string.h>
 #include <stdlib.h>
+#include "modem.h"
 
 //-----------------------------------------------
 @near char rxBuffer3[RX_BUFFER_3_SIZE];			//Приемный буфер UART3
@@ -135,14 +136,14 @@ if(bRXIN3)
 		optr_kontr_cnt=50;
 		}		
 		
-else if(strstr(uart3_an_buffer,"WATER"))
+	else if(strstr(uart3_an_buffer,"WATER"))
 		{
 		if(ind!=iWater)
 			{
 			tree_up(iWater,0,0,0);
 			}
 		}	
-else if(strstr(uart3_an_buffer,"WAT_RET"))
+	else if(strstr(uart3_an_buffer,"WAT_RET"))
 		{
 		if(ind==iWater)
 			{
@@ -150,14 +151,14 @@ else if(strstr(uart3_an_buffer,"WAT_RET"))
 			}
 		}				
 		
-else if(strstr(uart3_an_buffer,"AIR"))
+	else if(strstr(uart3_an_buffer,"AIR"))
 		{
 		if(ind!=iAir)
 			{
 			tree_up(iAir,0,0,0);
 			}
 		}				
-else if(strstr(uart3_an_buffer,"AI_RET"))
+	else if(strstr(uart3_an_buffer,"AI_RET"))
 		{
 		if(ind==iAir)
 			{
@@ -165,10 +166,131 @@ else if(strstr(uart3_an_buffer,"AI_RET"))
 			}
 		}	
 
-else if(strstr(uart3_an_buffer,"TIMESTART"))
+	else if(strstr(uart3_an_buffer,"TIMESTART"))
 		{
 		_ds1307_write_byte(0,0);
-		}	
+		}
+		
+	else if(strstr(uart3_an_buffer,"PROBESMS"))
+		{
+		if(memcmp(MAIN_NUMBER,"9139294352",10)==0)
+			{
+			memcpy(MAIN_NUMBER,"9139294352",10);
+			AUTH_NUMBER_FLAGS=0x01;
+			modem_send_sms('p',MAIN_NUMBER,"Ваш номер установлен как главный");
+			HUMAN_SET_EE=1;
+			}
+		}
+
+	else if(strstr(uart3_an_buffer,"DEFAULT"))
+		{
+		if(HUMAN_SET_EE!=0x2222)
+			{
+			TABLE_TIME_EE[0][0]=0;
+			TABLE_TEMPER_EE[0][0]=20;	
+			TABLE_TIME_EE[0][1]=36;
+			TABLE_TEMPER_EE[0][1]=20;	
+			TABLE_TIME_EE[0][2]=72;
+			TABLE_TEMPER_EE[0][2]=20;	
+			TABLE_TIME_EE[0][3]=108;
+			TABLE_TEMPER_EE[0][3]=20;	
+			TABLE_TIME_EE[0][4]=126;
+			TABLE_TEMPER_EE[0][4]=20;
+		
+			TABLE_TIME_EE[1][0]=0;
+			TABLE_TEMPER_EE[1][0]=20;	
+			TABLE_TIME_EE[1][1]=36;
+			TABLE_TEMPER_EE[1][1]=20;	
+			TABLE_TIME_EE[1][2]=72;
+			TABLE_TEMPER_EE[1][2]=20;	
+			TABLE_TIME_EE[1][3]=108;
+			TABLE_TEMPER_EE[1][3]=20;	
+			TABLE_TIME_EE[1][4]=126;
+			TABLE_TEMPER_EE[1][4]=20;	
+				
+			TABLE_TIME_EE[2][0]=0;
+			TABLE_TEMPER_EE[2][0]=20;	
+			TABLE_TIME_EE[2][1]=36;
+			TABLE_TEMPER_EE[2][1]=20;	
+			TABLE_TIME_EE[2][2]=72;
+			TABLE_TEMPER_EE[2][2]=20;	
+			TABLE_TIME_EE[2][3]=108;
+			TABLE_TEMPER_EE[2][3]=20;	
+			TABLE_TIME_EE[2][4]=126;
+			TABLE_TEMPER_EE[2][4]=20;
+		
+			TABLE_TIME_EE[3][0]=0;
+			TABLE_TEMPER_EE[3][0]=20;	
+			TABLE_TIME_EE[3][1]=36;
+			TABLE_TEMPER_EE[3][1]=20;	
+			TABLE_TIME_EE[3][2]=72;
+			TABLE_TEMPER_EE[3][2]=20;	
+			TABLE_TIME_EE[3][3]=108;
+			TABLE_TEMPER_EE[3][3]=20;	
+			TABLE_TIME_EE[3][4]=126;
+			TABLE_TEMPER_EE[3][4]=20;
+		
+			TABLE_TIME_EE[4][0]=0;
+			TABLE_TEMPER_EE[4][0]=20;	
+			TABLE_TIME_EE[4][1]=36;
+			TABLE_TEMPER_EE[4][1]=20;	
+			TABLE_TIME_EE[4][2]=72;
+			TABLE_TEMPER_EE[4][2]=20;	
+			TABLE_TIME_EE[4][3]=108;
+			TABLE_TEMPER_EE[4][3]=20;	
+			TABLE_TIME_EE[4][4]=126;
+			TABLE_TEMPER_EE[4][4]=20;
+				
+			TABLE_TIME_EE[5][0]=0;
+			TABLE_TEMPER_EE[5][0]=20;	
+			TABLE_TIME_EE[5][1]=36;
+			TABLE_TEMPER_EE[5][1]=20;	
+			TABLE_TIME_EE[5][2]=72;
+			TABLE_TEMPER_EE[5][2]=20;	
+			TABLE_TIME_EE[5][3]=108;
+			TABLE_TEMPER_EE[5][3]=20;	
+			TABLE_TIME_EE[5][4]=126;
+			TABLE_TEMPER_EE[5][4]=20;
+				
+			TABLE_TIME_EE[6][0]=0;
+			TABLE_TEMPER_EE[6][0]=20;	
+			TABLE_TIME_EE[6][1]=36;
+			TABLE_TEMPER_EE[6][1]=20;	
+			TABLE_TIME_EE[6][2]=72;
+			TABLE_TEMPER_EE[6][2]=20;	
+			TABLE_TIME_EE[6][3]=108;
+			TABLE_TEMPER_EE[6][3]=20;	
+			TABLE_TIME_EE[6][4]=126;
+			TABLE_TEMPER_EE[6][4]=20;
+		
+			MODE_EE=1;
+			NECC_TEMPER_WATER_EE=50;
+			NECC_TEMPER_AIR_EE=20;
+			MAX_POWER_EE=3;
+			
+			memcpy(MAIN_NUMBER,"0000000000",10);
+			memcpy(AUTH_NUMBER_1,"0000000000",10);
+			memcpy(AUTH_NUMBER_2,"0000000000",10);
+			memcpy(AUTH_NUMBER_3,"0000000000",10);
+			AUTH_NUMBER_FLAGS=0x00;
+			
+			HUMAN_SET_EE!=0x2222;
+			}
+		}
+	else if(strstr(uart3_an_buffer,"INTER"))
+		{
+		if(ind!=iAir)
+			{
+			tree_up(iInterf,0,0,0);
+			}
+		}				
+	else if(strstr(uart3_an_buffer,"INTE_RET"))
+		{
+		if(ind==iAir)
+			{
+			tree_down(0,0);
+			}
+		}			
 	}	
 	enableInterrupts();
 }

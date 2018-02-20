@@ -305,6 +305,7 @@ else
 				tree_down(0,0);
 				ind=iMn;
 				ret_ind(0,0);
+				HUMAN_SET_EE=1;
 				}
 			}
 		else if((strstr(russianText,"НОМЕР"))&&(isFromMainNumberMess)) //"Установить номер
@@ -323,16 +324,19 @@ else
 						{
 						memcpy(AUTH_NUMBER_1,number_temp,10);
 						AUTH_NUMBER_FLAGS|=0b00000010;
+						HUMAN_SET_EE=1;
 						}
 					else if(cell==2)
 						{
 						memcpy(AUTH_NUMBER_2,number_temp,10);
 						AUTH_NUMBER_FLAGS|=0b00000100;							
+						HUMAN_SET_EE=1;
 						}
 					else if(cell==3)
 						{
 						memcpy(AUTH_NUMBER_3,number_temp,10);
 						AUTH_NUMBER_FLAGS|=0b00001000;							
+						HUMAN_SET_EE=1;
 						}
 					sprintf(tempRussianText,"Номер %s добавлен в список (ячейка %d)",number_temp,cell);
 					modem_send_sms('p',MAIN_NUMBER,tempRussianText);
@@ -389,6 +393,7 @@ else
 					AUTH_NUMBER_FLAGS&=0x01;
 				
 					modem_send_sms('p',MAIN_NUMBER,"Все номера кроме главного удалены");
+					HUMAN_SET_EE=1;
 					}
 				else
 					{
@@ -406,6 +411,7 @@ else
 					strncat(tempRussianText,number_temp,10);
 					strcat(tempRussianText," удален из списка номеров");
 					modem_send_sms('p',MAIN_NUMBER,tempRussianText);
+					HUMAN_SET_EE=1;
 					}
 				else modem_send_sms('p',MAIN_NUMBER,"Такого номера нет в списке");
 				}
@@ -466,6 +472,7 @@ else
 				NECC_TEMPER_WATER_EE=tempSS;
 				sprintf(tempRussianText,"Температура воды установлена на %dгр.Ц.",(int)NECC_TEMPER_WATER_EE);
 				modem_send_sms('p',incommingNumber,tempRussianText);
+				HUMAN_SET_EE=1;
 				}					
 			}
 
@@ -486,6 +493,7 @@ else
 				NECC_TEMPER_AIR_EE=tempSS;
 				sprintf(tempRussianText,"Температура воздуха установлена на %dгр.Ц.",(int)NECC_TEMPER_AIR_EE);
 				modem_send_sms('p',incommingNumber,tempRussianText);
+				HUMAN_SET_EE=1;
 				}					
 			}
 

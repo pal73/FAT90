@@ -8,7 +8,7 @@
 
 #line 2 "ret.c"
 #line 1 "main.h"
-#line 1 "C:\\Keil\\\\ARM\\RV31\\INC\\rtl.h"
+#line 1 "C:\\Keil\\ARM\\RV31\\INC\\rtl.h"
 
 
 
@@ -28,7 +28,7 @@
  
 
 
-#line 27 "C:\\Keil\\\\ARM\\RV31\\INC\\rtl.h"
+#line 27 "C:\\Keil\\ARM\\RV31\\INC\\rtl.h"
 
 
 
@@ -50,7 +50,9 @@ typedef unsigned long long U64;
 typedef unsigned char   BIT;
 typedef unsigned int    BOOL;
 
-#line 54 "C:\\Keil\\\\ARM\\RV31\\INC\\rtl.h"
+#line 54 "C:\\Keil\\ARM\\RV31\\INC\\rtl.h"
+
+#line 66 "C:\\Keil\\ARM\\RV31\\INC\\rtl.h"
 
 
 
@@ -97,7 +99,7 @@ typedef U32 OS_RESULT;
 
 
 
-#line 182 "C:\\Keil\\\\ARM\\RV31\\INC\\rtl.h"
+#line 194 "C:\\Keil\\ARM\\RV31\\INC\\rtl.h"
 
 
 
@@ -114,7 +116,7 @@ extern OS_RESULT rt_tsk_prio   (OS_TID task_id, U8 new_prio);
 extern OS_TID    rt_tsk_create (void (*task)(void), U8 priority, void *stk, void *argv);
 extern OS_RESULT rt_tsk_delete (OS_TID task_id);
 
-#line 218 "C:\\Keil\\\\ARM\\RV31\\INC\\rtl.h"
+#line 230 "C:\\Keil\\ARM\\RV31\\INC\\rtl.h"
 
 extern void      _os_sys_init(U32 p, void (*task)(void), U32 prio_stksz,
                                      void *stk)                        __svc_indirect(0);
@@ -294,10 +296,10 @@ extern int fdefrag (const char *drive);
 
 
  
-#line 403 "C:\\Keil\\\\ARM\\RV31\\INC\\rtl.h"
+#line 415 "C:\\Keil\\ARM\\RV31\\INC\\rtl.h"
 
  
-#line 416 "C:\\Keil\\\\ARM\\RV31\\INC\\rtl.h"
+#line 428 "C:\\Keil\\ARM\\RV31\\INC\\rtl.h"
 
  
 
@@ -306,7 +308,7 @@ extern int fdefrag (const char *drive);
 
 
  
-#line 430 "C:\\Keil\\\\ARM\\RV31\\INC\\rtl.h"
+#line 442 "C:\\Keil\\ARM\\RV31\\INC\\rtl.h"
 
  
 
@@ -356,6 +358,7 @@ extern void dhcp_disable (void);
 extern BOOL igmp_join (U8 *group_ip);
 extern BOOL igmp_leave (U8 *group_ip);
 extern BOOL snmp_trap (U8 *manager_ip, U8 gen_trap, U8 spec_trap, U16 *obj_list);
+extern BOOL snmp_set_community (const char *community);
 
 
 
@@ -629,20 +632,14 @@ extern char cnt_of_slave;
 typedef enum {
 	iMn,iWater_sensor_kontr,iWater_sensor_kontr_ret,iSet_T,iSet_T_ret,
 	iAir_sensor_kontr,iAir_sensor_kontr_ret,
-	iSrv_sl,iNetEM,
-	iSet,iSet_220_IPS_TERMOKOMPENSAT,iSet_220_V2,
-	iInv_set,
-	iOptr_kontr,
+	iInterf_kontr,iInterf_kontr_ret,
+	iOptr_kontr, iProbesms, iDefset,iPowerdown,
 	iS2,iSet_prl,iK_prl,iDnd,
 	iK, iK_220_IPS_TERMOKOMPENSAT,iK_220_IPS_TERMOKOMPENSAT_IB,iK_TELECORE,iK_VD,
 	iSpcprl,iSpc,k,Crash_0,Crash_1,iKednd,iAKE,iSpc_termocompensat,
 	iLoad,iAVAR,
-	iStr,iStr_VD,
 	iVrs,iPrltst,iApv,
 	iK_bps,iK_bps_sel,iK_bat_ips_termokompensat_ib,iK_bat_TELECORE,iK_bat_sel,iK_bat_sel_TELECORE,iK_load,iK_net,iK_net3,
-	iK_makb_sel,iK_makb,iK_out,
-	iTst_220_IPS_TERMOKOMPENSAT,iTst_VD,
-	iTst_klbr,iTst_BPS1,iTst_BPS2,iTst_BPS12,iDebug,
 	iSet_st_prl,iK_pdp,
 	iDeb,
 	iPrl_bat_in_out,iPrl_bat_in_sel,iPdp1,iJAv_sel,iJAv_net_sel,iJAv_net,iJAv_src1,
@@ -655,7 +652,7 @@ typedef enum {
 	iExt_set,iExt_set_3U,
 	iExt_dt,
 	iExt_sk,iExt_sk_3U,
-	iExt_ddv,iExt_ddi,iExt_dud,iExt_dp,iSM,iKlimat,iKlimat_kontur,iKlimat_TELECORE,
+	iExt_ddv,iExt_ddi,iExt_dud,iSM,iKlimat,iKlimat_kontur,iKlimat_TELECORE,
 	iEnerg3,iEnerg,
 	iVent,
 	iK_power_net3,
@@ -1174,11 +1171,11 @@ extern enum_av_tbox_stat av_tbox_stat;
 extern signed short av_tbox_cnt;
 extern char tbatdisable_cmnd,tloaddisable_cmnd;
 extern short tbatdisable_cnt,tloaddisable_cnt;
-#line 1284 "main.h"
+#line 1278 "main.h"
 
-#line 1295 "main.h"
+#line 1289 "main.h"
 
-#line 1311 "main.h"
+#line 1305 "main.h"
 
 extern char ext_can_cnt;
 
@@ -1217,7 +1214,7 @@ extern short can_plazma;
 
 
 
-#line 1360 "main.h"
+#line 1354 "main.h"
 
 
 
