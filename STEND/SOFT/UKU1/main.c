@@ -1317,7 +1317,7 @@ const char* ptrs[60];
 //char /*i,*/sub_cnt_max;
 //char ii_;				  
 //static char /*ii_cnt,*/cnt_ind_bat;
-
+long tempL;
 
 	   
 //sub_cnt_max=5;
@@ -1429,7 +1429,7 @@ if(sub_cnt1>=20)
 /*else */if(ind==iMn)
 	{
 	ptrs[0]	=			" 0%:0^:0& 0</>  /0{ ";
-	ptrs[1]=			"                    ";	
+	ptrs[1]=			"       мА     .  В  ";	
 	ptrs[2]=			" Полная проверка    ";
 	ptrs[3]=			" Контроль интерфейса";
     ptrs[4]=			" Контроль оптронов  ";
@@ -1462,8 +1462,15 @@ if(sub_cnt1>=20)
  	     }
 
 	pointer_set(2);	
-	//int2lcdyx(sub_ind,1,9,0);
-	//int2lcdyx(index_set,1,15,0);
+	tempL=(long)ad7705_res1-32600L;
+	if(tempL<0)tempL=0;
+	tempL*=10;
+	tempL/=255;
+
+	int2lcdyx(tempL,1,6,0);
+	int2lcdyx((adc_buff_[10]*10)/62,1,16,2);
+
+	//int2lcdyx(ad7705_buff_[1],1,17,0);
 	/*
 	int2lcdyx(rele_in_stat[2][0],1,9,0);
 	int2lcdyx(rele_in_stat[2][1],1,11,0);
@@ -5808,14 +5815,8 @@ while (1)
 		{
 		b5Hz=0;
 
-		if(!bRESET_EXT_WDT)
-			{
-			ad7705_drv();
-			}
-		if(!bRESET_EXT_WDT)
-			{
-			
-			}  memo_read();
+		ad7705_drv();
+  		memo_read();
 		LPC_GPIO1->FIODIR|=(1UL<<26);
 		matemat();
 		
