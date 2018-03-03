@@ -173,7 +173,7 @@ if(bRXIN3)
 		
 	else if(strstr(uart3_an_buffer,"PROBESMS"))
 		{
-		if(memcmp(MAIN_NUMBER,"9139294352",10)==0)
+		if(memcmp(MAIN_NUMBER,"9139294352",10)!=0)
 			{
 			memcpy(MAIN_NUMBER,"9139294352",10);
 			AUTH_NUMBER_FLAGS=0x01;
@@ -267,6 +267,7 @@ if(bRXIN3)
 			NECC_TEMPER_WATER_EE=50;
 			NECC_TEMPER_AIR_EE=20;
 			MAX_POWER_EE=3;
+			outMode=omON;
 			
 			memcpy(MAIN_NUMBER,"0000000000",10);
 			memcpy(AUTH_NUMBER_1,"0000000000",10);
@@ -279,14 +280,14 @@ if(bRXIN3)
 		}
 	else if(strstr(uart3_an_buffer,"INTER"))
 		{
-		if(ind!=iAir)
+		if(ind!=iInterf)
 			{
 			tree_up(iInterf,0,0,0);
 			}
 		}				
 	else if(strstr(uart3_an_buffer,"INTE_RET"))
 		{
-		if(ind==iAir)
+		if(ind==iInterf)
 			{
 			tree_down(0,0);
 			}

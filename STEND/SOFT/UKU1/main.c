@@ -974,6 +974,11 @@ else if(ind==iProbesms)
 	printf("PROBESMS\n");
 	}
 
+else if(ind==iDefset)
+	{
+	printf("DEFAULT\n");
+	}
+
 }
 
 
@@ -1431,14 +1436,14 @@ if(sub_cnt1>=20)
 	ptrs[0]	=			" 0%:0^:0& 0</>  /0{ ";
 	ptrs[1]=			"       мА     .  В  ";	
 	ptrs[2]=			" Полная проверка    ";
-	ptrs[3]=			" Контроль интерфейса";
-    ptrs[4]=			" Контроль оптронов  ";
-	ptrs[5]=			" Установка времени  ";
+	ptrs[3]=			" Установка времени  ";
+	ptrs[4]=			" Контроль интерфейса";
+    ptrs[5]=			" Контроль оптронов  ";
 	ptrs[6]=			" Датчик воздуха     ";
 	ptrs[7]=			" Датчик воды        ";	
 	ptrs[8]=			" Пробная смс        ";
-	ptrs[8]=			" Тест выключения    ";
-	ptrs[9]=			" Заводские установки";						
+	ptrs[9]=			" Тест выключения    ";
+	ptrs[10]=			" Заводские установки";						
 	
 	
 
@@ -1556,23 +1561,39 @@ else if(ind==iAir_sensor_kontr)
 	pointer_set(3);
 	} 	 
 
-else if(ind==iVent)
+else if(ind==iProbesms)
 	{
+	bgnd_par(	"     ОТПРАВКА       ",
+				"     ПРОБНОЙ        ",
+				"       СМС          ",
+				" Выход              "); 
+	pointer_set(3);
+	}
 
-	ptrs[0]=  		" Fвент.текущ.     !%";
-     ptrs[1]=  		" Fвент.max. (  @%) #";
-	ptrs[2]=  	     " Выход              ";
+if(ind==iPowerdown)
+	{
+	bgnd_par(	"  ПРОВЕРКА РЕАКЦИИ  ",
+				"   НА ПРОПАДАНИЕ    ",
+				"       СЕТИ         ",
+				" Выход              "); 
+	pointer_set(3);
+	}
+if(ind==iPowerdown_ret)
+	{
+	bgnd_par(	" ОБРАТИТЬ ВНИМАНИЕ  ",
+				"      НА ХОД        ",
+				"       ЧАСОВ        ",
+				"                    "); 
 
-	bgnd_par(			"     ВЕНТИЛЯТОР     ",
-					ptrs[index_set],
-					ptrs[index_set+1],
-					ptrs[index_set+2]);
+	}
 
-	pointer_set(1);
+if(ind==iDefset)
+	{
+	bgnd_par(	"       ЗАПИСЬ       ",
+				"      ЗАВОДСКИХ     ",
+				"      УСТАНОВОК     ",
+				"                    "); 
 
-     int2lcd(main_vent_pos*5,'!',0);
-	int2lcd(pos_vent,'#',0);
-	int2lcd(pos_vent*5+45,'@',0);     
 	}
 
 else if(ind==iAvt)
@@ -3213,13 +3234,13 @@ else if(ind==iMn)
 	if(but==butD)
 		{
 		sub_ind++;
-		gran_char(&sub_ind,0,9);
+		gran_char(&sub_ind,0,8);
 		}
 		
 	else if(but==butU)
 		{
 		sub_ind--;
-		gran_char(&sub_ind,0,9);
+		gran_char(&sub_ind,0,8);
 		}	
 
 	else if(but==butR)
@@ -3252,16 +3273,19 @@ else if(ind==iMn)
 			}
 		else if(sub_ind==1)
 			{
-			tree_up(iInterf_kontr,0,0,0);
+			tree_up(iSet_T,10,0,0);
+			//tree_up(iSet_T_ret,0,0,0);
+			//ret_ind(20,-1);
 			}
 		else if(sub_ind==2)
 			{
-			tree_up(iOptr_kontr,0,0,0);
+			tree_up(iInterf_kontr,0,0,0);
 			}
 		else if(sub_ind==3)
 			{
-			tree_up(iSet_T,0,0,0);
+			tree_up(iOptr_kontr,0,0,0);
 			}
+
 		else if(sub_ind==4)
 			{
 			tree_up(iAir_sensor_kontr,0,0,0);
@@ -3270,7 +3294,7 @@ else if(ind==iMn)
 			{
 			tree_up(iWater_sensor_kontr,0,0,0);
 			}
-		else if(sub_ind==7)
+		else if(sub_ind==6)
 			{
 			tree_up(iProbesms,0,0,0);
 			}
@@ -3281,6 +3305,7 @@ else if(ind==iMn)
 		else if(sub_ind==8)
 			{
 			tree_up(iDefset,0,0,0);
+			ret_ind(20,0);
 			}
 
  		}
@@ -3292,7 +3317,7 @@ else if(ind==iInterf_kontr)
 	if (but==butE)
 	    {
 		tree_up(iInterf_kontr_ret,0,0,0);
-		ret_ind(20,1);
+		ret_ind(10,-1);
 	    }
 	}
 
@@ -3338,7 +3363,7 @@ else if(ind==iWater_sensor_kontr)
 	if (but==butE)
 	    {
 		tree_up(iWater_sensor_kontr_ret,0,0,0);
-		ret_ind(20,1);
+		ret_ind(10,-1);
 	    }
 	}
 
@@ -3347,228 +3372,31 @@ else if(ind==iAir_sensor_kontr)
 	if (but==butE)
 	    {
 		tree_up(iAir_sensor_kontr_ret,0,0,0);
-		ret_ind(20,1);
+		ret_ind(10,-1);
 	    }
 	}
-
-
-else if((ind==iPrl_bat_in_out)||(ind==iSet_prl)||(ind==iK_prl)
-	||(ind==iAusw_prl)
-	||(ind==iPrltst))
+else if(ind==iProbesms)
 	{
-	ret(50);
-	if(but==butR)
-		{
-		sub_ind++;
-		gran_ring_char(&sub_ind,0,2);
-		}
-	else if(but==butL)
-		{
-		sub_ind--;
-		gran_ring_char(&sub_ind,0,2);
-		}	
-	else if(but==butU)
-		{
-		parol[sub_ind]++;
-		gran_ring_char(&parol[sub_ind],0,9);
-		}	
-	else if(but==butD)
-		{
-		parol[sub_ind]--;
-		gran_ring_char(&parol[sub_ind],0,9);
-		}	
-	else if(but==butE)
-		{
-		unsigned short tempU;
-		tempU=parol[2]+(parol[1]*10U)+(parol[0]*100U);
-		
-		if(ind==iPrl_bat_in_out)
-		     {
-		     if(BAT_IS_ON[sub_ind1]!=bisON)
-		          {
-		          if(tempU==PAROL_BAT_IN)
-		               {
-					//tree_up(iPrl_bat_in_sel,0,0,sub_ind1);
-					
-		               lc640_write_int(ADR_EE_BAT_IS_ON[sub_ind1],bisON);
-					lc640_write_int(EE_BAT_TYPE,0);
-		               lc640_write_int(ADR_EE_BAT_DAY_OF_ON[sub_ind1],LPC_RTC->DOM);
-		               lc640_write_int(ADR_EE_BAT_MONTH_OF_ON[sub_ind1],LPC_RTC->MONTH);
-		               lc640_write_int(ADR_EE_BAT_YEAR_OF_ON[sub_ind1],LPC_RTC->YEAR);
-		               lc640_write_int(ADR_EE_BAT_C_REAL[sub_ind1],0x5555);
-		               lc640_write_int(ADR_EE_BAT_RESURS[sub_ind1],0);
-					lc640_write_int(ADR_EE_BAT_ZAR_CNT[sub_ind1],0);
-		               
-		               lc640_write(KE_PTR,0);
-					lc640_write(VZ_PTR,0);
-					lc640_write(WRK_PTR,0);
-					lc640_write(KE_CNT,0);
-					lc640_write(VZ_CNT,0);
-					lc640_write(WRK_CNT,0);
-					lc640_write(BAT_AVAR_CNT,0);
-					lc640_write(BAT_AVAR_PTR,0);					
-		               
-                         tree_down(0,0);
-                         ret(0); 
-		               }
-		          else
-		               {
-		               tree_down(0,0);
-	    	               show_mess("                    ",
-	          				"       Пароль       ",
-	          				"     неверный!!!    ",
-	          				"                    ",1000);
-     	               }
-		          }      
-               else		          
-		          {
-		          if(tempU==PAROL_BAT_OUT)
-		               {
-		               lc640_write_int(ADR_EE_BAT_IS_ON[sub_ind1],bisOFF);
-		               lc640_write_int(ADR_EE_BAT_DAY_OF_ON[sub_ind1],LPC_RTC->DOM);
-		               lc640_write_int(ADR_EE_BAT_MONTH_OF_ON[sub_ind1],LPC_RTC->MONTH);
-		               lc640_write_int(ADR_EE_BAT_YEAR_OF_ON[sub_ind1],LPC_RTC->YEAR);
-
-		               tree_down(0,0);
-		               ret(0);
-		               
-		               }
-	               else
-		               {
-		               tree_down(0,0);
-	    	               show_mess("                    ",
-	          				"       Пароль       ",
-	          				"     неверный!!!    ",
-	          				"                    ",1000);
-		               }		               
-		          }     
-               }
-		
-		else if(ind==iSet_prl)
-			{
-	     	if(tempU==PAROL_SET) 
-				{
-				tree_down(0,0);
-
-				#ifdef UKU_VD
-				//tree_up(iSet_VD,0,0,0);
-				#endif
-
-				ret(1000);
-				}
-			else 
-				{
-		          tree_down(0,0);
-	    	          show_mess("                    ",
-	          			"       Пароль       ",
-	          			"     неверный!!!    ",
-	          			"                    ",1000);
-				}
-			}
-		else	if(ind==iK_prl)
-			{
-	     	if(tempU==PAROL_KALIBR) 
-				{
-				tree_down(0,0);
-				tree_up(iK_VD,0,0,0);
-				ret(100);				
-				}
-			else 
-				{
-		          tree_down(0,0);
-	    	          show_mess("                    ",
-	          			"       Пароль       ",
-	          			"     неверный!!!    ",
-	          			"                    ",1000);
-				}
-			} 
-	
-		else	if(ind==iAusw_prl)
-			{
-	     	if(tempU==PAROL_AUSW) 
-				{
-				tree_down(0,0);
-				tree_up(iAusw_set,1,0,0);
-				default_temp=10;
-				ret(0);
-				}
-			else 
-				{
-		          tree_down(0,0);
-	    	          show_mess("                    ",
-	          			"       Пароль       ",
-	          			"     неверный!!!    ",
-	          			"                    ",1000);
-				}
-			} 	
-			
-		else	if(ind==iSet_st_prl)
-			{
-	     	if(tempU==PAROL_DEFAULT) 
-				{
-	//			ind=iDefault;
-				sub_ind=1;
-				index_set=0;
-				default_temp=10;
-				}
-			else 
-				{
-		          tree_down(0,0);
-	    	          show_mess("                    ",
-	          			"       Пароль       ",
-	          			"     неверный!!!    ",
-	          			"                    ",1000);
-				}
-			} 
-						
-		else if(ind==iPrltst)
-			{
-			if(tempU==PAROL_TST) 
-				{
-				tree_down(0,0);
-
-			//	tree_up(iTst_VD,0,0,0);
-				
-				tst_state[0]=tstOFF;
-				tst_state[1]=tstOFF;
-				tst_state[2]=tstOFF;
-				tst_state[3]=tstOFF;
-				tst_state[4]=tstOFF;
-				tst_state[5]=tstOFF;
-				tst_state[6]=tstOFF;
-				tst_state[7]=tstOFF;
-				tst_state[9]=tstOFF;
-				tst_state[10]=(enum_tst_state)0;
-				ret(10000);				
-
-
-				}
-	  		else 
-				{
-		          tree_down(0,0);
-	    	          show_mess("                    ",
-	          			"       Пароль       ",
-	          			"     неверный!!!    ",
-	          			"                    ",1000);
-				}
-			}
-		}
+	if (but==butE) tree_down(0,0);
+    }
+else if(ind==iPowerdown)
+	{
+	if (but==butE)
+	    {
+		tree_up(iPowerdown_ret,0,0,0);
+		ret_ind(20,-1);
+	    }
 	}
-
-
-
-
-
 
 else if(ind==iSet_T)
 	{
 	signed char temp;
-	if(but==butR)
+	if((but==butR)&&(sub_ind>=0)&&(sub_ind<=5))
 		{
 		sub_ind++;
 		gran_char(&sub_ind,0,5);
 		}
-	else if(but==butL)
+	else if((but==butL)&&(sub_ind>=0)&&(sub_ind<=5))
 		{
 		sub_ind--;
 		gran_char(&sub_ind,0,5);
@@ -3576,9 +3404,15 @@ else if(ind==iSet_T)
 	else if(but==butE)
 		{
 		tree_up(iSet_T_ret,0,0,0);
-		ret_ind(20,1);
+		ret_ind(10,-1);
 		//tree_down(0,0);
-		}	
+		}
+	else if(but==butLR_)
+		{
+		if((sub_ind>=0)&&(sub_ind<=5))sub_ind=10;
+		else sub_ind=0;
+		speed=0;
+		}			
 	else if(sub_ind==0)
 	     {			    
 	     temp=LPC_RTC->HOUR;
@@ -3702,499 +3536,7 @@ else if(ind==iSet_T)
 	}  
 
     
-else if(ind==iK)
-	{
-	ret(1000);
-	if(but==butD)
-		{
-		sub_ind++;
-		gran_char(&sub_ind,0,2+(NUMBAT!=0)+(NUMIST!=0)+(NUMINV!=0)+2);
-		}
-	else if(but==butU)
-		{
-		sub_ind--;
-		gran_char(&sub_ind,0,2+(NUMBAT!=0)+(NUMIST!=0)+(NUMINV!=0)+2);
-		}
-	else if(but==butD_)
-		{
-		sub_ind=2+(NUMBAT!=0)+(NUMIST!=0)+(NUMINV!=0)+2;
-		}				
-	else if(but==butE)
-		{
-		if(sub_ind==0)
-			{
-			tree_up(iK_net,0,0,0);	
-			ret(1000);		
-			}
-		else if((NUMBAT)&&(sub_ind==1))
-			{
-			tree_up(iK_bat_sel,0,0,0);	
-			ret(1000);
-			}
-		else if((NUMIST)&&(sub_ind==(1+(NUMBAT!=0))))
-			{
-			tree_up(iK_bps_sel,0,0,0);	
-			ret(1000);
-			}
-/*		else if((sub_ind==(1+(NUMBAT!=0)+(NUMIST!=0))))
-			{
-			tree_up(iK_load,0,0,0);	
-			ret(1000);
-			}
-          
-         	else if(sub_ind==(2+(NUMBAT!=0)+(NUMIST!=0)))
-			{
-			tree_up(iK_t_ext,0,0,0);	
-			ret(1000);			
-			}
-          else if(sub_ind==(2+(NUMBAT!=0)+(NUMIST!=0)+1))
-			{
-			tree_up(iK_power_net3,0,0,0);	
-			ret(1000);
-               }               				
-          else if(sub_ind==(2+(NUMBAT!=0)+(NUMIST!=0)+2))
-			{
-	          tree_down(0,0);
-	          ret(0);
-               }	               			
-		}*/
-/**/		else if((NUMINV)&&(sub_ind==(1+(NUMBAT!=0)+(NUMIST!=0))))
-			{
-			//tree_up(iK_inv_sel,0,0,0);	
-			ret(1000);
-			}
-								
-			else if((sub_ind==(1+(NUMBAT!=0)+(NUMIST!=0)+(NUMINV!=0))))		 /**/
-			{
-			tree_up(iK_load,0,0,0);	
-			ret(1000);
-			}
-          
-/**/     	else if(sub_ind==(2+(NUMBAT!=0)+(NUMIST!=0)+(NUMINV!=0)))	   /**/
-			{
-			tree_up(iK_t_ext,0,0,0);	
-			ret(1000);			
-			}
-/**/		else if(sub_ind==(2+(NUMBAT!=0)+(NUMIST!=0)+(NUMINV!=0)+1))		/**/
-			{
-			tree_up(iK_power_net3,0,0,0);	
-			ret(1000);
-               }               				
-/**/	   	else if(sub_ind==(2+(NUMBAT!=0)+(NUMIST!=0)+(NUMINV!=0)+2))	   /**/
-			{
-	          tree_down(0,0);
-	          ret(0);
-               }	               			
-		}					
-	}
 
-else if(ind==iK_VD)
-	{
-	ret(1000);
-	if(but==butD)
-		{
-		sub_ind++;
-		gran_char(&sub_ind,0,4+(NUMIST!=0));
-		}
-	else if(but==butU)
-		{
-		sub_ind--;
-		gran_char(&sub_ind,0,4+(NUMIST!=0));
-		}
-	else if(but==butD_)
-		{
-		sub_ind=4+(NUMIST!=0);
-		}
-	else if(sub_ind==0)
-		{
-		temp_SS=lc640_read_int(EE_KUOUT);
-	     if(but==butR)
-	     	{
-		     temp_SS++;
-	     	}
-	     else if(but==butR_)
-	     	{
-	     	temp_SS+=2;
-	     	}	
-	     else if(but==butL)
-	     	{
-	     	temp_SS--;
-	     	}
-	     else if(but==butL_)
-	     	{
-	     	temp_SS-=2;
-	     	}
-	    gran(&temp_SS,50,2000);
-
-		lc640_write_int(EE_KUOUT,temp_SS);					
-		speed=1;	
-					
-		}
-
-	else if(sub_ind==1)
-		{
-		temp_SS=lc640_read_int(ADR_KI1BAT[0]);
-		if(but==butR)temp_SS++;
-		else if(but==butR_)temp_SS+=2;
-		else if(but==butL)temp_SS--;
-		else if(but==butL_)temp_SS-=2;
-						
-		gran(&temp_SS,200,30000);
-		lc640_write_int(ADR_KI1BAT[0],temp_SS);
-		phase=1;
-		speed=1;
-		}
-
-	else if((NUMIST)&&(sub_ind==2))
-		{
-		tree_up(iK_bps_sel,0,0,0);	
-		ret(1000);
-		}
-	else if(sub_ind==(2+(NUMIST!=0)))
-		{
-		temp_SS=lc640_read_int(EE_KUVD);
-	     if(but==butR)
-	     	{
-		     temp_SS++;
-	     	}
-	     else if(but==butR_)
-	     	{
-	     	temp_SS+=2;
-	     	}	
-	     else if(but==butL)
-	     	{
-	     	temp_SS--;
-	     	}
-	     else if(but==butL_)
-	     	{
-	     	temp_SS-=2;
-	     	}
-	    gran(&temp_SS,30,2000);
-
-		lc640_write_int(EE_KUVD,temp_SS);					
-		speed=1;	
-					
-		}
-	else if(sub_ind==(3+(NUMIST!=0)))
-		{
-		temp_SS=lc640_read_int(KT_EXT0);
-	    if(but==butR)
-	    	{
-		    temp_SS++;
-	     	}
-	    else if(but==butR_)
-	     	{
-	     	temp_SS+=2;
-	     	}	
-	    else if(but==butL)
-	     	{
-	     	temp_SS--;
-	     	}
-	    else if(but==butL_)
-	     	{
-	     	temp_SS-=2;
-	     	}
-	    gran(&temp_SS,1900,3000);
-		lc640_write_int(KT_EXT0,temp_SS);					
-		speed=1;	
-		}			
-   	else if(sub_ind==(4+(NUMIST!=0)))	  
-		{
-	    tree_down(0,0);
-	    ret(0);
-        }
-	}
-
-
-else if(ind==iK_t_ext)
-	{
-	ret(1000);
-	if(but==butD)
-		{
-		sub_ind++;
-		gran_char(&sub_ind,0,3);
-		}
-	else if(but==butU)
-		{
-		sub_ind--;
-		gran_char(&sub_ind,0,3);
-		}
-	else if(sub_ind==0)
-		{
-		temp_SS=lc640_read_int(KT_EXT0);
-	     if(but==butR)
-	     	{
-		     temp_SS++;
-	     	}
-	     else if(but==butR_)
-	     	{
-	     	temp_SS+=2;
-	     	}	
-	     else if(but==butL)
-	     	{
-	     	temp_SS--;
-	     	}
-	     else if(but==butL_)
-	     	{
-	     	temp_SS-=2;
-	     	}
-	     gran(&temp_SS,1900,3000);
-		lc640_write_int(KT_EXT0,temp_SS);					
-		speed=1;	
-					
-		}
-
-	else if(sub_ind==1)
-		{
-		temp_SS=lc640_read_int(KT_EXT1);
-	     if(but==butR)
-	     	{
-		     temp_SS++;
-	     	}
-	     else if(but==butR_)
-	     	{
-	     	temp_SS+=2;
-	     	}	
-	     else if(but==butL)
-	     	{
-	     	temp_SS--;
-	     	}
-	     else if(but==butL_)
-	     	{
-	     	temp_SS-=2;
-	     	}
-	     gran(&temp_SS,1900,3000);
-		lc640_write_int(KT_EXT1,temp_SS);					
-		speed=1;	
-					
-		}
-	else if(sub_ind==2)
-		{
-		temp_SS=lc640_read_int(KT_EXT2);
-	     if(but==butR)
-	     	{
-		     temp_SS++;
-	     	}
-	     else if(but==butR_)
-	     	{
-	     	temp_SS+=2;
-	     	}	
-	     else if(but==butL)
-	     	{
-	     	temp_SS--;
-	     	}
-	     else if(but==butL_)
-	     	{
-	     	temp_SS-=2;
-	     	}
-	     gran(&temp_SS,1900,3000);
-		lc640_write_int(KT_EXT2,temp_SS);					
-		speed=1;	
-					
-		}
-	else if(sub_ind==3)
-		{
-		if(but==butE)
-			{
-			tree_down(0,1);
-			ret(0);
-			}
-		}			
-	}
-
-else if(ind==iK_t_ext_6U)
-	{
-	ret(1000);
-	if(but==butD)
-		{
-		sub_ind++;
-		gran_char(&sub_ind,0,NUMDT);
-		}
-	else if(but==butU)
-		{
-		sub_ind--;
-		gran_char(&sub_ind,0,NUMDT);
-		}
-	else if(sub_ind==0)
-		{
-		temp_SS=lc640_read_int(KT_EXT0);
-	     if(but==butR)
-	     	{
-		     temp_SS++;
-	     	}
-	     else if(but==butR_)
-	     	{
-	     	temp_SS+=2;
-	     	}	
-	     else if(but==butL)
-	     	{
-	     	temp_SS--;
-	     	}
-	     else if(but==butL_)
-	     	{
-	     	temp_SS-=2;
-	     	}
-	     gran(&temp_SS,1900,3000);
-		lc640_write_int(KT_EXT0,temp_SS);					
-		speed=1;	
-					
-		}
-
-	else if(sub_ind==1)
-		{
-		temp_SS=lc640_read_int(KT_EXT1);
-	     if(but==butR)
-	     	{
-		     temp_SS++;
-	     	}
-	     else if(but==butR_)
-	     	{
-	     	temp_SS+=2;
-	     	}	
-	     else if(but==butL)
-	     	{
-	     	temp_SS--;
-	     	}
-	     else if(but==butL_)
-	     	{
-	     	temp_SS-=2;
-	     	}
-	     gran(&temp_SS,1900,3000);
-		lc640_write_int(KT_EXT1,temp_SS);					
-		speed=1;	
-					
-		}
-	else if(sub_ind==2)
-		{
-		temp_SS=lc640_read_int(KT_EXT2);
-	     if(but==butR)
-	     	{
-		     temp_SS++;
-	     	}
-	     else if(but==butR_)
-	     	{
-	     	temp_SS+=2;
-	     	}	
-	     else if(but==butL)
-	     	{
-	     	temp_SS--;
-	     	}
-	     else if(but==butL_)
-	     	{
-	     	temp_SS-=2;
-	     	}
-	     gran(&temp_SS,1900,3000);
-		lc640_write_int(KT_EXT2,temp_SS);					
-		speed=1;	
-					
-		}
- 	if(sub_ind==NUMDT)
-		{
-		if(but==butE)
-			{
-			tree_down(0,1);
-			ret(0);
-			}
-		}			
-	}
-			
-
-else if(ind==iBatLogVz)
-	{
-	if(but==butD)
-		{
-		sub_ind++;
-		gran_char(&sub_ind,0,av_j_si_max);
-		}
-	else if(but==butU)
-		{
-		sub_ind--;
-		gran_char(&sub_ind,0,av_j_si_max);
-		}
-	else if(but==butE)
-		{
-		if(sub_ind==av_j_si_max)
-			{
-			tree_down(0,0);
-			}
-		} 
-	else if(but==butL)
-		{
-		tree_down(0,0);
-		}		
-    //	else if(but==butR) vz_mem_hndl(sub_ind1,_sec);
-	
-		
-	}
-
-else if(ind==iBatLogKe)
-	{
-	if(but==butD)
-		{
-		sub_ind++;
-		gran_char(&sub_ind,0,av_j_si_max);
-		}
-	else if(but==butU)
-		{
-		sub_ind--;
-		gran_char(&sub_ind,0,av_j_si_max);
-		}
-	else if(but==butE)
-		{
-		if(sub_ind==av_j_si_max)
-			{
-			tree_down(0,0);
-			}
-		} 
-	else if(but==butL)
-		{
-		tree_down(0,0);
-		}		
-    //	else if(but==butR) ke_mem_hndl(sub_ind1,_sec);		
-	}
-
-else if(ind==iBatLogWrk)
-	{
-	if(but==butD)
-		{
-		sub_ind++;
-		gran_char(&sub_ind,0,av_j_si_max);
-		}
-	else if(but==butU)
-		{
-		sub_ind--;
-		gran_char(&sub_ind,0,av_j_si_max);
-		}
-	else if(but==butE)
-		{
-		if(sub_ind==av_j_si_max)
-			{
-			tree_down(0,0);
-			}
-		else if(sub_ind<=av_j_si_max)
-			{
-			//ind=iWrk;
-			//sub_ind2=content[sub_ind];
-			index_set=0;
-			//sub_ind=0;
-			}	
-		} 
-	else if(but==butL)
-		{
-		tree_down(0,0);
-		}		
-	else if(but==butR)
-		{
-	    //	wrk_mem_hndl(sub_ind1);
-
-		} 
-	//int2lcdyx(BAT_TYPE[sub_ind1],0,2,0);
-	}
-
-else if(ind==iAv_view)
-	{
-
- 	}
 
 
 

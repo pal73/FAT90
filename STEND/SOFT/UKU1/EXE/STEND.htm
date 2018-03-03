@@ -3,9 +3,9 @@
 <title>Static Call Graph - [.\EXE\STEND.axf]</title></head>
 <body><HR>
 <H1>Static Call Graph for image .\EXE\STEND.axf</H1><HR>
-<BR><P>#&#060CALLGRAPH&#062# ARM Linker, 4.1 [Build 481]: Last Updated: Tue Feb 20 22:53:13 2018
+<BR><P>#&#060CALLGRAPH&#062# ARM Linker, 4.1 [Build 481]: Last Updated: Mon Feb 26 21:30:25 2018
 <BR><P>
-<H3>Maximum Stack Usage =        412 bytes + Unknown(Untraceable Function Pointers)</H3><H3>
+<H3>Maximum Stack Usage =        404 bytes + Unknown(Untraceable Function Pointers)</H3><H3>
 Call chain for Maximum Stack Depth:</H3>
 main &rArr; ind_hndl &rArr; event_data2ind &rArr; int2lcd &rArr; bcd2lcd_zero
 <P>
@@ -74,7 +74,7 @@ Global Symbols
 <BR><BR>[Calls]<UL><LI><a href="#[31]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__scatterload
 </UL>
 
-<P><STRONG><a name="[89]"></a>__main_after_scatterload</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, entry5.o(.ARM.Collect$$$$00000004))
+<P><STRONG><a name="[88]"></a>__main_after_scatterload</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, entry5.o(.ARM.Collect$$$$00000004))
 <BR><BR>[Called By]<UL><LI><a href="#[31]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__scatterload
 </UL>
 
@@ -203,7 +203,7 @@ Global Symbols
 <P><STRONG><a name="[a]"></a>WDT_IRQHandler</STRONG> (Thumb, 0 bytes, Stack size 0 bytes, startup_lpc17xx.o(.text))
 <BR>[Address Reference Count : 1]<UL><LI> startup_lpc17xx.o(RESET)
 </UL>
-<P><STRONG><a name="[6d]"></a>mess_hndl</STRONG> (Thumb, 54 bytes, Stack size 12 bytes, mess.o(.text))
+<P><STRONG><a name="[6b]"></a>mess_hndl</STRONG> (Thumb, 54 bytes, Stack size 12 bytes, mess.o(.text))
 <BR><BR>[Stack]<UL><LI>Max Depth = 12<LI>Call Chain = mess_hndl
 </UL>
 <BR>[Called By]<UL><LI><a href="#[2d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;main
@@ -253,12 +253,12 @@ Global Symbols
 <BR><BR>[Called By]<UL><LI><a href="#[53]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;but_an
 </UL>
 
-<P><STRONG><a name="[5b]"></a>gran</STRONG> (Thumb, 22 bytes, Stack size 0 bytes, gran.o(.text))
-<BR><BR>[Called By]<UL><LI><a href="#[66]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;memo_read
+<P><STRONG><a name="[59]"></a>gran</STRONG> (Thumb, 22 bytes, Stack size 0 bytes, gran.o(.text))
+<BR><BR>[Called By]<UL><LI><a href="#[64]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;memo_read
 <LI><a href="#[53]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;but_an
 </UL>
 
-<P><STRONG><a name="[5c]"></a>gran_ring</STRONG> (Thumb, 22 bytes, Stack size 0 bytes, gran.o(.text))
+<P><STRONG><a name="[5a]"></a>gran_ring</STRONG> (Thumb, 22 bytes, Stack size 0 bytes, gran.o(.text))
 <BR><BR>[Called By]<UL><LI><a href="#[53]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;but_an
 </UL>
 
@@ -270,8 +270,8 @@ Global Symbols
 </UL>
 <P><STRONG><a name="[bf]"></a>__aeabi_uidiv</STRONG> (Thumb, 0 bytes, Stack size 12 bytes, uidiv.o(.text), UNUSED)
 
-<P><STRONG><a name="[8d]"></a>__aeabi_uidivmod</STRONG> (Thumb, 44 bytes, Stack size 12 bytes, uidiv.o(.text), UNUSED)
-<BR><BR>[Called By]<UL><LI><a href="#[8b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;_printf_core
+<P><STRONG><a name="[8c]"></a>__aeabi_uidivmod</STRONG> (Thumb, 44 bytes, Stack size 12 bytes, uidiv.o(.text), UNUSED)
+<BR><BR>[Called By]<UL><LI><a href="#[8a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;_printf_core
 </UL>
 
 <P><STRONG><a name="[3d]"></a>clr_scrn</STRONG> (Thumb, 18 bytes, Stack size 0 bytes, common_func.o(.text))
@@ -384,8 +384,7 @@ Global Symbols
 <LI><a href="#[3c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;bgnd_par
 <LI><a href="#[3f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;tree_up
 </UL>
-<BR>[Called By]<UL><LI><a href="#[53]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;but_an
-<LI><a href="#[4e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ind_hndl
+<BR>[Called By]<UL><LI><a href="#[4e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ind_hndl
 </UL>
 
 <P><STRONG><a name="[41]"></a>event_data2ind</STRONG> (Thumb, 244 bytes, Stack size 40 bytes, common_func.o(.text))
@@ -408,13 +407,13 @@ Global Symbols
 <BR>[Called By]<UL><LI><a href="#[2d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;main
 </UL>
 
-<P><STRONG><a name="[70]"></a>matemat</STRONG> (Thumb, 500 bytes, Stack size 20 bytes, control.o(.text))
+<P><STRONG><a name="[6e]"></a>matemat</STRONG> (Thumb, 500 bytes, Stack size 20 bytes, control.o(.text))
 <BR><BR>[Stack]<UL><LI>Max Depth = 20<LI>Call Chain = matemat
 </UL>
 <BR>[Called By]<UL><LI><a href="#[2d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;main
 </UL>
 
-<P><STRONG><a name="[65]"></a>adc_init</STRONG> (Thumb, 124 bytes, Stack size 0 bytes, control.o(.text))
+<P><STRONG><a name="[63]"></a>adc_init</STRONG> (Thumb, 124 bytes, Stack size 0 bytes, control.o(.text))
 <BR><BR>[Called By]<UL><LI><a href="#[2d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;main
 </UL>
 
@@ -426,7 +425,7 @@ Global Symbols
 <BR>[Called By]<UL><LI><a href="#[2d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;main
 </UL>
 
-<P><STRONG><a name="[71]"></a>rele_drv</STRONG> (Thumb, 36 bytes, Stack size 0 bytes, control.o(.text))
+<P><STRONG><a name="[6f]"></a>rele_drv</STRONG> (Thumb, 38 bytes, Stack size 0 bytes, control.o(.text))
 <BR><BR>[Called By]<UL><LI><a href="#[2d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;main
 </UL>
 
@@ -449,7 +448,7 @@ Global Symbols
 </UL>
 <BR>[Address Reference Count : 1]<UL><LI> printf6.o(i.__0printf$6)
 </UL>
-<P><STRONG><a name="[64]"></a>rtc_init</STRONG> (Thumb, 8 bytes, Stack size 0 bytes, main.o(.text))
+<P><STRONG><a name="[62]"></a>rtc_init</STRONG> (Thumb, 8 bytes, Stack size 0 bytes, main.o(.text))
 <BR><BR>[Called By]<UL><LI><a href="#[2d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;main
 </UL>
 
@@ -457,7 +456,7 @@ Global Symbols
 <BR><BR>[Called By]<UL><LI><a href="#[46]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;adc_drv7
 </UL>
 
-<P><STRONG><a name="[6e]"></a>rele_in_drv</STRONG> (Thumb, 182 bytes, Stack size 16 bytes, main.o(.text))
+<P><STRONG><a name="[6c]"></a>rele_in_drv</STRONG> (Thumb, 182 bytes, Stack size 16 bytes, main.o(.text))
 <BR><BR>[Stack]<UL><LI>Max Depth = 16<LI>Call Chain = rele_in_drv
 </UL>
 <BR>[Called By]<UL><LI><a href="#[2d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;main
@@ -468,8 +467,8 @@ Global Symbols
 </UL>
 <BR>[Address Reference Count : 1]<UL><LI> startup_lpc17xx.o(RESET)
 </UL>
-<P><STRONG><a name="[4a]"></a>transmit_hndl</STRONG> (Thumb, 502 bytes, Stack size 32 bytes, main.o(.text))
-<BR><BR>[Stack]<UL><LI>Max Depth = 56<LI>Call Chain = transmit_hndl &rArr; __2printf
+<P><STRONG><a name="[4a]"></a>transmit_hndl</STRONG> (Thumb, 520 bytes, Stack size 24 bytes, main.o(.text))
+<BR><BR>[Stack]<UL><LI>Max Depth = 48<LI>Call Chain = transmit_hndl &rArr; __2printf
 </UL>
 <BR>[Calls]<UL><LI><a href="#[4b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__2printf
 </UL>
@@ -484,14 +483,14 @@ Global Symbols
 <BR>[Called By]<UL><LI><a href="#[2d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;main
 </UL>
 
-<P><STRONG><a name="[6b]"></a>bitmap_hndl</STRONG> (Thumb, 130 bytes, Stack size 24 bytes, main.o(.text))
+<P><STRONG><a name="[69]"></a>bitmap_hndl</STRONG> (Thumb, 130 bytes, Stack size 24 bytes, main.o(.text))
 <BR><BR>[Stack]<UL><LI>Max Depth = 24<LI>Call Chain = bitmap_hndl
 </UL>
 <BR>[Called By]<UL><LI><a href="#[2d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;main
 </UL>
 
-<P><STRONG><a name="[4e]"></a>ind_hndl</STRONG> (Thumb, 10322 bytes, Stack size 336 bytes, main.o(.text))
-<BR><BR>[Stack]<UL><LI>Max Depth = 412<LI>Call Chain = ind_hndl &rArr; event_data2ind &rArr; int2lcd &rArr; bcd2lcd_zero
+<P><STRONG><a name="[4e]"></a>ind_hndl</STRONG> (Thumb, 10160 bytes, Stack size 328 bytes, main.o(.text))
+<BR><BR>[Stack]<UL><LI>Max Depth = 404<LI>Call Chain = ind_hndl &rArr; event_data2ind &rArr; int2lcd &rArr; bcd2lcd_zero
 </UL>
 <BR>[Calls]<UL><LI><a href="#[52]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;mess_find
 <LI><a href="#[44]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;mess_send
@@ -510,102 +509,99 @@ Global Symbols
 <BR>[Called By]<UL><LI><a href="#[2d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;main
 </UL>
 
-<P><STRONG><a name="[6a]"></a>but_drv</STRONG> (Thumb, 262 bytes, Stack size 28 bytes, main.o(.text))
+<P><STRONG><a name="[68]"></a>but_drv</STRONG> (Thumb, 262 bytes, Stack size 28 bytes, main.o(.text))
 <BR><BR>[Stack]<UL><LI>Max Depth = 28<LI>Call Chain = but_drv
 </UL>
 <BR>[Called By]<UL><LI><a href="#[2d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;main
 </UL>
 
-<P><STRONG><a name="[53]"></a>but_an</STRONG> (Thumb, 9038 bytes, Stack size 48 bytes, main.o(.text))
-<BR><BR>[Stack]<UL><LI>Max Depth = 80<LI>Call Chain = but_an &rArr; show_mess &rArr; bgnd_par
+<P><STRONG><a name="[53]"></a>but_an</STRONG> (Thumb, 6424 bytes, Stack size 40 bytes, main.o(.text))
+<BR><BR>[Stack]<UL><LI>Max Depth = 56<LI>Call Chain = but_an &rArr; lc640_write_int &rArr; lc640_rdsr
 </UL>
-<BR>[Calls]<UL><LI><a href="#[5c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;gran_ring
+<BR>[Calls]<UL><LI><a href="#[5a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;gran_ring
 <LI><a href="#[56]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;gran_char
 <LI><a href="#[55]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;gran_ring_char
 <LI><a href="#[58]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ret_ind
 <LI><a href="#[45]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;lc640_write_int
-<LI><a href="#[5b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;gran
+<LI><a href="#[59]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;gran
 <LI><a href="#[57]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;numOfForvardBps_init
 <LI><a href="#[40]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ret
-<LI><a href="#[5a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;lc640_read_int
-<LI><a href="#[3e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;show_mess
 <LI><a href="#[3f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;tree_up
 <LI><a href="#[33]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;tree_down
-<LI><a href="#[59]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;lc640_write
 <LI><a href="#[54]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;beep_init
 </UL>
 <BR>[Called By]<UL><LI><a href="#[2d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;main
 </UL>
 
-<P><STRONG><a name="[67]"></a>watchdog_enable</STRONG> (Thumb, 24 bytes, Stack size 0 bytes, main.o(.text))
+<P><STRONG><a name="[65]"></a>watchdog_enable</STRONG> (Thumb, 24 bytes, Stack size 0 bytes, main.o(.text))
 <BR><BR>[Called By]<UL><LI><a href="#[2d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;main
 </UL>
 
-<P><STRONG><a name="[72]"></a>watchdog_reset</STRONG> (Thumb, 12 bytes, Stack size 0 bytes, main.o(.text))
+<P><STRONG><a name="[70]"></a>watchdog_reset</STRONG> (Thumb, 12 bytes, Stack size 0 bytes, main.o(.text))
 <BR><BR>[Called By]<UL><LI><a href="#[2d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;main
 </UL>
 
 <P><STRONG><a name="[9]"></a>SysTick_Handler</STRONG> (Thumb, 284 bytes, Stack size 24 bytes, main.o(.text))
 <BR><BR>[Stack]<UL><LI>Max Depth = 24<LI>Call Chain = SysTick_Handler
 </UL>
-<BR>[Calls]<UL><LI><a href="#[5d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;beep_drv
+<BR>[Calls]<UL><LI><a href="#[5b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;beep_drv
 </UL>
 <BR>[Address Reference Count : 1]<UL><LI> startup_lpc17xx.o(RESET)
 </UL>
-<P><STRONG><a name="[2d]"></a>main</STRONG> (Thumb, 498 bytes, Stack size 0 bytes, main.o(.text))
-<BR><BR>[Stack]<UL><LI>Max Depth = 412<LI>Call Chain = main &rArr; ind_hndl &rArr; event_data2ind &rArr; int2lcd &rArr; bcd2lcd_zero
+<P><STRONG><a name="[2d]"></a>main</STRONG> (Thumb, 502 bytes, Stack size 0 bytes, main.o(.text))
+<BR><BR>[Stack]<UL><LI>Max Depth = 404<LI>Call Chain = main &rArr; ind_hndl &rArr; event_data2ind &rArr; int2lcd &rArr; bcd2lcd_zero
 </UL>
 <BR>[Calls]<UL><LI><a href="#[34]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ret_hndl
 <LI><a href="#[32]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ret_ind_hndl
-<LI><a href="#[6d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;mess_hndl
+<LI><a href="#[6b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;mess_hndl
 <LI><a href="#[45]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;lc640_write_int
-<LI><a href="#[71]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;rele_drv
+<LI><a href="#[6f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;rele_drv
 <LI><a href="#[46]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;adc_drv7
-<LI><a href="#[65]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;adc_init
-<LI><a href="#[70]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;matemat
+<LI><a href="#[63]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;adc_init
+<LI><a href="#[6e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;matemat
 <LI><a href="#[43]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;samokalibr_hndl
-<LI><a href="#[69]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;sc16is700_uart_hndl
-<LI><a href="#[68]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;sc16is700_init
-<LI><a href="#[66]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;memo_read
-<LI><a href="#[6c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;lcd_out
-<LI><a href="#[62]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;lcd_on
-<LI><a href="#[61]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;lcd_init
-<LI><a href="#[63]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;lcd_clear
-<LI><a href="#[73]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;beep_hndl
-<LI><a href="#[60]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ad7705_write
-<LI><a href="#[5f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ad7705_reset
-<LI><a href="#[6f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ad7705_drv
-<LI><a href="#[5e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;SystemInit
-<LI><a href="#[72]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;watchdog_reset
-<LI><a href="#[67]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;watchdog_enable
+<LI><a href="#[67]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;sc16is700_uart_hndl
+<LI><a href="#[66]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;sc16is700_init
+<LI><a href="#[64]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;memo_read
+<LI><a href="#[6a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;lcd_out
+<LI><a href="#[60]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;lcd_on
+<LI><a href="#[5f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;lcd_init
+<LI><a href="#[61]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;lcd_clear
+<LI><a href="#[71]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;beep_hndl
+<LI><a href="#[5e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ad7705_write
+<LI><a href="#[5d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ad7705_reset
+<LI><a href="#[6d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ad7705_drv
+<LI><a href="#[5c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;SystemInit
+<LI><a href="#[70]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;watchdog_reset
+<LI><a href="#[65]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;watchdog_enable
 <LI><a href="#[53]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;but_an
-<LI><a href="#[6a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;but_drv
+<LI><a href="#[68]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;but_drv
 <LI><a href="#[4e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ind_hndl
-<LI><a href="#[6b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;bitmap_hndl
+<LI><a href="#[69]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;bitmap_hndl
 <LI><a href="#[4c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;net_drv
 <LI><a href="#[4a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;transmit_hndl
-<LI><a href="#[6e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;rele_in_drv
-<LI><a href="#[64]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;rtc_init
+<LI><a href="#[6c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;rele_in_drv
+<LI><a href="#[62]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;rtc_init
 </UL>
 <BR>[Address Reference Count : 1]<UL><LI> entry7.o(.ARM.Collect$$$$00000007)
 </UL>
-<P><STRONG><a name="[66]"></a>memo_read</STRONG> (Thumb, 3214 bytes, Stack size 32 bytes, memo.o(.text))
+<P><STRONG><a name="[64]"></a>memo_read</STRONG> (Thumb, 3214 bytes, Stack size 32 bytes, memo.o(.text))
 <BR><BR>[Stack]<UL><LI>Max Depth = 52<LI>Call Chain = memo_read &rArr; lc640_read_long &rArr; lc640_rdsr
 </UL>
-<BR>[Calls]<UL><LI><a href="#[5b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;gran
-<LI><a href="#[5a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;lc640_read_int
-<LI><a href="#[74]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;lc640_read_long
+<BR>[Calls]<UL><LI><a href="#[59]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;gran
+<LI><a href="#[72]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;lc640_read_int
+<LI><a href="#[73]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;lc640_read_long
 </UL>
 <BR>[Called By]<UL><LI><a href="#[2d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;main
 </UL>
 
-<P><STRONG><a name="[5e]"></a>SystemInit</STRONG> (Thumb, 372 bytes, Stack size 12 bytes, system_lpc17xx.o(.text))
+<P><STRONG><a name="[5c]"></a>SystemInit</STRONG> (Thumb, 372 bytes, Stack size 12 bytes, system_lpc17xx.o(.text))
 <BR><BR>[Stack]<UL><LI>Max Depth = 12<LI>Call Chain = SystemInit
 </UL>
 <BR>[Called By]<UL><LI><a href="#[2d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;main
 </UL>
 
-<P><STRONG><a name="[5d]"></a>beep_drv</STRONG> (Thumb, 72 bytes, Stack size 0 bytes, beep.o(.text))
+<P><STRONG><a name="[5b]"></a>beep_drv</STRONG> (Thumb, 72 bytes, Stack size 0 bytes, beep.o(.text))
 <BR><BR>[Called By]<UL><LI><a href="#[9]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;SysTick_Handler
 </UL>
 
@@ -615,323 +611,305 @@ Global Symbols
 <BR>[Called By]<UL><LI><a href="#[53]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;but_an
 </UL>
 
-<P><STRONG><a name="[73]"></a>beep_hndl</STRONG> (Thumb, 20 bytes, Stack size 0 bytes, beep.o(.text))
+<P><STRONG><a name="[71]"></a>beep_hndl</STRONG> (Thumb, 20 bytes, Stack size 0 bytes, beep.o(.text))
 <BR><BR>[Called By]<UL><LI><a href="#[2d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;main
 </UL>
 
-<P><STRONG><a name="[75]"></a>spi1_ad7705_config</STRONG> (Thumb, 46 bytes, Stack size 0 bytes, ad7705.o(.text))
-<BR><BR>[Called By]<UL><LI><a href="#[78]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ad7705_read
-<LI><a href="#[60]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ad7705_write
+<P><STRONG><a name="[74]"></a>spi1_ad7705_config</STRONG> (Thumb, 46 bytes, Stack size 0 bytes, ad7705.o(.text))
+<BR><BR>[Called By]<UL><LI><a href="#[77]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ad7705_read
+<LI><a href="#[5e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ad7705_write
 </UL>
 
-<P><STRONG><a name="[5f]"></a>ad7705_reset</STRONG> (Thumb, 36 bytes, Stack size 0 bytes, ad7705.o(.text))
+<P><STRONG><a name="[5d]"></a>ad7705_reset</STRONG> (Thumb, 36 bytes, Stack size 0 bytes, ad7705.o(.text))
 <BR><BR>[Called By]<UL><LI><a href="#[2d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;main
 </UL>
 
-<P><STRONG><a name="[60]"></a>ad7705_write</STRONG> (Thumb, 94 bytes, Stack size 8 bytes, ad7705.o(.text))
+<P><STRONG><a name="[5e]"></a>ad7705_write</STRONG> (Thumb, 94 bytes, Stack size 8 bytes, ad7705.o(.text))
 <BR><BR>[Stack]<UL><LI>Max Depth = 8<LI>Call Chain = ad7705_write
 </UL>
-<BR>[Calls]<UL><LI><a href="#[77]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;spi1_unconfig
-<LI><a href="#[76]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;spi1
-<LI><a href="#[75]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;spi1_ad7705_config
+<BR>[Calls]<UL><LI><a href="#[76]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;spi1_unconfig
+<LI><a href="#[75]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;spi1
+<LI><a href="#[74]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;spi1_ad7705_config
 </UL>
-<BR>[Called By]<UL><LI><a href="#[6f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ad7705_drv
+<BR>[Called By]<UL><LI><a href="#[6d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ad7705_drv
 <LI><a href="#[2d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;main
 </UL>
 
-<P><STRONG><a name="[78]"></a>ad7705_read</STRONG> (Thumb, 134 bytes, Stack size 16 bytes, ad7705.o(.text))
+<P><STRONG><a name="[77]"></a>ad7705_read</STRONG> (Thumb, 134 bytes, Stack size 16 bytes, ad7705.o(.text))
 <BR><BR>[Stack]<UL><LI>Max Depth = 16<LI>Call Chain = ad7705_read
 </UL>
-<BR>[Calls]<UL><LI><a href="#[77]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;spi1_unconfig
-<LI><a href="#[76]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;spi1
-<LI><a href="#[75]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;spi1_ad7705_config
+<BR>[Calls]<UL><LI><a href="#[76]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;spi1_unconfig
+<LI><a href="#[75]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;spi1
+<LI><a href="#[74]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;spi1_ad7705_config
 </UL>
-<BR>[Called By]<UL><LI><a href="#[6f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ad7705_drv
+<BR>[Called By]<UL><LI><a href="#[6d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ad7705_drv
 </UL>
 
-<P><STRONG><a name="[6f]"></a>ad7705_drv</STRONG> (Thumb, 212 bytes, Stack size 24 bytes, ad7705.o(.text))
+<P><STRONG><a name="[6d]"></a>ad7705_drv</STRONG> (Thumb, 212 bytes, Stack size 24 bytes, ad7705.o(.text))
 <BR><BR>[Stack]<UL><LI>Max Depth = 40<LI>Call Chain = ad7705_drv &rArr; ad7705_read
 </UL>
-<BR>[Calls]<UL><LI><a href="#[78]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ad7705_read
-<LI><a href="#[60]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ad7705_write
+<BR>[Calls]<UL><LI><a href="#[77]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ad7705_read
+<LI><a href="#[5e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ad7705_write
 </UL>
 <BR>[Called By]<UL><LI><a href="#[2d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;main
 </UL>
 
-<P><STRONG><a name="[7a]"></a>lcd1_chk</STRONG> (Thumb, 82 bytes, Stack size 0 bytes, lcd_agm1232_uku207_3.o(.text))
-<BR><BR>[Called By]<UL><LI><a href="#[7d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;data1_wr
-<LI><a href="#[79]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;lcd1_wr
+<P><STRONG><a name="[79]"></a>lcd1_chk</STRONG> (Thumb, 82 bytes, Stack size 0 bytes, lcd_agm1232_uku207_3.o(.text))
+<BR><BR>[Called By]<UL><LI><a href="#[7c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;data1_wr
+<LI><a href="#[78]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;lcd1_wr
 </UL>
 
-<P><STRONG><a name="[7c]"></a>lcd2_chk</STRONG> (Thumb, 82 bytes, Stack size 0 bytes, lcd_agm1232_uku207_3.o(.text))
-<BR><BR>[Called By]<UL><LI><a href="#[7e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;data2_wr
-<LI><a href="#[7b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;lcd2_wr
+<P><STRONG><a name="[7b]"></a>lcd2_chk</STRONG> (Thumb, 82 bytes, Stack size 0 bytes, lcd_agm1232_uku207_3.o(.text))
+<BR><BR>[Called By]<UL><LI><a href="#[7d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;data2_wr
+<LI><a href="#[7a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;lcd2_wr
 </UL>
 
-<P><STRONG><a name="[79]"></a>lcd1_wr</STRONG> (Thumb, 172 bytes, Stack size 4 bytes, lcd_agm1232_uku207_3.o(.text))
+<P><STRONG><a name="[78]"></a>lcd1_wr</STRONG> (Thumb, 172 bytes, Stack size 4 bytes, lcd_agm1232_uku207_3.o(.text))
 <BR><BR>[Stack]<UL><LI>Max Depth = 4<LI>Call Chain = lcd1_wr
 </UL>
-<BR>[Calls]<UL><LI><a href="#[7a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;lcd1_chk
+<BR>[Calls]<UL><LI><a href="#[79]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;lcd1_chk
 </UL>
-<BR>[Called By]<UL><LI><a href="#[81]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;lcd_set_raw
-<LI><a href="#[80]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;lcd_set_col
-<LI><a href="#[7f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;lcd_set_page
-<LI><a href="#[62]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;lcd_on
+<BR>[Called By]<UL><LI><a href="#[80]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;lcd_set_raw
+<LI><a href="#[7f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;lcd_set_col
+<LI><a href="#[7e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;lcd_set_page
+<LI><a href="#[60]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;lcd_on
 </UL>
 
-<P><STRONG><a name="[7b]"></a>lcd2_wr</STRONG> (Thumb, 180 bytes, Stack size 4 bytes, lcd_agm1232_uku207_3.o(.text))
+<P><STRONG><a name="[7a]"></a>lcd2_wr</STRONG> (Thumb, 180 bytes, Stack size 4 bytes, lcd_agm1232_uku207_3.o(.text))
 <BR><BR>[Stack]<UL><LI>Max Depth = 4<LI>Call Chain = lcd2_wr
 </UL>
-<BR>[Calls]<UL><LI><a href="#[7c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;lcd2_chk
+<BR>[Calls]<UL><LI><a href="#[7b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;lcd2_chk
 </UL>
-<BR>[Called By]<UL><LI><a href="#[81]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;lcd_set_raw
-<LI><a href="#[80]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;lcd_set_col
-<LI><a href="#[7f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;lcd_set_page
-<LI><a href="#[62]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;lcd_on
+<BR>[Called By]<UL><LI><a href="#[80]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;lcd_set_raw
+<LI><a href="#[7f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;lcd_set_col
+<LI><a href="#[7e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;lcd_set_page
+<LI><a href="#[60]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;lcd_on
 </UL>
 
-<P><STRONG><a name="[7d]"></a>data1_wr</STRONG> (Thumb, 182 bytes, Stack size 4 bytes, lcd_agm1232_uku207_3.o(.text))
+<P><STRONG><a name="[7c]"></a>data1_wr</STRONG> (Thumb, 182 bytes, Stack size 4 bytes, lcd_agm1232_uku207_3.o(.text))
 <BR><BR>[Stack]<UL><LI>Max Depth = 4<LI>Call Chain = data1_wr
 </UL>
-<BR>[Calls]<UL><LI><a href="#[7a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;lcd1_chk
+<BR>[Calls]<UL><LI><a href="#[79]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;lcd1_chk
 </UL>
-<BR>[Called By]<UL><LI><a href="#[6c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;lcd_out
-<LI><a href="#[63]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;lcd_clear
+<BR>[Called By]<UL><LI><a href="#[6a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;lcd_out
+<LI><a href="#[61]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;lcd_clear
 </UL>
 
-<P><STRONG><a name="[7e]"></a>data2_wr</STRONG> (Thumb, 180 bytes, Stack size 4 bytes, lcd_agm1232_uku207_3.o(.text))
+<P><STRONG><a name="[7d]"></a>data2_wr</STRONG> (Thumb, 180 bytes, Stack size 4 bytes, lcd_agm1232_uku207_3.o(.text))
 <BR><BR>[Stack]<UL><LI>Max Depth = 4<LI>Call Chain = data2_wr
 </UL>
-<BR>[Calls]<UL><LI><a href="#[7c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;lcd2_chk
+<BR>[Calls]<UL><LI><a href="#[7b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;lcd2_chk
 </UL>
-<BR>[Called By]<UL><LI><a href="#[6c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;lcd_out
-<LI><a href="#[63]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;lcd_clear
+<BR>[Called By]<UL><LI><a href="#[6a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;lcd_out
+<LI><a href="#[61]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;lcd_clear
 </UL>
 
-<P><STRONG><a name="[7f]"></a>lcd_set_page</STRONG> (Thumb, 20 bytes, Stack size 8 bytes, lcd_agm1232_uku207_3.o(.text))
+<P><STRONG><a name="[7e]"></a>lcd_set_page</STRONG> (Thumb, 20 bytes, Stack size 8 bytes, lcd_agm1232_uku207_3.o(.text))
 <BR><BR>[Stack]<UL><LI>Max Depth = 12<LI>Call Chain = lcd_set_page &rArr; lcd2_wr
 </UL>
-<BR>[Calls]<UL><LI><a href="#[7b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;lcd2_wr
-<LI><a href="#[79]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;lcd1_wr
+<BR>[Calls]<UL><LI><a href="#[7a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;lcd2_wr
+<LI><a href="#[78]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;lcd1_wr
 </UL>
-<BR>[Called By]<UL><LI><a href="#[6c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;lcd_out
-<LI><a href="#[63]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;lcd_clear
+<BR>[Called By]<UL><LI><a href="#[6a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;lcd_out
+<LI><a href="#[61]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;lcd_clear
 </UL>
 
-<P><STRONG><a name="[80]"></a>lcd_set_col</STRONG> (Thumb, 18 bytes, Stack size 8 bytes, lcd_agm1232_uku207_3.o(.text))
+<P><STRONG><a name="[7f]"></a>lcd_set_col</STRONG> (Thumb, 18 bytes, Stack size 8 bytes, lcd_agm1232_uku207_3.o(.text))
 <BR><BR>[Stack]<UL><LI>Max Depth = 12<LI>Call Chain = lcd_set_col &rArr; lcd2_wr
 </UL>
-<BR>[Calls]<UL><LI><a href="#[7b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;lcd2_wr
-<LI><a href="#[79]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;lcd1_wr
+<BR>[Calls]<UL><LI><a href="#[7a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;lcd2_wr
+<LI><a href="#[78]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;lcd1_wr
 </UL>
-<BR>[Called By]<UL><LI><a href="#[6c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;lcd_out
-<LI><a href="#[63]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;lcd_clear
+<BR>[Called By]<UL><LI><a href="#[6a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;lcd_out
+<LI><a href="#[61]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;lcd_clear
 </UL>
 
-<P><STRONG><a name="[81]"></a>lcd_set_raw</STRONG> (Thumb, 20 bytes, Stack size 8 bytes, lcd_agm1232_uku207_3.o(.text))
+<P><STRONG><a name="[80]"></a>lcd_set_raw</STRONG> (Thumb, 20 bytes, Stack size 8 bytes, lcd_agm1232_uku207_3.o(.text))
 <BR><BR>[Stack]<UL><LI>Max Depth = 12<LI>Call Chain = lcd_set_raw &rArr; lcd2_wr
 </UL>
-<BR>[Calls]<UL><LI><a href="#[7b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;lcd2_wr
-<LI><a href="#[79]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;lcd1_wr
+<BR>[Calls]<UL><LI><a href="#[7a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;lcd2_wr
+<LI><a href="#[78]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;lcd1_wr
 </UL>
-<BR>[Called By]<UL><LI><a href="#[6c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;lcd_out
+<BR>[Called By]<UL><LI><a href="#[6a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;lcd_out
 </UL>
 
-<P><STRONG><a name="[61]"></a>lcd_init</STRONG> (Thumb, 92 bytes, Stack size 0 bytes, lcd_agm1232_uku207_3.o(.text))
+<P><STRONG><a name="[5f]"></a>lcd_init</STRONG> (Thumb, 92 bytes, Stack size 0 bytes, lcd_agm1232_uku207_3.o(.text))
 <BR><BR>[Called By]<UL><LI><a href="#[2d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;main
 </UL>
 
-<P><STRONG><a name="[63]"></a>lcd_clear</STRONG> (Thumb, 48 bytes, Stack size 12 bytes, lcd_agm1232_uku207_3.o(.text))
+<P><STRONG><a name="[61]"></a>lcd_clear</STRONG> (Thumb, 48 bytes, Stack size 12 bytes, lcd_agm1232_uku207_3.o(.text))
 <BR><BR>[Stack]<UL><LI>Max Depth = 24<LI>Call Chain = lcd_clear &rArr; lcd_set_col &rArr; lcd2_wr
 </UL>
-<BR>[Calls]<UL><LI><a href="#[80]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;lcd_set_col
-<LI><a href="#[7f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;lcd_set_page
-<LI><a href="#[7e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;data2_wr
-<LI><a href="#[7d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;data1_wr
+<BR>[Calls]<UL><LI><a href="#[7f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;lcd_set_col
+<LI><a href="#[7e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;lcd_set_page
+<LI><a href="#[7d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;data2_wr
+<LI><a href="#[7c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;data1_wr
 </UL>
 <BR>[Called By]<UL><LI><a href="#[2d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;main
 </UL>
 
-<P><STRONG><a name="[62]"></a>lcd_on</STRONG> (Thumb, 16 bytes, Stack size 4 bytes, lcd_agm1232_uku207_3.o(.text))
+<P><STRONG><a name="[60]"></a>lcd_on</STRONG> (Thumb, 16 bytes, Stack size 4 bytes, lcd_agm1232_uku207_3.o(.text))
 <BR><BR>[Stack]<UL><LI>Max Depth = 8<LI>Call Chain = lcd_on &rArr; lcd2_wr
 </UL>
-<BR>[Calls]<UL><LI><a href="#[7b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;lcd2_wr
-<LI><a href="#[79]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;lcd1_wr
+<BR>[Calls]<UL><LI><a href="#[7a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;lcd2_wr
+<LI><a href="#[78]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;lcd1_wr
 </UL>
 <BR>[Called By]<UL><LI><a href="#[2d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;main
 </UL>
 
-<P><STRONG><a name="[6c]"></a>lcd_out</STRONG> (Thumb, 80 bytes, Stack size 24 bytes, lcd_agm1232_uku207_3.o(.text))
+<P><STRONG><a name="[6a]"></a>lcd_out</STRONG> (Thumb, 80 bytes, Stack size 24 bytes, lcd_agm1232_uku207_3.o(.text))
 <BR><BR>[Stack]<UL><LI>Max Depth = 36<LI>Call Chain = lcd_out &rArr; lcd_set_raw &rArr; lcd2_wr
 </UL>
-<BR>[Calls]<UL><LI><a href="#[81]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;lcd_set_raw
-<LI><a href="#[80]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;lcd_set_col
-<LI><a href="#[7f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;lcd_set_page
-<LI><a href="#[7e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;data2_wr
-<LI><a href="#[7d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;data1_wr
+<BR>[Calls]<UL><LI><a href="#[80]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;lcd_set_raw
+<LI><a href="#[7f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;lcd_set_col
+<LI><a href="#[7e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;lcd_set_page
+<LI><a href="#[7d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;data2_wr
+<LI><a href="#[7c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;data1_wr
 </UL>
 <BR>[Called By]<UL><LI><a href="#[2d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;main
 </UL>
 
-<P><STRONG><a name="[76]"></a>spi1</STRONG> (Thumb, 16 bytes, Stack size 0 bytes, 25lc640.o(.text))
+<P><STRONG><a name="[75]"></a>spi1</STRONG> (Thumb, 16 bytes, Stack size 0 bytes, 25lc640.o(.text))
 <BR><BR>[Called By]<UL><LI><a href="#[45]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;lc640_write_int
 <LI><a href="#[42]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;lc640_read_long_ptr
-<LI><a href="#[5a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;lc640_read_int
-<LI><a href="#[78]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ad7705_read
-<LI><a href="#[74]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;lc640_read_long
-<LI><a href="#[59]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;lc640_write
-<LI><a href="#[60]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ad7705_write
-<LI><a href="#[88]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;sc16is700_rd_byte
-<LI><a href="#[87]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;sc16is700_wr_byte
-<LI><a href="#[85]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;sc16is700_wr_buff
-<LI><a href="#[84]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;lc640_rdsr
-<LI><a href="#[82]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;lc640_wren
+<LI><a href="#[72]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;lc640_read_int
+<LI><a href="#[77]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ad7705_read
+<LI><a href="#[73]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;lc640_read_long
+<LI><a href="#[5e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ad7705_write
+<LI><a href="#[87]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;sc16is700_rd_byte
+<LI><a href="#[86]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;sc16is700_wr_byte
+<LI><a href="#[84]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;sc16is700_wr_buff
+<LI><a href="#[83]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;lc640_rdsr
+<LI><a href="#[81]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;lc640_wren
 </UL>
 
-<P><STRONG><a name="[83]"></a>spi1_config</STRONG> (Thumb, 46 bytes, Stack size 0 bytes, 25lc640.o(.text))
+<P><STRONG><a name="[82]"></a>spi1_config</STRONG> (Thumb, 46 bytes, Stack size 0 bytes, 25lc640.o(.text))
 <BR><BR>[Called By]<UL><LI><a href="#[45]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;lc640_write_int
 <LI><a href="#[42]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;lc640_read_long_ptr
-<LI><a href="#[5a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;lc640_read_int
-<LI><a href="#[74]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;lc640_read_long
-<LI><a href="#[59]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;lc640_write
-<LI><a href="#[84]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;lc640_rdsr
-<LI><a href="#[82]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;lc640_wren
+<LI><a href="#[72]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;lc640_read_int
+<LI><a href="#[73]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;lc640_read_long
+<LI><a href="#[83]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;lc640_rdsr
+<LI><a href="#[81]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;lc640_wren
 </UL>
 
-<P><STRONG><a name="[77]"></a>spi1_unconfig</STRONG> (Thumb, 42 bytes, Stack size 0 bytes, 25lc640.o(.text))
+<P><STRONG><a name="[76]"></a>spi1_unconfig</STRONG> (Thumb, 42 bytes, Stack size 0 bytes, 25lc640.o(.text))
 <BR><BR>[Called By]<UL><LI><a href="#[45]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;lc640_write_int
 <LI><a href="#[42]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;lc640_read_long_ptr
-<LI><a href="#[5a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;lc640_read_int
-<LI><a href="#[78]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ad7705_read
-<LI><a href="#[74]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;lc640_read_long
-<LI><a href="#[59]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;lc640_write
-<LI><a href="#[60]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ad7705_write
-<LI><a href="#[84]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;lc640_rdsr
-<LI><a href="#[82]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;lc640_wren
+<LI><a href="#[72]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;lc640_read_int
+<LI><a href="#[77]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ad7705_read
+<LI><a href="#[73]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;lc640_read_long
+<LI><a href="#[5e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ad7705_write
+<LI><a href="#[83]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;lc640_rdsr
+<LI><a href="#[81]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;lc640_wren
 </UL>
 
-<P><STRONG><a name="[82]"></a>lc640_wren</STRONG> (Thumb, 52 bytes, Stack size 4 bytes, 25lc640.o(.text))
+<P><STRONG><a name="[81]"></a>lc640_wren</STRONG> (Thumb, 52 bytes, Stack size 4 bytes, 25lc640.o(.text))
 <BR><BR>[Stack]<UL><LI>Max Depth = 4<LI>Call Chain = lc640_wren
 </UL>
-<BR>[Calls]<UL><LI><a href="#[77]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;spi1_unconfig
-<LI><a href="#[76]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;spi1
-<LI><a href="#[83]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;spi1_config
+<BR>[Calls]<UL><LI><a href="#[76]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;spi1_unconfig
+<LI><a href="#[75]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;spi1
+<LI><a href="#[82]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;spi1_config
 </UL>
 <BR>[Called By]<UL><LI><a href="#[45]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;lc640_write_int
-<LI><a href="#[59]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;lc640_write
 </UL>
 
-<P><STRONG><a name="[84]"></a>lc640_rdsr</STRONG> (Thumb, 62 bytes, Stack size 4 bytes, 25lc640.o(.text))
+<P><STRONG><a name="[83]"></a>lc640_rdsr</STRONG> (Thumb, 62 bytes, Stack size 4 bytes, 25lc640.o(.text))
 <BR><BR>[Stack]<UL><LI>Max Depth = 4<LI>Call Chain = lc640_rdsr
 </UL>
-<BR>[Calls]<UL><LI><a href="#[77]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;spi1_unconfig
-<LI><a href="#[76]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;spi1
-<LI><a href="#[83]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;spi1_config
+<BR>[Calls]<UL><LI><a href="#[76]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;spi1_unconfig
+<LI><a href="#[75]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;spi1
+<LI><a href="#[82]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;spi1_config
 </UL>
 <BR>[Called By]<UL><LI><a href="#[45]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;lc640_write_int
 <LI><a href="#[42]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;lc640_read_long_ptr
-<LI><a href="#[5a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;lc640_read_int
-<LI><a href="#[74]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;lc640_read_long
-<LI><a href="#[59]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;lc640_write
+<LI><a href="#[72]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;lc640_read_int
+<LI><a href="#[73]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;lc640_read_long
 </UL>
 
-<P><STRONG><a name="[5a]"></a>lc640_read_int</STRONG> (Thumb, 112 bytes, Stack size 8 bytes, 25lc640.o(.text))
+<P><STRONG><a name="[72]"></a>lc640_read_int</STRONG> (Thumb, 112 bytes, Stack size 8 bytes, 25lc640.o(.text))
 <BR><BR>[Stack]<UL><LI>Max Depth = 12<LI>Call Chain = lc640_read_int &rArr; lc640_rdsr
 </UL>
-<BR>[Calls]<UL><LI><a href="#[77]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;spi1_unconfig
-<LI><a href="#[76]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;spi1
-<LI><a href="#[84]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;lc640_rdsr
-<LI><a href="#[83]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;spi1_config
+<BR>[Calls]<UL><LI><a href="#[76]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;spi1_unconfig
+<LI><a href="#[75]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;spi1
+<LI><a href="#[83]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;lc640_rdsr
+<LI><a href="#[82]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;spi1_config
 </UL>
-<BR>[Called By]<UL><LI><a href="#[66]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;memo_read
-<LI><a href="#[53]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;but_an
+<BR>[Called By]<UL><LI><a href="#[64]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;memo_read
 </UL>
 
-<P><STRONG><a name="[74]"></a>lc640_read_long</STRONG> (Thumb, 136 bytes, Stack size 16 bytes, 25lc640.o(.text))
+<P><STRONG><a name="[73]"></a>lc640_read_long</STRONG> (Thumb, 136 bytes, Stack size 16 bytes, 25lc640.o(.text))
 <BR><BR>[Stack]<UL><LI>Max Depth = 20<LI>Call Chain = lc640_read_long &rArr; lc640_rdsr
 </UL>
-<BR>[Calls]<UL><LI><a href="#[77]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;spi1_unconfig
-<LI><a href="#[76]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;spi1
-<LI><a href="#[84]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;lc640_rdsr
-<LI><a href="#[83]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;spi1_config
+<BR>[Calls]<UL><LI><a href="#[76]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;spi1_unconfig
+<LI><a href="#[75]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;spi1
+<LI><a href="#[83]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;lc640_rdsr
+<LI><a href="#[82]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;spi1_config
 </UL>
-<BR>[Called By]<UL><LI><a href="#[66]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;memo_read
+<BR>[Called By]<UL><LI><a href="#[64]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;memo_read
 </UL>
 
 <P><STRONG><a name="[42]"></a>lc640_read_long_ptr</STRONG> (Thumb, 126 bytes, Stack size 16 bytes, 25lc640.o(.text))
 <BR><BR>[Stack]<UL><LI>Max Depth = 20<LI>Call Chain = lc640_read_long_ptr &rArr; lc640_rdsr
 </UL>
-<BR>[Calls]<UL><LI><a href="#[77]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;spi1_unconfig
-<LI><a href="#[76]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;spi1
-<LI><a href="#[84]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;lc640_rdsr
-<LI><a href="#[83]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;spi1_config
+<BR>[Calls]<UL><LI><a href="#[76]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;spi1_unconfig
+<LI><a href="#[75]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;spi1
+<LI><a href="#[83]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;lc640_rdsr
+<LI><a href="#[82]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;spi1_config
 </UL>
 <BR>[Called By]<UL><LI><a href="#[41]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;event_data2ind
-</UL>
-
-<P><STRONG><a name="[59]"></a>lc640_write</STRONG> (Thumb, 108 bytes, Stack size 16 bytes, 25lc640.o(.text))
-<BR><BR>[Stack]<UL><LI>Max Depth = 20<LI>Call Chain = lc640_write &rArr; lc640_rdsr
-</UL>
-<BR>[Calls]<UL><LI><a href="#[77]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;spi1_unconfig
-<LI><a href="#[76]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;spi1
-<LI><a href="#[84]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;lc640_rdsr
-<LI><a href="#[82]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;lc640_wren
-<LI><a href="#[83]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;spi1_config
-</UL>
-<BR>[Called By]<UL><LI><a href="#[53]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;but_an
 </UL>
 
 <P><STRONG><a name="[45]"></a>lc640_write_int</STRONG> (Thumb, 116 bytes, Stack size 12 bytes, 25lc640.o(.text))
 <BR><BR>[Stack]<UL><LI>Max Depth = 16<LI>Call Chain = lc640_write_int &rArr; lc640_rdsr
 </UL>
-<BR>[Calls]<UL><LI><a href="#[77]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;spi1_unconfig
-<LI><a href="#[76]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;spi1
-<LI><a href="#[84]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;lc640_rdsr
-<LI><a href="#[82]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;lc640_wren
-<LI><a href="#[83]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;spi1_config
+<BR>[Calls]<UL><LI><a href="#[76]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;spi1_unconfig
+<LI><a href="#[75]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;spi1
+<LI><a href="#[83]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;lc640_rdsr
+<LI><a href="#[81]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;lc640_wren
+<LI><a href="#[82]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;spi1_config
 </UL>
 <BR>[Called By]<UL><LI><a href="#[43]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;samokalibr_hndl
 <LI><a href="#[2d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;main
 <LI><a href="#[53]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;but_an
 </UL>
 
-<P><STRONG><a name="[86]"></a>sc16is700_spi_init</STRONG> (Thumb, 54 bytes, Stack size 0 bytes, sc16is7xx.o(.text))
-<BR><BR>[Called By]<UL><LI><a href="#[88]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;sc16is700_rd_byte
-<LI><a href="#[87]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;sc16is700_wr_byte
-<LI><a href="#[85]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;sc16is700_wr_buff
+<P><STRONG><a name="[85]"></a>sc16is700_spi_init</STRONG> (Thumb, 54 bytes, Stack size 0 bytes, sc16is7xx.o(.text))
+<BR><BR>[Called By]<UL><LI><a href="#[87]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;sc16is700_rd_byte
+<LI><a href="#[86]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;sc16is700_wr_byte
+<LI><a href="#[84]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;sc16is700_wr_buff
 </UL>
 
-<P><STRONG><a name="[85]"></a>sc16is700_wr_buff</STRONG> (Thumb, 86 bytes, Stack size 24 bytes, sc16is7xx.o(.text))
+<P><STRONG><a name="[84]"></a>sc16is700_wr_buff</STRONG> (Thumb, 86 bytes, Stack size 24 bytes, sc16is7xx.o(.text))
 <BR><BR>[Stack]<UL><LI>Max Depth = 24<LI>Call Chain = sc16is700_wr_buff
 </UL>
-<BR>[Calls]<UL><LI><a href="#[76]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;spi1
-<LI><a href="#[86]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;sc16is700_spi_init
+<BR>[Calls]<UL><LI><a href="#[75]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;spi1
+<LI><a href="#[85]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;sc16is700_spi_init
 </UL>
-<BR>[Called By]<UL><LI><a href="#[69]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;sc16is700_uart_hndl
+<BR>[Called By]<UL><LI><a href="#[67]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;sc16is700_uart_hndl
 </UL>
 
-<P><STRONG><a name="[87]"></a>sc16is700_wr_byte</STRONG> (Thumb, 68 bytes, Stack size 16 bytes, sc16is7xx.o(.text))
+<P><STRONG><a name="[86]"></a>sc16is700_wr_byte</STRONG> (Thumb, 68 bytes, Stack size 16 bytes, sc16is7xx.o(.text))
 <BR><BR>[Stack]<UL><LI>Max Depth = 16<LI>Call Chain = sc16is700_wr_byte
 </UL>
-<BR>[Calls]<UL><LI><a href="#[76]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;spi1
-<LI><a href="#[86]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;sc16is700_spi_init
+<BR>[Calls]<UL><LI><a href="#[75]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;spi1
+<LI><a href="#[85]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;sc16is700_spi_init
 </UL>
-<BR>[Called By]<UL><LI><a href="#[68]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;sc16is700_init
+<BR>[Called By]<UL><LI><a href="#[66]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;sc16is700_init
 </UL>
 
-<P><STRONG><a name="[88]"></a>sc16is700_rd_byte</STRONG> (Thumb, 72 bytes, Stack size 8 bytes, sc16is7xx.o(.text))
+<P><STRONG><a name="[87]"></a>sc16is700_rd_byte</STRONG> (Thumb, 72 bytes, Stack size 8 bytes, sc16is7xx.o(.text))
 <BR><BR>[Stack]<UL><LI>Max Depth = 8<LI>Call Chain = sc16is700_rd_byte
 </UL>
-<BR>[Calls]<UL><LI><a href="#[76]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;spi1
-<LI><a href="#[86]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;sc16is700_spi_init
+<BR>[Calls]<UL><LI><a href="#[75]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;spi1
+<LI><a href="#[85]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;sc16is700_spi_init
 </UL>
-<BR>[Called By]<UL><LI><a href="#[69]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;sc16is700_uart_hndl
+<BR>[Called By]<UL><LI><a href="#[67]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;sc16is700_uart_hndl
 </UL>
 
-<P><STRONG><a name="[68]"></a>sc16is700_init</STRONG> (Thumb, 88 bytes, Stack size 16 bytes, sc16is7xx.o(.text))
+<P><STRONG><a name="[66]"></a>sc16is700_init</STRONG> (Thumb, 88 bytes, Stack size 16 bytes, sc16is7xx.o(.text))
 <BR><BR>[Stack]<UL><LI>Max Depth = 32<LI>Call Chain = sc16is700_init &rArr; sc16is700_wr_byte
 </UL>
-<BR>[Calls]<UL><LI><a href="#[87]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;sc16is700_wr_byte
+<BR>[Calls]<UL><LI><a href="#[86]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;sc16is700_wr_byte
 </UL>
 <BR>[Called By]<UL><LI><a href="#[2d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;main
 </UL>
@@ -940,17 +918,17 @@ Global Symbols
 <BR><BR>[Called By]<UL><LI><a href="#[48]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;uartWrite
 </UL>
 
-<P><STRONG><a name="[69]"></a>sc16is700_uart_hndl</STRONG> (Thumb, 122 bytes, Stack size 16 bytes, sc16is7xx.o(.text))
+<P><STRONG><a name="[67]"></a>sc16is700_uart_hndl</STRONG> (Thumb, 122 bytes, Stack size 16 bytes, sc16is7xx.o(.text))
 <BR><BR>[Stack]<UL><LI>Max Depth = 40<LI>Call Chain = sc16is700_uart_hndl &rArr; sc16is700_wr_buff
 </UL>
-<BR>[Calls]<UL><LI><a href="#[88]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;sc16is700_rd_byte
-<LI><a href="#[85]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;sc16is700_wr_buff
+<BR>[Calls]<UL><LI><a href="#[87]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;sc16is700_rd_byte
+<LI><a href="#[84]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;sc16is700_wr_buff
 </UL>
 <BR>[Called By]<UL><LI><a href="#[2d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;main
 </UL>
 
 <P><STRONG><a name="[31]"></a>__scatterload</STRONG> (Thumb, 28 bytes, Stack size 0 bytes, init.o(.text))
-<BR><BR>[Calls]<UL><LI><a href="#[89]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__main_after_scatterload
+<BR><BR>[Calls]<UL><LI><a href="#[88]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__main_after_scatterload
 </UL>
 <BR>[Called By]<UL><LI><a href="#[30]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;_main_scatterload
 </UL>
@@ -961,8 +939,8 @@ Global Symbols
 
 <P><STRONG><a name="[c2]"></a>__decompress0</STRONG> (Thumb, 58 bytes, Stack size unknown bytes, __dczerorl.o(.text), UNUSED)
 
-<P><STRONG><a name="[8a]"></a>__0printf$6</STRONG> (Thumb, 22 bytes, Stack size 24 bytes, printf6.o(i.__0printf$6), UNUSED)
-<BR><BR>[Calls]<UL><LI><a href="#[8b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;_printf_core
+<P><STRONG><a name="[89]"></a>__0printf$6</STRONG> (Thumb, 22 bytes, Stack size 24 bytes, printf6.o(i.__0printf$6), UNUSED)
+<BR><BR>[Calls]<UL><LI><a href="#[8a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;_printf_core
 </UL>
 
 <P><STRONG><a name="[c3]"></a>__1printf$6</STRONG> (Thumb, 0 bytes, Stack size 24 bytes, printf6.o(i.__0printf$6), UNUSED)
@@ -982,20 +960,20 @@ Global Symbols
 <H3>
 Local Symbols
 </H3>
-<P><STRONG><a name="[8b]"></a>_printf_core</STRONG> (Thumb, 748 bytes, Stack size 104 bytes, printf6.o(i._printf_core), UNUSED)
-<BR><BR>[Calls]<UL><LI><a href="#[8d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_uidivmod
-<LI><a href="#[8c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;_printf_pre_padding
-<LI><a href="#[8e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;_printf_post_padding
+<P><STRONG><a name="[8a]"></a>_printf_core</STRONG> (Thumb, 748 bytes, Stack size 104 bytes, printf6.o(i._printf_core), UNUSED)
+<BR><BR>[Calls]<UL><LI><a href="#[8c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_uidivmod
+<LI><a href="#[8b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;_printf_pre_padding
+<LI><a href="#[8d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;_printf_post_padding
 </UL>
-<BR>[Called By]<UL><LI><a href="#[8a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__0printf$6
-</UL>
-
-<P><STRONG><a name="[8e]"></a>_printf_post_padding</STRONG> (Thumb, 38 bytes, Stack size 24 bytes, printf6.o(i._printf_post_padding), UNUSED)
-<BR><BR>[Called By]<UL><LI><a href="#[8b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;_printf_core
+<BR>[Called By]<UL><LI><a href="#[89]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__0printf$6
 </UL>
 
-<P><STRONG><a name="[8c]"></a>_printf_pre_padding</STRONG> (Thumb, 46 bytes, Stack size 24 bytes, printf6.o(i._printf_pre_padding), UNUSED)
-<BR><BR>[Called By]<UL><LI><a href="#[8b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;_printf_core
+<P><STRONG><a name="[8d]"></a>_printf_post_padding</STRONG> (Thumb, 38 bytes, Stack size 24 bytes, printf6.o(i._printf_post_padding), UNUSED)
+<BR><BR>[Called By]<UL><LI><a href="#[8a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;_printf_core
+</UL>
+
+<P><STRONG><a name="[8b]"></a>_printf_pre_padding</STRONG> (Thumb, 46 bytes, Stack size 24 bytes, printf6.o(i._printf_pre_padding), UNUSED)
+<BR><BR>[Called By]<UL><LI><a href="#[8a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;_printf_core
 </UL>
 <P>
 <H3>

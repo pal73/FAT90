@@ -670,10 +670,18 @@ if(ind==iMn)
 			led_on(3);
 			}
 		}
-	if(((outMode==omON)&&(out_stat[0]==osON))||((optr_kontr_cnt)&&(optr_stat&0x01)))led_on(4);
-	if(((outMode==omON)&&(out_stat[1]==osON))||((optr_kontr_cnt)&&(optr_stat&0x02)))led_on(5);
-	if(((outMode==omON)&&(out_stat[2]==osON))||((optr_kontr_cnt)&&(optr_stat&0x04)))led_on(6);
-
+	if(!optr_kontr_cnt)
+		{
+		if((outMode==omON)&&(out_stat[0]==osON))led_on(4);
+		if((outMode==omON)&&(out_stat[1]==osON))led_on(5);
+		if((outMode==omON)&&(out_stat[2]==osON))led_on(6);
+		}
+	else 
+		{
+		if(((optr_kontr_cnt)&&(optr_stat&0x01)))led_on(4);
+		if(((optr_kontr_cnt)&&(optr_stat&0x02)))led_on(5);
+		if(((optr_kontr_cnt)&&(optr_stat&0x04)))led_on(6);
+		}
 
 	if(bERR)led_on(7);
 	else if(bWARN)led_flash(7);
@@ -911,8 +919,8 @@ else if(ind==iDeb)
 		{
 		//Физическая проверка индикации. Поочередное зажигание всех еденичных 
 		//элементов индикации
-		@near static short ind_check_cnt;
-		@near static short ind_check_cnt1;
+		//@near static short ind_check_cnt;
+		//@near static short ind_check_cnt1;
 		if(++ind_check_cnt1>=5)
 			{
 			ind_check_cnt1=0;
@@ -998,6 +1006,14 @@ else if(ind==iDeb)
 		{
 		int2indI_slkuf(optr_stat,1, 3, 0, 0, 0);
 		int2indII_slkuf(optr_kontr_cnt,0, 3, 0, 0, 0);
+		}	
+	else if(sub_ind==12)
+		{
+		int2indI_slkuf(cntAirSensorLineErrorLo,1, 1, 0, 0, 0);
+		int2indI_slkuf(cntAirSensorLineErrorHi,3, 1, 0, 0, 0);
+		int2indII_slkuf(airSensorErrorStat,0, 2, 0, 0, 0);
+		int2indII_slkuf(airSensorErrorStatOld,2, 2, 0, 0, 0);
+		
 		}		
 	}
 
@@ -1147,8 +1163,8 @@ else if(ind==iInterf)
 	{
 	//Физическая проверка индикации. Поочередное зажигание всех еденичных 
 	//элементов индикации
-	@near static short ind_check_cnt;
-	@near static short ind_check_cnt1;
+//	@near static short ind_check_cnt;
+//	@near static short ind_check_cnt1;
 	if(++ind_check_cnt1>=5)
 		{
 		ind_check_cnt1=0;
@@ -1166,6 +1182,7 @@ else if(ind==iInterf)
 	ind_outG[1]=0xff;
 	ind_outG[2]=0xff;
 	ind_outG[3]=0xff;
+	led_mask_off(0x00);
 	//ind_outB[3]=0xff;
 	if(ind_check_cnt<=7)
 		{
@@ -1791,14 +1808,14 @@ else if(ind==iDeb)
 	if(but==butU)
 		{
 		sub_ind++;
-		gran_char(&sub_ind,0,11);
+		gran_char(&sub_ind,0,12);
 		clear_ind();
 		ind_hndl();
 		}
 	else if(but==butD)
 		{
 		sub_ind--;
-		gran_char(&sub_ind,0,11);
+		gran_char(&sub_ind,0,12);
 		clear_ind();
 		ind_hndl();
 		}
@@ -1815,7 +1832,11 @@ else if(ind==iDeb)
 		}
 	else if(sub_ind==8)
 		{
-		beepTestCnt=10;
+		if((but==butU)||(but==butD)||(but==butM)||(but==butON))	
+			{
+			beepTestCnt=10;
+			ind_check_cnt=0;
+			}
 		}
 	}
 	
@@ -1983,8 +2004,11 @@ else if(ind==iDefSet)
 	
 else if(ind==iInterf)
 	{
-	beepTestCnt=10;
-	ind_check_cnt=0;
+	if((but==butU)||(but==butD)||(but==butM)||(but==butON))	
+		{
+		beepTestCnt=10;
+		ind_check_cnt=0;
+		}
 	}
 }
 //-----------------------------------------------

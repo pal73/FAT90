@@ -633,7 +633,7 @@ typedef enum {
 	iMn,iWater_sensor_kontr,iWater_sensor_kontr_ret,iSet_T,iSet_T_ret,
 	iAir_sensor_kontr,iAir_sensor_kontr_ret,
 	iInterf_kontr,iInterf_kontr_ret,
-	iOptr_kontr, iProbesms, iDefset,iPowerdown,
+	iOptr_kontr, iProbesms, iDefset,iPowerdown,iPowerdown_ret,
 	iS2,iSet_prl,iK_prl,iDnd,
 	iK, iK_220_IPS_TERMOKOMPENSAT,iK_220_IPS_TERMOKOMPENSAT_IB,iK_TELECORE,iK_VD,
 	iSpcprl,iSpc,k,Crash_0,Crash_1,iKednd,iAKE,iSpc_termocompensat,
@@ -647,11 +647,6 @@ typedef enum {
 	iK_t_ext,iK_t_3U,iK_t_ext_6U,
 	iAv_view,
 	iBatLogKe,iJ_bat_ke,iBatLogVz,iJ_bat_vz,iBatLogWrk,
-	iExtern,
-	iK_power_net,
-	iExt_set,iExt_set_3U,
-	iExt_dt,
-	iExt_sk,iExt_sk_3U,
 	iExt_ddv,iExt_ddi,iExt_dud,iSM,iKlimat,iKlimat_kontur,iKlimat_TELECORE,
 	iEnerg3,iEnerg,
 	iVent,
@@ -1171,11 +1166,11 @@ extern enum_av_tbox_stat av_tbox_stat;
 extern signed short av_tbox_cnt;
 extern char tbatdisable_cmnd,tloaddisable_cmnd;
 extern short tbatdisable_cnt,tloaddisable_cnt;
-#line 1278 "main.h"
+#line 1273 "main.h"
 
-#line 1289 "main.h"
+#line 1284 "main.h"
 
-#line 1305 "main.h"
+#line 1300 "main.h"
 
 extern char ext_can_cnt;
 
@@ -1214,7 +1209,7 @@ extern short can_plazma;
 
 
 
-#line 1354 "main.h"
+#line 1349 "main.h"
 
 
 

@@ -1472,7 +1472,7 @@ void rele_drv(void)
 {
 LPC_GPIO0->FIODIR|=(1UL<<8);
 
-if(rele_stat)
+if(ind!=iPowerdown)
 	{
 	LPC_GPIO0->FIOPIN|=(1UL<<8);
 	}

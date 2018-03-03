@@ -28,7 +28,7 @@
 ### ADS-LD Output File: '.\EXE\STEND.axf'
 ### ADS-LD Command File: '.\EXE\STEND.lnp'
 ### Checking for dirty Components...
-### Creating CmdFile '.\EXE\STEND.lnp', Handle=0x00000374
+### Creating CmdFile '.\EXE\STEND.lnp', Handle=0x00000368
 ### Writing '.lnp' file
 ### ADS-LD Command file '.\EXE\STEND.lnp' is ready.
 ### ADS-LD: About to start ADS-LD Thread.

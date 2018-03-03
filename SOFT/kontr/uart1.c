@@ -186,8 +186,12 @@ else if(strstr(uart1_an_buffer,"CBC"))
 //memset(cbc_temp,'\0',15);
 //memcpy(cbc_temp,"7654",5);
 	
+	if(cbcRequ)
+		{
+		sprintf(tempRussianText,"Напряжение аккумулятора %d,%03dв",cbcVoltage/1000,cbcVoltage%1000);
 	//sprintf(tempRussianText,"Напряжение аккумулятора %sв, система выключена до появления сети",ptr_temp);
-	//modem_send_sms('p',MAIN_NUMBER,tempRussianText);
+		modem_send_sms('p',MAIN_NUMBER,tempRussianText);
+		}
 	//printf(ptr_temp);
 	
 	if(bCBC==1)bCBC=2;
@@ -524,8 +528,8 @@ else
 			char* ppptr;
 			ppptr=strstr(uart1_an_buffer,"USSD");
 			ppptr+=4;
-			sprintf(tempRussianText,"ATD%s\r\n",ppptr);
-			
+			//sprintf(tempRussianText,"ATD%s\r\n",ppptr);AT+CUSD=1,"#100#"
+			sprintf(tempRussianText,"AT+CUSD=1,\"#100#\"\r\n",ppptr);//AT+CUSD=1,"#100#"
 			printf(tempRussianText);
 			//printf("ATD#100#;\r\n");
 			memcpy(incommingNumberUSSDRequ,incommingNumber,10);
