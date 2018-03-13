@@ -13,6 +13,7 @@
 #include <stdlib.h>
 #include <string.h>
 #include "watchdog.h"
+#include "next_version.h"
 
 //-----------------------------------------------
 //Переменные в EEPROM
@@ -172,6 +173,7 @@ unsigned char tempUC;
 //@near signed char 	TABLE_TEMPER_EE[7][5];
 bool bWATCHDOG_REFRESH=1;
 bool bDEB;
+@near char version_show_cnt=10;
 //^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 
@@ -229,7 +231,8 @@ else
 	{
 	if(power_in_drv_off_cnt)
 		{
-		power_in_drv_off_cnt--;	
+		power_in_drv_off_cnt--;
+		version_show_cnt=10;			
 		}
 	else
 		{
@@ -577,7 +580,7 @@ enableInterrupts();
 void power_necc_hndl(void)
 {
 
-if((aktualTemper>=targetTemper)||(temperOfWater>=90)||(mainCnt<3))
+if((aktualTemper>=targetTemper)||(temperOfWater>=90)||(mainCnt<3)||(powerStat==psOFF))
 	{
 	powerNecc=0;	
 	}
@@ -624,9 +627,17 @@ void ind_hndl(void)
 {
 char i;
 
-
-	
-if(ind==iMn)
+if(version_show_cnt)
+	{
+	int2indII_slkuf(VERSION,3, 1, 1, 0, 0);
+	int2indII_slkuf(BUILD,0, 3, 0, 0, 0);
+	ind_outG[3]&=0xfe;	
+	}
+else if(powerStat==psOFF)
+	{
+	int2indII_slkuf(cbcVoltage,0, 4, 3, 0, 0);
+	}
+else if(ind==iMn)
 	{
 	int2indII_slkuf(time_hour,2, 2, 0, 0, 0);
 	int2indII_slkuf(time_min,0, 2, 0, 0, 0);
@@ -2174,6 +2185,7 @@ while (1)
 		{
 		b5Hz=0;
 
+		if(version_show_cnt)version_show_cnt--;
 		}
 	if(b2Hz)
 		{

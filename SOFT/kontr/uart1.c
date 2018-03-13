@@ -191,6 +191,7 @@ else if(strstr(uart1_an_buffer,"CBC"))
 		sprintf(tempRussianText,"Напряжение аккумулятора %d,%03dв",cbcVoltage/1000,cbcVoltage%1000);
 	//sprintf(tempRussianText,"Напряжение аккумулятора %sв, система выключена до появления сети",ptr_temp);
 		modem_send_sms('p',MAIN_NUMBER,tempRussianText);
+		cbcRequ=0;
 		}
 	//printf(ptr_temp);
 	
