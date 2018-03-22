@@ -1570,6 +1570,7 @@ _COSMIC_	include\stm8s.h	73;"	macro
 _FLASH_IAPSR	main.h	4;"	macro
 _IAR_	include\stm8s.h	77;"	macro
 _RAISONANCE_	include\stm8s.h	75;"	macro
+__CTYPE	c:\program files\cosmic\cxstm8_32k\hstm8\ctype.h	6;"	macro
 __I	include\stm8s.h	194;"	macro
 __IO	include\stm8s.h	196;"	macro
 __MODS0__	c:\program files\cosmic\cxstm8_32k\hstm8\mods0.h	11;"	macro
@@ -1800,7 +1801,21 @@ interrupt_vector	stm8_interrupt_vector.c	7;"	struct	file:
 isFromAutorizedNumberMess	uart1.c	27;"	variable
 isFromMainNumberMess	uart1.c	26;"	variable
 isFromNotAutorizedNumberMess	uart1.c	28;"	variable
+isalnum	c:\program files\cosmic\cxstm8_32k\hstm8\ctype.h	10;"	prototype	signature:(char c)
+isalpha	c:\program files\cosmic\cxstm8_32k\hstm8\ctype.h	11;"	prototype	signature:(char c)
+iscntrl	c:\program files\cosmic\cxstm8_32k\hstm8\ctype.h	12;"	prototype	signature:(char c)
+isdigit	c:\program files\cosmic\cxstm8_32k\hstm8\ctype.h	13;"	prototype	signature:(char c)
+isdigit	c:\program files\cosmic\cxstm8_32k\hstm8\ctype.h	26;"	macro
+isgraph	c:\program files\cosmic\cxstm8_32k\hstm8\ctype.h	14;"	prototype	signature:(char c)
+islower	c:\program files\cosmic\cxstm8_32k\hstm8\ctype.h	15;"	prototype	signature:(char c)
+islower	c:\program files\cosmic\cxstm8_32k\hstm8\ctype.h	27;"	macro
+isprint	c:\program files\cosmic\cxstm8_32k\hstm8\ctype.h	16;"	prototype	signature:(char c)
+ispunct	c:\program files\cosmic\cxstm8_32k\hstm8\ctype.h	17;"	prototype	signature:(char c)
 isqrt	c:\program files\cosmic\cxstm8_32k\hstm8\stdlib.h	53;"	prototype	signature:(unsigned int)
+isspace	c:\program files\cosmic\cxstm8_32k\hstm8\ctype.h	18;"	prototype	signature:(char c)
+isupper	c:\program files\cosmic\cxstm8_32k\hstm8\ctype.h	19;"	prototype	signature:(char c)
+isupper	c:\program files\cosmic\cxstm8_32k\hstm8\ctype.h	28;"	macro
+isxdigit	c:\program files\cosmic\cxstm8_32k\hstm8\ctype.h	20;"	prototype	signature:(char c)
 l_but	lowlev.c	10;"	variable
 labs	c:\program files\cosmic\cxstm8_32k\hstm8\stdlib.h	44;"	prototype	signature:(long l)
 ldiv	c:\program files\cosmic\cxstm8_32k\hstm8\stdlib.h	45;"	prototype	signature:(long numer, long denom)
@@ -1998,6 +2013,8 @@ time_min	main.c	98;"	variable
 time_month	main.c	102;"	variable
 time_sec	main.c	97;"	variable
 time_year	main.c	103;"	variable
+tolower	c:\program files\cosmic\cxstm8_32k\hstm8\ctype.h	21;"	prototype	signature:(char c)
+toupper	c:\program files\cosmic\cxstm8_32k\hstm8\ctype.h	22;"	prototype	signature:(char c)
 trap	include\stm8s.h	2606;"	macro
 trap	include\stm8s.h	2615;"	macro
 trap	include\stm8s.h	2625;"	macro

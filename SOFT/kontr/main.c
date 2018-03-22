@@ -1318,7 +1318,7 @@ if(ind==iMn)
 		//printf("AT + CPOWD = 1 \r");
 		//printf("AT + CBC \r");
 		//halt();
-		bDEB=!bDEB;
+		//bDEB=!bDEB;
 		}	
 
 	else if(but==butU_)
