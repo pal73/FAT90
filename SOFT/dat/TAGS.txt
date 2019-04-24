@@ -727,9 +727,9 @@ IWDG_PR_RESET_VALUE	include\stm8s.h	1485;"	macro
 IWDG_RLR_RESET_VALUE	include\stm8s.h	1486;"	macro
 IWDG_TypeDef	include\stm8s.h	1479;"	typedef	typeref:struct:IWDG_struct
 IWDG_struct	include\stm8s.h	1473;"	struct
-KEY_ACCESS	main.c	11;"	macro	file:
-KEY_ENABLE	main.c	9;"	macro	file:
-KEY_REFRESH	main.c	10;"	macro	file:
+KEY_ACCESS	main_only_775.c	11;"	macro	file:
+KEY_ENABLE	main_only_775.c	9;"	macro	file:
+KEY_REFRESH	main_only_775.c	10;"	macro	file:
 KR	include\stm8s.h	1475;"	member	struct:IWDG_struct
 LTRH	include\stm8s.h	169;"	member	struct:ADC1_struct
 LTRL	include\stm8s.h	170;"	member	struct:ADC1_struct
@@ -1210,7 +1210,7 @@ TIM4_PSCR_RESET_VALUE	include\stm8s.h	939;"	macro
 TIM4_SR1_RESET_VALUE	include\stm8s.h	936;"	macro
 TIM4_SR1_UIF	include\stm8s.h	958;"	macro
 TIM4_TypeDef	include\stm8s.h	928;"	typedef	typeref:struct:TIM4_struct
-TIM4_UPD_Interrupt	main.c	284;"	function	signature:(void)
+TIM4_UPD_Interrupt	main_only_775.c	284;"	function	signature:(void)
 TIM4_UPD_Interrupt	stm8_interrupt_vector.c	20;"	prototype	file:	signature:(void)
 TIM4_struct	include\stm8s.h	914;"	struct
 TIM5	include\stm8s.h	2469;"	macro
@@ -1329,7 +1329,7 @@ TRISER	include\stm8s.h	1207;"	member	struct:I2C_struct
 TRUE	include\stm8s_type.h	63;"	enumerator	enum:__anon11
 TSR	include\stm8s.h	1945;"	member	struct:__anon2
 TXCRCR	include\stm8s.h	1569;"	member	struct:SPI_struct
-TX_BUFFER_SIZE	main.c	41;"	macro	file:
+TX_BUFFER_SIZE	main_only_775.c	41;"	macro	file:
 TxMailbox	include\stm8s.h	1973;"	member	union:__anon2::__anon3	typeref:struct:__anon2::__anon3::__anon4
 U16_MAX	include\stm8s_type.h	90;"	macro
 U32_MAX	include\stm8s_type.h	93;"	macro
@@ -1504,9 +1504,9 @@ UART3_SR_TC	include\stm8s.h	1885;"	macro
 UART3_SR_TXE	include\stm8s.h	1884;"	macro
 UART3_TypeDef	include\stm8s.h	1861;"	typedef	typeref:struct:UART3_struct
 UART3_struct	include\stm8s.h	1848;"	struct
-UARTRxInterrupt	main.c	338;"	function	signature:(void)
+UARTRxInterrupt	main_only_775.c	340;"	function	signature:(void)
 UARTRxInterrupt	stm8_interrupt_vector.c	23;"	prototype	file:	signature:(void)
-UARTTxInterrupt	main.c	317;"	function	signature:(void)
+UARTTxInterrupt	main_only_775.c	318;"	function	signature:(void)
 UARTTxInterrupt	stm8_interrupt_vector.c	22;"	prototype	file:	signature:(void)
 ValBit	include\stm8s.h	2533;"	macro
 WR	include\stm8s.h	1500;"	member	struct:WWDG_struct
@@ -1538,21 +1538,21 @@ _stext	stm8_interrupt_vector.c	21;"	prototype	file:
 _vectab	stm8_interrupt_vector.c	25;"	variable
 addr7r	i2c.c	6;"	variable
 addr7w	i2c.c	6;"	variable
-airSensorErrorStat	main.c	37;"	variable
-b100Hz	main.c	13;"	variable
-b10Hz	main.c	13;"	variable
-b1Hz	main.c	13;"	variable
-b5Hz	main.c	13;"	variable
-bCONV	main.c	32;"	variable
-bOUT_FREE	main.c	45;"	variable
-bWFI	main.c	61;"	variable
+airSensorErrorStat	main_only_775.c	37;"	variable
+b100Hz	main_only_775.c	13;"	variable
+b10Hz	main_only_775.c	13;"	variable
+b1Hz	main_only_775.c	13;"	variable
+b5Hz	main_only_775.c	13;"	variable
+bCONV	main_only_775.c	32;"	variable
+bOUT_FREE	main_only_775.c	45;"	variable
+bWFI	main_only_775.c	61;"	variable
 bool	include\stm8s_type.h	65;"	typedef	typeref:enum:__anon11
-buf	main.c	48;"	variable
+buf	main_only_775.c	48;"	variable
 disableInterrupts	include\stm8s.h	2492;"	macro
 disableInterrupts	include\stm8s.h	2501;"	macro
-ds18b20ErrorHiCnt	main.c	34;"	variable
-ds18b20ErrorLoCnt	main.c	35;"	variable
-ds18b20ErrorOffCnt	main.c	36;"	variable
+ds18b20ErrorHiCnt	main_only_775.c	34;"	variable
+ds18b20ErrorLoCnt	main_only_775.c	35;"	variable
+ds18b20ErrorOffCnt	main_only_775.c	36;"	variable
 eepera	c:\program files\cosmic\cxstm8_32k\hstm8\string.h	35;"	macro
 enableInterrupts	include\stm8s.h	2491;"	macro
 enableInterrupts	include\stm8s.h	2500;"	macro
@@ -1575,12 +1575,12 @@ i2c_set_addr7	i2c.c	35;"	function	signature:(char addr)
 i2c_setup	i2c.c	25;"	function
 i2c_setup	include\i2c.h	12;"	prototype	signature:(void)
 i2c_status	include\i2c.h	10;"	typedef	typeref:enum:__anon1
-i2c_temp	main.c	59;"	variable
+i2c_temp	main_only_775.c	59;"	variable
 interrupt_handler	stm8_interrupt_vector.c	9;"	member	struct:interrupt_vector	file:
 interrupt_handler_t	stm8_interrupt_vector.c	5;"	typedef	file:
 interrupt_instruction	stm8_interrupt_vector.c	8;"	member	struct:interrupt_vector	file:
 interrupt_vector	stm8_interrupt_vector.c	7;"	struct	file:
-main	main.c	347;"	function
+main	main_only_775.c	349;"	function
 memchr	c:\program files\cosmic\cxstm8_32k\hstm8\string.h	28;"	prototype	signature:(void *s, char c, unsigned int n)
 memcmp	c:\program files\cosmic\cxstm8_32k\hstm8\string.h	22;"	prototype	signature:(void *s1, void *s2, unsigned int n)
 memcpy	c:\program files\cosmic\cxstm8_32k\hstm8\string.h	29;"	prototype	signature:(void *s1, void *s2, unsigned int n)
@@ -1588,15 +1588,16 @@ memmove	c:\program files\cosmic\cxstm8_32k\hstm8\string.h	30;"	prototype	signatu
 memset	c:\program files\cosmic\cxstm8_32k\hstm8\string.h	31;"	prototype	signature:(void *s, char c, unsigned int n)
 nop	include\stm8s.h	2495;"	macro
 nop	include\stm8s.h	2504;"	macro
-out_buff	main.c	26;"	variable
-out_buff_digits	main.c	28;"	variable
-out_buff_preffiks	main.c	27;"	variable
-out_string	main.c	49;"	variable
-out_string1	main.c	50;"	variable
-out_string2	main.c	51;"	variable
-plazma_ee	main.c	53;"	variable
+out_buff	main_only_775.c	26;"	variable
+out_buff_digits	main_only_775.c	28;"	variable
+out_buff_preffiks	main_only_775.c	27;"	variable
+out_string	main_only_775.c	49;"	variable
+out_string1	main_only_775.c	50;"	variable
+out_string2	main_only_775.c	51;"	variable
+plazma_ee	main_only_775.c	53;"	variable
+powerOffTimer	main_only_775.c	54;"	variable
 printf	c:\program files\cosmic\cxstm8_32k\hstm8\stdio.h	17;"	prototype	signature:(char *format, ...)
-putchar	main.c	254;"	function	signature:(char c)
+putchar	main_only_775.c	254;"	function	signature:(char c)
 puts	c:\program files\cosmic\cxstm8_32k\hstm8\stdio.h	19;"	prototype	signature:(char *s)
 rim	include\stm8s.h	2493;"	macro
 rim	include\stm8s.h	2502;"	macro
@@ -1610,8 +1611,8 @@ scanf	c:\program files\cosmic\cxstm8_32k\hstm8\stdio.h	20;"	prototype	signature:
 sens1775	main.h	10;"	enumerator	enum:__anon16
 sens18B20	main.h	10;"	enumerator	enum:__anon16
 sensOFF	main.h	10;"	enumerator	enum:__anon16
-sensor	main.c	57;"	variable
 sensor	main.h	11;"	variable
+sensor	main_only_775.c	57;"	variable
 sim	include\stm8s.h	2494;"	macro
 sim	include\stm8s.h	2503;"	macro
 size_t	c:\program files\cosmic\cxstm8_32k\hstm8\stdio.h	10;"	typedef
@@ -1632,24 +1633,24 @@ strpbrk	c:\program files\cosmic\cxstm8_32k\hstm8\string.h	19;"	prototype	signatu
 strrchr	c:\program files\cosmic\cxstm8_32k\hstm8\string.h	20;"	prototype	signature:(char *s, char c)
 strspn	c:\program files\cosmic\cxstm8_32k\hstm8\string.h	27;"	prototype	signature:(char *s1, char *s2)
 strstr	c:\program files\cosmic\cxstm8_32k\hstm8\string.h	21;"	prototype	signature:(char *s1, char *s2)
-t0_cnt0	main.c	14;"	variable	file:
-t0_cnt1	main.c	14;"	variable	file:
-t0_cnt2	main.c	14;"	variable	file:
-t0_cnt3	main.c	14;"	variable	file:
-t4_init	main.c	65;"	function	signature:(void)
-temper	main.c	18;"	variable
-temperCRC	main.c	22;"	variable
-temperdeb	main.c	52;"	variable
+t0_cnt0	main_only_775.c	14;"	variable	file:
+t0_cnt1	main_only_775.c	14;"	variable	file:
+t0_cnt2	main_only_775.c	14;"	variable	file:
+t0_cnt3	main_only_775.c	14;"	variable	file:
+t4_init	main_only_775.c	65;"	function	signature:(void)
+temper	main_only_775.c	18;"	variable
+temperCRC	main_only_775.c	22;"	variable
+temperdeb	main_only_775.c	52;"	variable
 trap	include\stm8s.h	2496;"	macro
 trap	include\stm8s.h	2505;"	macro
-tx_buffer	main.c	42;"	variable
-tx_counter	main.c	43;"	variable
-tx_rd_index	main.c	44;"	variable
-tx_wr_index	main.c	44;"	variable
+tx_buffer	main_only_775.c	42;"	variable
+tx_counter	main_only_775.c	43;"	variable
+tx_rd_index	main_only_775.c	44;"	variable
+tx_wr_index	main_only_775.c	44;"	variable
 u16	include\stm8s_type.h	45;"	typedef
 u32	include\stm8s_type.h	44;"	typedef
 u8	include\stm8s_type.h	46;"	typedef
-uart_init	main.c	240;"	function	signature:(void)
+uart_init	main_only_775.c	240;"	function	signature:(void)
 uc16	include\stm8s_type.h	49;"	typedef
 uc32	include\stm8s_type.h	48;"	typedef
 uc8	include\stm8s_type.h	50;"	typedef
@@ -1665,17 +1666,17 @@ vu8	include\stm8s_type.h	54;"	typedef
 vuc16	include\stm8s_type.h	57;"	typedef
 vuc32	include\stm8s_type.h	56;"	typedef
 vuc8	include\stm8s_type.h	58;"	typedef
-watchdog_enable	main.c	271;"	function	signature:(void)
+watchdog_enable	main_only_775.c	271;"	function	signature:(void)
 wfi	include\stm8s.h	2497;"	macro
 wfi	include\stm8s.h	2506;"	macro
-wire1_in	main.c	33;"	variable
-wire1_polling	main.c	177;"	function	signature:(void)
-wire1_read_byte	main.c	132;"	function	signature:(void)
-wire1_rts	main.c	147;"	function	signature:(void)
+wire1_in	main_only_775.c	33;"	variable
+wire1_polling	main_only_775.c	177;"	function	signature:(void)
+wire1_read_byte	main_only_775.c	132;"	function	signature:(void)
 wire1_rts	main.h	14;"	prototype	signature:(void)
-wire1_send_byte	main.c	118;"	function	signature:(char in)
-wire1_w0ts	main.c	97;"	function	signature:(void)
-wire1_w1ts	main.c	76;"	function	signature:(void)
+wire1_rts	main_only_775.c	147;"	function	signature:(void)
+wire1_send_byte	main_only_775.c	118;"	function	signature:(char in)
+wire1_w0ts	main_only_775.c	97;"	function	signature:(void)
+wire1_w1ts	main_only_775.c	76;"	function	signature:(void)
 x5000	c:\program files\cosmic\cxstm8_32k\hstm8\iostm8s103.h	9;"	variable
 x5001	c:\program files\cosmic\cxstm8_32k\hstm8\iostm8s103.h	10;"	variable
 x5002	c:\program files\cosmic\cxstm8_32k\hstm8\iostm8s103.h	11;"	variable

@@ -1,5 +1,5 @@
+main_only_775.c
 i2c.c
-main.c
 stm8_interrupt_vector.c
 include\i2c.h
 include\stm8s.h

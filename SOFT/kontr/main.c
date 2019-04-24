@@ -1306,7 +1306,7 @@ if(ind==iMn)
 		}
 	else if(but==butD_)
 		{
-		tree_up(iDeb,0,0,0);
+		//tree_up(iDeb,0,0,0);
 		//modemDrvSMSSendStepCnt=1;
 		
 		//modem_send_sms('t', "9139294352", "Мама1 \r\nМама2");
