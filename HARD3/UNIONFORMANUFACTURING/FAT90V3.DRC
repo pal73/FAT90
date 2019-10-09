@@ -1,29 +1,29 @@
 Protel Design System Design Rule Check
-PCB File : \USERS\PAL\DEVICES\FAT90\HARD3\UNIONFORMANUFACTURING\FAT90V3.PcbDoc
-Date     : 17.09.2019
-Time     : 9:43:22
+PCB File : \Users\Pal\DEVICES\FAT90_DEV\HARD3\UNIONFORMANUFACTURING\FAT90V3.PCBDOC
+Date     : 2019-10-09
+Time     : 11:47:27
 
-Processing Rule : Short-Circuit Constraint (Allowed=No) (All),(All)
-Rule Violations :0
-
-Processing Rule : Broken-Net Constraint ( (All) )
-Rule Violations :0
-
-Processing Rule : Clearance Constraint (Gap=0.2mm) (All),(All)
-Rule Violations :0
-
-Processing Rule : Width Constraint (Min=0.2mm) (Max=3mm) (Preferred=0.254mm) (All)
-Rule Violations :0
-
-Processing Rule : Height Constraint (Min=0mm) (Max=25.4mm) (Prefered=12.7mm) (All)
+Processing Rule : Clearance Constraint (Gap=2mm) (HasPad('Free-0')),(InPoly)
 Rule Violations :0
 
 Processing Rule : Hole Size Constraint (Min=0.0254mm) (Max=5mm) (All)
 Rule Violations :0
 
-Processing Rule : Clearance Constraint (Gap=2mm) (HasPad('Free-0')),(InPoly)
+Processing Rule : Height Constraint (Min=0mm) (Max=25.4mm) (Prefered=12.7mm) (All)
+Rule Violations :0
+
+Processing Rule : Width Constraint (Min=0.2mm) (Max=3mm) (Preferred=0.254mm) (All)
+Rule Violations :0
+
+Processing Rule : Clearance Constraint (Gap=0.2mm) (All),(All)
+Rule Violations :0
+
+Processing Rule : Broken-Net Constraint ( (All) )
+Rule Violations :0
+
+Processing Rule : Short-Circuit Constraint (Allowed=No) (All),(All)
 Rule Violations :0
 
 
 Violations Detected : 0
-Time Elapsed        : 00:00:10
+Time Elapsed        : 00:00:09
