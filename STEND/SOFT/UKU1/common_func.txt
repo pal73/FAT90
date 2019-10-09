@@ -3755,7 +3755,7 @@
 ;;;514        	lcd_buffer[iii++]='Ï';
 000542  7882              LDRB     r2,[r0,#2]  ; a_ind
 000544  7841              LDRB     r1,[r0,#1]  ; a_ind
-000546  204d              MOVS     r0,#0x4d
+000546  2047              MOVS     r0,#0x47
 000548  f7fffffe          BL       tree_up
 00054c  2064              MOVS     r0,#0x64
 00054e  fb94f0f0          SDIV     r0,r4,r0
@@ -11069,3 +11069,29 @@
                           DCD      ABCDEF
                   |L14.152|
                           DCD      lcd_buffer
+
+;*** Start embedded assembler ***
+
+#line 1 "common_func.c"
+	AREA ||.emb_text||, CODE, READONLY
+	THUMB
+	EXPORT |__asm___13_common_func_c_abs____REV16|
+#line 112 "C:\\Keil\\ARM\\CMSIS\\Include\\core_cmInstr.h"
+|__asm___13_common_func_c_abs____REV16| PROC
+#line 113
+
+ rev16 r0, r0
+ bx lr
+	ENDP
+	AREA ||.emb_text||, CODE, READONLY
+	THUMB
+	EXPORT |__asm___13_common_func_c_abs____REVSH|
+#line 130
+|__asm___13_common_func_c_abs____REVSH| PROC
+#line 131
+
+ revsh r0, r0
+ bx lr
+	ENDP
+
+;*** End   embedded assembler ***

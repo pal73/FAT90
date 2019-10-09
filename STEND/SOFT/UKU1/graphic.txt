@@ -1784,3 +1784,29 @@
 0000e2  0000              DCW      0x0000
                   |L7.228|
                           DCD      caracter
+
+;*** Start embedded assembler ***
+
+#line 1 "graphic.c"
+	AREA ||.emb_text||, CODE, READONLY
+	THUMB
+	EXPORT |__asm___9_graphic_c_draw____REV16|
+#line 112 "C:\\Keil\\ARM\\CMSIS\\Include\\core_cmInstr.h"
+|__asm___9_graphic_c_draw____REV16| PROC
+#line 113
+
+ rev16 r0, r0
+ bx lr
+	ENDP
+	AREA ||.emb_text||, CODE, READONLY
+	THUMB
+	EXPORT |__asm___9_graphic_c_draw____REVSH|
+#line 130
+|__asm___9_graphic_c_draw____REVSH| PROC
+#line 131
+
+ revsh r0, r0
+ bx lr
+	ENDP
+
+;*** End   embedded assembler ***

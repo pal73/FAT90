@@ -2,8 +2,10 @@
 .\EXE\ad7705.o: ad7705.h
 .\EXE\ad7705.o: 25lc640.h
 .\EXE\ad7705.o: C:\Keil\ARM\INC\NXP\LPC17xx\LPC17xx.H
-.\EXE\ad7705.o: C:\Keil\\ARM\RV31\INC\core_cm3.h
-.\EXE\ad7705.o: C:\Keil\\ARM\RV31\INC\stdint.h
+.\EXE\ad7705.o: C:\Keil\ARM\CMSIS\Include\core_cm3.h
+.\EXE\ad7705.o: C:\Keil\ARM\RV31\INC\stdint.h
+.\EXE\ad7705.o: C:\Keil\ARM\CMSIS\Include\core_cmInstr.h
+.\EXE\ad7705.o: C:\Keil\ARM\CMSIS\Include\core_cmFunc.h
 .\EXE\ad7705.o: C:\Keil\ARM\INC\NXP\LPC17xx\system_LPC17xx.h
 .\EXE\ad7705.o: main.h
-.\EXE\ad7705.o: C:\Keil\\ARM\RV31\INC\rtl.h
+.\EXE\ad7705.o: C:\Keil\ARM\RV31\INC\rtl.h

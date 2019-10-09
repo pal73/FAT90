@@ -33,7 +33,7 @@
 
 00000a  0000              DCW      0x0000
                   |L2.12|
-                          DCD      ||area_number.34||
+                          DCD      ||area_number.40||
 
                           AREA ||area_number.3||, CODE, READONLY, ALIGN=2
 
@@ -1235,7 +1235,7 @@
 ;;;1096       //adc_result=92;
 ;;;1097   
 ;;;1098   if(adc_ch_net)
-00036c  78af              LDRB     r7,[r5,#2]  ; adc_ch_net
+00036c  786f              LDRB     r7,[r5,#1]  ; adc_ch_net
 00036e  2600              MOVS     r6,#0
 000370  b337              CBZ      r7,|L3.960|
 ;;;1099   	{
@@ -1303,8 +1303,8 @@
 ;;;1128   	{
 ;;;1129   	adc_buff[adc_ch][adc_ch_cnt]=(long)adc_result;
 0003c0  4835              LDR      r0,|L3.1176|
-0003c2  78ec              LDRB     r4,[r5,#3]  ; adc_ch
-0003c4  792a              LDRB     r2,[r5,#4]  ; adc_ch_cnt
+0003c2  78ac              LDRB     r4,[r5,#2]  ; adc_ch
+0003c4  78ea              LDRB     r2,[r5,#3]  ; adc_ch_cnt
 0003c6  eb001384          ADD      r3,r0,r4,LSL #6
 0003ca  f9b51008          LDRSH    r1,[r5,#8]  ; adc_result
 0003ce  f8431022          STR      r1,[r3,r2,LSL #2]
@@ -1339,16 +1339,16 @@
 ;;;1144   	if(++adc_ch>=16) 
 0003f2  1c64              ADDS     r4,r4,#1
 0003f4  b2e0              UXTB     r0,r4
-0003f6  70e8              STRB     r0,[r5,#3]
+0003f6  70a8              STRB     r0,[r5,#2]
 0003f8  2810              CMP      r0,#0x10
 0003fa  d356              BCC      |L3.1194|
 ;;;1145   		{
 ;;;1146   		adc_ch=0;
-0003fc  70ee              STRB     r6,[r5,#3]
+0003fc  70ae              STRB     r6,[r5,#2]
 ;;;1147   		adc_ch_cnt++;
 0003fe  e04d              B        |L3.1180|
                   |L3.1024|
-                          DCD      ||area_number.34||
+                          DCD      ||area_number.40||
                   |L3.1028|
                           DCD      Kibat0
                   |L3.1032|
@@ -1428,11 +1428,11 @@
                   |L3.1180|
 00049c  f1020201          ADD      r2,r2,#1
 0004a0  b2d0              UXTB     r0,r2
-0004a2  7128              STRB     r0,[r5,#4]
+0004a2  70e8              STRB     r0,[r5,#3]
 ;;;1148   		if(adc_ch_cnt>=16)adc_ch_cnt=0;
 0004a4  2810              CMP      r0,#0x10
 0004a6  d300              BCC      |L3.1194|
-0004a8  712e              STRB     r6,[r5,#4]
+0004a8  70ee              STRB     r6,[r5,#3]
                   |L3.1194|
 ;;;1149   		}
 ;;;1150   	}
@@ -1458,13 +1458,13 @@
 ;;;1170   		  
 ;;;1171   
 ;;;1172   adc_self_ch_cnt=0;
-0004aa  706e              STRB     r6,[r5,#1]
+0004aa  702e              STRB     r6,[r5,#0]
 ;;;1173   
 ;;;1174   adc_ch_net++;
 0004ac  f1070701          ADD      r7,r7,#1
 ;;;1175   adc_ch_net&=1;
 0004b0  f0070001          AND      r0,r7,#1
-0004b4  70a8              STRB     r0,[r5,#2]
+0004b4  7068              STRB     r0,[r5,#1]
 ;;;1176   
 ;;;1177   //SET_REG(LPC_GPIO0->FIODIR,7,5,3);
 ;;;1178   //SET_REG(LPC_GPIO0->FIOPIN,adc_ch,5,3);
@@ -1488,7 +1488,7 @@
 ;;;1188   	//LPC_GPIO2->FIODIR|=(1<<7);
 ;;;1189   	//LPC_GPIO2->FIOPIN&=~(1<<7);
 ;;;1190   	if(!(adc_ch&(1<<3)))SET_REG(LPC_ADC->ADCR,1<<0,0,8);
-0004c8  78e9              LDRB     r1,[r5,#3]  ; adc_ch
+0004c8  78a9              LDRB     r1,[r5,#2]  ; adc_ch
 0004ca  0708              LSLS     r0,r1,#28
 0004cc  d406              BMI      |L3.1244|
 0004ce  6810              LDR      r0,[r2,#0]
@@ -1585,47 +1585,47 @@
 000554  f4417180          ORR      r1,r1,#0x100
 000558  6001              STR      r1,[r0,#0]
 ;;;1474   
-;;;1475   if(rele_stat)
+;;;1475   if(ind!=iPowerdown)
 00055a  4909              LDR      r1,|L3.1408|
-00055c  7809              LDRB     r1,[r1,#0]  ; rele_stat
-00055e  b121              CBZ      r1,|L3.1386|
+00055c  7809              LDRB     r1,[r1,#0]  ; a_ind
+00055e  290c              CMP      r1,#0xc
+000560  d004              BEQ      |L3.1388|
 ;;;1476   	{
 ;;;1477   	LPC_GPIO0->FIOPIN|=(1UL<<8);
-000560  6941              LDR      r1,[r0,#0x14]
-000562  f4417180          ORR      r1,r1,#0x100
-000566  6141              STR      r1,[r0,#0x14]
+000562  6941              LDR      r1,[r0,#0x14]
+000564  f4417180          ORR      r1,r1,#0x100
+000568  6141              STR      r1,[r0,#0x14]
 ;;;1478   	}
 ;;;1479   else 
 ;;;1480   	{
 ;;;1481   	LPC_GPIO0->FIOPIN&=~(1UL<<8);
 ;;;1482   	}
 ;;;1483   }
-000568  4770              BX       lr
-                  |L3.1386|
-00056a  6941              LDR      r1,[r0,#0x14]         ;1481
-00056c  f4217180          BIC      r1,r1,#0x100          ;1481
-000570  6141              STR      r1,[r0,#0x14]         ;1481
-000572  4770              BX       lr
+00056a  4770              BX       lr
+                  |L3.1388|
+00056c  6941              LDR      r1,[r0,#0x14]         ;1481
+00056e  f4217180          BIC      r1,r1,#0x100          ;1481
+000572  6141              STR      r1,[r0,#0x14]         ;1481
+000574  4770              BX       lr
 ;;;1484   
                           ENDP
 
                   numOfForvardBps_init PROC
 ;;;2100   //-----------------------------------------------
 ;;;2101   void	numOfForvardBps_init(void)			//Программа сброса системы смены первого источника для равномерного износа БПСов
-000574  4770              BX       lr
+000576  4770              BX       lr
 ;;;2102   {									//Должна вызываться при изменении кол-ва источников в структуре
 ;;;2103   
 ;;;2104   }
 ;;;2105   
                           ENDP
 
-000576  0000              DCW      0x0000
                   |L3.1400|
                           DCD      0x40034000
                   |L3.1404|
                           DCD      0x2009c000
                   |L3.1408|
-                          DCD      ||area_number.34||
+                          DCD      a_ind
 
                           AREA ||area_number.4||, CODE, READONLY, ALIGN=1
 
@@ -1692,10 +1692,10 @@
 00005a  8820              LDRH     r0,[r4,#0]  ; adc_self_ch_buff
 00005c  8130              STRH     r0,[r6,#8]
                   |L5.94|
-00005e  78b7              LDRB     r7,[r6,#2]  ; adc_ch_net
+00005e  7877              LDRB     r7,[r6,#1]  ; adc_ch_net
 000060  2200              MOVS     r2,#0
 000062  b3f7              CBZ      r7,|L5.226|
-000064  7973              LDRB     r3,[r6,#5]  ; adc_window_flag
+000064  7933              LDRB     r3,[r6,#4]  ; adc_window_flag
 000066  4869              LDR      r0,|L5.524|
 000068  b18b              CBZ      r3,|L5.142|
 00006a  f9b61008          LDRSH    r1,[r6,#8]  ; adc_result
@@ -1762,20 +1762,20 @@
 0000f6  2896              CMP      r0,#0x96
 0000f8  dd01              BLE      |L5.254|
 0000fa  b103              CBZ      r3,|L5.254|
-0000fc  7172              STRB     r2,[r6,#5]
+0000fc  7132              STRB     r2,[r6,#4]
                   |L5.254|
 0000fe  381f              SUBS     r0,r0,#0x1f
 000100  2827              CMP      r0,#0x27
 000102  d22d              BCS      |L5.352|
-000104  7970              LDRB     r0,[r6,#5]  ; adc_window_flag
+000104  7930              LDRB     r0,[r6,#4]  ; adc_window_flag
 000106  bb58              CBNZ     r0,|L5.352|
 000108  f04f0001          MOV      r0,#1
-00010c  7170              STRB     r0,[r6,#5]
+00010c  7130              STRB     r0,[r6,#4]
 00010e  e027              B        |L5.352|
                   |L5.272|
 000110  483f              LDR      r0,|L5.528|
-000112  78f5              LDRB     r5,[r6,#3]  ; adc_ch
-000114  7933              LDRB     r3,[r6,#4]  ; adc_ch_cnt
+000112  78b5              LDRB     r5,[r6,#2]  ; adc_ch
+000114  78f3              LDRB     r3,[r6,#3]  ; adc_ch_cnt
 000116  eb001485          ADD      r4,r0,r5,LSL #6
 00011a  f9b61008          LDRSH    r1,[r6,#8]  ; adc_result
 00011e  f8441023          STR      r1,[r4,r3,LSL #2]
@@ -1796,21 +1796,21 @@
                   |L5.326|
 000146  1c6d              ADDS     r5,r5,#1
 000148  b2e8              UXTB     r0,r5
-00014a  70f0              STRB     r0,[r6,#3]
+00014a  70b0              STRB     r0,[r6,#2]
 00014c  2810              CMP      r0,#0x10
 00014e  d307              BCC      |L5.352|
-000150  70f2              STRB     r2,[r6,#3]
+000150  70b2              STRB     r2,[r6,#2]
 000152  f1030301          ADD      r3,r3,#1
 000156  b2d8              UXTB     r0,r3
-000158  7130              STRB     r0,[r6,#4]
+000158  70f0              STRB     r0,[r6,#3]
 00015a  2810              CMP      r0,#0x10
 00015c  d300              BCC      |L5.352|
-00015e  7132              STRB     r2,[r6,#4]
+00015e  70f2              STRB     r2,[r6,#3]
                   |L5.352|
-000160  7072              STRB     r2,[r6,#1]
+000160  7032              STRB     r2,[r6,#0]
 000162  f1070701          ADD      r7,r7,#1
 000166  f0070001          AND      r0,r7,#1
-00016a  70b0              STRB     r0,[r6,#2]
+00016a  7070              STRB     r0,[r6,#1]
 00016c  4a29              LDR      r2,|L5.532|
 00016e  b130              CBZ      r0,|L5.382|
 000170  6810              LDR      r0,[r2,#0]
@@ -1819,7 +1819,7 @@
 00017a  6010              STR      r0,[r2,#0]
 00017c  e03d              B        |L5.506|
                   |L5.382|
-00017e  78f1              LDRB     r1,[r6,#3]  ; adc_ch
+00017e  78b1              LDRB     r1,[r6,#2]  ; adc_ch
 000180  0708              LSLS     r0,r1,#28
 000182  d406              BMI      |L5.402|
 000184  6810              LDR      r0,[r2,#0]
@@ -1885,7 +1885,7 @@
 
 000206  0000              DCW      0x0000
                   |L5.520|
-                          DCD      ||area_number.34||+0x14
+                          DCD      ||area_number.40||+0x14
                   |L5.524|
                           DCD      ||.bss||+0x420
                   |L5.528|
@@ -2449,41 +2449,11 @@
                   adc_stat
 000000  01                DCB      0x01
 
-                          AREA ||area_number.34||, DATA, ALIGN=1
+                          AREA ||area_number.34||, DATA, ALIGN=0
 
                           EXPORTAS ||area_number.34||, ||.data||
                   rele_stat
 000000  01                DCB      0x01
-                  adc_self_ch_cnt
-000001  00                DCB      0x00
-                  adc_ch_net
-000002  00                DCB      0x00
-                  adc_ch
-000003  00                DCB      0x00
-                  adc_ch_cnt
-000004  00                DCB      0x00
-                  adc_window_flag
-000005  00                DCB      0x00
-                  net_buff_
-000006  0000              DCB      0x00,0x00
-                  adc_result
-000008  0000              DCB      0x00,0x00
-                  adc_gorb_cnt
-00000a  0000              DCB      0x00,0x00
-                  adc_zero_cnt
-00000c  0000              DCB      0x00,0x00
-                  adc_window_cnt
-00000e  0000              DCB      0x00,0x00
-                  adc_net_buff_cnt
-000010  0000              DCB      0x00,0x00
-                  samokalibr_cnt
-000012  0000              DCB      0x00,0x00
-                  adc_self_ch_buff
-                          DCDU     0x00000000
-000018  0000              DCB      0x00,0x00
-                  adc_self_ch_disp
-00001a  0000              DCB      0x00,0x00
-                          DCDU     0x00000000
 
                           AREA ||area_number.35||, DATA, ALIGN=1
 
@@ -2515,424 +2485,484 @@
                   unet_buff_max
 000000  0000              DCB      0x00,0x00
 
-                          AREA ||area_number.40||, DATA, ALIGN=0
+                          AREA ||area_number.40||, DATA, ALIGN=1
 
                           EXPORTAS ||area_number.40||, ||.data||
-                  adc_cnt
+                  adc_self_ch_cnt
 000000  00                DCB      0x00
+                  adc_ch_net
+000001  00                DCB      0x00
+                  adc_ch
+000002  00                DCB      0x00
+                  adc_ch_cnt
+000003  00                DCB      0x00
+                  adc_window_flag
+000004  0000              DCB      0x00,0x00
+                  net_buff_
+000006  0000              DCB      0x00,0x00
+                  adc_result
+000008  0000              DCB      0x00,0x00
+                  adc_gorb_cnt
+00000a  0000              DCB      0x00,0x00
+                  adc_zero_cnt
+00000c  0000              DCB      0x00,0x00
+                  adc_window_cnt
+00000e  0000              DCB      0x00,0x00
+                  adc_net_buff_cnt
+000010  0000              DCB      0x00,0x00
+                  samokalibr_cnt
+000012  0000              DCB      0x00,0x00
+                  adc_self_ch_buff
+                          DCDU     0x00000000
+000018  0000              DCB      0x00,0x00
+                  adc_self_ch_disp
+00001a  0000              DCB      0x00,0x00
+                          DCDU     0x00000000
 
                           AREA ||area_number.41||, DATA, ALIGN=0
 
                           EXPORTAS ||area_number.41||, ||.data||
-                  adc_cnt1
+                  adc_cnt
 000000  00                DCB      0x00
 
-                          AREA ||area_number.42||, DATA, ALIGN=1
+                          AREA ||area_number.42||, DATA, ALIGN=0
 
                           EXPORTAS ||area_number.42||, ||.data||
-                  zero_cnt
-000000  0000              DCB      0x00,0x00
+                  adc_cnt1
+000000  00                DCB      0x00
 
                           AREA ||area_number.43||, DATA, ALIGN=1
 
                           EXPORTAS ||area_number.43||, ||.data||
+                  zero_cnt
+000000  0000              DCB      0x00,0x00
+
+                          AREA ||area_number.44||, DATA, ALIGN=1
+
+                          EXPORTAS ||area_number.44||, ||.data||
                   net_metr_buff_
                           DCDU     0x00000000
 000004  0000              DCB      0x00,0x00
 
-                          AREA ||area_number.44||, DATA, ALIGN=0
-
-                          EXPORTAS ||area_number.44||, ||.data||
-                  net_buff_cnt
-000000  00                DCB      0x00
-
-                          AREA ||area_number.45||, DATA, ALIGN=1
+                          AREA ||area_number.45||, DATA, ALIGN=0
 
                           EXPORTAS ||area_number.45||, ||.data||
-                  ADWR
-000000  0000              DCB      0x00,0x00
+                  net_buff_cnt
+000000  00                DCB      0x00
 
                           AREA ||area_number.46||, DATA, ALIGN=1
 
                           EXPORTAS ||area_number.46||, ||.data||
-                  period_cnt
+                  ADWR
 000000  0000              DCB      0x00,0x00
 
                           AREA ||area_number.47||, DATA, ALIGN=1
 
                           EXPORTAS ||area_number.47||, ||.data||
+                  period_cnt
+000000  0000              DCB      0x00,0x00
+
+                          AREA ||area_number.48||, DATA, ALIGN=1
+
+                          EXPORTAS ||area_number.48||, ||.data||
                   non_zero_cnt
 000000  0000              DCB      0x00,0x00
 
-                          AREA ||area_number.48||, DATA, ALIGN=0
+                          AREA ||area_number.49||, DATA, ALIGN=0
 
-                          EXPORTAS ||area_number.48||, ||.data||
+                          EXPORTAS ||area_number.49||, ||.data||
                   bRELE_OUT
 000000  00                DCB      0x00
 
-                          AREA ||area_number.49||, DATA, ALIGN=2
-
-                          EXPORTAS ||area_number.49||, ||.data||
-                  main_power_buffer_
-                          DCD      0x00000000
-
-                          AREA ||area_number.50||, DATA, ALIGN=1
+                          AREA ||area_number.50||, DATA, ALIGN=2
 
                           EXPORTAS ||area_number.50||, ||.data||
-                  main_power_buffer_cnt
-000000  0000              DCB      0x00,0x00
+                  main_power_buffer_
+                          DCD      0x00000000
 
                           AREA ||area_number.51||, DATA, ALIGN=1
 
                           EXPORTAS ||area_number.51||, ||.data||
-                  adc_buff_out_
-                          DCDU     0x00000000
-000004  0000              DCB      0x00,0x00
+                  main_power_buffer_cnt
+000000  0000              DCB      0x00,0x00
 
                           AREA ||area_number.52||, DATA, ALIGN=1
 
                           EXPORTAS ||area_number.52||, ||.data||
-                  plazma_adc_cnt
-000000  0000              DCB      0x00,0x00
+                  adc_buff_out_
+                          DCDU     0x00000000
+000004  0000              DCB      0x00,0x00
 
                           AREA ||area_number.53||, DATA, ALIGN=1
 
                           EXPORTAS ||area_number.53||, ||.data||
-                  plazma_sk
+                  plazma_adc_cnt
 000000  0000              DCB      0x00,0x00
 
-                          AREA ||area_number.54||, DATA, ALIGN=2
+                          AREA ||area_number.54||, DATA, ALIGN=1
 
                           EXPORTAS ||area_number.54||, ||.data||
-                  i_avg_max
-                          DCD      0x00000000
+                  plazma_sk
+000000  0000              DCB      0x00,0x00
 
                           AREA ||area_number.55||, DATA, ALIGN=2
 
                           EXPORTAS ||area_number.55||, ||.data||
-                  i_avg_min
+                  i_avg_max
                           DCD      0x00000000
 
                           AREA ||area_number.56||, DATA, ALIGN=2
 
                           EXPORTAS ||area_number.56||, ||.data||
-                  i_avg_summ
+                  i_avg_min
                           DCD      0x00000000
 
                           AREA ||area_number.57||, DATA, ALIGN=2
 
                           EXPORTAS ||area_number.57||, ||.data||
-                  i_avg
+                  i_avg_summ
                           DCD      0x00000000
 
                           AREA ||area_number.58||, DATA, ALIGN=2
 
                           EXPORTAS ||area_number.58||, ||.data||
-                  avg
+                  i_avg
                           DCD      0x00000000
 
-                          AREA ||area_number.59||, DATA, ALIGN=0
+                          AREA ||area_number.59||, DATA, ALIGN=2
 
                           EXPORTAS ||area_number.59||, ||.data||
-                  bAVG
-000000  00                DCB      0x00
+                  avg
+                          DCD      0x00000000
 
                           AREA ||area_number.60||, DATA, ALIGN=0
 
                           EXPORTAS ||area_number.60||, ||.data||
-                  avg_cnt_
+                  bAVG
 000000  00                DCB      0x00
 
                           AREA ||area_number.61||, DATA, ALIGN=0
 
                           EXPORTAS ||area_number.61||, ||.data||
-                  avg_num
+                  avg_cnt_
 000000  00                DCB      0x00
 
                           AREA ||area_number.62||, DATA, ALIGN=0
 
                           EXPORTAS ||area_number.62||, ||.data||
-                  bAVG_BLOCK
+                  avg_num
 000000  00                DCB      0x00
 
                           AREA ||area_number.63||, DATA, ALIGN=0
 
                           EXPORTAS ||area_number.63||, ||.data||
-                  bAVG_DIR
+                  bAVG_BLOCK
 000000  00                DCB      0x00
 
-                          AREA ||area_number.64||, DATA, ALIGN=1
+                          AREA ||area_number.64||, DATA, ALIGN=0
 
                           EXPORTAS ||area_number.64||, ||.data||
-                  main_kb_cnt
-000000  0000              DCB      0x00,0x00
+                  bAVG_DIR
+000000  00                DCB      0x00
 
                           AREA ||area_number.65||, DATA, ALIGN=1
 
                           EXPORTAS ||area_number.65||, ||.data||
-                  kb_cnt_1lev
+                  main_kb_cnt
 000000  0000              DCB      0x00,0x00
 
                           AREA ||area_number.66||, DATA, ALIGN=1
 
                           EXPORTAS ||area_number.66||, ||.data||
-                  kb_cnt_2lev
+                  kb_cnt_1lev
 000000  0000              DCB      0x00,0x00
 
-                          AREA ||area_number.67||, DATA, ALIGN=0
+                          AREA ||area_number.67||, DATA, ALIGN=1
 
                           EXPORTAS ||area_number.67||, ||.data||
-                  kb_full_ver
-000000  00                DCB      0x00
+                  kb_cnt_2lev
+000000  0000              DCB      0x00,0x00
 
                           AREA ||area_number.68||, DATA, ALIGN=0
 
                           EXPORTAS ||area_number.68||, ||.data||
-                  kb_start
-000000  0000              DCB      0x00,0x00
+                  kb_full_ver
+000000  00                DCB      0x00
 
                           AREA ||area_number.69||, DATA, ALIGN=0
 
                           EXPORTAS ||area_number.69||, ||.data||
-                  kb_start_ips
-000000  00                DCB      0x00
+                  kb_start
+000000  0000              DCB      0x00,0x00
 
-                          AREA ||area_number.70||, DATA, ALIGN=1
+                          AREA ||area_number.70||, DATA, ALIGN=0
 
                           EXPORTAS ||area_number.70||, ||.data||
-                  ibat_ips
-000000  0000              DCB      0x00,0x00
+                  kb_start_ips
+000000  00                DCB      0x00
 
                           AREA ||area_number.71||, DATA, ALIGN=1
 
                           EXPORTAS ||area_number.71||, ||.data||
-                  ibat_ips_
+                  ibat_ips
 000000  0000              DCB      0x00,0x00
 
-                          AREA ||area_number.72||, DATA, ALIGN=0
+                          AREA ||area_number.72||, DATA, ALIGN=1
 
                           EXPORTAS ||area_number.72||, ||.data||
-                  num_of_wrks_bps
-000000  00                DCB      0x00
+                  ibat_ips_
+000000  0000              DCB      0x00,0x00
 
                           AREA ||area_number.73||, DATA, ALIGN=0
 
                           EXPORTAS ||area_number.73||, ||.data||
-                  bps_all_off_cnt
+                  num_of_wrks_bps
 000000  00                DCB      0x00
 
                           AREA ||area_number.74||, DATA, ALIGN=0
 
                           EXPORTAS ||area_number.74||, ||.data||
-                  bps_mask_off_cnt
+                  bps_all_off_cnt
 000000  00                DCB      0x00
 
                           AREA ||area_number.75||, DATA, ALIGN=0
 
                           EXPORTAS ||area_number.75||, ||.data||
-                  bps_mask_on_off_cnt
+                  bps_mask_off_cnt
 000000  00                DCB      0x00
 
                           AREA ||area_number.76||, DATA, ALIGN=0
 
                           EXPORTAS ||area_number.76||, ||.data||
-                  bps_hndl_2sec_cnt
+                  bps_mask_on_off_cnt
 000000  00                DCB      0x00
 
-                          AREA ||area_number.77||, DATA, ALIGN=1
+                          AREA ||area_number.77||, DATA, ALIGN=0
 
                           EXPORTAS ||area_number.77||, ||.data||
-                  bps_on_mask
-000000  0000              DCB      0x00,0x00
+                  bps_hndl_2sec_cnt
+000000  00                DCB      0x00
 
                           AREA ||area_number.78||, DATA, ALIGN=1
 
                           EXPORTAS ||area_number.78||, ||.data||
-                  bps_off_mask
+                  bps_on_mask
 000000  0000              DCB      0x00,0x00
 
-                          AREA ||area_number.79||, DATA, ALIGN=0
+                          AREA ||area_number.79||, DATA, ALIGN=1
 
                           EXPORTAS ||area_number.79||, ||.data||
-                  num_necc_up
-000000  00                DCB      0x00
+                  bps_off_mask
+000000  0000              DCB      0x00,0x00
 
                           AREA ||area_number.80||, DATA, ALIGN=0
 
                           EXPORTAS ||area_number.80||, ||.data||
-                  num_necc_down
+                  num_necc_up
 000000  00                DCB      0x00
 
                           AREA ||area_number.81||, DATA, ALIGN=0
 
                           EXPORTAS ||area_number.81||, ||.data||
-                  sh_cnt0
+                  num_necc_down
 000000  00                DCB      0x00
 
                           AREA ||area_number.82||, DATA, ALIGN=0
 
                           EXPORTAS ||area_number.82||, ||.data||
-                  b1Hz_sh
+                  sh_cnt0
 000000  00                DCB      0x00
 
                           AREA ||area_number.83||, DATA, ALIGN=0
 
                           EXPORTAS ||area_number.83||, ||.data||
-                  spc_stat
+                  b1Hz_sh
 000000  00                DCB      0x00
 
                           AREA ||area_number.84||, DATA, ALIGN=0
 
                           EXPORTAS ||area_number.84||, ||.data||
-                  spc_bat
+                  spc_stat
 000000  00                DCB      0x00
 
                           AREA ||area_number.85||, DATA, ALIGN=0
 
                           EXPORTAS ||area_number.85||, ||.data||
-                  spc_phase
+                  spc_bat
 000000  00                DCB      0x00
 
-                          AREA ||area_number.86||, DATA, ALIGN=1
+                          AREA ||area_number.86||, DATA, ALIGN=0
 
                           EXPORTAS ||area_number.86||, ||.data||
-                  vz_cnt_s
-000000  0000              DCB      0x00,0x00
+                  spc_phase
+000000  00                DCB      0x00
 
                           AREA ||area_number.87||, DATA, ALIGN=1
 
                           EXPORTAS ||area_number.87||, ||.data||
-                  vz_cnt_s_
+                  vz_cnt_s
 000000  0000              DCB      0x00,0x00
 
                           AREA ||area_number.88||, DATA, ALIGN=1
 
                           EXPORTAS ||area_number.88||, ||.data||
-                  vz_cnt_h
+                  vz_cnt_s_
 000000  0000              DCB      0x00,0x00
 
                           AREA ||area_number.89||, DATA, ALIGN=1
 
                           EXPORTAS ||area_number.89||, ||.data||
-                  vz_cnt_h_
+                  vz_cnt_h
 000000  0000              DCB      0x00,0x00
 
-                          AREA ||area_number.90||, DATA, ALIGN=0
+                          AREA ||area_number.90||, DATA, ALIGN=1
 
                           EXPORTAS ||area_number.90||, ||.data||
-                  bAVZ
-000000  00                DCB      0x00
+                  vz_cnt_h_
+000000  0000              DCB      0x00,0x00
 
                           AREA ||area_number.91||, DATA, ALIGN=0
 
                           EXPORTAS ||area_number.91||, ||.data||
+                  bAVZ
+000000  00                DCB      0x00
+
+                          AREA ||area_number.92||, DATA, ALIGN=0
+
+                          EXPORTAS ||area_number.92||, ||.data||
                   ke_start_stat
 000000  00                DCB      0x00
 
-                          AREA ||area_number.92||, DATA, ALIGN=1
+                          AREA ||area_number.93||, DATA, ALIGN=1
 
-                          EXPORTAS ||area_number.92||, ||.data||
+                          EXPORTAS ||area_number.93||, ||.data||
                   cnt_end_ke
 000000  0000              DCB      0x00,0x00
 
-                          AREA ||area_number.93||, DATA, ALIGN=2
-
-                          EXPORTAS ||area_number.93||, ||.data||
-                  ke_date
-                          %        8
-
-                          AREA ||area_number.94||, DATA, ALIGN=1
+                          AREA ||area_number.94||, DATA, ALIGN=2
 
                           EXPORTAS ||area_number.94||, ||.data||
-                  __ee_vz_cnt
-000000  0000              DCB      0x00,0x00
+                  ke_date
+                          %        8
 
                           AREA ||area_number.95||, DATA, ALIGN=1
 
                           EXPORTAS ||area_number.95||, ||.data||
-                  __ee_spc_stat
+                  __ee_vz_cnt
 000000  0000              DCB      0x00,0x00
 
                           AREA ||area_number.96||, DATA, ALIGN=1
 
                           EXPORTAS ||area_number.96||, ||.data||
-                  __ee_spc_bat
+                  __ee_spc_stat
 000000  0000              DCB      0x00,0x00
 
                           AREA ||area_number.97||, DATA, ALIGN=1
 
                           EXPORTAS ||area_number.97||, ||.data||
-                  __ee_spc_phase
+                  __ee_spc_bat
 000000  0000              DCB      0x00,0x00
 
                           AREA ||area_number.98||, DATA, ALIGN=1
 
                           EXPORTAS ||area_number.98||, ||.data||
-                  cntrl_stat_blok_cnt
+                  __ee_spc_phase
 000000  0000              DCB      0x00,0x00
 
                           AREA ||area_number.99||, DATA, ALIGN=1
 
                           EXPORTAS ||area_number.99||, ||.data||
-                  cntrl_stat_blok_cnt_
+                  cntrl_stat_blok_cnt
 000000  0000              DCB      0x00,0x00
 
                           AREA ||area_number.100||, DATA, ALIGN=1
 
                           EXPORTAS ||area_number.100||, ||.data||
-                  cntrl_stat_blok_cnt_plus
-                          DCDU     0x00000000
+                  cntrl_stat_blok_cnt_
+000000  0000              DCB      0x00,0x00
 
                           AREA ||area_number.101||, DATA, ALIGN=1
 
                           EXPORTAS ||area_number.101||, ||.data||
-                  cntrl_stat_blok_cnt_minus
+                  cntrl_stat_blok_cnt_plus
                           DCDU     0x00000000
 
-                          AREA ||area_number.102||, DATA, ALIGN=0
+                          AREA ||area_number.102||, DATA, ALIGN=1
 
                           EXPORTAS ||area_number.102||, ||.data||
-                  plazma_inv
+                  cntrl_stat_blok_cnt_minus
                           DCDU     0x00000000
 
                           AREA ||area_number.103||, DATA, ALIGN=0
 
                           EXPORTAS ||area_number.103||, ||.data||
-                  plazma_bat
-000000  00                DCB      0x00
+                  plazma_inv
+                          DCDU     0x00000000
 
                           AREA ||area_number.104||, DATA, ALIGN=0
 
                           EXPORTAS ||area_number.104||, ||.data||
-                  plazma_cntrl_stat
+                  plazma_bat
 000000  00                DCB      0x00
 
                           AREA ||area_number.105||, DATA, ALIGN=0
 
                           EXPORTAS ||area_number.105||, ||.data||
-                  numOfForvardBps
+                  plazma_cntrl_stat
 000000  00                DCB      0x00
 
                           AREA ||area_number.106||, DATA, ALIGN=0
 
                           EXPORTAS ||area_number.106||, ||.data||
-                  numOfForvardBps_old
+                  numOfForvardBps
 000000  00                DCB      0x00
 
                           AREA ||area_number.107||, DATA, ALIGN=0
 
                           EXPORTAS ||area_number.107||, ||.data||
+                  numOfForvardBps_old
+000000  00                DCB      0x00
+
+                          AREA ||area_number.108||, DATA, ALIGN=0
+
+                          EXPORTAS ||area_number.108||, ||.data||
                   numOfForvardBps_minCnt
 000000  00                DCB      0x00
 
-                          AREA ||area_number.108||, DATA, ALIGN=1
+                          AREA ||area_number.109||, DATA, ALIGN=1
 
-                          EXPORTAS ||area_number.108||, ||.data||
+                          EXPORTAS ||area_number.109||, ||.data||
                   numOfForvardBps_hourCnt
 000000  0000              DCB      0x00,0x00
 
-                          AREA ||area_number.109||, DATA, ALIGN=0
+                          AREA ||area_number.110||, DATA, ALIGN=0
 
-                          EXPORTAS ||area_number.109||, ||.data||
+                          EXPORTAS ||area_number.110||, ||.data||
                   cntrl_hndl_plazma
 000000  00                DCB      0x00
+
+;*** Start embedded assembler ***
+
+#line 1 "control.c"
+	AREA ||.emb_text||, CODE, READONLY
+	THUMB
+	EXPORT |__asm___9_control_c_9601dfb0____REV16|
+#line 112 "C:\\Keil\\ARM\\CMSIS\\Include\\core_cmInstr.h"
+|__asm___9_control_c_9601dfb0____REV16| PROC
+#line 113
+
+ rev16 r0, r0
+ bx lr
+	ENDP
+	AREA ||.emb_text||, CODE, READONLY
+	THUMB
+	EXPORT |__asm___9_control_c_9601dfb0____REVSH|
+#line 130
+|__asm___9_control_c_9601dfb0____REVSH| PROC
+#line 131
+
+ revsh r0, r0
+ bx lr
+	ENDP
+
+;*** End   embedded assembler ***

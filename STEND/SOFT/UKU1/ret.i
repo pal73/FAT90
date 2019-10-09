@@ -8,7 +8,7 @@
 
 #line 2 "ret.c"
 #line 1 "main.h"
-#line 1 "C:\\Keil\\\\ARM\\RV31\\INC\\rtl.h"
+#line 1 "C:\\Keil\\ARM\\RV31\\INC\\rtl.h"
 
 
 
@@ -28,7 +28,7 @@
  
 
 
-#line 27 "C:\\Keil\\\\ARM\\RV31\\INC\\rtl.h"
+#line 27 "C:\\Keil\\ARM\\RV31\\INC\\rtl.h"
 
 
 
@@ -50,7 +50,9 @@ typedef unsigned long long U64;
 typedef unsigned char   BIT;
 typedef unsigned int    BOOL;
 
-#line 54 "C:\\Keil\\\\ARM\\RV31\\INC\\rtl.h"
+#line 54 "C:\\Keil\\ARM\\RV31\\INC\\rtl.h"
+
+#line 66 "C:\\Keil\\ARM\\RV31\\INC\\rtl.h"
 
 
 
@@ -97,7 +99,7 @@ typedef U32 OS_RESULT;
 
 
 
-#line 182 "C:\\Keil\\\\ARM\\RV31\\INC\\rtl.h"
+#line 194 "C:\\Keil\\ARM\\RV31\\INC\\rtl.h"
 
 
 
@@ -114,7 +116,7 @@ extern OS_RESULT rt_tsk_prio   (OS_TID task_id, U8 new_prio);
 extern OS_TID    rt_tsk_create (void (*task)(void), U8 priority, void *stk, void *argv);
 extern OS_RESULT rt_tsk_delete (OS_TID task_id);
 
-#line 218 "C:\\Keil\\\\ARM\\RV31\\INC\\rtl.h"
+#line 230 "C:\\Keil\\ARM\\RV31\\INC\\rtl.h"
 
 extern void      _os_sys_init(U32 p, void (*task)(void), U32 prio_stksz,
                                      void *stk)                        __svc_indirect(0);
@@ -294,10 +296,10 @@ extern int fdefrag (const char *drive);
 
 
  
-#line 403 "C:\\Keil\\\\ARM\\RV31\\INC\\rtl.h"
+#line 415 "C:\\Keil\\ARM\\RV31\\INC\\rtl.h"
 
  
-#line 416 "C:\\Keil\\\\ARM\\RV31\\INC\\rtl.h"
+#line 428 "C:\\Keil\\ARM\\RV31\\INC\\rtl.h"
 
  
 
@@ -306,7 +308,7 @@ extern int fdefrag (const char *drive);
 
 
  
-#line 430 "C:\\Keil\\\\ARM\\RV31\\INC\\rtl.h"
+#line 442 "C:\\Keil\\ARM\\RV31\\INC\\rtl.h"
 
  
 
@@ -356,6 +358,7 @@ extern void dhcp_disable (void);
 extern BOOL igmp_join (U8 *group_ip);
 extern BOOL igmp_leave (U8 *group_ip);
 extern BOOL snmp_trap (U8 *manager_ip, U8 gen_trap, U8 spec_trap, U16 *obj_list);
+extern BOOL snmp_set_community (const char *community);
 
 
 

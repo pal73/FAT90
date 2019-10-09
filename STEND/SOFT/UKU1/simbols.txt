@@ -138,3 +138,29 @@
 000014  00000000          DCB      0x00,0x00,0x00,0x00
 000018  00000000          DCB      0x00,0x00,0x00,0x00
 00001c  0000              DCB      0x00,0x00
+
+;*** Start embedded assembler ***
+
+#line 1 "simbols.c"
+	AREA ||.emb_text||, CODE, READONLY
+	THUMB
+	EXPORT |__asm___9_simbols_c_sAVNET____REV16|
+#line 112 "C:\\Keil\\ARM\\CMSIS\\Include\\core_cmInstr.h"
+|__asm___9_simbols_c_sAVNET____REV16| PROC
+#line 113
+
+ rev16 r0, r0
+ bx lr
+	ENDP
+	AREA ||.emb_text||, CODE, READONLY
+	THUMB
+	EXPORT |__asm___9_simbols_c_sAVNET____REVSH|
+#line 130
+|__asm___9_simbols_c_sAVNET____REVSH| PROC
+#line 131
+
+ revsh r0, r0
+ bx lr
+	ENDP
+
+;*** End   embedded assembler ***

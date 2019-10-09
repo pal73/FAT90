@@ -1,8 +1,8 @@
 .\EXE\main.o: main.c
 .\EXE\main.o: lcd_AGM1232_uku207_3.h
-.\EXE\main.o: C:\Keil\\ARM\RV31\INC\rtl.h
+.\EXE\main.o: C:\Keil\ARM\RV31\INC\rtl.h
 .\EXE\main.o: type.h
-.\EXE\main.o: C:\Keil\\ARM\RV31\INC\stdint.h
+.\EXE\main.o: C:\Keil\ARM\RV31\INC\stdint.h
 .\EXE\main.o: main.h
 .\EXE\main.o: simbol.h
 .\EXE\main.o: 25lc640.h
@@ -23,7 +23,9 @@
 .\EXE\main.o: uart0.h
 .\EXE\main.o: ztt.h
 .\EXE\main.o: sc16is7xx.h
-.\EXE\main.o: C:\Keil\\ARM\RV31\INC\stdio.h
+.\EXE\main.o: C:\Keil\ARM\RV31\INC\stdio.h
 .\EXE\main.o: C:\Keil\ARM\INC\NXP\LPC17xx\LPC17xx.H
-.\EXE\main.o: C:\Keil\\ARM\RV31\INC\core_cm3.h
+.\EXE\main.o: C:\Keil\ARM\CMSIS\Include\core_cm3.h
+.\EXE\main.o: C:\Keil\ARM\CMSIS\Include\core_cmInstr.h
+.\EXE\main.o: C:\Keil\ARM\CMSIS\Include\core_cmFunc.h
 .\EXE\main.o: C:\Keil\ARM\INC\NXP\LPC17xx\system_LPC17xx.h

@@ -4,8 +4,10 @@
 .\EXE\common_func.o: eeprom_map.h
 .\EXE\common_func.o: 25lc640.h
 .\EXE\common_func.o: main.h
-.\EXE\common_func.o: C:\Keil\\ARM\RV31\INC\rtl.h
+.\EXE\common_func.o: C:\Keil\ARM\RV31\INC\rtl.h
 .\EXE\common_func.o: C:\Keil\ARM\INC\NXP\LPC17xx\LPC17xx.H
-.\EXE\common_func.o: C:\Keil\\ARM\RV31\INC\core_cm3.h
-.\EXE\common_func.o: C:\Keil\\ARM\RV31\INC\stdint.h
+.\EXE\common_func.o: C:\Keil\ARM\CMSIS\Include\core_cm3.h
+.\EXE\common_func.o: C:\Keil\ARM\RV31\INC\stdint.h
+.\EXE\common_func.o: C:\Keil\ARM\CMSIS\Include\core_cmInstr.h
+.\EXE\common_func.o: C:\Keil\ARM\CMSIS\Include\core_cmFunc.h
 .\EXE\common_func.o: C:\Keil\ARM\INC\NXP\LPC17xx\system_LPC17xx.h

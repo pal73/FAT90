@@ -1544,3 +1544,29 @@
 ;;;45     
                           ENDP
 
+
+;*** Start embedded assembler ***
+
+#line 1 "lcd_AGM1232_uku207_3.c"
+	AREA ||.emb_text||, CODE, READONLY
+	THUMB
+	EXPORT |__asm___22_lcd_AGM1232_uku207_3_c_lcd1_chk____REV16|
+#line 112 "C:\\Keil\\ARM\\CMSIS\\Include\\core_cmInstr.h"
+|__asm___22_lcd_AGM1232_uku207_3_c_lcd1_chk____REV16| PROC
+#line 113
+
+ rev16 r0, r0
+ bx lr
+	ENDP
+	AREA ||.emb_text||, CODE, READONLY
+	THUMB
+	EXPORT |__asm___22_lcd_AGM1232_uku207_3_c_lcd1_chk____REVSH|
+#line 130
+|__asm___22_lcd_AGM1232_uku207_3_c_lcd1_chk____REVSH| PROC
+#line 131
+
+ revsh r0, r0
+ bx lr
+	ENDP
+
+;*** End   embedded assembler ***

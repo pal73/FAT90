@@ -256,3 +256,29 @@
 
                   SystemFrequency
                           DCD      0x003d0900
+
+;*** Start embedded assembler ***
+
+#line 1 "system_LPC17xx.c"
+	AREA ||.emb_text||, CODE, READONLY
+	THUMB
+	EXPORT |__asm___16_system_LPC17xx_c_6b61f0cc____REV16|
+#line 112 "C:\\Keil\\ARM\\CMSIS\\Include\\core_cmInstr.h"
+|__asm___16_system_LPC17xx_c_6b61f0cc____REV16| PROC
+#line 113
+
+ rev16 r0, r0
+ bx lr
+	ENDP
+	AREA ||.emb_text||, CODE, READONLY
+	THUMB
+	EXPORT |__asm___16_system_LPC17xx_c_6b61f0cc____REVSH|
+#line 130
+|__asm___16_system_LPC17xx_c_6b61f0cc____REVSH| PROC
+#line 131
+
+ revsh r0, r0
+ bx lr
+	ENDP
+
+;*** End   embedded assembler ***

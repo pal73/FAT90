@@ -1832,7 +1832,7 @@ else if(ind==iSet_T)
 	//if(LPC_RTC->DOW==0)
 	//int2lcdyx(LPC_RTC->DOW,2,5,0);
 	//int2lcdyx(LPC_RTC->DOY,2,10,0);	 
-		   
+	int2lcdyx(sub_ind,0,2,0);	   
 	}  
 
 else if((ind==iSet_T_ret)||(ind==iAir_sensor_kontr_ret)||(ind==iWater_sensor_kontr_ret)||(ind==iInterf_kontr_ret))
@@ -3273,7 +3273,7 @@ else if(ind==iMn)
 			}
 		else if(sub_ind==1)
 			{
-			tree_up(iSet_T,10,0,0);
+			tree_up(iSet_T,0,0,0);
 			//tree_up(iSet_T_ret,0,0,0);
 			//ret_ind(20,-1);
 			}
