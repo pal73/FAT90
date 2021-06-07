@@ -98,7 +98,10 @@ BRR2	include\stm8s.h	1854;"	member	struct:UART2_struct
 BRR2	include\stm8s.h	1962;"	member	struct:UART3_struct
 BTR1	include\stm8s.h	2179;"	member	struct:__anon6::__anon7::__anon13
 BTR2	include\stm8s.h	2180;"	member	struct:__anon6::__anon7::__anon13
+BUFSIZ	c:\program files (x86)\cosmic\cxstm8_32k\hstm8\stdio.h	26;"	macro
 BUILD	next_version.c	4;"	variable
+BUT_ON	lowlev.h	11;"	macro
+BUT_ONL	lowlev.h	12;"	macro
 BYTE_0	include\stm8s.h	2685;"	macro
 BYTE_1	include\stm8s.h	2686;"	macro
 BYTE_2	include\stm8s.h	2687;"	macro
@@ -455,6 +458,8 @@ DRH	include\stm8s.h	309;"	member	struct:ADC1_struct
 DRH	include\stm8s.h	380;"	member	struct:ADC2_struct
 DRL	include\stm8s.h	310;"	member	struct:ADC1_struct
 DRL	include\stm8s.h	381;"	member	struct:ADC2_struct
+DS18B20PIN	main.h	2;"	macro
+DS18B20PORT	main.h	1;"	macro
 DTR	include\stm8s.h	628;"	member	struct:TIM1_struct
 DUKR	include\stm8s.h	1510;"	member	struct:FLASH_struct
 ECKR	include\stm8s.h	495;"	member	struct:CLK_struct
@@ -469,9 +474,12 @@ EGR	include\stm8s.h	818;"	member	struct:TIM2_struct
 EGR	include\stm8s.h	942;"	member	struct:TIM3_struct
 EIER	include\stm8s.h	2176;"	member	struct:__anon6::__anon7::__anon13
 ENABLE	include\stm8s.h	223;"	enumerator	enum:__anon4
+EOF	c:\program files (x86)\cosmic\cxstm8_32k\hstm8\stdio.h	27;"	macro
 ERROR	include\stm8s.h	226;"	enumerator	enum:__anon5
 ESR	include\stm8s.h	2175;"	member	struct:__anon6::__anon7::__anon13
 ETR	include\stm8s.h	601;"	member	struct:TIM1_struct
+EXIT_FAILURE	c:\program files (x86)\cosmic\cxstm8_32k\hstm8\stdlib.h	7;"	macro
+EXIT_SUCCESS	c:\program files (x86)\cosmic\cxstm8_32k\hstm8\stdlib.h	8;"	macro
 EXTI	include\stm8s.h	2510;"	macro
 EXTI_BaseAddress	include\stm8s.h	2457;"	macro
 EXTI_CR1_PAIS	include\stm8s.h	1482;"	macro
@@ -732,10 +740,14 @@ IWDG_PR_RESET_VALUE	include\stm8s.h	1605;"	macro
 IWDG_RLR_RESET_VALUE	include\stm8s.h	1606;"	macro
 IWDG_TypeDef	include\stm8s.h	1599;"	typedef	typeref:struct:IWDG_struct
 IWDG_struct	include\stm8s.h	1593;"	struct
+KEY_ACCESS	watchdog.h	3;"	macro
+KEY_ENABLE	watchdog.h	1;"	macro
+KEY_REFRESH	watchdog.h	2;"	macro
 KR	include\stm8s.h	1595;"	member	struct:IWDG_struct
 LSI_VALUE	include\stm8s.h	109;"	macro
 LTRH	include\stm8s.h	315;"	member	struct:ADC1_struct
 LTRL	include\stm8s.h	316;"	member	struct:ADC1_struct
+MB_CUR_MAX	c:\program files (x86)\cosmic\cxstm8_32k\hstm8\stdlib.h	9;"	macro
 MCR	include\stm8s.h	2052;"	member	struct:__anon6
 MCSR	include\stm8s.h	2065;"	member	struct:__anon6::__anon7::__anon8
 MDAR1	include\stm8s.h	2071;"	member	struct:__anon6::__anon7::__anon8
@@ -767,7 +779,20 @@ MIDR3	include\stm8s.h	2069;"	member	struct:__anon6::__anon7::__anon8
 MIDR3	include\stm8s.h	2197;"	member	struct:__anon6::__anon7::__anon14
 MIDR4	include\stm8s.h	2070;"	member	struct:__anon6::__anon7::__anon8
 MIDR4	include\stm8s.h	2198;"	member	struct:__anon6::__anon7::__anon14
+MLS_GPRS	modem.h	11;"	enumerator	enum:__anon27
+MLS_LINKED	modem.h	11;"	enumerator	enum:__anon27
+MLS_PRELINKED	modem.h	11;"	enumerator	enum:__anon27
+MLS_UNKNOWN	modem.h	11;"	enumerator	enum:__anon27
+MLS_UNLINKED	modem.h	11;"	enumerator	enum:__anon27
+MPS_POWEROFF	modem.h	6;"	enumerator	enum:__anon26
+MPS_POWERON	modem.h	6;"	enumerator	enum:__anon26
 MSR	include\stm8s.h	2053;"	member	struct:__anon6
+MS_GPRS	modem.h	13;"	enumerator	enum:__anon28
+MS_LINKED	modem.h	13;"	enumerator	enum:__anon28
+MS_LINKED_INITIALIZED	modem.h	13;"	enumerator	enum:__anon28
+MS_POWEROFF	modem.h	13;"	enumerator	enum:__anon28
+MS_UNKNOWN	modem.h	13;"	enumerator	enum:__anon28
+MS_UNLINKED	modem.h	13;"	enumerator	enum:__anon28
 MTSRH	include\stm8s.h	2080;"	member	struct:__anon6::__anon7::__anon8
 MTSRH	include\stm8s.h	2208;"	member	struct:__anon6::__anon7::__anon14
 MTSRL	include\stm8s.h	2079;"	member	struct:__anon6::__anon7::__anon8
@@ -784,6 +809,9 @@ NOPT3	include\stm8s.h	1576;"	member	struct:OPT_struct
 NOPT4	include\stm8s.h	1578;"	member	struct:OPT_struct
 NOPT5	include\stm8s.h	1580;"	member	struct:OPT_struct
 NOPT7	include\stm8s.h	1584;"	member	struct:OPT_struct
+NULL	c:\program files (x86)\cosmic\cxstm8_32k\hstm8\stdio.h	30;"	macro
+NULL	c:\program files (x86)\cosmic\cxstm8_32k\hstm8\stdlib.h	13;"	macro
+NULL	c:\program files (x86)\cosmic\cxstm8_32k\hstm8\string.h	9;"	macro
 NonHandledInterrupt	stm8_interrupt_vector.c	13;"	function	signature:(void)
 OARH	include\stm8s.h	1318;"	member	struct:I2C_struct
 OARL	include\stm8s.h	1317;"	member	struct:I2C_struct
@@ -803,6 +831,8 @@ OPT_struct	include\stm8s.h	1568;"	struct
 PCKENR1	include\stm8s.h	501;"	member	struct:CLK_struct
 PCKENR2	include\stm8s.h	504;"	member	struct:CLK_struct
 PDU2text	modem.c	577;"	function	signature:(char* text)
+PDU2text	modem.h	59;"	prototype	signature:(char* text)
+POWER_OFF_HNDL_PERIOD_IN_SEC	main.h	165;"	macro
 PR	include\stm8s.h	1596;"	member	struct:IWDG_struct
 PSCR	include\stm8s.h	1053;"	member	struct:TIM4_struct
 PSCR	include\stm8s.h	1121;"	member	struct:TIM5_struct
@@ -818,6 +848,7 @@ PUKR	include\stm8s.h	1508;"	member	struct:FLASH_struct
 Page	include\stm8s.h	2211;"	member	struct:__anon6	typeref:union:__anon6::__anon7
 PointerAttr	include\stm8s.h	146;"	macro
 PointerAttr	include\stm8s.h	149;"	macro
+RAND_MAX	c:\program files (x86)\cosmic\cxstm8_32k\hstm8\stdlib.h	10;"	macro
 RCR	include\stm8s.h	618;"	member	struct:TIM1_struct
 RECR	include\stm8s.h	2178;"	member	struct:__anon6::__anon7::__anon13
 RESERVED	include\stm8s.h	1967;"	member	struct:UART3_struct
@@ -849,6 +880,8 @@ RST_SR_WWDGF	include\stm8s.h	1669;"	macro
 RST_TypeDef	include\stm8s.h	1659;"	typedef	typeref:struct:RST_struct
 RST_struct	include\stm8s.h	1655;"	struct
 RXCRCR	include\stm8s.h	1688;"	member	struct:SPI_struct
+RX_BUFFER_1_SIZE	uart1.h	2;"	macro
+RX_BUFFER_3_SIZE	uart3.h	2;"	macro
 Reserved1	include\stm8s.h	2181;"	member	struct:__anon6::__anon7::__anon13
 Reserved2	include\stm8s.h	2187;"	member	struct:__anon6::__anon7::__anon13
 RxFIFO	include\stm8s.h	2210;"	member	union:__anon6::__anon7	typeref:struct:__anon6::__anon7::__anon14
@@ -858,6 +891,14 @@ S32_MAX	include\stm8s.h	235;"	macro
 S32_MIN	include\stm8s.h	236;"	macro
 S8_MAX	include\stm8s.h	229;"	macro
 S8_MIN	include\stm8s.h	230;"	macro
+SCL_HIGH	i2c.h	6;"	macro
+SCL_INIT	i2c.h	4;"	macro
+SCL_LOW	i2c.h	7;"	macro
+SCL_PIN	i2c.h	8;"	macro
+SDA_HIGH	i2c.h	10;"	macro
+SDA_INIT	i2c.h	3;"	macro
+SDA_LOW	i2c.h	11;"	macro
+SDA_PIN	i2c.h	12;"	macro
 SET	include\stm8s.h	221;"	enumerator	enum:__anon3
 SMCR	include\stm8s.h	1109;"	member	struct:TIM5_struct
 SMCR	include\stm8s.h	1248;"	member	struct:TIM6_struct
@@ -1326,6 +1367,7 @@ TRISER	include\stm8s.h	1327;"	member	struct:I2C_struct
 TRUE	include\stm8s.h	219;"	enumerator	enum:__anon2
 TSR	include\stm8s.h	2054;"	member	struct:__anon6
 TXCRCR	include\stm8s.h	1689;"	member	struct:SPI_struct
+TX_BUFFER_1_SIZE	uart1.h	3;"	macro
 TxMailbox	include\stm8s.h	2082;"	member	union:__anon6::__anon7	typeref:struct:__anon6::__anon7::__anon8
 U16_MAX	include\stm8s.h	231;"	macro
 U32_MAX	include\stm8s.h	234;"	macro
@@ -1333,8 +1375,10 @@ U8_MAX	include\stm8s.h	228;"	macro
 UART1	include\stm8s.h	2549;"	macro
 UART1RxInterrupt	stm8_interrupt_vector.c	22;"	prototype	file:	signature:(void)
 UART1RxInterrupt	uart1.c	69;"	function	signature:(void)
+UART1RxInterrupt	uart1.h	32;"	prototype	signature:(void)
 UART1TxInterrupt	stm8_interrupt_vector.c	21;"	prototype	file:	signature:(void)
 UART1TxInterrupt	uart1.c	112;"	function	signature:(void)
+UART1TxInterrupt	uart1.h	34;"	prototype	signature:(void)
 UART1_BRR1_DIVM	include\stm8s.h	1799;"	macro
 UART1_BRR1_RESET_VALUE	include\stm8s.h	1772;"	macro
 UART1_BRR2_DIVF	include\stm8s.h	1802;"	macro
@@ -1456,6 +1500,7 @@ UART2_struct	include\stm8s.h	1849;"	struct
 UART3	include\stm8s.h	2558;"	macro
 UART3RxInterrupt	stm8_interrupt_vector.c	23;"	prototype	file:	signature:(void)
 UART3RxInterrupt	uart3.c	34;"	function	signature:(void)
+UART3RxInterrupt	uart3.h	17;"	prototype	signature:(void)
 UART3_BRR1_DIVM	include\stm8s.h	2002;"	macro
 UART3_BRR1_RESET_VALUE	include\stm8s.h	1977;"	macro
 UART3_BRR2_DIVF	include\stm8s.h	2005;"	macro
@@ -1522,11 +1567,18 @@ WWDG_WR_RESET_VALUE	include\stm8s.h	1629;"	macro
 WWDG_WR_W	include\stm8s.h	1644;"	macro
 WWDG_struct	include\stm8s.h	1617;"	struct
 _COSMIC_	include\stm8s.h	73;"	macro
+_FLASH_IAPSR	main.h	4;"	macro
 _IAR_	include\stm8s.h	77;"	macro
 _RAISONANCE_	include\stm8s.h	75;"	macro
+__CTYPE	c:\program files (x86)\cosmic\cxstm8_32k\hstm8\ctype.h	6;"	macro
 __I	include\stm8s.h	194;"	macro
 __IO	include\stm8s.h	196;"	macro
+__MODS0__	c:\program files (x86)\cosmic\cxstm8_32k\hstm8\mods0.h	11;"	macro
 __O	include\stm8s.h	195;"	macro
+__SIZE_T__	c:\program files (x86)\cosmic\cxstm8_32k\hstm8\stdio.h	9;"	macro
+__SIZE_T__	c:\program files (x86)\cosmic\cxstm8_32k\hstm8\stdlib.h	17;"	macro
+__STDIO__	c:\program files (x86)\cosmic\cxstm8_32k\hstm8\stdio.h	6;"	macro
+__STDLIB__	c:\program files (x86)\cosmic\cxstm8_32k\hstm8\stdlib.h	5;"	macro
 __STM8S_CONF_H	include\stm8s_conf.h	24;"	macro
 __STM8S_H	include\stm8s.h	24;"	macro
 __STM8S_STDPERIPH_VERSION	include\stm8s.h	174;"	macro
@@ -1534,11 +1586,18 @@ __STM8S_STDPERIPH_VERSION_MAIN	include\stm8s.h	170;"	macro
 __STM8S_STDPERIPH_VERSION_RC	include\stm8s.h	173;"	macro
 __STM8S_STDPERIPH_VERSION_SUB1	include\stm8s.h	171;"	macro
 __STM8S_STDPERIPH_VERSION_SUB2	include\stm8s.h	172;"	macro
+__STRING__	c:\program files (x86)\cosmic\cxstm8_32k\hstm8\string.h	6;"	macro
+__WCHAR_T__	c:\program files (x86)\cosmic\cxstm8_32k\hstm8\stdlib.h	22;"	macro
 _ds1307_read_time	ds1307.c	19;"	function	signature:(char *buff)
+_ds1307_read_time	ds1307.h	4;"	prototype	signature:(char *buff)
 _ds1307_write_byte	ds1307.c	5;"	function	signature:(char adr,char data)
+_ds1307_write_byte	ds1307.h	2;"	prototype	signature:(char adr,char data)
+_fctcpy	c:\program files (x86)\cosmic\cxstm8_32k\hstm8\stdlib.h	55;"	prototype	signature:(char)
 _stext	stm8_interrupt_vector.c	25;"	prototype	file:
 _vectab	stm8_interrupt_vector.c	27;"	variable
 a_ind	main.c	71;"	variable
+abort	c:\program files (x86)\cosmic\cxstm8_32k\hstm8\stdlib.h	57;"	macro
+abs	c:\program files (x86)\cosmic\cxstm8_32k\hstm8\stdlib.h	36;"	prototype	signature:(int i)
 airSensorErrorStat	main.c	90;"	variable
 airSensorErrorStatOld	main.c	90;"	variable
 airSensorLineErrorDrv	main.c	319;"	function	signature:(void)
@@ -1546,6 +1605,9 @@ aktualTemper	main.c	87;"	variable
 assert_failed	include\stm8s_conf.h	99;"	prototype	signature:(uint8_t* file, uint32_t line)
 assert_param	include\stm8s_conf.h	101;"	macro
 assert_param	include\stm8s_conf.h	97;"	macro
+atof	c:\program files (x86)\cosmic\cxstm8_32k\hstm8\stdlib.h	37;"	prototype	signature:(char *nptr)
+atoi	c:\program files (x86)\cosmic\cxstm8_32k\hstm8\stdlib.h	38;"	prototype	signature:(char *nptr)
+atol	c:\program files (x86)\cosmic\cxstm8_32k\hstm8\stdlib.h	39;"	prototype	signature:(char *nptr)
 b100Hz	main.c	55;"	variable
 b10Hz	main.c	55;"	variable
 b1Hz	main.c	55;"	variable
@@ -1569,11 +1631,14 @@ bWARN	main.c	128;"	variable
 bWATCHDOG_REFRESH	main.c	174;"	variable
 b_ind	main.c	71;"	variable
 bcd2ind	lowlev.c	228;"	function	signature:(void)
+bcd2ind	lowlev.h	52;"	prototype	signature:(void)
 bcd2ind_zero	lowlev.c	239;"	function	signature:(void)
+bcd2ind_zero	lowlev.h	54;"	prototype	signature:()
 beepTestCnt	main.c	162;"	variable
 beep_drv	main.c	425;"	function	signature:(void)
 beep_drv_cnt	main.c	123;"	variable
 bin2bcd_int	lowlev.c	216;"	function	signature:(unsigned short in)
+bin2bcd_int	lowlev.h	50;"	prototype	signature:(unsigned short in)
 bool	include\stm8s.h	219;"	typedef	typeref:enum:__anon2
 buferBodyToSendPDUSMS	modem.c	34;"	variable
 buferBodyToSendPDUSMS__	modem.c	35;"	variable
@@ -1582,13 +1647,29 @@ buff_for_time	main.c	96;"	variable
 but	lowlev.c	9;"	variable
 but0_cnt	lowlev.c	11;"	variable
 but1_cnt	lowlev.c	11;"	variable
+butD	main.h	92;"	macro
+butD_	main.h	97;"	macro
+butM	main.h	90;"	macro
+butMD_	main.h	99;"	macro
+butMU_	main.h	101;"	macro
+butM_	main.h	95;"	macro
+butON	main.h	89;"	macro
+butOND_	main.h	100;"	macro
+butON_	main.h	94;"	macro
+butU	main.h	91;"	macro
+butUD	main.h	93;"	macro
+butUD_	main.h	98;"	macro
+butU_	main.h	96;"	macro
 but_an	main.c	1286;"	function	signature:(void)
+but_an	main.h	187;"	prototype	signature:(void)
 but_drv	lowlev.c	109;"	function	signature:(void)
+but_drv	lowlev.h	36;"	prototype	signature:(void)
 but_n	lowlev.c	9;"	variable
 but_new	lowlev.c	8;"	variable
 but_onL_temp	lowlev.c	13;"	variable
 but_s	lowlev.c	9;"	variable
 c_ind	main.c	71;"	variable
+calloc	c:\program files (x86)\cosmic\cxstm8_32k\hstm8\stdlib.h	40;"	prototype	signature:(unsigned int nelem, unsigned int elsize)
 cbcRequ	uart1.c	36;"	variable
 cbcSystemRequ	main.c	154;"	variable
 cbcVoltage	main.c	157;"	variable
@@ -1596,59 +1677,121 @@ cbc_temp	main.c	155;"	variable
 cbc_temp1	main.c	156;"	variable
 cell	uart1.c	39;"	variable
 clear_ind	lowlev.c	159;"	function	signature:(void)
+clear_ind	lowlev.h	38;"	prototype	signature:(void)
 cntAirSensorLineErrorHi	main.c	133;"	variable
 cntAirSensorLineErrorLo	main.c	132;"	variable
 currRandom	main.c	51;"	variable
 day_sheduler_time	main.c	107;"	variable
 delay_us	lowlev.c	99;"	function	signature:(short num_of_delay)
+delay_us	lowlev.h	34;"	prototype	signature:(short num_of_delay)
 dig	main.c	65;"	variable
 digi	uart3.c	21;"	variable
 disableInterrupts	include\stm8s.h	2602;"	macro
 disableInterrupts	include\stm8s.h	2611;"	macro
 disableInterrupts	include\stm8s.h	2621;"	macro
+div	c:\program files (x86)\cosmic\cxstm8_32k\hstm8\stdlib.h	41;"	prototype	signature:(int numer, int denom)
+div_t	c:\program files (x86)\cosmic\cxstm8_32k\hstm8\stdlib.h	29;"	typedef	typeref:struct:__anon15
 ds18b20ErrorHiCnt	ds18b20.c	10;"	variable
 ds18b20ErrorLoCnt	ds18b20.c	11;"	variable
 ds18b20ErrorOffCnt	ds18b20.c	12;"	variable
 ds18b20_temper_drv	ds18b20.c	18;"	function	signature:(void)
+ds18b20_temper_drv	ds18b20.h	13;"	prototype	signature:(void)
+dsesHI	ds18b20.h	6;"	enumerator	enum:__anon17
+dsesLO	ds18b20.h	6;"	enumerator	enum:__anon17
+dsesNORM	ds18b20.h	6;"	enumerator	enum:__anon17
 dummy	modem.c	45;"	member	struct:__anon1	file:
+eepera	c:\program files (x86)\cosmic\cxstm8_32k\hstm8\string.h	35;"	macro
 enableInterrupts	include\stm8s.h	2601;"	macro
 enableInterrupts	include\stm8s.h	2610;"	macro
 enableInterrupts	include\stm8s.h	2620;"	macro
+enumDsErrorStat	ds18b20.h	6;"	typedef	typeref:enum:__anon17
+enumOutMode	main.h	11;"	typedef	typeref:enum:__anon19
+enumPowerAlarm	main.h	9;"	typedef	typeref:enum:__anon18
+enumPowerStat	main.h	158;"	typedef	typeref:enum:__anon25
+enumTemperOfAirErrorStat	main.h	109;"	typedef	typeref:enum:__anon23
+enumWaterTemperAlarm	main.h	144;"	typedef	typeref:enum:__anon24
+enum_modemLinkState	modem.h	11;"	typedef	typeref:enum:__anon27
+enum_modemPowerState	modem.h	6;"	typedef	typeref:enum:__anon26
+enum_modemState	modem.h	13;"	typedef	typeref:enum:__anon28
+enum_out_stat	main.h	84;"	typedef	typeref:enum:__anon22
 error_warn_hndl	main.c	300;"	function	signature:(void)
+exit	c:\program files (x86)\cosmic\cxstm8_32k\hstm8\stdlib.h	42;"	prototype	signature:(int status)
 fiksRandom	main.c	51;"	variable
 find_empty_number_cell	modem.c	669;"	function	signature:(void)
+find_empty_number_cell	modem.h	68;"	prototype	signature:(void)
 find_number_fild_in_text	modem.c	735;"	function	signature:(char* text)
+find_number_fild_in_text	modem.h	74;"	prototype	signature:(char* text)
 find_number_in_text	modem.c	618;"	function	signature:(char* text)
+find_number_in_text	modem.h	62;"	prototype	signature:(char* text)
 find_this_number_in_autorized	modem.c	634;"	function	signature:(char* number)
+find_this_number_in_autorized	modem.h	65;"	prototype	signature:(char* number)
+free	c:\program files (x86)\cosmic\cxstm8_32k\hstm8\stdlib.h	43;"	prototype	signature:(void *ptr)
+getchar	c:\program files (x86)\cosmic\cxstm8_32k\hstm8\stdio.h	15;"	prototype	signature:(void)
+gets	c:\program files (x86)\cosmic\cxstm8_32k\hstm8\stdio.h	16;"	prototype	signature:(char *s)
 gran_char	lowlev.c	195;"	function	signature:(signed char *adr, signed char min, signed char max)
+gran_char	lowlev.h	44;"	prototype	signature:(signed char *adr, signed char min, signed char max)
 gran_ring_char	lowlev.c	209;"	function	signature:(signed char *adr, signed char min, signed char max)
+gran_ring_char	lowlev.h	48;"	prototype	signature:(signed char *adr, signed char min, signed char max)
 gran_uchar	lowlev.c	202;"	function	signature:(unsigned char *adr, unsigned char min, unsigned char max)
+gran_uchar	lowlev.h	46;"	prototype	signature:(unsigned char *adr, unsigned char min, unsigned char max)
 halt	include\stm8s.h	2608;"	macro
 halt	include\stm8s.h	2617;"	macro
 halt	include\stm8s.h	2627;"	macro
+i	main.h	63;"	member	struct:__anon21
 i2c_ReadAcknowledge	i2c.c	31;"	function	signature:(void)
+i2c_ReadAcknowledge	i2c.h	21;"	prototype	signature:(void)
 i2c_ReadByte	i2c.c	47;"	function	signature:(void)
+i2c_ReadByte	i2c.h	23;"	prototype	signature:(void)
 i2c_Restart	i2c.c	18;"	function	signature:(void)
+i2c_Restart	i2c.h	19;"	prototype	signature:(void)
 i2c_SendAcknowledge	i2c.c	69;"	function	signature:(unsigned char status)
+i2c_SendAcknowledge	i2c.h	25;"	prototype	signature:(unsigned char status)
 i2c_SendByte	i2c.c	90;"	function	signature:(unsigned char byte)
+i2c_SendByte	i2c.h	27;"	prototype	signature:(unsigned char byte)
 i2c_Start	i2c.c	5;"	function	signature:(void)
+i2c_Start	i2c.h	17;"	prototype	signature:(void)
 i2c_Stop	i2c.c	120;"	function	signature:(void)
+i2c_Stop	i2c.h	29;"	prototype	signature:(void)
+i2c_init	i2c.h	15;"	prototype	signature:(void)
+iAfterReset	main.h	57;"	enumerator	enum:__anon20
+iAir	main.h	58;"	enumerator	enum:__anon20
+iDate_W	main.h	56;"	enumerator	enum:__anon20
+iDeb	main.h	56;"	enumerator	enum:__anon20
+iDefSet	main.h	56;"	enumerator	enum:__anon20
+iInterf	main.h	58;"	enumerator	enum:__anon20
+iMn	main.h	56;"	enumerator	enum:__anon20
+iMn_number	main.h	57;"	enumerator	enum:__anon20
+iModem_deb	main.h	57;"	enumerator	enum:__anon20
+iSet	main.h	56;"	enumerator	enum:__anon20
+iSetT	main.h	56;"	enumerator	enum:__anon20
+iSetTable	main.h	56;"	enumerator	enum:__anon20
+iSetTable_	main.h	56;"	enumerator	enum:__anon20
+iSet_	main.h	56;"	enumerator	enum:__anon20
+iTemperSet	main.h	56;"	enumerator	enum:__anon20
+iWater	main.h	58;"	enumerator	enum:__anon20
+i_s	main.h	67;"	member	struct:__anon21
 incommingNumber	uart1.c	21;"	variable
 incommingNumberToMain	uart1.c	22;"	variable
 incommingNumberUSSDRequ	uart1.c	23;"	variable
+ind	main.h	72;"	macro
 ind_check_cnt	main.c	166;"	variable
 ind_check_cnt1	main.c	167;"	variable
 ind_cnt	main.c	60;"	variable
+ind_enum	main.h	59;"	typedef	typeref:enum:__anon20
 ind_hndl	main.c	626;"	function	signature:(void)
+ind_hndl	main.h	189;"	prototype	signature:(void)
 ind_outB	main.c	61;"	variable
 ind_outC	main.c	62;"	variable
 ind_outG	main.c	63;"	variable
 ind_out_	main.c	66;"	variable
 ind_pointer	main.c	72;"	variable
 ind_strob	main.c	64;"	variable
+index_set	main.h	76;"	macro
 int16_t	include\stm8s.h	200;"	typedef
 int2indII_slkuf	lowlev.c	281;"	function	signature:(unsigned short in, char start, char len, char komma, char unzero, char fl)
+int2indII_slkuf	lowlev.h	58;"	prototype	signature:(unsigned short in, char start, char len, char komma, char unzero, char fl)
 int2indI_slkuf	lowlev.c	258;"	function	signature:(unsigned short in, char start, char len, char komma, char unzero, char fl)
+int2indI_slkuf	lowlev.h	56;"	prototype	signature:(unsigned short in, char start, char len, char komma, char unzero, char fl)
 int32_t	include\stm8s.h	201;"	typedef
 int8_t	include\stm8s.h	199;"	typedef
 interrupt_handler	stm8_interrupt_vector.c	9;"	member	struct:interrupt_vector	file:
@@ -1658,20 +1801,51 @@ interrupt_vector	stm8_interrupt_vector.c	7;"	struct	file:
 isFromAutorizedNumberMess	uart1.c	27;"	variable
 isFromMainNumberMess	uart1.c	26;"	variable
 isFromNotAutorizedNumberMess	uart1.c	28;"	variable
+isalnum	c:\program files (x86)\cosmic\cxstm8_32k\hstm8\ctype.h	10;"	prototype	signature:(char c)
+isalpha	c:\program files (x86)\cosmic\cxstm8_32k\hstm8\ctype.h	11;"	prototype	signature:(char c)
+iscntrl	c:\program files (x86)\cosmic\cxstm8_32k\hstm8\ctype.h	12;"	prototype	signature:(char c)
+isdigit	c:\program files (x86)\cosmic\cxstm8_32k\hstm8\ctype.h	13;"	prototype	signature:(char c)
+isdigit	c:\program files (x86)\cosmic\cxstm8_32k\hstm8\ctype.h	26;"	macro
+isgraph	c:\program files (x86)\cosmic\cxstm8_32k\hstm8\ctype.h	14;"	prototype	signature:(char c)
+islower	c:\program files (x86)\cosmic\cxstm8_32k\hstm8\ctype.h	15;"	prototype	signature:(char c)
+islower	c:\program files (x86)\cosmic\cxstm8_32k\hstm8\ctype.h	27;"	macro
+isprint	c:\program files (x86)\cosmic\cxstm8_32k\hstm8\ctype.h	16;"	prototype	signature:(char c)
+ispunct	c:\program files (x86)\cosmic\cxstm8_32k\hstm8\ctype.h	17;"	prototype	signature:(char c)
+isqrt	c:\program files (x86)\cosmic\cxstm8_32k\hstm8\stdlib.h	53;"	prototype	signature:(unsigned int)
+isspace	c:\program files (x86)\cosmic\cxstm8_32k\hstm8\ctype.h	18;"	prototype	signature:(char c)
+isupper	c:\program files (x86)\cosmic\cxstm8_32k\hstm8\ctype.h	19;"	prototype	signature:(char c)
+isupper	c:\program files (x86)\cosmic\cxstm8_32k\hstm8\ctype.h	28;"	macro
+isxdigit	c:\program files (x86)\cosmic\cxstm8_32k\hstm8\ctype.h	20;"	prototype	signature:(char c)
 l_but	lowlev.c	10;"	variable
+labs	c:\program files (x86)\cosmic\cxstm8_32k\hstm8\stdlib.h	44;"	prototype	signature:(long l)
+ldiv	c:\program files (x86)\cosmic\cxstm8_32k\hstm8\stdlib.h	45;"	prototype	signature:(long numer, long denom)
+ldiv_t	c:\program files (x86)\cosmic\cxstm8_32k\hstm8\stdlib.h	34;"	typedef	typeref:struct:__anon16
 led_flash	lowlev.c	376;"	function	signature:(signed char led_num)
+led_flash	lowlev.h	74;"	prototype	signature:(signed char led_num)
 led_ind_out1	main.c	75;"	variable
 led_ind_out2	main.c	75;"	variable
 led_mask_off	lowlev.c	348;"	function	signature:(signed char led_mask)
+led_mask_off	lowlev.h	66;"	prototype	signature:(signed char led_mask)
 led_mask_on	lowlev.c	355;"	function	signature:(signed char led_mask)
+led_mask_on	lowlev.h	68;"	prototype	signature:(signed char led_mask)
 led_off	lowlev.c	362;"	function	signature:(signed char led_num)
+led_off	lowlev.h	70;"	prototype	signature:(signed char led_num)
 led_on	lowlev.c	369;"	function	signature:(signed char led_num)
+led_on	lowlev.h	72;"	prototype	signature:(signed char led_num)
 led_set	lowlev.c	325;"	function	signature:(signed char led_num, signed char led_stat)
+led_set	lowlev.h	64;"	prototype	signature:(signed char led_num, signed char led_stat)
 lenPDUSMS	modem.c	36;"	variable
+lsqrt	c:\program files (x86)\cosmic\cxstm8_32k\hstm8\stdlib.h	54;"	prototype	signature:(unsigned long)
 main	main.c	2103;"	function
 mainCnt	main.c	57;"	variable
 main_power_off_hndl_cnt	main.c	153;"	variable
+malloc	c:\program files (x86)\cosmic\cxstm8_32k\hstm8\stdlib.h	46;"	prototype	signature:(unsigned int size)
 matemath	main.c	599;"	function	signature:(void)
+memchr	c:\program files (x86)\cosmic\cxstm8_32k\hstm8\string.h	28;"	prototype	signature:(void *s, char c, unsigned int n)
+memcmp	c:\program files (x86)\cosmic\cxstm8_32k\hstm8\string.h	22;"	prototype	signature:(void *s1, void *s2, unsigned int n)
+memcpy	c:\program files (x86)\cosmic\cxstm8_32k\hstm8\string.h	29;"	prototype	signature:(void *s1, void *s2, unsigned int n)
+memmove	c:\program files (x86)\cosmic\cxstm8_32k\hstm8\string.h	30;"	prototype	signature:(void *s1, void *s2, unsigned int n)
+memset	c:\program files (x86)\cosmic\cxstm8_32k\hstm8\string.h	31;"	prototype	signature:(void *s, char c, unsigned int n)
 mode	modem.c	44;"	member	struct:__anon1	file:
 modemDrvInitStepCnt	modem.c	22;"	variable
 modemDrvPDUSMSSendStepCnt	modem.c	24;"	variable
@@ -1686,11 +1860,15 @@ modemPowerState	modem.c	14;"	variable
 modemStatCnt0	modem.c	11;"	variable
 modemState	modem.c	18;"	variable
 modem_drv	modem.c	199;"	function	signature:(void)
+modem_drv	modem.h	53;"	prototype	signature:(void)
 modem_gpio_init	modem.c	52;"	function	signature:(void)
+modem_gpio_init	modem.h	48;"	prototype	signature:(void)
 modem_plazma	uart1.c	43;"	variable
 modem_plazma1	uart1.c	44;"	variable
 modem_send_sms	modem.c	529;"	function	signature:(char mode, char *number, char *text)
+modem_send_sms	modem.h	55;"	prototype	signature:(char mode, char *number, char *text)
 modem_stat_drv	modem.c	81;"	function	signature:(void)
+modem_stat_drv	modem.h	51;"	prototype	signature:(void)
 n_but	lowlev.c	10;"	variable
 net_l_cnt_down	modem.c	15;"	variable
 net_l_cnt_one	modem.c	16;"	variable
@@ -1704,10 +1882,17 @@ number	modem.c	43;"	member	struct:__anon1	file:
 numberToSendSMS	modem.c	30;"	variable
 numberToSendSMS_	modem.c	31;"	variable
 number_temp	uart1.c	38;"	variable
+omOFF	main.h	11;"	enumerator	enum:__anon19
+omON	main.h	11;"	enumerator	enum:__anon19
 optr_kontr_cnt	main.c	81;"	variable
 optr_stat	main.c	80;"	variable
+osOFF	main.h	84;"	enumerator	enum:__anon22
+osON	main.h	84;"	enumerator	enum:__anon22
 out_drv	lowlev.c	26;"	function	signature:(void)
+out_drv	lowlev.h	30;"	prototype	signature:(void)
 out_stat	main.c	79;"	variable
+paALARM	main.h	9;"	enumerator	enum:__anon18
+paNORM	main.h	9;"	enumerator	enum:__anon18
 phoneNumberForSMS	modem.c	27;"	variable
 powerEnabled	main.c	119;"	variable
 powerNecc	main.c	117;"	variable
@@ -1721,17 +1906,30 @@ power_in_drv_off_cnt	main.c	147;"	variable
 power_in_test	main.c	275;"	function	signature:(void)
 power_necc_hndl	main.c	580;"	function	signature:(void)
 power_off_hndl	main.c	509;"	function	signature:(void)
+printf	c:\program files (x86)\cosmic\cxstm8_32k\hstm8\stdio.h	17;"	prototype	signature:(char *format, ...)
+psOFF	main.h	158;"	enumerator	enum:__anon25
+psON	main.h	158;"	enumerator	enum:__anon25
 ptr1	uart3.c	19;"	variable
 ptr2	uart3.c	20;"	variable
 ptrTemp	modem.c	37;"	variable
 putchar	uart1.c	128;"	function	signature:(char c)
+puts	c:\program files (x86)\cosmic\cxstm8_32k\hstm8\stdio.h	19;"	prototype	signature:(char *s)
+quot	c:\program files (x86)\cosmic\cxstm8_32k\hstm8\stdlib.h	27;"	member	struct:__anon15
+quot	c:\program files (x86)\cosmic\cxstm8_32k\hstm8\stdlib.h	32;"	member	struct:__anon16
+rand	c:\program files (x86)\cosmic\cxstm8_32k\hstm8\stdlib.h	47;"	prototype	signature:(void)
 rand_dig	main.c	142;"	variable
 rand_dig_str	main.c	143;"	variable
 random_gen	lowlev.c	383;"	function	signature:(void)
+random_gen	lowlev.h	76;"	prototype	signature:(void)
+realloc	c:\program files (x86)\cosmic\cxstm8_32k\hstm8\stdlib.h	48;"	prototype	signature:(void *ptr, unsigned int size)
+rem	c:\program files (x86)\cosmic\cxstm8_32k\hstm8\stdlib.h	28;"	member	struct:__anon15
+rem	c:\program files (x86)\cosmic\cxstm8_32k\hstm8\stdlib.h	33;"	member	struct:__anon16
 retCnt	lowlev.c	22;"	variable
 retStep	lowlev.c	23;"	variable
 ret_ind	lowlev.c	306;"	function	signature:(char r_c, char r_s)
+ret_ind	lowlev.h	60;"	prototype	signature:(char r_c, char r_s)
 ret_ind_hndl	lowlev.c	313;"	function	signature:(void)
+ret_ind_hndl	lowlev.h	62;"	prototype	signature:(void)
 rim	include\stm8s.h	2603;"	macro
 rim	include\stm8s.h	2612;"	macro
 rim	include\stm8s.h	2622;"	macro
@@ -1743,21 +1941,57 @@ rx_wr_index3	uart3.c	12;"	variable
 s16	include\stm8s.h	211;"	typedef
 s32	include\stm8s.h	210;"	typedef
 s8	include\stm8s.h	212;"	typedef
+s_i	main.h	64;"	member	struct:__anon21
+s_i1	main.h	65;"	member	struct:__anon21
+s_i2	main.h	66;"	member	struct:__anon21
+scanf	c:\program files (x86)\cosmic\cxstm8_32k\hstm8\stdio.h	20;"	prototype	signature:(char *format, ...)
 sheduler_hndl	main.c	475;"	function	signature:(void)
 sim	include\stm8s.h	2604;"	macro
 sim	include\stm8s.h	2613;"	macro
 sim	include\stm8s.h	2623;"	macro
+size_t	c:\program files (x86)\cosmic\cxstm8_32k\hstm8\stdio.h	10;"	typedef
+size_t	c:\program files (x86)\cosmic\cxstm8_32k\hstm8\stdlib.h	18;"	typedef
 smsFifo	modem.c	46;"	variable	typeref:struct:__anon1
 smsFifoRdPtr	modem.c	48;"	variable
 smsFifoWrPtr	modem.c	47;"	variable
 sms_fifo_drv	modem.c	679;"	function	signature:(void)
+sms_fifo_drv	modem.h	71;"	prototype	signature:(void)
 speed	lowlev.c	12;"	variable
+sprintf	c:\program files (x86)\cosmic\cxstm8_32k\hstm8\stdio.h	22;"	prototype	signature:(char *s, char *format, ...)
+srand	c:\program files (x86)\cosmic\cxstm8_32k\hstm8\stdlib.h	49;"	prototype	signature:(unsigned int seed)
+sscanf	c:\program files (x86)\cosmic\cxstm8_32k\hstm8\stdio.h	21;"	prototype	signature:(char *s, char *format, ...)
+strcat	c:\program files (x86)\cosmic\cxstm8_32k\hstm8\string.h	14;"	prototype	signature:(char *s1, char *s2)
+strchr	c:\program files (x86)\cosmic\cxstm8_32k\hstm8\string.h	15;"	prototype	signature:(char *s, char c)
+strcmp	c:\program files (x86)\cosmic\cxstm8_32k\hstm8\string.h	23;"	prototype	signature:(char *s1, char *s2)
+strcpy	c:\program files (x86)\cosmic\cxstm8_32k\hstm8\string.h	16;"	prototype	signature:(char *s1, char *s2)
+strcspn	c:\program files (x86)\cosmic\cxstm8_32k\hstm8\string.h	25;"	prototype	signature:(char *s1, char *s2)
+strlen	c:\program files (x86)\cosmic\cxstm8_32k\hstm8\string.h	26;"	prototype	signature:(char *s)
+strncat	c:\program files (x86)\cosmic\cxstm8_32k\hstm8\string.h	17;"	prototype	signature:(char *s1, char *s2, unsigned int n)
+strncmp	c:\program files (x86)\cosmic\cxstm8_32k\hstm8\string.h	24;"	prototype	signature:(char *s1, char *s2, unsigned int n)
+strncpy	c:\program files (x86)\cosmic\cxstm8_32k\hstm8\string.h	18;"	prototype	signature:(char *s1, char *s2, unsigned int n)
+strpbrk	c:\program files (x86)\cosmic\cxstm8_32k\hstm8\string.h	19;"	prototype	signature:(char *s1, char *s2)
+strrchr	c:\program files (x86)\cosmic\cxstm8_32k\hstm8\string.h	20;"	prototype	signature:(char *s, char c)
+strspn	c:\program files (x86)\cosmic\cxstm8_32k\hstm8\string.h	27;"	prototype	signature:(char *s1, char *s2)
+strstr	c:\program files (x86)\cosmic\cxstm8_32k\hstm8\string.h	21;"	prototype	signature:(char *s1, char *s2)
+strtod	c:\program files (x86)\cosmic\cxstm8_32k\hstm8\stdlib.h	50;"	prototype	signature:(char *s, char **endptr)
+strtol	c:\program files (x86)\cosmic\cxstm8_32k\hstm8\stdlib.h	51;"	prototype	signature:(char *s, char **endptr, int base)
+strtoul	c:\program files (x86)\cosmic\cxstm8_32k\hstm8\stdlib.h	58;"	macro
+struct_ind	main.h	68;"	typedef	typeref:struct:__anon21
+sub_ind	main.h	73;"	macro
+sub_ind1	main.h	74;"	macro
+sub_ind2	main.h	75;"	macro
 t0_cnt0	main.c	56;"	variable
 t0_cnt1	main.c	56;"	variable
 t0_cnt2	main.c	56;"	variable
 t0_cnt3	main.c	56;"	variable
 t0_cnt4	main.c	56;"	variable
 t4_init	main.c	2026;"	function	signature:(void)
+t4_init	main.h	191;"	prototype	signature:(void)
+taesHI	main.h	109;"	enumerator	enum:__anon23
+taesLHI	main.h	109;"	enumerator	enum:__anon23
+taesLLO	main.h	109;"	enumerator	enum:__anon23
+taesLO	main.h	109;"	enumerator	enum:__anon23
+taesNORM	main.h	109;"	enumerator	enum:__anon23
 targetTemper	main.c	88;"	variable
 tempRussianText	modem.c	39;"	variable
 tempStr	modem.c	49;"	variable
@@ -1767,6 +2001,7 @@ temperOfWater	main.c	85;"	variable
 temperRegToSheduler	main.c	89;"	variable
 text	modem.c	42;"	member	struct:__anon1	file:
 text2PDU	modem.c	541;"	function	signature:(char* text, char* adr)
+text2PDU	modem.h	57;"	prototype	signature:(char* text, char* adr)
 textSMS	modem.c	28;"	variable
 textToSendPDUSMS	modem.c	32;"	variable
 textToSendSMS	modem.c	29;"	variable
@@ -1778,11 +2013,15 @@ time_min	main.c	98;"	variable
 time_month	main.c	102;"	variable
 time_sec	main.c	97;"	variable
 time_year	main.c	103;"	variable
+tolower	c:\program files (x86)\cosmic\cxstm8_32k\hstm8\ctype.h	21;"	prototype	signature:(char c)
+toupper	c:\program files (x86)\cosmic\cxstm8_32k\hstm8\ctype.h	22;"	prototype	signature:(char c)
 trap	include\stm8s.h	2606;"	macro
 trap	include\stm8s.h	2615;"	macro
 trap	include\stm8s.h	2625;"	macro
 tree_down	lowlev.c	171;"	function	signature:(signed char offset_ind,signed char offset_sub_ind)
+tree_down	lowlev.h	40;"	prototype	signature:(signed char offset_ind,signed char offset_sub_ind)
 tree_up	lowlev.c	183;"	function	signature:(char tind, char tsub_ind, char tindex_set, char tsub_ind1)
+tree_up	lowlev.h	42;"	prototype	signature:(char tind, char tsub_ind, char tindex_set, char tsub_ind1)
 txBuffer1	uart1.c	14;"	variable
 tx_counter1	uart1.c	18;"	variable
 tx_rd_index1	uart1.c	17;"	variable
@@ -1792,11 +2031,15 @@ u32	include\stm8s.h	214;"	typedef
 u8	include\stm8s.h	216;"	typedef
 uart1_an_buffer	uart1.c	19;"	variable
 uart1_in_an	uart1.c	144;"	function	signature:(void)
+uart1_in_an	uart1.h	36;"	prototype	signature:(void)
 uart1_init	uart1.c	50;"	function	signature:(void)
+uart1_init	uart1.h	30;"	prototype	signature:(void)
 uart1_plazma	uart1.c	42;"	variable
 uart3_an_buffer	uart3.c	13;"	variable
 uart3_in_an	uart3.c	65;"	function	signature:(void)
+uart3_in_an	uart3.h	19;"	prototype	signature:(void)
 uart3_init	uart3.c	24;"	function	signature:(void)
+uart3_init	uart3.h	15;"	prototype	signature:(void)
 uart3_plazma	uart3.c	18;"	variable
 uint16_t	include\stm8s.h	205;"	typedef
 uint32_t	include\stm8s.h	206;"	typedef
@@ -1805,7 +2048,9 @@ ussdRequ	uart1.c	32;"	variable
 version_show_cnt	main.c	176;"	variable
 warmOrder	main.c	44;"	variable
 watchdog_enable	watchdog.c	5;"	function	signature:(void)
+watchdog_enable	watchdog.h	6;"	prototype	signature:(void)
 watchdog_reset	watchdog.c	15;"	function	signature:(void)
+watchdog_reset	watchdog.h	8;"	prototype	signature:(void)
 waterSensorErrorStat	ds18b20.c	13;"	variable
 waterSensorErrorStatOld	ds18b20.c	13;"	variable
 waterTemperAlarm	main.c	137;"	variable
@@ -1817,11 +2062,20 @@ wfi	include\stm8s.h	2616;"	macro
 wfi	include\stm8s.h	2626;"	macro
 wire1_in	ds18b20.c	9;"	variable
 wire1_polling	ds18b20.c	250;"	function	signature:(void)
+wire1_polling	ds18b20.h	25;"	prototype	signature:(void)
 wire1_read_byte	ds18b20.c	205;"	function	signature:(void)
+wire1_read_byte	ds18b20.h	21;"	prototype	signature:(void)
 wire1_rts	ds18b20.c	220;"	function	signature:(void)
+wire1_rts	ds18b20.h	23;"	prototype	signature:(void)
 wire1_send_byte	ds18b20.c	191;"	function	signature:(char in)
+wire1_send_byte	ds18b20.h	19;"	prototype	signature:(char in)
 wire1_w0ts	ds18b20.c	170;"	function	signature:(void)
+wire1_w0ts	ds18b20.h	17;"	prototype	signature:(void)
 wire1_w1ts	ds18b20.c	149;"	function	signature:(void)
+wire1_w1ts	ds18b20.h	15;"	prototype	signature:(void)
+wtaCOOL	main.h	144;"	enumerator	enum:__anon24
+wtaHEAT	main.h	144;"	enumerator	enum:__anon24
+wtaNORM	main.h	144;"	enumerator	enum:__anon24
 x4002	main.c	21;"	variable
 x400C	main.c	22;"	variable
 x401C	main.c	23;"	variable
@@ -1836,4 +2090,254 @@ x4048	main.c	33;"	variable
 x406B	main.c	34;"	variable
 x4075	main.c	35;"	variable
 x407F	main.c	36;"	variable
+x5000	c:\program files (x86)\cosmic\cxstm8_32k\hstm8\iostm8s.h	9;"	variable
+x5001	c:\program files (x86)\cosmic\cxstm8_32k\hstm8\iostm8s.h	10;"	variable
+x5002	c:\program files (x86)\cosmic\cxstm8_32k\hstm8\iostm8s.h	11;"	variable
+x5003	c:\program files (x86)\cosmic\cxstm8_32k\hstm8\iostm8s.h	12;"	variable
+x5004	c:\program files (x86)\cosmic\cxstm8_32k\hstm8\iostm8s.h	13;"	variable
+x5005	c:\program files (x86)\cosmic\cxstm8_32k\hstm8\iostm8s.h	17;"	variable
+x5006	c:\program files (x86)\cosmic\cxstm8_32k\hstm8\iostm8s.h	18;"	variable
+x5007	c:\program files (x86)\cosmic\cxstm8_32k\hstm8\iostm8s.h	19;"	variable
+x5008	c:\program files (x86)\cosmic\cxstm8_32k\hstm8\iostm8s.h	20;"	variable
+x5009	c:\program files (x86)\cosmic\cxstm8_32k\hstm8\iostm8s.h	21;"	variable
+x500a	c:\program files (x86)\cosmic\cxstm8_32k\hstm8\iostm8s.h	25;"	variable
+x500b	c:\program files (x86)\cosmic\cxstm8_32k\hstm8\iostm8s.h	26;"	variable
+x500c	c:\program files (x86)\cosmic\cxstm8_32k\hstm8\iostm8s.h	27;"	variable
+x500d	c:\program files (x86)\cosmic\cxstm8_32k\hstm8\iostm8s.h	28;"	variable
+x500e	c:\program files (x86)\cosmic\cxstm8_32k\hstm8\iostm8s.h	29;"	variable
+x500f	c:\program files (x86)\cosmic\cxstm8_32k\hstm8\iostm8s.h	33;"	variable
+x5010	c:\program files (x86)\cosmic\cxstm8_32k\hstm8\iostm8s.h	34;"	variable
+x5011	c:\program files (x86)\cosmic\cxstm8_32k\hstm8\iostm8s.h	35;"	variable
+x5012	c:\program files (x86)\cosmic\cxstm8_32k\hstm8\iostm8s.h	36;"	variable
+x5013	c:\program files (x86)\cosmic\cxstm8_32k\hstm8\iostm8s.h	37;"	variable
+x5014	c:\program files (x86)\cosmic\cxstm8_32k\hstm8\iostm8s.h	41;"	variable
+x5015	c:\program files (x86)\cosmic\cxstm8_32k\hstm8\iostm8s.h	42;"	variable
+x5016	c:\program files (x86)\cosmic\cxstm8_32k\hstm8\iostm8s.h	43;"	variable
+x5017	c:\program files (x86)\cosmic\cxstm8_32k\hstm8\iostm8s.h	44;"	variable
+x5018	c:\program files (x86)\cosmic\cxstm8_32k\hstm8\iostm8s.h	45;"	variable
+x5019	c:\program files (x86)\cosmic\cxstm8_32k\hstm8\iostm8s.h	49;"	variable
+x501a	c:\program files (x86)\cosmic\cxstm8_32k\hstm8\iostm8s.h	50;"	variable
+x501b	c:\program files (x86)\cosmic\cxstm8_32k\hstm8\iostm8s.h	51;"	variable
+x501c	c:\program files (x86)\cosmic\cxstm8_32k\hstm8\iostm8s.h	52;"	variable
+x501d	c:\program files (x86)\cosmic\cxstm8_32k\hstm8\iostm8s.h	53;"	variable
+x501e	c:\program files (x86)\cosmic\cxstm8_32k\hstm8\iostm8s.h	57;"	variable
+x501f	c:\program files (x86)\cosmic\cxstm8_32k\hstm8\iostm8s.h	58;"	variable
+x5020	c:\program files (x86)\cosmic\cxstm8_32k\hstm8\iostm8s.h	59;"	variable
+x5021	c:\program files (x86)\cosmic\cxstm8_32k\hstm8\iostm8s.h	60;"	variable
+x5022	c:\program files (x86)\cosmic\cxstm8_32k\hstm8\iostm8s.h	61;"	variable
+x5023	c:\program files (x86)\cosmic\cxstm8_32k\hstm8\iostm8s.h	65;"	variable
+x5024	c:\program files (x86)\cosmic\cxstm8_32k\hstm8\iostm8s.h	66;"	variable
+x5025	c:\program files (x86)\cosmic\cxstm8_32k\hstm8\iostm8s.h	67;"	variable
+x5026	c:\program files (x86)\cosmic\cxstm8_32k\hstm8\iostm8s.h	68;"	variable
+x5027	c:\program files (x86)\cosmic\cxstm8_32k\hstm8\iostm8s.h	69;"	variable
+x5028	c:\program files (x86)\cosmic\cxstm8_32k\hstm8\iostm8s.h	73;"	variable
+x5029	c:\program files (x86)\cosmic\cxstm8_32k\hstm8\iostm8s.h	74;"	variable
+x502a	c:\program files (x86)\cosmic\cxstm8_32k\hstm8\iostm8s.h	75;"	variable
+x502b	c:\program files (x86)\cosmic\cxstm8_32k\hstm8\iostm8s.h	76;"	variable
+x502c	c:\program files (x86)\cosmic\cxstm8_32k\hstm8\iostm8s.h	77;"	variable
+x505a	c:\program files (x86)\cosmic\cxstm8_32k\hstm8\iostm8s.h	81;"	variable
+x505b	c:\program files (x86)\cosmic\cxstm8_32k\hstm8\iostm8s.h	82;"	variable
+x505c	c:\program files (x86)\cosmic\cxstm8_32k\hstm8\iostm8s.h	83;"	variable
+x505d	c:\program files (x86)\cosmic\cxstm8_32k\hstm8\iostm8s.h	84;"	variable
+x505e	c:\program files (x86)\cosmic\cxstm8_32k\hstm8\iostm8s.h	85;"	variable
+x505f	c:\program files (x86)\cosmic\cxstm8_32k\hstm8\iostm8s.h	86;"	variable
+x5062	c:\program files (x86)\cosmic\cxstm8_32k\hstm8\iostm8s.h	87;"	variable
+x5064	c:\program files (x86)\cosmic\cxstm8_32k\hstm8\iostm8s.h	88;"	variable
+x50a0	c:\program files (x86)\cosmic\cxstm8_32k\hstm8\iostm8s.h	92;"	variable
+x50a1	c:\program files (x86)\cosmic\cxstm8_32k\hstm8\iostm8s.h	93;"	variable
+x50b3	c:\program files (x86)\cosmic\cxstm8_32k\hstm8\iostm8s.h	97;"	variable
+x50c0	c:\program files (x86)\cosmic\cxstm8_32k\hstm8\iostm8s.h	101;"	variable
+x50c1	c:\program files (x86)\cosmic\cxstm8_32k\hstm8\iostm8s.h	102;"	variable
+x50c3	c:\program files (x86)\cosmic\cxstm8_32k\hstm8\iostm8s.h	103;"	variable
+x50c4	c:\program files (x86)\cosmic\cxstm8_32k\hstm8\iostm8s.h	104;"	variable
+x50c5	c:\program files (x86)\cosmic\cxstm8_32k\hstm8\iostm8s.h	105;"	variable
+x50c6	c:\program files (x86)\cosmic\cxstm8_32k\hstm8\iostm8s.h	106;"	variable
+x50c7	c:\program files (x86)\cosmic\cxstm8_32k\hstm8\iostm8s.h	107;"	variable
+x50c8	c:\program files (x86)\cosmic\cxstm8_32k\hstm8\iostm8s.h	108;"	variable
+x50c9	c:\program files (x86)\cosmic\cxstm8_32k\hstm8\iostm8s.h	109;"	variable
+x50ca	c:\program files (x86)\cosmic\cxstm8_32k\hstm8\iostm8s.h	110;"	variable
+x50cb	c:\program files (x86)\cosmic\cxstm8_32k\hstm8\iostm8s.h	111;"	variable
+x50cc	c:\program files (x86)\cosmic\cxstm8_32k\hstm8\iostm8s.h	112;"	variable
+x50cd	c:\program files (x86)\cosmic\cxstm8_32k\hstm8\iostm8s.h	113;"	variable
+x50d1	c:\program files (x86)\cosmic\cxstm8_32k\hstm8\iostm8s.h	117;"	variable
+x50d2	c:\program files (x86)\cosmic\cxstm8_32k\hstm8\iostm8s.h	118;"	variable
+x50e0	c:\program files (x86)\cosmic\cxstm8_32k\hstm8\iostm8s.h	119;"	variable
+x50e1	c:\program files (x86)\cosmic\cxstm8_32k\hstm8\iostm8s.h	120;"	variable
+x50e2	c:\program files (x86)\cosmic\cxstm8_32k\hstm8\iostm8s.h	121;"	variable
+x50f0	c:\program files (x86)\cosmic\cxstm8_32k\hstm8\iostm8s.h	125;"	variable
+x50f1	c:\program files (x86)\cosmic\cxstm8_32k\hstm8\iostm8s.h	126;"	variable
+x50f2	c:\program files (x86)\cosmic\cxstm8_32k\hstm8\iostm8s.h	127;"	variable
+x50f3	c:\program files (x86)\cosmic\cxstm8_32k\hstm8\iostm8s.h	128;"	variable
+x5200	c:\program files (x86)\cosmic\cxstm8_32k\hstm8\iostm8s.h	132;"	variable
+x5201	c:\program files (x86)\cosmic\cxstm8_32k\hstm8\iostm8s.h	133;"	variable
+x5202	c:\program files (x86)\cosmic\cxstm8_32k\hstm8\iostm8s.h	134;"	variable
+x5203	c:\program files (x86)\cosmic\cxstm8_32k\hstm8\iostm8s.h	135;"	variable
+x5204	c:\program files (x86)\cosmic\cxstm8_32k\hstm8\iostm8s.h	136;"	variable
+x5205	c:\program files (x86)\cosmic\cxstm8_32k\hstm8\iostm8s.h	137;"	variable
+x5206	c:\program files (x86)\cosmic\cxstm8_32k\hstm8\iostm8s.h	138;"	variable
+x5207	c:\program files (x86)\cosmic\cxstm8_32k\hstm8\iostm8s.h	139;"	variable
+x5210	c:\program files (x86)\cosmic\cxstm8_32k\hstm8\iostm8s.h	143;"	variable
+x5211	c:\program files (x86)\cosmic\cxstm8_32k\hstm8\iostm8s.h	144;"	variable
+x5212	c:\program files (x86)\cosmic\cxstm8_32k\hstm8\iostm8s.h	145;"	variable
+x5213	c:\program files (x86)\cosmic\cxstm8_32k\hstm8\iostm8s.h	146;"	variable
+x5214	c:\program files (x86)\cosmic\cxstm8_32k\hstm8\iostm8s.h	147;"	variable
+x5216	c:\program files (x86)\cosmic\cxstm8_32k\hstm8\iostm8s.h	148;"	variable
+x5217	c:\program files (x86)\cosmic\cxstm8_32k\hstm8\iostm8s.h	149;"	variable
+x5218	c:\program files (x86)\cosmic\cxstm8_32k\hstm8\iostm8s.h	150;"	variable
+x5219	c:\program files (x86)\cosmic\cxstm8_32k\hstm8\iostm8s.h	151;"	variable
+x521a	c:\program files (x86)\cosmic\cxstm8_32k\hstm8\iostm8s.h	152;"	variable
+x521b	c:\program files (x86)\cosmic\cxstm8_32k\hstm8\iostm8s.h	153;"	variable
+x521c	c:\program files (x86)\cosmic\cxstm8_32k\hstm8\iostm8s.h	154;"	variable
+x521d	c:\program files (x86)\cosmic\cxstm8_32k\hstm8\iostm8s.h	155;"	variable
+x521e	c:\program files (x86)\cosmic\cxstm8_32k\hstm8\iostm8s.h	156;"	variable
+x5230	c:\program files (x86)\cosmic\cxstm8_32k\hstm8\iostm8s.h	160;"	variable
+x5231	c:\program files (x86)\cosmic\cxstm8_32k\hstm8\iostm8s.h	161;"	variable
+x5232	c:\program files (x86)\cosmic\cxstm8_32k\hstm8\iostm8s.h	162;"	variable
+x5233	c:\program files (x86)\cosmic\cxstm8_32k\hstm8\iostm8s.h	163;"	variable
+x5234	c:\program files (x86)\cosmic\cxstm8_32k\hstm8\iostm8s.h	164;"	variable
+x5235	c:\program files (x86)\cosmic\cxstm8_32k\hstm8\iostm8s.h	165;"	variable
+x5236	c:\program files (x86)\cosmic\cxstm8_32k\hstm8\iostm8s.h	166;"	variable
+x5237	c:\program files (x86)\cosmic\cxstm8_32k\hstm8\iostm8s.h	167;"	variable
+x5238	c:\program files (x86)\cosmic\cxstm8_32k\hstm8\iostm8s.h	168;"	variable
+x5239	c:\program files (x86)\cosmic\cxstm8_32k\hstm8\iostm8s.h	169;"	variable
+x523a	c:\program files (x86)\cosmic\cxstm8_32k\hstm8\iostm8s.h	170;"	variable
+x5240	c:\program files (x86)\cosmic\cxstm8_32k\hstm8\iostm8s.h	174;"	variable
+x5241	c:\program files (x86)\cosmic\cxstm8_32k\hstm8\iostm8s.h	175;"	variable
+x5242	c:\program files (x86)\cosmic\cxstm8_32k\hstm8\iostm8s.h	176;"	variable
+x5243	c:\program files (x86)\cosmic\cxstm8_32k\hstm8\iostm8s.h	177;"	variable
+x5244	c:\program files (x86)\cosmic\cxstm8_32k\hstm8\iostm8s.h	178;"	variable
+x5245	c:\program files (x86)\cosmic\cxstm8_32k\hstm8\iostm8s.h	179;"	variable
+x5246	c:\program files (x86)\cosmic\cxstm8_32k\hstm8\iostm8s.h	180;"	variable
+x5247	c:\program files (x86)\cosmic\cxstm8_32k\hstm8\iostm8s.h	181;"	variable
+x5249	c:\program files (x86)\cosmic\cxstm8_32k\hstm8\iostm8s.h	182;"	variable
+x5250	c:\program files (x86)\cosmic\cxstm8_32k\hstm8\iostm8s.h	186;"	variable
+x5251	c:\program files (x86)\cosmic\cxstm8_32k\hstm8\iostm8s.h	187;"	variable
+x5252	c:\program files (x86)\cosmic\cxstm8_32k\hstm8\iostm8s.h	188;"	variable
+x5253	c:\program files (x86)\cosmic\cxstm8_32k\hstm8\iostm8s.h	189;"	variable
+x5254	c:\program files (x86)\cosmic\cxstm8_32k\hstm8\iostm8s.h	190;"	variable
+x5255	c:\program files (x86)\cosmic\cxstm8_32k\hstm8\iostm8s.h	191;"	variable
+x5256	c:\program files (x86)\cosmic\cxstm8_32k\hstm8\iostm8s.h	192;"	variable
+x5257	c:\program files (x86)\cosmic\cxstm8_32k\hstm8\iostm8s.h	193;"	variable
+x5258	c:\program files (x86)\cosmic\cxstm8_32k\hstm8\iostm8s.h	194;"	variable
+x5259	c:\program files (x86)\cosmic\cxstm8_32k\hstm8\iostm8s.h	195;"	variable
+x525a	c:\program files (x86)\cosmic\cxstm8_32k\hstm8\iostm8s.h	196;"	variable
+x525b	c:\program files (x86)\cosmic\cxstm8_32k\hstm8\iostm8s.h	197;"	variable
+x525c	c:\program files (x86)\cosmic\cxstm8_32k\hstm8\iostm8s.h	198;"	variable
+x525d	c:\program files (x86)\cosmic\cxstm8_32k\hstm8\iostm8s.h	199;"	variable
+x525e	c:\program files (x86)\cosmic\cxstm8_32k\hstm8\iostm8s.h	200;"	variable
+x525f	c:\program files (x86)\cosmic\cxstm8_32k\hstm8\iostm8s.h	201;"	variable
+x5260	c:\program files (x86)\cosmic\cxstm8_32k\hstm8\iostm8s.h	202;"	variable
+x5261	c:\program files (x86)\cosmic\cxstm8_32k\hstm8\iostm8s.h	203;"	variable
+x5262	c:\program files (x86)\cosmic\cxstm8_32k\hstm8\iostm8s.h	204;"	variable
+x5263	c:\program files (x86)\cosmic\cxstm8_32k\hstm8\iostm8s.h	205;"	variable
+x5264	c:\program files (x86)\cosmic\cxstm8_32k\hstm8\iostm8s.h	206;"	variable
+x5265	c:\program files (x86)\cosmic\cxstm8_32k\hstm8\iostm8s.h	207;"	variable
+x5266	c:\program files (x86)\cosmic\cxstm8_32k\hstm8\iostm8s.h	208;"	variable
+x5267	c:\program files (x86)\cosmic\cxstm8_32k\hstm8\iostm8s.h	209;"	variable
+x5268	c:\program files (x86)\cosmic\cxstm8_32k\hstm8\iostm8s.h	210;"	variable
+x5269	c:\program files (x86)\cosmic\cxstm8_32k\hstm8\iostm8s.h	211;"	variable
+x526a	c:\program files (x86)\cosmic\cxstm8_32k\hstm8\iostm8s.h	212;"	variable
+x526b	c:\program files (x86)\cosmic\cxstm8_32k\hstm8\iostm8s.h	213;"	variable
+x526c	c:\program files (x86)\cosmic\cxstm8_32k\hstm8\iostm8s.h	214;"	variable
+x526d	c:\program files (x86)\cosmic\cxstm8_32k\hstm8\iostm8s.h	215;"	variable
+x526e	c:\program files (x86)\cosmic\cxstm8_32k\hstm8\iostm8s.h	216;"	variable
+x526f	c:\program files (x86)\cosmic\cxstm8_32k\hstm8\iostm8s.h	217;"	variable
+x5300	c:\program files (x86)\cosmic\cxstm8_32k\hstm8\iostm8s.h	221;"	variable
+x5301	c:\program files (x86)\cosmic\cxstm8_32k\hstm8\iostm8s.h	222;"	variable
+x5302	c:\program files (x86)\cosmic\cxstm8_32k\hstm8\iostm8s.h	223;"	variable
+x5303	c:\program files (x86)\cosmic\cxstm8_32k\hstm8\iostm8s.h	224;"	variable
+x5304	c:\program files (x86)\cosmic\cxstm8_32k\hstm8\iostm8s.h	225;"	variable
+x5305	c:\program files (x86)\cosmic\cxstm8_32k\hstm8\iostm8s.h	226;"	variable
+x5306	c:\program files (x86)\cosmic\cxstm8_32k\hstm8\iostm8s.h	227;"	variable
+x5307	c:\program files (x86)\cosmic\cxstm8_32k\hstm8\iostm8s.h	228;"	variable
+x5308	c:\program files (x86)\cosmic\cxstm8_32k\hstm8\iostm8s.h	229;"	variable
+x5309	c:\program files (x86)\cosmic\cxstm8_32k\hstm8\iostm8s.h	230;"	variable
+x530a	c:\program files (x86)\cosmic\cxstm8_32k\hstm8\iostm8s.h	231;"	variable
+x530b	c:\program files (x86)\cosmic\cxstm8_32k\hstm8\iostm8s.h	232;"	variable
+x530c	c:\program files (x86)\cosmic\cxstm8_32k\hstm8\iostm8s.h	233;"	variable
+x530d	c:\program files (x86)\cosmic\cxstm8_32k\hstm8\iostm8s.h	234;"	variable
+x530e	c:\program files (x86)\cosmic\cxstm8_32k\hstm8\iostm8s.h	235;"	variable
+x530f	c:\program files (x86)\cosmic\cxstm8_32k\hstm8\iostm8s.h	236;"	variable
+x5310	c:\program files (x86)\cosmic\cxstm8_32k\hstm8\iostm8s.h	237;"	variable
+x5311	c:\program files (x86)\cosmic\cxstm8_32k\hstm8\iostm8s.h	238;"	variable
+x5312	c:\program files (x86)\cosmic\cxstm8_32k\hstm8\iostm8s.h	239;"	variable
+x5313	c:\program files (x86)\cosmic\cxstm8_32k\hstm8\iostm8s.h	240;"	variable
+x5314	c:\program files (x86)\cosmic\cxstm8_32k\hstm8\iostm8s.h	241;"	variable
+x5320	c:\program files (x86)\cosmic\cxstm8_32k\hstm8\iostm8s.h	245;"	variable
+x5321	c:\program files (x86)\cosmic\cxstm8_32k\hstm8\iostm8s.h	246;"	variable
+x5322	c:\program files (x86)\cosmic\cxstm8_32k\hstm8\iostm8s.h	247;"	variable
+x5323	c:\program files (x86)\cosmic\cxstm8_32k\hstm8\iostm8s.h	248;"	variable
+x5324	c:\program files (x86)\cosmic\cxstm8_32k\hstm8\iostm8s.h	249;"	variable
+x5325	c:\program files (x86)\cosmic\cxstm8_32k\hstm8\iostm8s.h	250;"	variable
+x5326	c:\program files (x86)\cosmic\cxstm8_32k\hstm8\iostm8s.h	251;"	variable
+x5327	c:\program files (x86)\cosmic\cxstm8_32k\hstm8\iostm8s.h	252;"	variable
+x5328	c:\program files (x86)\cosmic\cxstm8_32k\hstm8\iostm8s.h	253;"	variable
+x5329	c:\program files (x86)\cosmic\cxstm8_32k\hstm8\iostm8s.h	254;"	variable
+x532a	c:\program files (x86)\cosmic\cxstm8_32k\hstm8\iostm8s.h	255;"	variable
+x532b	c:\program files (x86)\cosmic\cxstm8_32k\hstm8\iostm8s.h	256;"	variable
+x532c	c:\program files (x86)\cosmic\cxstm8_32k\hstm8\iostm8s.h	257;"	variable
+x532d	c:\program files (x86)\cosmic\cxstm8_32k\hstm8\iostm8s.h	258;"	variable
+x532e	c:\program files (x86)\cosmic\cxstm8_32k\hstm8\iostm8s.h	259;"	variable
+x532f	c:\program files (x86)\cosmic\cxstm8_32k\hstm8\iostm8s.h	260;"	variable
+x5330	c:\program files (x86)\cosmic\cxstm8_32k\hstm8\iostm8s.h	261;"	variable
+x5340	c:\program files (x86)\cosmic\cxstm8_32k\hstm8\iostm8s.h	265;"	variable
+x5341	c:\program files (x86)\cosmic\cxstm8_32k\hstm8\iostm8s.h	266;"	variable
+x5342	c:\program files (x86)\cosmic\cxstm8_32k\hstm8\iostm8s.h	267;"	variable
+x5343	c:\program files (x86)\cosmic\cxstm8_32k\hstm8\iostm8s.h	268;"	variable
+x5344	c:\program files (x86)\cosmic\cxstm8_32k\hstm8\iostm8s.h	269;"	variable
+x5345	c:\program files (x86)\cosmic\cxstm8_32k\hstm8\iostm8s.h	270;"	variable
+x5346	c:\program files (x86)\cosmic\cxstm8_32k\hstm8\iostm8s.h	271;"	variable
+x5400	c:\program files (x86)\cosmic\cxstm8_32k\hstm8\iostm8s.h	275;"	variable
+x5401	c:\program files (x86)\cosmic\cxstm8_32k\hstm8\iostm8s.h	276;"	variable
+x5402	c:\program files (x86)\cosmic\cxstm8_32k\hstm8\iostm8s.h	277;"	variable
+x5403	c:\program files (x86)\cosmic\cxstm8_32k\hstm8\iostm8s.h	278;"	variable
+x5404	c:\program files (x86)\cosmic\cxstm8_32k\hstm8\iostm8s.h	279;"	variable
+x5405	c:\program files (x86)\cosmic\cxstm8_32k\hstm8\iostm8s.h	280;"	variable
+x5406	c:\program files (x86)\cosmic\cxstm8_32k\hstm8\iostm8s.h	281;"	variable
+x5407	c:\program files (x86)\cosmic\cxstm8_32k\hstm8\iostm8s.h	282;"	variable
+x5420	c:\program files (x86)\cosmic\cxstm8_32k\hstm8\iostm8s.h	286;"	variable
+x5421	c:\program files (x86)\cosmic\cxstm8_32k\hstm8\iostm8s.h	287;"	variable
+x5422	c:\program files (x86)\cosmic\cxstm8_32k\hstm8\iostm8s.h	288;"	variable
+x5423	c:\program files (x86)\cosmic\cxstm8_32k\hstm8\iostm8s.h	289;"	variable
+x5424	c:\program files (x86)\cosmic\cxstm8_32k\hstm8\iostm8s.h	290;"	variable
+x5425	c:\program files (x86)\cosmic\cxstm8_32k\hstm8\iostm8s.h	291;"	variable
+x5426	c:\program files (x86)\cosmic\cxstm8_32k\hstm8\iostm8s.h	292;"	variable
+x5427	c:\program files (x86)\cosmic\cxstm8_32k\hstm8\iostm8s.h	293;"	variable
+x5428	c:\program files (x86)\cosmic\cxstm8_32k\hstm8\iostm8s.h	294;"	variable
+x5429	c:\program files (x86)\cosmic\cxstm8_32k\hstm8\iostm8s.h	295;"	variable
+x542a	c:\program files (x86)\cosmic\cxstm8_32k\hstm8\iostm8s.h	296;"	variable
+x542b	c:\program files (x86)\cosmic\cxstm8_32k\hstm8\iostm8s.h	297;"	variable
+x542c	c:\program files (x86)\cosmic\cxstm8_32k\hstm8\iostm8s.h	298;"	variable
+x542d	c:\program files (x86)\cosmic\cxstm8_32k\hstm8\iostm8s.h	299;"	variable
+x542e	c:\program files (x86)\cosmic\cxstm8_32k\hstm8\iostm8s.h	300;"	variable
+x542f	c:\program files (x86)\cosmic\cxstm8_32k\hstm8\iostm8s.h	301;"	variable
+x5430	c:\program files (x86)\cosmic\cxstm8_32k\hstm8\iostm8s.h	302;"	variable
+x5431	c:\program files (x86)\cosmic\cxstm8_32k\hstm8\iostm8s.h	303;"	variable
+x5432	c:\program files (x86)\cosmic\cxstm8_32k\hstm8\iostm8s.h	304;"	variable
+x5433	c:\program files (x86)\cosmic\cxstm8_32k\hstm8\iostm8s.h	305;"	variable
+x5434	c:\program files (x86)\cosmic\cxstm8_32k\hstm8\iostm8s.h	306;"	variable
+x5435	c:\program files (x86)\cosmic\cxstm8_32k\hstm8\iostm8s.h	307;"	variable
+x5436	c:\program files (x86)\cosmic\cxstm8_32k\hstm8\iostm8s.h	308;"	variable
+x5437	c:\program files (x86)\cosmic\cxstm8_32k\hstm8\iostm8s.h	309;"	variable
+x7f60	c:\program files (x86)\cosmic\cxstm8_32k\hstm8\iostm8s.h	313;"	variable
+x7f70	c:\program files (x86)\cosmic\cxstm8_32k\hstm8\iostm8s.h	317;"	variable
+x7f71	c:\program files (x86)\cosmic\cxstm8_32k\hstm8\iostm8s.h	318;"	variable
+x7f72	c:\program files (x86)\cosmic\cxstm8_32k\hstm8\iostm8s.h	319;"	variable
+x7f73	c:\program files (x86)\cosmic\cxstm8_32k\hstm8\iostm8s.h	320;"	variable
+x7f74	c:\program files (x86)\cosmic\cxstm8_32k\hstm8\iostm8s.h	321;"	variable
+x7f75	c:\program files (x86)\cosmic\cxstm8_32k\hstm8\iostm8s.h	322;"	variable
+x7f76	c:\program files (x86)\cosmic\cxstm8_32k\hstm8\iostm8s.h	323;"	variable
+x7f77	c:\program files (x86)\cosmic\cxstm8_32k\hstm8\iostm8s.h	324;"	variable
+x7f80	c:\program files (x86)\cosmic\cxstm8_32k\hstm8\iostm8s.h	328;"	variable
+x7f90	c:\program files (x86)\cosmic\cxstm8_32k\hstm8\iostm8s.h	332;"	variable
+x7f91	c:\program files (x86)\cosmic\cxstm8_32k\hstm8\iostm8s.h	333;"	variable
+x7f92	c:\program files (x86)\cosmic\cxstm8_32k\hstm8\iostm8s.h	334;"	variable
+x7f93	c:\program files (x86)\cosmic\cxstm8_32k\hstm8\iostm8s.h	335;"	variable
+x7f94	c:\program files (x86)\cosmic\cxstm8_32k\hstm8\iostm8s.h	336;"	variable
+x7f95	c:\program files (x86)\cosmic\cxstm8_32k\hstm8\iostm8s.h	337;"	variable
+x7f96	c:\program files (x86)\cosmic\cxstm8_32k\hstm8\iostm8s.h	338;"	variable
+x7f97	c:\program files (x86)\cosmic\cxstm8_32k\hstm8\iostm8s.h	339;"	variable
+x7f98	c:\program files (x86)\cosmic\cxstm8_32k\hstm8\iostm8s.h	340;"	variable
+x7f99	c:\program files (x86)\cosmic\cxstm8_32k\hstm8\iostm8s.h	341;"	variable
+x7f9a	c:\program files (x86)\cosmic\cxstm8_32k\hstm8\iostm8s.h	342;"	variable
 zero_on	main.c	73;"	variable
