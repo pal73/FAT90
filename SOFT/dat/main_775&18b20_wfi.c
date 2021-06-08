@@ -10,9 +10,9 @@
 #define KEY_REFRESH 0xAA
 #define KEY_ACCESS 	0x55
 
-@near bool b100Hz=0,b10Hz=0,b5Hz=0,b1Hz=0;
+@near bool b100Hz=0,b10Hz=0,b5Hz=0,b1Hz=0, b1_3Hz=0;
 @near static char t0_cnt0=0,t0_cnt1=0,t0_cnt2=0,t0_cnt3=0;
-
+@near static short t0_cnt4=0;
 //-----------------------------------------------
 //Измеряемая температура
 short temper;
@@ -307,6 +307,12 @@ if(++t0_cnt0>=125)
 		b1Hz=1;
 		bWFI=0;
 		}
+	if(++t0_cnt4>=300)
+		{
+		t0_cnt4=0;
+		b1_3Hz=1;
+		bWFI=0;
+		}		
 	}
 TIM4->SR1&=~TIM4_SR1_UIF;			// disable break interrupt
 return;
@@ -364,7 +370,7 @@ for(i=0;i<100;i++)
 	if(wire1_polling()==1)cnt++;
 	}
 if(cnt>70)sensor=sens18B20;
-
+/*
 else
 	{
 	i2c_setup();
@@ -373,7 +379,7 @@ else
 		if(i2c_7bit_receive_onebyte(&i2c_temp)==I2C_OK)cnt++;
 		}
 	if(cnt>70)sensor=sens1775;
-	}
+	}*/
 }
 
 
@@ -388,7 +394,7 @@ enableInterrupts();
 				}*/
 while (1)
 	{
-	if(bWFI==1)wfi();
+	//if(bWFI==1)wfi();
 	if(b100Hz)
 		{
 		b100Hz=0;
@@ -536,8 +542,8 @@ while (1)
 				
 				temper=(short)temper_temp;
 				//temper=23;
-				temper=36;
-				temper=(short)wire1_in[0];
+				//temper=36;
+				//temper=(short)wire1_in[0];
 				}
 			//temper=34;
 			temperCRC = (temper%10)+((temper/10)%10)+((temper/100)%10);
@@ -563,13 +569,22 @@ while (1)
 			//out_buff="OK35";
 			//puts(out_buff_digits);
 			//putchar('m');
-			if(airSensorErrorStat==esHI) printf("ERRORHI\n");
-			else if(airSensorErrorStat==esLO) printf("ERRORLO\n");
-			else if(airSensorErrorStat==esNORM) printf("OK%dCRC%d\n",temper,temperCRC);
+
+			//wire1_in[1]=123;
+			//wire1_in[0]=234;
+			//printf("DEBUG %d %d\n",wire1_in[1],wire1_in[0]);
+			//putchar(0x55);
+			//printf("DEBUG %d %d\n\r",temper/*(short)wire1_in[1]*/, (short)wire1_in[0]);
+			if(!bCONV)
+				{
+					if(airSensorErrorStat==esHI) printf("ERRORHI\n");
+		else if(airSensorErrorStat==esLO) printf("ERRORLO\n");
+		else if(airSensorErrorStat==esNORM) printf("OK%dCRC%d\n\r",temper,temperCRC);
+			}
 			}
 		else if(sensor==sens1775)
 			{
-			i2c_setup();
+		/*	i2c_setup();
 			i2c_7bit_send_onebyte(0, 1);
 			temper=i2c_7bit_receive_onebyte(&i2c_temp);
 			if(temper!=I2C_OK)printf("ERRORHI\n");
@@ -579,9 +594,15 @@ while (1)
 				temperCRC = (temper%10)+((temper/10)%10)+((temper/100)%10);
 				temperCRC*=-1;
 				printf("OK%dCRC%d\n",temper,temperCRC);
-				}
+				}*/
 			}
-		}     	     	      
+		} 
+	if(b1_3Hz)
+		{
+		b1_3Hz=0;	
+		
+
+		}
 	};
 	
 }
