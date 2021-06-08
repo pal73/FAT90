@@ -524,6 +524,7 @@ while (1)
 			if(wire1_in[1]&0xf0)
 				{
 					//TODO отрицательная температура
+					temper=35;
 				}
 			else
 				{
@@ -535,7 +536,10 @@ while (1)
 				
 				temper=(short)temper_temp;
 				//temper=23;
+				temper=36;
+				temper=(short)wire1_in[0];
 				}
+			//temper=34;
 			temperCRC = (temper%10)+((temper/10)%10)+((temper/100)%10);
 			temperCRC*=-1;
 	//		out_string="temper=";
