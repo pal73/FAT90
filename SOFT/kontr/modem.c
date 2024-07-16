@@ -242,12 +242,12 @@ else
 			net_l_cnt_up=0;
 			}	
 			
-		else if(modemDrvInitStepCnt==25)
+		else if(modemDrvInitStepCnt==30)
 			{
 			GPIOA->ODR&=~(1<<3);		//Конец воздействия на вход управления питанием модема
 			modemDrvInitStepCnt++;
 			}
-
+/*
 		else if(modemDrvInitStepCnt==30)
 			{
 			if(modemState==MS_LINKED)modemDrvInitStepCnt++;
@@ -258,7 +258,7 @@ else
 			modemDrvInitStepCnt++;
 			}
 
-/*		else if(modemDrvInitStepCnt==32)
+		else if(modemDrvInitStepCnt==32)
 			{
 			printf("AT\r\n");
 			bOK=0;
