@@ -178,6 +178,8 @@ extern @near char beepTestCnt;
 //Проверка индикации
 extern @near short ind_check_cnt;
 extern @near short ind_check_cnt1;
+extern @near short ind_check_cnt1_max;
+
 //^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 //отладка
 //extern char random_plazma;

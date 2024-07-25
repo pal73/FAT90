@@ -212,7 +212,7 @@ else
 		}
 	else 
 		{
-		if(modemDrvInitStepCnt==0)modemDrvInitStepCnt=26;	
+		if(modemDrvInitStepCnt==0)modemDrvInitStepCnt=31;	
 			
 		}
 		
@@ -247,18 +247,18 @@ else
 			GPIOA->ODR&=~(1<<3);		//Конец воздействия на вход управления питанием модема
 			modemDrvInitStepCnt++;
 			}
-/*
-		else if(modemDrvInitStepCnt==30)
+
+		else if(modemDrvInitStepCnt==35)
 			{
 			if(modemState==MS_LINKED)modemDrvInitStepCnt++;
 			}
 
-		else if(modemDrvInitStepCnt==31)
+		else if(modemDrvInitStepCnt==36)
 			{
 			modemDrvInitStepCnt++;
 			}
 
-		else if(modemDrvInitStepCnt==32)
+/*		else if(modemDrvInitStepCnt==32)
 			{
 			printf("AT\r\n");
 			bOK=0;
@@ -269,7 +269,7 @@ else
 			if(bOK)modemDrvInitStepCnt++;
 			}*/
 
-		else if(modemDrvInitStepCnt==35)
+		else if(modemDrvInitStepCnt==40)
 			{
 			//printf("AT+COPS?\r\n");
 			printf("ATE0\r\n");
@@ -277,7 +277,7 @@ else
 			modemDrvInitStepCnt++;
 			}
 
-		else if(modemDrvInitStepCnt==36)
+		else if(modemDrvInitStepCnt==41)
 			{
 			if(bOK)
 				{
@@ -287,7 +287,7 @@ else
 				}
 			}
 
-		else if(modemDrvInitStepCnt==37)
+		else if(modemDrvInitStepCnt==42)
 			{
 			if(bOK)
 				{
@@ -297,7 +297,7 @@ else
 				}
 			}
 			
-		else if(modemDrvInitStepCnt==38)
+		else if(modemDrvInitStepCnt==43)
 			{
 			if(bOK)
 				{
@@ -307,7 +307,7 @@ else
 				}
 			}
 
-		else if(modemDrvInitStepCnt==39)
+		else if(modemDrvInitStepCnt==44)
 			{
 			if(bOK)
 				{
@@ -317,13 +317,13 @@ else
 				}				
 			}
 
-		else if(modemDrvInitStepCnt==40)
+		else if(modemDrvInitStepCnt==45)
 			{
 			if(bOK)
 				{
 				//modemState=MS_LINKED_INITIALIZED;
 				bINITIALIZED=1;
-				modemDrvInitStepCnt=50;
+				modemDrvInitStepCnt=55;
 				bOK=0;
 				}
 			}
@@ -331,7 +331,7 @@ else
 
 		else
 			{
-			if(modemDrvInitStepCnt<50)	modemDrvInitStepCnt++;
+			if(modemDrvInitStepCnt<55)	modemDrvInitStepCnt++;
 			}
 		}
 		

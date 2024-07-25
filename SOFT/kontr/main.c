@@ -165,6 +165,7 @@ enumPowerStat powerStat=psOFF;
 //Проверка индикации
 @near short ind_check_cnt;
 @near short ind_check_cnt1;
+@near short ind_check_cnt1_max;
 
 //^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 //отладка
@@ -1176,7 +1177,7 @@ else if(ind==iInterf)
 	//элементов индикации
 //	@near static short ind_check_cnt;
 //	@near static short ind_check_cnt1;
-	if(++ind_check_cnt1>=5)
+	if(++ind_check_cnt1>=ind_check_cnt1_max)
 		{
 		ind_check_cnt1=0;
 		if(++ind_check_cnt>=64)ind_check_cnt=0;
@@ -1914,9 +1915,9 @@ else if(ind==iModem_deb)
 		{
 		AUTH_NUMBER_FLAGS=0x0f;
 		memcpy(MAIN_NUMBER,"9139294352",10);
-		memcpy(AUTH_NUMBER_1,"9134863890",10);
-		memcpy(AUTH_NUMBER_2,"9237328354",10);
-		memcpy(AUTH_NUMBER_3,"11234567890",10);
+		//memcpy(AUTH_NUMBER_1,"9134863890",10);
+		//memcpy(AUTH_NUMBER_2,"9237328354",10);
+		//memcpy(AUTH_NUMBER_3,"11234567890",10);
 		HUMAN_SET_EE=1;
 		}			
 	}
@@ -2015,11 +2016,31 @@ else if(ind==iDefSet)
 	
 else if(ind==iInterf)
 	{
-	if((but==butU)||(but==butD)||(but==butM)||(but==butON))	
+	if(but==butON)	
 		{
 		beepTestCnt=10;
+		ind_check_cnt1_max=2;
 		ind_check_cnt=0;
 		}
+	if(but==butM)
+		{
+		beepTestCnt=20;
+		ind_check_cnt1_max=3;
+		ind_check_cnt=0;
+		}
+	if(but==butU)	
+		{
+		beepTestCnt=30;
+		ind_check_cnt1_max=5;
+		ind_check_cnt=0;
+		}
+	if(but==butD)	
+		{
+		beepTestCnt=40;
+		ind_check_cnt1_max=1;
+		ind_check_cnt=0;
+		}
+		
 	}
 }
 //-----------------------------------------------
