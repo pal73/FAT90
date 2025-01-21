@@ -20,10 +20,13 @@ Length=0
 High Base=0
 Low Base=0
 Step=0
+Little Endian=0
 [OPTION BYTE]
 Count=0
 [DATA MEMORY]
 Count=0
 [PROGRAM MEMORY]
-Count=1
+Count=3
 File0=E:\USERS\PAL\DEVICES\FAT90\SOFT\kontr\Debug\fat90_kontr.s19
+File1=E:\USERS\PAL\DEVICES\FAT90\fat90_kontr_346.s19
+File2=E:\USERS\PAL\DEVICES\FAT90\fat90_kontr.s19
