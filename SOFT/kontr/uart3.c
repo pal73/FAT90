@@ -283,6 +283,7 @@ if(bRXIN3)
 		if(ind!=iInterf)
 			{
 			tree_up(iInterf,0,0,0);
+			ind_check_cnt1_max=1;
 			}
 		}				
 	else if(strstr(uart3_an_buffer,"INTE_RET"))
